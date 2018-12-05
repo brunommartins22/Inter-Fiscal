@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="ADD ICODPRO ON TABPRO" author="InterFiscal - Bruno">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="TABPRO" columnName="ICODPRO"/>
+            </not>
+        </preConditions>
+        <sql>
+            ALTER TABLE TABPRO
+            ADD  ICODPRO INTEGER;
+        </sql>
+    </changeSet>
+    <changeSet id="ADD MIXFISCAL ON TABPROFIL" author="InterFiscal - Bruno">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="TABPROFIL" columnName="MIXFISCAL"/>
+            </not>
+        </preConditions>
+        <sql>
+            ALTER TABLE TABPROFIL
+            ADD  MIXFISCAL VARCHAR(1);
+        </sql>
+    </changeSet>
+    <changeSet id="ADD MIXFISCAL ON TABPROIMP" author="InterFiscal - Bruno">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="TABPROIMP" columnName="MIXFISCAL"/>
+            </not>
+        </preConditions>
+        <sql>
+            ALTER TABLE TABPROIMP 
+            ADD  MIXFISCAL VARCHAR(1);
+        </sql>
+    </changeSet>
+    <changeSet id="ADD NATPRO ON TABPRO" author="InterFiscal - Bruno">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="TABPRO" columnName="NATPRO"/>
+            </not>
+        </preConditions>
+        <sql>
+            ALTER TABLE TABPRO 
+            ADD  NATPRO VARCHAR(4);
+        </sql>
+    </changeSet>
+    <changeSet id="ADD NAT_REC ON TABPROFIL" author="InterFiscal - Bruno">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="TABPROFIL" columnName="NAT_REC"/>
+            </not>
+        </preConditions>
+        <sql>
+            ALTER TABLE TABPROFIL 
+            ADD  NAT_REC VARCHAR(3)
+        </sql>
+    </changeSet>
+    <changeSet id="ADD CSTIPIE ON TABPROFIL" author="InterFiscal - Bruno">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="TABPROFIL" columnName="CSTIPIE"/>
+            </not>
+        </preConditions>
+        <sql>
+            ALTER TABLE TABPROFIL 
+            ADD  CSTIPIE VARCHAR(4)
+        </sql>
+    </changeSet>
+    <changeSet id="ADD CSTPISE ON TABPROFIL" author="InterFiscal - Bruno">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="TABPROFIL" columnName="CSTPISE"/>
+            </not>
+        </preConditions>
+        <sql>
+            ALTER TABLE TABPROFIL 
+            ADD  CSTPISE VARCHAR(4)
+        </sql>
+    </changeSet>
+    <changeSet id="ADD CSTCOFINSE ON TABPROFIL" author="InterFiscal - Bruno">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="TABPROFIL" columnName="CSTCOFINSE"/>
+            </not>
+        </preConditions>
+        <sql>
+            ALTER TABLE TABPROFIL 
+            ADD  CSTCOFINSE VARCHAR(4)
+        </sql>
+    </changeSet>
+    
+    <changeSet id="CREATE TABLE FISCALTEMP"
+                author = "InterFiscal - Bruno" dbms="postgresql" runOnChange="true" >
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="TABPROIMPE" />
+            </not>
+        </preConditions>
+        <sql splitStatements="true">
+            CREATE TABLE FISCALTEMP (
+            codigo serial,
+            nome_produto VARCHAR(200),
+            codigo_produto VARCHAR(6),
+            ncm VARCHAR(10) ,
+            ncm_before VARCHAR(10) ,
+            ncm_ex     VARCHAR(3) ,
+            ncm_ex_before     VARCHAR(3) ,
+            cod_natureza_receita VARCHAR(4) ,
+            cod_natureza_receita_before VARCHAR(4) ,
+            credito_presumido          INTEGER ,
+            credito_presumido_before          INTEGER ,
+            pis_cst_e VARCHAR(3) ,
+            pis_cst_e_before VARCHAR(3) ,
+            pis_cst_s VARCHAR(3) ,
+            pis_cst_s_before VARCHAR(3) ,
+            pis_alq_e DOUBLE PRECISION ,
+            pis_alq_e_before DOUBLE PRECISION ,
+            pis_alq_s DOUBLE PRECISION ,
+            pis_alq_s_before DOUBLE PRECISION ,
+            cofins_cst_e VARCHAR(3) ,
+            cofins_cst_e_before VARCHAR(3) ,
+            cofins_cst_s VARCHAR(3) ,
+            cofins_cst_s_before VARCHAR(3) ,
+            cofins_alq_e DOUBLE PRECISION ,
+            cofins_alq_e_before DOUBLE PRECISION ,
+            cofins_alq_s        DOUBLE PRECISION ,
+            cofins_alq_s_before DOUBLE PRECISION ,
+            CODIGO_FILIAL INTEGER ,
+            ean VARCHAR(20) ,
+            tipo_mva VARCHAR(2) ,
+            tipo_mva_before VARCHAR(2) ,
+            mva DOUBLE PRECISION ,
+            mva_before DOUBLE PRECISION ,
+            mva_distribuidor DOUBLE PRECISION ,
+            mva_distribuidor_before DOUBLE PRECISION ,
+            mva_data_ini TIMESTAMP ,
+            mva_data_ini_before TIMESTAMP ,
+            mva_data_fim TIMESTAMP ,
+            mva_data_fim_before TIMESTAMP ,
+            credito_outorgado INTEGER ,
+            credito_outorgado_before INTEGER ,
+            ei_cst VARCHAR(3) ,
+            ei_cst_before VARCHAR(3) ,
+            ei_alq DOUBLE PRECISION ,
+            ei_alq_before DOUBLE PRECISION ,
+            ei_alqst DOUBLE PRECISION ,
+            ei_alqst_before DOUBLE PRECISION ,
+            ei_rbc DOUBLE PRECISION ,
+            ei_rbc_before DOUBLE PRECISION ,
+            ei_rbcst DOUBLE PRECISION ,
+            ei_rbcst_before DOUBLE PRECISION ,
+            ed_cst VARCHAR(3) ,
+            ed_cst_before VARCHAR(3) ,
+            ed_alq DOUBLE PRECISION ,
+            ed_alq_before DOUBLE PRECISION ,
+            ed_alqst      DOUBLE PRECISION ,
+            ed_alqst_before DOUBLE PRECISION ,
+            ed_rbc DOUBLE PRECISION ,
+            ed_rbc_before DOUBLE PRECISION ,
+            ed_rbcst DOUBLE PRECISION ,
+            ed_rbcst_before DOUBLE PRECISION ,
+            es_cst VARCHAR(3) ,
+            es_cst_before VARCHAR(3) ,
+            es_alq DOUBLE PRECISION ,
+            es_alq_before DOUBLE PRECISION ,
+            es_alqst DOUBLE PRECISION ,
+            es_alqst_before DOUBLE PRECISION ,
+            es_rbc DOUBLE PRECISION ,
+            es_rbc_before DOUBLE PRECISION ,
+            es_rbcst DOUBLE PRECISION ,
+            es_rbcst_before DOUBLE PRECISION ,
+            nfi_cst VARCHAR(3) ,
+            nfi_cst_before VARCHAR(3) ,
+            nfd_cst VARCHAR(3) ,
+            nfd_cst_before VARCHAR(3) ,
+            nfs_csosn VARCHAR(4) ,
+            nfs_csosn_before VARCHAR(4) ,
+            nf_alq  DOUBLE PRECISION ,
+            nf_alq_before  DOUBLE PRECISION ,
+            re_29560 INTEGER ,
+            re_29560_before INTEGER ,
+            cest  VARCHAR(10) ,
+            cest_before  VARCHAR(10) ,
+            sac_cst VARCHAR(3) ,
+            sac_cst_before VARCHAR(3) ,
+            sac_alq DOUBLE PRECISION ,
+            sac_alq_before DOUBLE PRECISION ,
+            sac_alqst      DOUBLE PRECISION ,
+            sac_alqst_before  DOUBLE PRECISION ,
+            sac_rbc DOUBLE PRECISION ,
+            sac_rbc_before DOUBLE PRECISION ,
+            sac_rbcst DOUBLE PRECISION ,
+            sac_rbcst_before DOUBLE PRECISION ,
+            sas_cst VARCHAR(3) ,
+            sas_cst_before VARCHAR(3) ,
+            sas_alq DOUBLE PRECISION ,
+            sas_alq_before DOUBLE PRECISION ,
+            sas_alqst DOUBLE PRECISION ,
+            sas_alqst_before DOUBLE PRECISION ,
+            sas_rbc DOUBLE PRECISION ,
+            sas_rbc_before DOUBLE PRECISION ,
+            sas_rbcst DOUBLE PRECISION ,
+            sas_rbcst_before DOUBLE PRECISION ,
+            svc_cst VARCHAR(3) ,
+            svc_cst_before VARCHAR(3) ,
+            svc_alq DOUBLE PRECISION ,
+            svc_alq_before DOUBLE PRECISION ,
+            svc_alqst DOUBLE PRECISION ,
+            svc_alqst_before DOUBLE PRECISION ,
+            svc_rbc DOUBLE PRECISION ,
+            svc_rbc_before DOUBLE PRECISION ,
+            svc_rbcst DOUBLE PRECISION ,
+            svc_rbcst_before DOUBLE PRECISION ,
+            snc_cst VARCHAR(3) ,
+            snc_cst_before VARCHAR(3) ,
+            snc_alq DOUBLE PRECISION ,
+            snc_alq_before DOUBLE PRECISION ,
+            snc_alqst  DOUBLE PRECISION ,
+            snc_alqst_before  DOUBLE PRECISION ,
+            snc_rbc DOUBLE PRECISION ,
+            snc_rbc_before DOUBLE PRECISION ,
+            snc_rbcst DOUBLE PRECISION ,
+            snc_rbcst_before DOUBLE PRECISION ,
+            sss_csosn VARCHAR(4) ,
+            sss_csosn_before VARCHAR(4) ,
+            svc_csosn VARCHAR(4) ,
+            svc_csosn_before VARCHAR(4) ,
+            snc_csosn  VARCHAR(4) ,
+            snc_csosn_before  VARCHAR(4) ,
+            fecp DOUBLE PRECISION ,
+            fecp_before DOUBLE PRECISION ,
+            fundamento_legal VARCHAR(500),
+            pis_cofins boolean,
+            icms_entrada boolean,
+            icms_saida   boolean,
+            atualizacao_piscofins TIMESTAMP,
+            atualizacao_icmsentrada TIMESTAMP,
+            atualizacao_icmssaida TIMESTAMP 
+            );
+            ALTER TABLE
+            FISCALTEMP ADD CONSTRAINT PK_FISCALTEMP PRIMARY KEY
+            (CODIGO);
+      
+        </sql>
+    </changeSet>
+    
+    <changeSet id="CREATE TABLE TABPROIMPE"
+               author="InterFiscal - Bruno" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="TABPROIMPE" />
+            </not>
+        </preConditions>
+        <sql splitStatements="true">
+            CREATE TABLE TABPROIMPE (
+            codigo_produto
+            VARCHAR(10) NOT NULL,
+            CODIGO_FILIAL INTEGER NOT NULL,
+            ean VARCHAR(20) ,
+            tipo_mva VARCHAR(2) ,
+            mva DOUBLE PRECISION ,
+            mva_distribuidor DOUBLE
+            PRECISION ,
+            mva_data_ini TIMESTAMP ,
+            mva_data_fim TIMESTAMP ,
+            credito_outorgado INTEGER ,
+            ei_cst VARCHAR(3) ,
+            ei_alq DOUBLE PRECISION ,
+            ei_alqst DOUBLE PRECISION ,
+            ei_rbc DOUBLE PRECISION ,
+            ei_rbcst DOUBLE
+            PRECISION ,
+            ed_cst VARCHAR(3) ,
+            ed_alq DOUBLE PRECISION ,
+            ed_alqst
+            DOUBLE PRECISION ,
+            ed_rbc DOUBLE PRECISION ,
+            ed_rbcst DOUBLE PRECISION
+            ,
+            es_cst VARCHAR(3) ,
+            es_alq DOUBLE PRECISION ,
+            es_alqst DOUBLE
+            PRECISION ,
+            es_rbc DOUBLE PRECISION ,
+            es_rbcst DOUBLE PRECISION ,
+            nfi_cst VARCHAR(3) ,
+            nfd_cst VARCHAR(3) ,
+            nfs_csosn VARCHAR(4) ,
+            nf_alq
+            DOUBLE PRECISION ,
+            fundamento_legal VARCHAR(500),
+            MIXFISCAL VARCHAR(1),
+            DTENVSERV TIMESTAMP
+            );
+            ALTER TABLE
+            TABPROIMPE ADD CONSTRAINT PK_TABPROIMPE PRIMARY KEY
+            (CODIGO_PRODUTO,
+            CODIGO_FILIAL);
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="CREATE VIEW MXF_VW_PIS_COFINS"
+               author="InterFiscal - Bruno" dbms="postgresql" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <viewExists viewName="MXF_VW_PIS_COFINS" />
+            </not>
+        </preConditions>
+        <sql splitStatements="true">
+            create view MXF_VW_PIS_COFINS
+            as
+            select
+            p.icodpro as codigo_produto,
+            p.codbarun as ean,
+            p.descpro as
+            descritivo_produto,
+            p.clasfiscal as ncm,
+            null::VARCHAR(3) as ncm_ex,
+            tpf.NAT_REC as cod_natureza_receita,
+            tpf.cstpise as pis_cst_e,
+            tpi.piscst as pis_cst_s,
+            tpf.fatorpiscom as pis_alq_e,
+            tpi.pisppis as
+            pis_alq_s,
+            tpf.cstcofinse as cofins_cst_e,
+            tpi.cofinscst as
+            cofins_cst_s,
+            tpf.fatorcofinscom as cofins_alq_e,
+            tpi.cofinspcofins as
+            cofins_alq_s,
+            p.fabpro as depto,
+            null::varchar as secao,
+            p.grupro as
+            grupo,
+            null::varchar as subgrupo,
+            p.stprod as status,
+            p.rgdata as data_ult_mov
+            from tabpro p
+            inner
+            join tabprofil tpf on tpf.codpro = p.codpro
+            left join tabproimp tpi
+            on tpi.codfil = tpf.codfil and tpi.codpro =
+            tpf.codpro and
+            tpi.tpimpos='D'
+            where p.codpro is not null
+        </sql>
+    </changeSet>
+
+    <changeSet id="CREATE TABLE MXF_TMP_PIS_COFINS"
+               author="InterFiscal - Bruno" dbms="postgresql" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="MXF_TMP_PIS_COFINS" />
+            </not>
+        </preConditions>
+        <sql splitStatements="true">
+            CREATE TABLE mxf_tmp_pis_cofins (
+            codigo serial,
+            codigo_produto BIGINT NOT NULL,
+            ean BIGINT ,
+            ncm VARCHAR(10) ,
+            ncm_ex
+            VARCHAR(3) ,
+            cod_natureza_receita VARCHAR(4) ,
+            credito_presumido
+            INTEGER ,
+            pis_cst_e VARCHAR(3) ,
+            pis_cst_s VARCHAR(3) ,
+            pis_alq_e DOUBLE
+            PRECISION ,
+            pis_alq_s DOUBLE PRECISION ,
+            cofins_cst_e VARCHAR(3) ,
+            cofins_cst_s VARCHAR(3) ,
+            cofins_alq_e DOUBLE PRECISION ,
+            cofins_alq_s
+            DOUBLE PRECISION ,
+            fundamento_legal VARCHAR(500)
+            );
+            ALTER TABLE
+            mxf_tmp_pis_cofins ADD CONSTRAINT PK_mxf_tmp_pis_cofins PRIMARY KEY
+            (CODIGO);
+        </sql>
+    </changeSet>
+
+    <changeSet id="CREATE VIEW MXF_VW_ICMS_ENTRADA"
+               author="InterFiscal - Bruno" dbms="postgresql" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <viewExists viewName="MXF_VW_ICMS_ENTRADA" />
+            </not>
+        </preConditions>
+        <sql splitStatements="true">
+            create view MXF_VW_ICMS_ENTRADA 
+            as
+            select
+            tp.icodpro as codigo_produto,
+            tp.codbarun as ean,
+            tpi.ei_cst as ei_cst,
+            tpi.ei_alq as ei_alq,
+            tpi.ei_alqst as ei_alqst,
+            tpi.ei_rbc as ei_rbc,
+            tpi.ei_rbcst as ei_rbcst,
+            tpi.ed_cst as ed_cst,
+            tpi.ed_alq as ed_alq,
+            tpi.ed_alqst as ed_alqst,
+            tpi.ed_rbc as ed_rbc,
+            tpi.ed_rbcst as
+            ed_rbcst,
+            tpi.es_cst as es_cst,
+            tpi.es_alq as es_alq,
+            tpi.es_alqst as
+            es_alqst,
+            tpi.es_rbc as es_rbc,
+            tpi.es_rbcst as es_rbcst,
+            tpi.nfi_cst as
+            nfi_cst,
+            tpi.nfd_cst as nfd_cst,
+            tpi.nfs_csosn as nfs_csosn,
+            tp.stprod
+            as status,
+            tp.rgdata as data_ult_mov
+            from tabpro tp
+            inner join tabprofil tpf on tp.codpro =
+            tpf.codpro
+            left join tabproimpe tpi on tpf.codfil = tpi.codigo_filial
+            and
+            tpi.codigo_produto = tpf.codpro
+        </sql>
+    </changeSet>
+
+    <changeSet id="CREATE TABLE MXF_TMP_ICMS_ENTRADA"
+               author="InterFiscal - Bruno" dbms="postgresql" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="MXF_TMP_ICMS_ENTRADA" />
+            </not>
+        </preConditions>
+        <sql splitStatements="true">
+            CREATE TABLE mxf_tmp_icms_entrada (
+            codigo serial,
+            codigo_produto BIGINT NOT NULL,
+            ean BIGINT ,
+            tipo_mva VARCHAR(2) ,
+            mva
+            DOUBLE PRECISION ,
+            mva_distribuidor DOUBLE PRECISION ,
+            mva_data_ini
+            TIMESTAMP ,
+            mva_data_fim TIMESTAMP ,
+            credito_outorgado INTEGER ,
+            ei_cst
+            VARCHAR(3) ,
+            ei_alq DOUBLE PRECISION ,
+            ei_alqst DOUBLE PRECISION ,
+            ei_rbc DOUBLE PRECISION ,
+            ei_rbcst DOUBLE PRECISION ,
+            ed_cst VARCHAR(3)
+            ,
+            ed_alq DOUBLE PRECISION ,
+            ed_alqst DOUBLE PRECISION ,
+            ed_rbc DOUBLE
+            PRECISION ,
+            ed_rbcst DOUBLE PRECISION ,
+            es_cst VARCHAR(3) ,
+            es_alq
+            DOUBLE PRECISION ,
+            es_alqst DOUBLE PRECISION ,
+            es_rbc DOUBLE PRECISION
+            ,
+            es_rbcst DOUBLE PRECISION ,
+            nfi_cst VARCHAR(3) ,
+            nfd_cst VARCHAR(3) ,
+            nfs_csosn VARCHAR(4) ,
+            nf_alq DOUBLE PRECISION ,
+            fundamento_legal
+            VARCHAR(500)
+            );
+            ALTER TABLE
+            mxf_tmp_icms_entrada ADD CONSTRAINT PK_mxf_tmp_icms_entrada PRIMARY KEY
+            (CODIGO);
+        </sql>
+    </changeSet>
+
+    <changeSet id="CREATE TABLE MXF_TMP_ICMS_SAIDA"
+               author="InterFiscal - Bruno" dbms="postgresql" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="MXF_TMP_ICMS_SAIDA" />
+            </not>
+        </preConditions>
+        <sql splitStatements="true">
+            CREATE TABLE mxf_tmp_icms_saida (
+            codigo serial,
+            codigo_produto BIGINT NOT NULL,
+            ean BIGINT ,
+            re_29560 INTEGER ,
+            cest
+            VARCHAR(10) ,
+            sac_cst VARCHAR(3) ,
+            sac_alq DOUBLE PRECISION ,
+            sac_alqst
+            DOUBLE PRECISION ,
+            sac_rbc DOUBLE PRECISION ,
+            sac_rbcst DOUBLE
+            PRECISION ,
+            sas_cst VARCHAR(3) ,
+            sas_alq DOUBLE PRECISION ,
+            sas_alqst
+            DOUBLE PRECISION ,
+            sas_rbc DOUBLE PRECISION ,
+            sas_rbcst DOUBLE
+            PRECISION ,
+            svc_cst VARCHAR(3) ,
+            svc_alq DOUBLE PRECISION ,
+            svc_alqst
+            DOUBLE PRECISION ,
+            svc_rbc DOUBLE PRECISION ,
+            svc_rbcst DOUBLE
+            PRECISION ,
+            snc_cst VARCHAR(3) ,
+            snc_alq DOUBLE PRECISION ,
+            snc_alqst
+            DOUBLE PRECISION ,
+            snc_rbc DOUBLE PRECISION ,
+            snc_rbcst DOUBLE
+            PRECISION ,
+            sss_csosn VARCHAR(4) ,
+            svc_csosn VARCHAR(4) ,
+            snc_csosn VARCHAR(4),
+            fecp DOUBLE PRECISION ,
+            fundamento_legal VARCHAR(500)
+            );
+            ALTER TABLE
+            mxf_tmp_icms_saida ADD CONSTRAINT PK_mxf_tmp_icms_saida PRIMARY KEY
+            (CODIGO);
+        </sql>
+    </changeSet>
+
+    <!-- Precisa ser ajustada -->
+    <changeSet id="CREATE VIEW MXF_VW_ICMS"
+               author="InterFiscal - Bruno" dbms="postgresql" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <viewExists viewName="MXF_VW_ICMS" />
+            </not>
+        </preConditions>
+        <sql splitStatements="true">
+            create view MXF_VW_ICMS as select
+            p.icodpro as codigo_produto ,
+            p.codbarun as ean,
+            tpi.icmsmodbc
+            as tipo_mva,
+            tpi.icmsmodbcst as mva,
+            null::double precision as
+            mva_distribuidor,
+            null::text as credito_outorgado,
+            null::integer as
+            re_29560,
+            p.cest as cest,
+            null::double precision as sac_cst,
+            null::double precision as sac_alq,
+            null::double precision as
+            sac_alqst,
+            null::double precision as sac_rbc,
+            null::double precision as
+            sac_rbcst,
+            null::double precision as sas_cst,
+            null::double precision as
+            sas_alq,
+            null::double precision as sas_alqst,
+            null::double precision as
+            sas_rbc,
+            null::double precision as sas_rbcst,
+            null::double precision as
+            svc_cst,
+            null::double precision as svc_alq,
+            null::double precision as
+            svc_alqst,
+            null::double precision as svc_rbc,
+            null::double precision as
+            svc_rbcst,
+            tpi.icmscst as snc_cst,
+            tpi.icmspicms as snc_alq,
+            tpi.icmspicmsst as snc_alqst,
+            tpi.icmspredbc as snc_rbc,
+            tpi.icmspredbcst as snc_rbcst,
+            null::text as sss_csosn ,
+            null::text as svc_csosn , 
+            tpi.icmscst as snc_csosn,
+            p.stprod as status,
+            p.rgdata as data_ult_mov
+            from tabpro p
+            inner
+            join tabprofil tpf on tpf.codpro = p.codpro
+            left join tabproimp tpi
+            on tpi.codfil = tpf.codfil and tpi.codpro =
+            tpf.codpro and
+            tpi.tpimpos='D'
+            where p.codpro is not null
+        </sql>
+    </changeSet>
+    
+    <changeSet id="Adicionar campo QUARTOBOV na TABPRO"
+               author="Integrado - José" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="TABPRO" columnName="QUARTOBOV" />
+            </not>
+        </preConditions>
+        <addColumn tableName="TABPRO">
+            <column name="QUARTOBOV" type="varchar(1)" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="Adicionar campo UNIDADEQUARTO na TABPRO"
+               author="Integrado - José" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="TABPRO"
+                              columnName="UNIDADEQUARTO" />
+            </not>
+        </preConditions>
+        <addColumn tableName="TABPRO">
+            <column name="UNIDADEQUARTO" type="varchar(2)" />
+        </addColumn>
+    </changeSet>
+    
+
+</databaseChangeLog>
