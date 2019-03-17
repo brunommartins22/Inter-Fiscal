@@ -14,5 +14,5 @@ public interface FireTabproBusiness extends BusinessCrud<Tabpro> {
 
     public void getGerarEanbyCodigo();
 
-    public List<ImportacaoImp> getProdutobyDescorCod(Object obj, Integer codfil, Integer tipo);
+    public List<Object[]> getProdutobyDescorCod(Object obj, Integer codfil, Integer tipo);
 }

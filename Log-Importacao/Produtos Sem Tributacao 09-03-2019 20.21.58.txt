@@ -1,0 +1,1712 @@
+CodBarra = null Produto = ASA DE FRANGO AVISPARA
+CodBarra = null Produto = ASA DE FRANGO AVISPARA
+CodBarra = null Produto = FILE DE FRANGO SUPERFRANGO 20,4 KG
+CodBarra = null Produto = FILE DE FRANGO SUPERFRANGO 20,4 KG
+CodBarra = null Produto = COXINHA ASA DE FRANGO AMERICANO
+CodBarra = null Produto = COXINHA ASA DE FRANGO AMERICANO
+CodBarra = null Produto = FRANGO CONGELADO SOLON
+CodBarra = null Produto = FRANGO CONGELADO SOLON
+CodBarra = null Produto = FRANGO CONGELADO AMAZONIA
+CodBarra = null Produto = FRANGO CONGELADO AMAZONIA
+CodBarra = null Produto = COXA DE FRANGO AMAZONIA
+CodBarra = null Produto = COXA DE FRANGO AMAZONIA
+CodBarra = null Produto = COXINHA ASA DE FRANGO AMAZONIA
+CodBarra = null Produto = COXINHA ASA DE FRANGO AMAZONIA
+CodBarra = null Produto = COXINHA ASA DE FRANGO BONASA
+CodBarra = null Produto = COXINHA ASA DE FRANGO BONASA
+CodBarra = null Produto = FRANGO PASSARINHO BONASA
+CodBarra = null Produto = FRANGO PASSARINHO BONASA
+CodBarra = null Produto = PEITO DE FRANGO SOLON
+CodBarra = null Produto = PEITO DE FRANGO SOLON
+CodBarra = null Produto = FRANGO CONGELADO BONASA
+CodBarra = null Produto = FRANGO CONGELADO BONASA
+CodBarra = null Produto = DORSO DE FRANGO AVISPARA
+CodBarra = null Produto = DORSO DE FRANGO AVISPARA
+CodBarra = null Produto = AVE BLESSER AURORA
+CodBarra = null Produto = AVE BLESSER AURORA
+CodBarra = null Produto = COXINHA ASA DE FRANGO SOLON
+CodBarra = null Produto = COXINHA ASA DE FRANGO SOLON
+CodBarra = null Produto = COXA DE FRANGO BONASA
+CodBarra = null Produto = COXA DE FRANGO BONASA
+CodBarra = null Produto = COXA DE FRANGO BONASA
+CodBarra = null Produto = COXA DE FRANGO CANCAO
+CodBarra = null Produto = COXA DE FRANGO CANCAO
+CodBarra = null Produto = COXINHA ASA DE FRANGO CANCAO
+CodBarra = null Produto = COXINHA ASA DE FRANGO CANCAO
+CodBarra = null Produto = COXINHA ASA TEMPERADA DE FRANGO BONASA
+CodBarra = null Produto = COXINHA ASA TEMPERADA DE FRANGO BONASA
+CodBarra = null Produto = FRANGO CONGELADO CELEBRAR
+CodBarra = null Produto = FRANGO CONGELADO CELEBRAR
+CodBarra = null Produto = FILE DE FRANGO BONASA 18KG
+CodBarra = null Produto = FILE DE FRANGO BONASA 18KG
+CodBarra = null Produto = FILE DE FRANGO BONASA 20KG
+CodBarra = null Produto = FILE DE FRANGO BONASA 20KG
+CodBarra = null Produto = CHARQUE ROZZATTI
+CodBarra = null Produto = CHARQUE ROZZATTI
+CodBarra = null Produto = CALABRESA GRANEL REZENDE
+CodBarra = null Produto = CALABRESA GRANEL REZENDE
+CodBarra = null Produto = CALABRESA MISTA REZENDE
+CodBarra = null Produto = CALABRESA MISTA REZENDE
+CodBarra = null Produto = CARRE SUINO SADIA
+CodBarra = null Produto = CARRE SUINO SADIA
+CodBarra = null Produto = SALSICHA HOT DOG CANCAO
+CodBarra = null Produto = SALSICHA HOT DOG CANCAO
+CodBarra = null Produto = SOBREPALETA SUINA FRIMESA
+CodBarra = null Produto = SOBREPALETA SUINA FRIMESA
+CodBarra = null Produto = TOSCANA BONASA
+CodBarra = null Produto = TOSCANA BONASA
+CodBarra = null Produto = TOSCANA DALIA
+CodBarra = null Produto = TOSCANA DALIA
+CodBarra = null Produto = TOSCANA DE FRANGO LEBON
+CodBarra = null Produto = TOSCANA DE FRANGO LEBON
+CodBarra = null Produto = TOSCANA DE FRANGO PENA BRANCA
+CodBarra = null Produto = TOSCANA DE FRANGO PENA BRANCA
+CodBarra = null Produto = TOSCANA PEPERI
+CodBarra = null Produto = TOSCANA PEPERI
+CodBarra = null Produto = TOSCANA PERNIL AURORA
+CodBarra = null Produto = TOSCANA PERNIL AURORA
+CodBarra = null Produto = TOSCANA DE FRANGO SEARA
+CodBarra = null Produto = TOSCANA DE FRANGO SEARA
+CodBarra = null Produto = CARRE SUINO REZENDE
+CodBarra = null Produto = CARRE SUINO REZENDE
+CodBarra = null Produto = PE SUINO FRIMESA
+CodBarra = null Produto = PE SUINO FRIMESA
+CodBarra = null Produto = ORELHA SUINO FRIMESA
+CodBarra = null Produto = ORELHA SUINO FRIMESA
+CodBarra = null Produto = CARRE SUINO FRIMESA
+CodBarra = null Produto = CARRE SUINO FRIMESA
+CodBarra = null Produto = CALABRESA MISTA DALIA
+CodBarra = null Produto = CALABRESA MISTA DALIA
+CodBarra = null Produto = CHARQUE SANTA CRUZ
+CodBarra = null Produto = CHARQUE SANTA CRUZ
+CodBarra = null Produto = CARRE SUINO SEARA
+CodBarra = null Produto = CARRE SUINO SEARA
+CodBarra = null Produto = CHARQUE CAMBUI
+CodBarra = null Produto = CHARQUE CAMBUI
+CodBarra = null Produto = CHARQUE PA KADAO
+CodBarra = null Produto = CHARQUE PA KADAO
+CodBarra = null Produto = CALABRESA SEARA
+CodBarra = null Produto = CALABRESA SEARA
+CodBarra = null Produto = CALABRESA MISTA SEARA
+CodBarra = null Produto = CALABRESA MISTA SEARA
+CodBarra = null Produto = TOSCANA DE FRANGO BONASA
+CodBarra = null Produto = TOSCANA DE FRANGO BONASA
+CodBarra = null Produto = SALSICHA HOTDOG AURORA
+CodBarra = null Produto = SALSICHA HOTDOG AURORA
+CodBarra = null Produto = SALSICHA HOT DOG BOM GOSTO
+CodBarra = null Produto = SALSICHA HOT DOG BOM GOSTO
+CodBarra = null Produto = NOVO PRODUTO
+CodBarra = null Produto = PERNIL AURORA
+CodBarra = null Produto = PERNIL AURORA
+CodBarra = null Produto = CALABRESA MISTA DUPARA
+CodBarra = null Produto = CALABRESA MISTA DUPARA
+CodBarra = null Produto = CALABRESA DE FRANGO DU PARA
+CodBarra = null Produto = CALABRESA DE FRANGO DU PARA
+CodBarra = null Produto = CORAÇAO BOVINO JBS
+CodBarra = null Produto = CORAÇAO BOVINO JBS
+CodBarra = null Produto = FIGADO BOVINO JBS
+CodBarra = null Produto = FIGADO BOVINO JBS
+CodBarra = null Produto = LINGUA BOVINA JBS
+CodBarra = null Produto = LINGUA BOVINA JBS
+CodBarra = null Produto = LINGUA BOVINA EXTREMO NORTE
+CodBarra = null Produto = LINGUA BOVINA EXTREMO NORTE
+CodBarra = null Produto = LAMINA DE SERRA 5/8 X 0,45 X 6D X 3,15
+CodBarra = null Produto = LAMINA DE SERRA 5/8 X 0,45 X 6D X 3,15
+CodBarra = null Produto = LAMINA DE SERRA 5/8 X 0,45 X 6D X 2,82
+CodBarra = 7898040082024 Produto = CHICKEN CONG  300G
+CodBarra = 7898040082024 Produto = CHICKEN CONG  300G
+CodBarra = null Produto = DETERGENTE LIQ. FC CLEAR 500ML
+CodBarra = null Produto = CALABRESA ESTRELA
+CodBarra = null Produto = CALABRESA ESTRELA
+CodBarra = null Produto = ASA DE FRANGO AMAZONIA
+CodBarra = null Produto = ASA DE FRANGO AMAZONIA
+CodBarra = null Produto = CALABRESA MISTA NOBRE
+CodBarra = null Produto = CALABRESA MISTA NOBRE
+CodBarra = null Produto = CALABRESA SADIA
+CodBarra = null Produto = CALABRESA SADIA
+CodBarra = null Produto = CHARQUE FAVORITO
+CodBarra = null Produto = CHARQUE FAVORITO
+CodBarra = null Produto = CHOURICO TCHE
+CodBarra = null Produto = CHOURICO TCHE
+CodBarra = null Produto = CORACAO DE FRANGO AMAZONIA
+CodBarra = null Produto = CORACAO DE FRANGO AMAZONIA
+CodBarra = null Produto = CORACAO DE FRANGO SUPERFRANGO
+CodBarra = null Produto = CORACAO DE FRANGO SUPERFRANGO
+CodBarra = null Produto = COXA DE FRANGO RICO
+CodBarra = null Produto = COXA DE FRANGO RICO
+CodBarra = null Produto = JAPONA FRIGORIFICATAM G CA 25725
+CodBarra = null Produto = FILTRO BIG POE 20
+CodBarra = null Produto = JAPONA FRIGORIFICATAM GG CA 25725
+CodBarra = null Produto = GRAXA ROLAMENTO 1KL
+CodBarra = null Produto = SERVIÇO MANUTENÇÃO DE CARRO PEQUENOS
+CodBarra = null Produto = FRANGO CONGELADO CANCAO
+CodBarra = null Produto = FRANGO CONGELADO CANCAO
+CodBarra = null Produto = LINGUICA DE FRANGO CONGELADO CANCAO
+CodBarra = null Produto = LINGUICA DE FRANGO CONGELADO CANCAO
+CodBarra = null Produto = LINGUICA MISTA COZIDA
+CodBarra = null Produto = LINGUICA MISTA COZIDA
+CodBarra = null Produto = LINGUICA SUINA SEARA
+CodBarra = null Produto = LINGUICA SUINA SEARA
+CodBarra = null Produto = CALÇA FRIGORIFICA TAM G CA 28668
+CodBarra = null Produto = CALÇA FRIGORIFICA TAM GG CA 28668
+CodBarra = null Produto = PNEU 215/78R17,5 XZE2 TL 126/124M VM
+CodBarra = null Produto = PAIO FRIMESA
+CodBarra = null Produto = PAIO FRIMESA
+CodBarra = null Produto = PE SUINO TCHE
+CodBarra = null Produto = PE SUINO TCHE
+CodBarra = null Produto = PEITO DESFIADO TEMPERADO DE FRANGO CONG CANCAO
+CodBarra = null Produto = PEITO DESFIADO TEMPERADO DE FRANGO CONG CANCAO
+CodBarra = null Produto = PERTENCES CONGELADOS PARA CANJA
+CodBarra = null Produto = PERTENCES CONGELADOS PARA CANJA
+CodBarra = null Produto = RABO SUINO TCHE
+CodBarra = null Produto = RABO SUINO TCHE
+CodBarra = null Produto = FILTRO GRANDE EF
+CodBarra = null Produto = TORNEIRA P/ FILTRO AQUAPLUS
+CodBarra = null Produto = CARTUCHO FILTRO GRANDE C/ ROSCA CARVA
+CodBarra = null Produto = SALSICHA HOTDOG BONASA
+CodBarra = null Produto = SALSICHA HOTDOG BONASA
+CodBarra = null Produto = SALSICHA HOTDOG PECCIN
+CodBarra = null Produto = SALSICHA HOTDOG PECCIN
+CodBarra = null Produto = SALSICHA HOTDOG DE AVE PCTE 3KG
+CodBarra = null Produto = SALSICHA HOTDOG DE AVE PCTE 3KG
+CodBarra = null Produto = SALSICHA HOTDOG DE FRANGO PALMALI
+CodBarra = null Produto = SALSICHA HOTDOG DE FRANGO PALMALI
+CodBarra = null Produto = PNEU MI 275/80 R 22.5 X MULTI Z
+CodBarra = null Produto = CADEADO 35MM
+CodBarra = null Produto = SALSICHA HOTDOG DE FRANGO RICO
+CodBarra = null Produto = SALSICHA HOTDOG DE FRANGO RICO
+CodBarra = null Produto = SALSICHA HOTDOG ESTRELA
+CodBarra = null Produto = SALSICHA HOTDOG ESTRELA
+CodBarra = null Produto = BUCHA  NYLON 10MM
+CodBarra = null Produto = SALSICHA HOTDOG SEARA
+CodBarra = null Produto = SALSICHA HOTDOG SEARA
+CodBarra = null Produto = TOSCANA AURORA
+CodBarra = null Produto = TOSCANA AURORA
+CodBarra = null Produto = TOSCANA AURORA
+CodBarra = null Produto = TOSCANA DE FRANGO DU PARA
+CodBarra = null Produto = TOSCANA DE FRANGO DU PARA
+CodBarra = null Produto = TOSCANA DE FRANGO PECCIN
+CodBarra = null Produto = TOSCANA DE FRANGO PECCIN
+CodBarra = null Produto = TOSCANA ESTRELA
+CodBarra = null Produto = TOSCANA ESTRELA
+CodBarra = null Produto = TOSCANA MISTA CARRER
+CodBarra = null Produto = TOSCANA MISTA CARRER
+CodBarra = null Produto = JUNTAS HOMOCINETICAS
+CodBarra = null Produto = EMBALAGEM A VACUO LISA 20X45
+CodBarra = null Produto = MOP ESFREGAO DE ALGODAO
+CodBarra = 7898040082635 Produto = BATATA PRE-FRITA 2KG
+CodBarra = 7898040082635 Produto = BATATA PRE-FRITA 2KG
+CodBarra = null Produto = GAS R-404A CILINDRO 10,90 KG HP62
+CodBarra = null Produto = BUFALO MACHO
+CodBarra = null Produto = BUFALO FEMEA
+CodBarra = null Produto = LINGUA CONGELADA MAFRIPAR
+CodBarra = null Produto = LINGUA CONGELADA MAFRIPAR
+CodBarra = null Produto = FILEZINHO DE FRANGO TEMPERADO PERDIGAO
+CodBarra = null Produto = FILEZINHO DE FRANGO TEMPERADO PERDIGAO
+CodBarra = null Produto = COSTELA SUINA AURORA
+CodBarra = null Produto = COSTELA SUINA AURORA
+CodBarra = null Produto = FIGADO CONGELADO MAFRIPAR
+CodBarra = null Produto = FIGADO CONGELADO MAFRIPAR
+CodBarra = null Produto = FONE HEADSET PH002 PRETO MULTILASER
+CodBarra = null Produto = DISPLAY ACRICLICO VERMELHO 4 BANDEJAS
+CodBarra = null Produto = MAGICO CAIXA 4X5L REMOVEDOR CERAS
+CodBarra = null Produto = EMBALAGEM ALIPROT PREMIUM 30X40 R C/1075
+CodBarra = null Produto = EMBALAGEM ALIPROT PREMIUM 30X40 R C/1075
+CodBarra = null Produto = BOTA PVC BRANCA CANO CURTO N.40 S/FORRO
+CodBarra = null Produto = BOTA PVC BRANCA CANO CURTO N.42 S/FORRO
+CodBarra = null Produto = BOTA PVC BRANCA CANO CURTO N.44 S/FORRO
+CodBarra = null Produto = CORACAO CONGELADO MAFRIPAR
+CodBarra = null Produto = CORACAO CONGELADO MAFRIPAR
+CodBarra = null Produto = BOBINA TERMOSCRIPT 57X150M AUTOPEL S/ LO
+CodBarra = null Produto = PERFIL P/RODO RODOX 60 CM
+CodBarra = null Produto = RODO ALUMINIO RODOX 60 CM C/CABO 1,5MTS
+CodBarra = null Produto = SECURY STAR BB 5L
+CodBarra = null Produto = FRANGO CONGELADO SERTAO 20 KG
+CodBarra = null Produto = FRANGO CONGELADO SERTAO 20 KG
+CodBarra = null Produto = STEAK EMPANADO DE FRANGO
+CodBarra = null Produto = STEAK EMPANADO DE FRANGO
+CodBarra = null Produto = NECTAR MARACUJA LT 290 ML
+CodBarra = null Produto = PEITO DE FRANGO AVE NOVA
+CodBarra = null Produto = PEITO DE FRANGO AVE NOVA
+CodBarra = null Produto = CARVAO VEGETAL SUPER BRASA 3KG
+CodBarra = null Produto = CARVAO VEGETAL SUPER BRASA 3KG
+CodBarra = null Produto = SELADOR MASTER 5L START
+CodBarra = null Produto = CHOURICO PARANA RIO SUL
+CodBarra = null Produto = CHOURICO PARANA RIO SUL
+CodBarra = null Produto = CALABRESA DALIA
+CodBarra = null Produto = CALABRESA DALIA
+CodBarra = null Produto = SH3000 PLUS 5L - LIQUIDO LIMPEZA
+CodBarra = null Produto = FACA 5515 6 BRANCA
+CodBarra = null Produto = MOELA DE FRANGO AVE NOVA
+CodBarra = null Produto = MOELA DE FRANGO AVE NOVA
+CodBarra = null Produto = FACA 5520 12 BRANCA
+CodBarra = null Produto = PEDRA AFIAR CARBORUNDUM 108N 2F
+CodBarra = null Produto = COXA DE FRANGO GUIBON
+CodBarra = null Produto = COXA DE FRANGO GUIBON
+CodBarra = null Produto = FILE DE FRANGO GUIBON
+CodBarra = null Produto = FILE DE FRANGO GUIBON
+CodBarra = null Produto = PEITO DE FRANGO GUIBON
+CodBarra = null Produto = PEITO DE FRANGO GUIBON
+CodBarra = null Produto = STARBAC 5L DESINF
+CodBarra = null Produto = ASA DE FRANGO AVE NOVA
+CodBarra = null Produto = ASA DE FRANGO AVE NOVA
+CodBarra = null Produto = START PASSADOR DE CERA COM CABO
+CodBarra = null Produto = START UHS ACABAMENTO ACRILICO 5L
+CodBarra = null Produto = DIANTEIRO
+CodBarra = null Produto = DIANTEIRO
+CodBarra = null Produto = TRASEIRO
+CodBarra = null Produto = TRASEIRO
+CodBarra = null Produto = P. A.
+CodBarra = null Produto = COXA DE FRANGO AVE NOVA
+CodBarra = null Produto = COXA DE FRANGO AVE NOVA
+CodBarra = null Produto = TOSCANA SUINA PERDIGAO
+CodBarra = null Produto = TOSCANA SUINA PERDIGAO
+CodBarra = null Produto = SEMI EIXO 8F
+CodBarra = null Produto = BOBINA TERMICA ECF 80X40
+CodBarra = null Produto = ETIQUETAS 40X40 NEUTRA
+CodBarra = null Produto = CESTO TELADO
+CodBarra = null Produto = LUVA LATEX MULTIUSO (M)
+CodBarra = null Produto = MOP UMIDO
+CodBarra = null Produto = BOBINA PLASTICA
+CodBarra = null Produto = TOSCANA ALHO E ERVILHA PERDIGAO
+CodBarra = null Produto = TOSCANA ALHO E ERVILHA PERDIGAO
+CodBarra = null Produto = BOBINA TS/COTEPE 80X40M AUTOPEL
+CodBarra = null Produto = EMBALAGEM A VACUO ULTRA 30X50
+CodBarra = null Produto = ARROZ T.1 PARB. NAMORADO 1KG
+CodBarra = null Produto = THINNER F-15 900ML
+CodBarra = null Produto = CORACAO FGO MOLHO SHOYO NABRASA
+CodBarra = null Produto = CORACAO FGO MOLHO SHOYO NABRASA
+CodBarra = null Produto = KIT 3 PROVANZA 2017
+CodBarra = null Produto = SOBREPALETA SUINA AURORA
+CodBarra = null Produto = SOBREPALETA SUINA AURORA
+CodBarra = null Produto = LAMINA DE SERRA 5/8 X 0,45 X 6D X 3,25
+CodBarra = null Produto = FIGADO CONGELADO MASTERBOI
+CodBarra = null Produto = FIGADO CONGELADO MASTERBOI
+CodBarra = null Produto = CORACAO CONGELADO MASTERBOI
+CodBarra = null Produto = CORACAO CONGELADO MASTERBOI
+CodBarra = null Produto = SALSICHA DE FRANGO ESTRELA
+CodBarra = null Produto = SALSICHA DE FRANGO ESTRELA
+CodBarra = null Produto = SALSICHA HOT DOG AVIVAR
+CodBarra = null Produto = SALSICHA HOT DOG AVIVAR
+CodBarra = null Produto = ETIQUETAS 40X40 TERMICO
+CodBarra = null Produto = CAIXA COM BOBINAS TERMICAS 80X40
+CodBarra = null Produto = SOBREPALETA COPA LOMBO SUINO FRIMESA
+CodBarra = null Produto = SOBREPALETA COPA LOMBO SUINO FRIMESA
+CodBarra = null Produto = COSTELA SUINA MINI FRIMESA
+CodBarra = null Produto = COSTELA SUINA MINI FRIMESA
+CodBarra = null Produto = COSTELA SUINA SERRADA FRIMESA
+CodBarra = null Produto = COSTELA SUINA SERRADA FRIMESA
+CodBarra = null Produto = PERNIL C PELE FATIA SUINO FRIMESA
+CodBarra = null Produto = PERNIL C PELE FATIA SUINO FRIMESA
+CodBarra = null Produto = PANCETA BARRIGA C PELE SUINO FRIMESA
+CodBarra = null Produto = PANCETA BARRIGA C PELE SUINO FRIMESA
+CodBarra = null Produto = LOMBO PEDACO SUINO FRIMESA
+CodBarra = null Produto = LOMBO PEDACO SUINO FRIMESA
+CodBarra = null Produto = FFI12HBX 110V 60HZ-COMPRESSOR EMBRACO 1/3+ 110V R1
+CodBarra = null Produto = PERNIL DALIA
+CodBarra = null Produto = PERNIL DALIA
+CodBarra = null Produto = CONTENTOR CN 40 F 007001 NT
+CodBarra = null Produto = CALABRESA MISTA AVIVAR
+CodBarra = null Produto = CALABRESA MISTA AVIVAR
+CodBarra = null Produto = OSSO EM BRUTO
+CodBarra = null Produto = OSSO EM BRUTO
+CodBarra = null Produto = ENVOLTORIO SALGADO BOVINO (SEROSA)
+CodBarra = null Produto = ENVOLTORIO SALGADO BOVINO (SEROSA)
+CodBarra = null Produto = BILIS
+CodBarra = null Produto = BILIS
+CodBarra = null Produto = CASCO BOVINO E CHIFRE
+CodBarra = null Produto = CASCO BOVINO E CHIFRE
+CodBarra = null Produto = SANGUE FETAL BOVINO
+CodBarra = null Produto = SANGUE FETAL BOVINO
+CodBarra = null Produto = SEBO EM BRUTO
+CodBarra = null Produto = SEBO EM BRUTO
+CodBarra = null Produto = CHAPA ACRIL CRISTAL 2.0MM 2X1 BERKEL
+CodBarra = null Produto = BOTA 82BPC ACQUAFLEX PVC C.CURTO BR38
+CodBarra = null Produto = POLIA TENSIONADORA T 600 T 800 T 1000
+CodBarra = null Produto = BOTA 82BPC ACQUAFLEX PVC C.CURTO BR40
+CodBarra = null Produto = LOMBO SUINO SADIA
+CodBarra = null Produto = LOMBO SUINO SADIA
+CodBarra = null Produto = SOBREPALETA RIO SUL
+CodBarra = null Produto = BANDEJA DE ISOPOR B2 COPOBRAS C/100UN
+CodBarra = null Produto = BANDEJA DE ISOPOR B3 COPOBRAS C/100UN
+CodBarra = null Produto = ASA DE FRANGO PERDIGAO
+CodBarra = null Produto = ASA DE FRANGO PERDIGAO
+CodBarra = null Produto = BANDEJA DE ISOPOR B1 COPOBRAS C/100UN
+CodBarra = null Produto = BACON FATIADO FRIMESA
+CodBarra = null Produto = BACON FATIADO FRIMESA
+CodBarra = null Produto = CHARQUE PA INDEPENDECIA
+CodBarra = null Produto = CHARQUE PA INDEPENDECIA
+CodBarra = null Produto = ORELHA SUINA SUPARA
+CodBarra = null Produto = ORELHA SUINA SUPARA
+CodBarra = null Produto = QUEIJO MUSSARELA BIANCA
+CodBarra = null Produto = QUEIJO MUSSARELA BIANCA
+CodBarra = null Produto = MASCARA SUINA SALGADA EXCELENCIA MAFRIPAR
+CodBarra = null Produto = MASCARA SUINA SALGADA EXCELENCIA MAFRIPAR
+CodBarra = null Produto = TUBO COBRE RIGIDO 7/8 PAREDE 1/32
+CodBarra = null Produto = TUBO COBRE RIGIDO 7/8 PAREDE 1/32
+CodBarra = null Produto = OVO CUBA NAO USAR
+CodBarra = null Produto = SPLIT PAREDE 12.000 BTUS 220V GREE ,OD GWC12MB
+CodBarra = null Produto = BANDA COXA DA ASA DE FRANGO RICO
+CodBarra = null Produto = BANDA COXA DA ASA DE FRANGO RICO
+CodBarra = null Produto = CURVA 90. 7/8 - COBRE 0,80 MM
+CodBarra = null Produto = CURVA 90. 7/8 - COBRE 0,80 MM
+CodBarra = null Produto = ESPONJA SALVA UNHAS UNIDADE
+CodBarra = null Produto = TUBO ISOLANTE ARMAFLEX AF M 022 19MM(7/8)
+CodBarra = null Produto = TUBO ISOLANTE ARMAFLEX AF M 022 19MM(7/8)
+CodBarra = null Produto = TUBO COBRE 1/2 (0,263)-METRO
+CodBarra = null Produto = TUBO COBRE 1/2 (0,263)-METRO
+CodBarra = null Produto = ORIFICIO 03 PARA T/TE2 ROSCA DANFOSS
+CodBarra = null Produto = ORIFICIO 03 PARA T/TE2 ROSCA DANFOSS
+CodBarra = null Produto = VARETA FOSCOPER (MEDIA) 3,20X460MM
+CodBarra = null Produto = VARETA FOSCOPER (MEDIA) 3,20X460MM
+CodBarra = null Produto = CALCO BASE COM I PARAFUSO 3/4
+CodBarra = null Produto = CALCO BASE COM I PARAFUSO 3/4
+CodBarra = null Produto = GAS 141B CILIND.13,6 KG
+CodBarra = null Produto = GAS 141B CILIND.13,6 KG
+CodBarra = null Produto = SIFAO SIMPLES COBRE 7/8 1,0MM
+CodBarra = null Produto = SIFAO SIMPLES COBRE 7/8 1,0MM
+CodBarra = null Produto = FILTRO DE VALVULA APU MB/VW/FORD
+CodBarra = null Produto = RIG 1.3/8 0.79MM=1/32-TUBO COBRE RIGIDO 34.92
+CodBarra = null Produto = RIG 1/2 0.79MM=1/32-TUBO COBRE RIGIDO 12.70
+CodBarra = null Produto = TUBO ISOLANTE ELASTOMERICO 19MM PAREDE 5/8
+CodBarra = null Produto = COSTELA SUINA SADIA
+CodBarra = null Produto = COSTELA SUINA SADIA
+CodBarra = null Produto = C762-SIFAO S 1.3/8 PAREDE 1.12 MM
+CodBarra = null Produto = ORELHA SUINA SALGADA RIO SUL
+CodBarra = null Produto = ORELHA SUINA SALGADA RIO SUL
+CodBarra = null Produto = CAIXA AMPLIFICADA PRATIC 200 PLUS
+CodBarra = null Produto = CADEIRA LAGUNA TRAMONTINA
+CodBarra = null Produto = BASE DE PAREDE
+CodBarra = null Produto = CHAPA ACRIL CRISTAL 4MM
+CodBarra = null Produto = GARRAFAO VERMELHO 20 LTS
+CodBarra = null Produto = PLACA MAE MINI IPX1800 G2+CEL DUAL 2.41 VGA/HDMI
+CodBarra = null Produto = BANDA FILEZINHO SASSAMI RICO
+CodBarra = null Produto = BANDA FILEZINHO SASSAMI RICO
+CodBarra = null Produto = TOSCANA APIMENTADA TCHE
+CodBarra = null Produto = TOSCANA APIMENTADA TCHE
+CodBarra = null Produto = FILE DE FRANGO TEMPERADO CANCAO
+CodBarra = null Produto = FILE DE FRANGO TEMPERADO CANCAO
+CodBarra = null Produto = PULL WD 500GB SATA WD5000AVVS 3.5
+CodBarra = null Produto = BANDEJA B1 TOTALPLAST C/100UN
+CodBarra = null Produto = PE SUINO SALGADO RIO SUL
+CodBarra = null Produto = PE SUINO SALGADO RIO SUL
+CodBarra = null Produto = PAPEL A-4 BRANCO C/500
+CodBarra = null Produto = BANDEJA B2 TOTALPLAST C/100UN
+CodBarra = null Produto = PAPEL ALUMINIO 45CM X 7,5M TAKENTE CX. C
+CodBarra = null Produto = DESINFETANTE MULTI-USO ORIGINAL 500ML
+CodBarra = null Produto = GABINETE 2 BAIAS PRETO GA149 MULTILASER
+CodBarra = null Produto = ESPONJA DUPLA FACE NAFT PLUS
+CodBarra = null Produto = LIMPA ALUMINIO 500ML CX 12 UND- DUALY
+CodBarra = null Produto = SACO P/ LIXO PRETO 15LTS
+CodBarra = null Produto = PATO CONGELADO
+CodBarra = null Produto = PATO CONGELADO
+CodBarra = null Produto = SABAO DE 1KG AZUL CX C/10 UND FLORAL
+CodBarra = null Produto = LIMPA VIDRO 500ML- DUALY
+CodBarra = null Produto = PURIFICADOR AR 360ML CHERINHO DE TALCO
+CodBarra = null Produto = PURIFICADOR AR 360ML LAVANDA ULTRA
+CodBarra = null Produto = PURIFICADOR AR 360ML VINOLIA ULTRA FRESH
+CodBarra = null Produto = ALCOOL 92,8 INPM 1LTS SANTA CRUZ
+CodBarra = null Produto = MEM DDR3 4GB 1600 ELPIDA
+CodBarra = null Produto = PLACA MAE 1155 H61MGV3 DDR3 VGA
+CodBarra = null Produto = CABO INDUNAX FLEX 4X1,0MM2 750V PT
+CodBarra = null Produto = PANO P/ CHAO ALVEJADO BRANCO 45X76
+CodBarra = null Produto = CABO INDUNAX FLEX 4X4,0MM2 1KV HEPR
+CodBarra = null Produto = LEITOR DE CODIGO DE BARRA USB BR-400 PRETO
+CodBarra = null Produto = CABO INDUNAX FLEX 3X2,5MM2 1KV PT HEPR C5
+CodBarra = null Produto = CABO INDUNAX FLEX 2X1,5MM2 1KV PT HEPR C5
+CodBarra = null Produto = LIXEIRA 50LT C/ PEDAL DELLA PLAST
+CodBarra = null Produto = ARMARIO DE ACO C/08 PORT.PEQUENAS
+CodBarra = null Produto = ESTANTE DE ACO ABERTA C/06 PRAT
+CodBarra = null Produto = GANCHO MEDIO NR. 2 ARAME 1/4`` MOD
+CodBarra = null Produto = ABRACADEIRA NYLON 202X3, 7MM
+CodBarra = null Produto = ROLO TIGRE LA CARNEILA
+CodBarra = null Produto = NO BREAK 600VA BIVOLT SMS
+CodBarra = null Produto = FILTRO DE LINHA 6 TOMADAS PRETO TENDA
+CodBarra = null Produto = REBITE 10X14 FERRO BICROMADO VOLVO
+CodBarra = null Produto = CABO ALUMINIO P/LT C/ROSCA 1,5M BETAMIN
+CodBarra = null Produto = FIBRA BETANIN 102X260 MM PESADAVERDE 10X1
+CodBarra = null Produto = IMPRESSORA TERMICA TM-T20 USB PRETO
+CodBarra = null Produto = MONITOR 18.5" LED E970SWNL VGA - AOC
+CodBarra = null Produto = PAPEL HIG ROLAO 8X300M RECICL BCO ALVEFL
+CodBarra = null Produto = REFIL MOP 360 LIMPEZA FACIL BOMPACK
+CodBarra = null Produto = GAVETA PORTA MOEDAS E CEDULAS GD56
+CodBarra = null Produto = 8 PAPEL MANTEIGA LUTEPEL RESMA C/400FLS
+CodBarra = null Produto = SH33000 PLUS 5L
+CodBarra = null Produto = BATERIA ESTACIONARIA 12TE45
+CodBarra = null Produto = BATERIA PARA NOBREAK 12V 7A UNIPOWER
+CodBarra = null Produto = PLACA MAE 1150 H81MHV3
+CodBarra = null Produto = HD 1TB SATA III 7200 RPM 64MB WESTERN DIGITAL
+CodBarra = null Produto = MEM DDR3 4GB 1600
+CodBarra = null Produto = C762-SIFAO S 1.3/8 PAREDE 1.12 MM
+CodBarra = null Produto = ESPONJA DE LA DE ACO BOMBRIL
+CodBarra = null Produto = FILME PVC 38CM X 700 MT
+CodBarra = null Produto = ESPONJA DUPLAFACE AZULIM 60X1 VERDE/AMARELA
+CodBarra = null Produto = SUPORTE P/FIBRA BT C/ENCAIXE REF. 9516
+CodBarra = null Produto = SUPORTE LT COM ROSCA (SEM CABO) BRALIMPIA
+CodBarra = null Produto = MODULO P/ ARMAZENAGEM P. PALETE
+CodBarra = null Produto = LA DE ACO AZULIM PACOTE 14X8
+CodBarra = null Produto = SABAO EM BARRA AZUL FLORAL 500G
+CodBarra = null Produto = SERVIÇO DE MANUTENÇÃO PREV E CORRETIVA
+CodBarra = null Produto = ASA DE FRANGO SUPERFRANGO BDJ 12KG
+CodBarra = null Produto = ASA DE FRANGO SUPERFRANGO BDJ 12KG
+CodBarra = null Produto = CHAVE BIP. ALAV. 20A 1,5CV CS-301A S/SS
+CodBarra = null Produto = PAPEL MANTEIGA LUTEPEL RESMA C/400FLS
+CodBarra = null Produto = LAMPADA ELET 45WX220V ESP 6,5K
+CodBarra = null Produto = ELEMENTO FILTRO COMBRST. RACOR
+CodBarra = null Produto = CJ CLARIS TOM PAD BRA 20A 250V 0715
+CodBarra = null Produto = TECBOND
+CodBarra = null Produto = VASO QDR.
+CodBarra = null Produto = VASO RED
+CodBarra = null Produto = EMBALAGEM ALIPROT PREMIUM 35X50 R C/815 UN
+CodBarra = null Produto = EMBALAGEM ALIPROT PREMIUM 35X50 R C/815 UN
+CodBarra = null Produto = SACOLA SEMI VIRGEM 30X45
+CodBarra = null Produto = SACOLA SEMI VIRGEM 42X53
+CodBarra = null Produto = BOTA 82BPC ACQUAFLEX PVC C.CURTO BR42
+CodBarra = null Produto = EMBALAGEM ALIPROTE ECO 40X55
+CodBarra = null Produto = ADESIVO 5G
+CodBarra = null Produto = FILE SUINO FRIMESA
+CodBarra = null Produto = FILE SUINO FRIMESA
+CodBarra = null Produto = PICANHA SUINA
+CodBarra = null Produto = PICANHA SUINA
+CodBarra = null Produto = TOSCANA PERNIL FRIMESA
+CodBarra = null Produto = TOSCANA PERNIL FRIMESA
+CodBarra = null Produto = TOSCANA FRANGO FRIMESA
+CodBarra = null Produto = TOSCANA FRANGO FRIMESA
+CodBarra = null Produto = LAVA LOUCA AZULIM NEUTRO
+CodBarra = null Produto = CESTA DE COMPRAS P/ SUPERMERCADO
+CodBarra = null Produto = CHAVE BIPOLAR 20A CS 301A S/SS
+CodBarra = null Produto = LOMBO SUINO EXCELENCIA MAFRIPAR
+CodBarra = null Produto = LOMBO SUINO EXCELENCIA MAFRIPAR
+CodBarra = null Produto = ADESIVO JUNTA DIESEL
+CodBarra = null Produto = LONA FREIO
+CodBarra = null Produto = REBITE BICROMATIZADO
+CodBarra = null Produto = TUBO ISOLANTE ANTE K-FLEX ST M35 19MM(1.3/8")
+CodBarra = null Produto = FITA ACABAMENTO NBR ADESIVA
+CodBarra = null Produto = ADESIVO ESPECIAL K-420 LATA DE 0,8L
+CodBarra = null Produto = PAPEL HIGIENICO BRANCO C/30 MTS PCTS C/4 UND
+CodBarra = null Produto = SIFAO SIMPLES COBRE 1.3/8" X 1,1MM
+CodBarra = null Produto = TRASEIRO DESOSSA - VACA
+CodBarra = null Produto = TRASEIRO DESOSSA - VACA
+CodBarra = null Produto = TRASEIRO DESOSSA - BOI
+CodBarra = null Produto = TRASEIRO DESOSSA - BOI
+CodBarra = null Produto = TRASEIRO DESOSSA - BUBALINO MACHO
+CodBarra = null Produto = TRASEIRO DESOSSA - BUBALINO MACHO
+CodBarra = null Produto = TRASEIRO DESOSSA - BUBALINO FEMEA
+CodBarra = null Produto = TRASEIRO DESOSSA - BUBALINO FEMEA
+CodBarra = null Produto = TRASEIRO DE BOI - B
+CodBarra = null Produto = TRASEIRO DE BOI - B
+CodBarra = null Produto = TRASEIRO DE VACA - B
+CodBarra = null Produto = TRASEIRO DE VACA - B
+CodBarra = null Produto = TRASEIRO BUBALINO FEMEA - B
+CodBarra = null Produto = TRASEIRO BUBALINO FEMEA - B
+CodBarra = null Produto = TRASEIRO BUBALINO MACHO - B
+CodBarra = null Produto = TRASEIRO BUBALINO MACHO - B
+CodBarra = null Produto = ESTOPA POLIMENTO BRANCA VONDER 200G
+CodBarra = null Produto = ELETRODO INOX 61.30 2,50X300MM ECCOFER
+CodBarra = null Produto = BANDEJA B3 FORMAPACK FRD C/400UND
+CodBarra = null Produto = FITA SERRA 2.48
+CodBarra = null Produto = CADEADO PAPAIZ 40MM
+CodBarra = null Produto = CRUZETA NR. 98-S
+CodBarra = null Produto = DISCO NR. 98 - 5MM
+CodBarra = null Produto = LIXA D AGUA 3M GR 400
+CodBarra = null Produto = CURVA 90..1.3/8" - COBRE 1/32
+CodBarra = null Produto = CURVA 90. 1/2" - COBRE 1/32
+CodBarra = null Produto = ESCOVA DE ACO ATLAS S/CB 6FL 1780/6
+CodBarra = null Produto = CADEADO PAPAIZ 45MM
+CodBarra = null Produto = CURVA 90. 3/8" - COBRE 0,80MM
+CodBarra = null Produto = CURVA 90 3/8 PAREDE 0,58MM COBRE
+CodBarra = null Produto = LUVA NORMAL 1.3/8" COBRE 1/32
+CodBarra = null Produto = LUVA NORMAL 5/8" COBRE 1/32
+CodBarra = null Produto = LUVA NORMAL 1/2" - COBRE 1/32
+CodBarra = null Produto = LUVA NORMAL 7/8" COBRE 1/32
+CodBarra = null Produto = SOLDA FOSCOPER BANHADA 3,25X500MM
+CodBarra = null Produto = ELEMENTO TERMOSTATICO TES5 N 3M DANFOSS
+CodBarra = null Produto = CORPO VALVULA EXPANSAO TE5 1/2X5/8R
+CodBarra = null Produto = ORIFICIO 02 PARA TE 5 DANFOSS
+CodBarra = null Produto = VALVULA EXPANSAO TES2 3/8X1/2R
+CodBarra = null Produto = ORIFICIO 06 PARA T/TE2 ROSCA DANFOSS
+CodBarra = null Produto = BOBINA SOLENOIDE 10W 220V/60HZ COM CABO
+CodBarra = null Produto = VALVULA SOLENOIDE EVR6 1/2R DANFOSS
+CodBarra = null Produto = VALVULA SOLENOIDE EVR3 3/8R DANFOSS
+CodBarra = null Produto = FILTRO KINPLEX 165X5/8R DML165R DANFOSS
+CodBarra = null Produto = FILTRO KINPLEX 163X3/8R DML163R DANFOSS
+CodBarra = null Produto = TC900E POWER VERSAO 05 CONTROLADOR DE
+CodBarra = null Produto = CONTROLADOR DE TEMPERATURA MT512E LOG
+CodBarra = null Produto = OLEO MONTREAL FATOR B5.2 EMBALAGEM COM 5L
+CodBarra = null Produto = NPF8000 20L 1;40 ALCALINO
+CodBarra = null Produto = TINTA VERTEX E/SINT.ECON.AZUL DEL-REY 1822
+CodBarra = null Produto = CONTENTOR CN 60 F 007001 NT
+CodBarra = null Produto = TINTA VERTEX E/SINT.ECON.BCO NEVE 1801
+CodBarra = null Produto = REFIL P/RODO RODOX 60CM
+CodBarra = null Produto = SH3000 PLUS 5L
+CodBarra = null Produto = LINGUICA CALABRESA FRESCAL PCT 1 KG
+CodBarra = null Produto = LINGUICA CALABRESA FRESCAL PCT 1 KG
+CodBarra = null Produto = THINNER F-15 5LT
+CodBarra = null Produto = RIG 1/2 0.79MM=1/32-TUBO COBRE RIGIDO 12.70
+CodBarra = null Produto = FILTRO LUBRIFICANTE
+CodBarra = null Produto = FILTRO AR
+CodBarra = null Produto = FILTRO COMBUSTIVEL (3024)
+CodBarra = null Produto = FILTO VALVULA APU MB/VW/FORD
+CodBarra = null Produto = OLEO EXTRA TURBO 15W40 R3 MULTI
+CodBarra = null Produto = TUBO COBRE RIGIDO 1.3/8 = 34.92MM PAREDE 1/32
+CodBarra = null Produto = ASSEPTGEL SABAO SEM AROMA 5L
+CodBarra = null Produto = FX4000 20L 1:40 DET ATIVADO
+CodBarra = null Produto = TUBO ISOLANTE ELASTOMERICO 1.1/8 28MM PAREDE 19MM
+CodBarra = null Produto = SACO P/ LIXO PRETO 30LTS PCT C/ 10 UND
+CodBarra = null Produto = NO BREAK 600VA BIVOLT
+CodBarra = null Produto = SABONETEIRA COM DEPOSITO BRANCA TRILHA
+CodBarra = null Produto = FILTRO COMBUSTIVEL 2
+CodBarra = null Produto = PNEU 195/70 R 15 104/102R
+CodBarra = null Produto = PRESSOSTATO DE ALTA E BAIXA C/ RESET A UT.
+CodBarra = null Produto = SUMATANE 355 HB (BASE W) COMP. A GALAO
+CodBarra = null Produto = DILUENTE 972 LATA
+CodBarra = null Produto = SUMATANE 355 HB S/B CP.B LATA
+CodBarra = null Produto = SACOLA REFOR. BCA DIAMANTE 42X53
+CodBarra = null Produto = SACOLA REFOR. BCA DIAMANTE 30X45
+CodBarra = null Produto = TOALHEIRO P/ PAPEL INTERFOLHA BRANCO
+CodBarra = null Produto = GAS HP81/R402B SUVA DAC 5,902KG CHEMOURS
+CodBarra = null Produto = GAS R22 FREON DAC 13,62KG CHEMOURS UN1018
+CodBarra = null Produto = PORCA 3/8 SAE
+CodBarra = null Produto = PORCA 1/2 SAE
+CodBarra = null Produto = TOMADA CLARIS 3P 20A BRASIL
+CodBarra = null Produto = DISCO TACOGRAFO 7 DIAS
+CodBarra = null Produto = ABRACADEIRA 3/4 BRANCO ABP034 (B) VICAP
+CodBarra = null Produto = TAMPA NORMAL 3 TECLAS BR TPN3T (B) VICAP
+CodBarra = null Produto = DAILET PVC NORMAL 5 ENTRADAS BR CPN5 (B)
+CodBarra = null Produto = INTERRUPTOR CLARIS PAR 10A 0811 SEM PLACA
+CodBarra = null Produto = TAMPA NORMAL 1 TECLA BR TPN1T (B) VICAP
+CodBarra = null Produto = ADAPTADOR VICAP 3/4 BRANCO ADP034B
+CodBarra = null Produto = TERMINAL INTELLI PINO VM 1,5MM2 ISOL.
+CodBarra = null Produto = CHAIRA EM INOX 12`` ESTRIADA C. BRANCO
+CodBarra = null Produto = GANCHO PEQUENO
+CodBarra = null Produto = BICO P/PNEU TR 414
+CodBarra = null Produto = SOQUETE N.98 PP
+CodBarra = null Produto = CABO FLEX PP HEPR 90O 3X 2,5MM 1KV
+CodBarra = null Produto = CABO FLEX. 750V 2,5MM VM
+CodBarra = null Produto = CABO FLEX. 750V 2,5MM AZ
+CodBarra = null Produto = GANCHO MEDIO NR. 2 ARAME 1/4`` MOD.
+CodBarra = null Produto = CABO FLEX. 750V 2,5MM AM
+CodBarra = null Produto = PLUGUE PERLEX 2P+T FEMEA 20A MOVEL 2046
+CodBarra = null Produto = FITA  ISOLANTE 19MMX20M
+CodBarra = null Produto = TERMINAL ISOL. PINO
+CodBarra = null Produto = TERMINAL ISOL. GARFO 1,5/2,5MM-TPF-22-5 M5
+CodBarra = null Produto = PERFILADO PERF. 38X38X600MM CHAPA 20
+CodBarra = null Produto = TAMPA P/PERFILADO ENCAIXE 3MTS 225007
+CodBarra = null Produto = RODIZIO GIR 210 C/ PLACA FREIO E RODA EM PVC
+CodBarra = null Produto = PERFILADO PERF 38X38X6000MM CHAPA 22
+CodBarra = null Produto = BASE INTERNA P/ PERFILADO C/ 4 FUROS DISPAN
+CodBarra = null Produto = CABO FLEXIVEL 1,5MM2 750V PT ALU
+CodBarra = null Produto = CABO FLEXIVEL 1,5MM2 750V VD CORDEIRO
+CodBarra = null Produto = LUMINARIA LED LINEAR 36W BIV 6500K 120CM
+CodBarra = null Produto = ETIQUETAS 80X42 NO BOPP FOSCO
+CodBarra = null Produto = TUBO COBRE RIGIDO 3/8" PAREDE 1/32
+CodBarra = null Produto = TUBO ISOLANTE K-FLEX ST M35 19MM(1.3/8")
+CodBarra = null Produto = FREEZER HORIZONTOAL 2 PORTAS
+CodBarra = null Produto = ROLAMENTO SKF 6204 ZZ (20X47X14)
+CodBarra = null Produto = DYSPLAY ACRILICO VERMELHO 4 BANDEIJAS
+CodBarra = null Produto = MONITOR 15.6 VGA P166HQÇ VESA VGA
+CodBarra = null Produto = CAD CD TILIBRA 10X1 MAIS+ FEMENINO 200F
+CodBarra = null Produto = CANETA COMPACTOR ECONOMICA CORES
+CodBarra = null Produto = CALCULADORA CASIO DIGITAL 12DIG MS20NC
+CodBarra = null Produto = CALCULADORA CASIO DIGITAL PORT 12DIG MS20NC VM PT
+CodBarra = null Produto = CLIPS ACC GALVANIZADO NR 2 0 COM 100UN
+CodBarra = null Produto = GRAMPO MARIPEL 26 6 GALVANIZADO 5000UN
+CodBarra = null Produto = GRAMPEADOR MAXPRINT METAL MXG20 20F
+CodBarra = null Produto = ESPETO PARA PAPEL ACC ACO INOX
+CodBarra = null Produto = PEDIDO TILIBRA 1 18 MEDIO 40F 2VIAS
+CodBarra = null Produto = VALE TILIBRA COM CANHOTO 100F
+CodBarra = null Produto = RECIBO  COMERCIAL
+CodBarra = null Produto = PASTA ELASTICO ACP LINE 40MM 1024 FM
+CodBarra = null Produto = ROLAMENTO SKF 6205 ZZ (25X52X15)
+CodBarra = null Produto = PINCEL ATOMICO BIC MARKING AZUL
+CodBarra = null Produto = PINCEL ATOMICO BIC MARKING VERMELHA
+CodBarra = null Produto = TUBO ESPONJOSO C/ PELICULA 7/8  AT-22/10
+CodBarra = null Produto = COXIM DIANT MOTOR SC 94 114 124 SERIE 5
+CodBarra = null Produto = LAMPADA DE LED BULB 9-60WX100-240V
+CodBarra = null Produto = REATOR ELET PHIL 1X32W 127/220VEB132A16/26S
+CodBarra = null Produto = FAROL MILHA MINI BR
+CodBarra = null Produto = ETIQUETAS 55X240 NO BOOP FOSCO
+CodBarra = null Produto = ARROZ T.1 BCO.NAMORADO 1KG FRD/30
+CodBarra = null Produto = LAMP P/ FAROL MILHA - -3 24V
+CodBarra = null Produto = PEROXIDO DE HIDROGENIO
+CodBarra = null Produto = TERMINAL INTELLI GARFO AM 6MM2 TPF-23-4
+CodBarra = null Produto = MANUTENCAO PREVENTIVA E CORRETIVA
+CodBarra = null Produto = BISC.C.CRACKER CAPRICCHE 400GR. CX/20
+CodBarra = null Produto = FARIN.MANDI.AMAR.FINA TRAD.ALIMENTOS
+CodBarra = null Produto = RETENTOR DBH 01273 BR 30X62X10
+CodBarra = null Produto = FARIN.ROSCA MARIZA 400GR.
+CodBarra = null Produto = FARIN.MANDI.DAGUA TRAD.ALIMENTOS 1KG. FAD/25
+CodBarra = null Produto = AZEITE OLIV.BELO PORTO EXT.VIRG.VD.250ML
+CodBarra = null Produto = GAS R 22
+CodBarra = null Produto = SAL MOIDO MIRAMAR 1KG.
+CodBarra = null Produto = MOLHO TOM.REF.PREDILECTA TRAD.SC.340GR.
+CodBarra = null Produto = MOLHO SHOYU MARIZA 900ML.
+CodBarra = null Produto = MOLHO SHOYU MARIZA 900ML.
+CodBarra = null Produto = TEMP.SABOR AMI COMP.C/PIM.1KG
+CodBarra = null Produto = SACO PEBD/INC/LS 77X98/X0,20 SF
+CodBarra = null Produto = DISCO NR. 22 - 5MM
+CodBarra = null Produto = ERVILHA C/MILHO LT.200GR.
+CodBarra = null Produto = PAPEL ALUM.BOREDA 0.30X4M.
+CodBarra = null Produto = PAPEL TOLHA SCLA C/2
+CodBarra = null Produto = VINAGRE 500ML
+CodBarra = null Produto = CRUZETA N.22 C
+CodBarra = null Produto = PEDRA DE AFIAR DUPLA 108N
+CodBarra = null Produto = ALINHAMENTO
+CodBarra = null Produto = BALANCEAMENTO
+CodBarra = null Produto = MANCHAO VF8
+CodBarra = null Produto = MANCHAO PQ
+CodBarra = null Produto = MANCHAO GR
+CodBarra = null Produto = GAS R22 CLORODIFLUORMETANO 13.6KG
+CodBarra = null Produto = 10X13MM-TUBO ISOLANTE POLIETILENO BLINDADO PT 1/2
+CodBarra = null Produto = FITA ISOLANTE 19MM X 10 MT
+CodBarra = null Produto = C1 M 035-TUBO ISOLANTE ELASTOMERICO
+CodBarra = null Produto = HIG ASSEPTGEL PRO 4,5KG
+CodBarra = null Produto = DISPLAY DE CHAO
+CodBarra = null Produto = BLOCO DE CONTATO WEG ACBF-11 1NA/1NF
+CodBarra = null Produto = EMBALAGEM 20X40
+CodBarra = null Produto = PNEU 219
+CodBarra = null Produto = PNEU 213
+CodBarra = null Produto = PNEU 182
+CodBarra = null Produto = PNEU 166
+CodBarra = null Produto = PNEU 198
+CodBarra = null Produto = PNEU 181
+CodBarra = null Produto = FANTA LARANJA 1,5L
+CodBarra = null Produto = FANTA LARANJA 1,5L
+CodBarra = null Produto = CONTATOR WEG CWM12 10 220V
+CodBarra = null Produto = CONTATOR WEG CWM25 10 220V
+CodBarra = null Produto = REATOR ELET POP 1X32W BIV FORCE LINE T8-T12
+CodBarra = null Produto = FILE DE FRANGO AURORA
+CodBarra = null Produto = FILE DE FRANGO AURORA
+CodBarra = null Produto = PNEUS 4714 218
+CodBarra = null Produto = FANTA GUARANA 310ML
+CodBarra = null Produto = FANTA GUARANA 310ML
+CodBarra = null Produto = PNEUS 4914
+CodBarra = null Produto = COPO D.BONOPLAST 100X150ML. CX/25
+CodBarra = null Produto = ALHO KG
+CodBarra = null Produto = COLORI.KIMIMO 100GR. PCT/10
+CodBarra = null Produto = PNEUS 1715 174
+CodBarra = null Produto = OVOS ESPEC. C/30
+CodBarra = null Produto = FARIN.T.MIRELA S/FERM.1KG.
+CodBarra = null Produto = TEMP.SAZON VERM.SC.60GR
+CodBarra = null Produto = TEMP.SAZON VERM.SC.60GR
+CodBarra = null Produto = FOSFORO ARGOS C/10UN.
+CodBarra = null Produto = AZEITO.VDE
+CodBarra = null Produto = AZEITO.VDE
+CodBarra = null Produto = FILME PVC PLAST.FORT LAR 28CMX15M.
+CodBarra = null Produto = SAL P/CHUR.MARIZA 1KG.
+CodBarra = null Produto = SAL P/CHUR.MARIZA 1KG.
+CodBarra = null Produto = LEITE PO INT.CCGL 200G.
+CodBarra = null Produto = BALANCA DOMESTICA
+CodBarra = null Produto = COMPRESSOR 4HP 220V 3F R22 COPELAND 53
+CodBarra = null Produto = GAS R134A SUVA LATA 750G CHEMOURS UN31
+CodBarra = null Produto = VALVULA PERFURADORA PARA LATA MP39/R13
+CodBarra = null Produto = RESPIRADOR SEMIFACIAL 6200/06
+CodBarra = null Produto = LAMPADA FLUOR PHIL 16W SUPER 83
+CodBarra = null Produto = SILENCIADOR VALVULA APU
+CodBarra = null Produto = VALVULA APU
+CodBarra = null Produto = CARTUCHO 6006 3M VAPOR MULTIGAS
+CodBarra = null Produto = PNEUS 4414 167
+CodBarra = null Produto = LAMPADA FLUOR OSRAM 40W T10
+CodBarra = null Produto = RELE F. FASE S/NEUTRO 220/380 TRIF C/ ASSIMET MOD.
+CodBarra = null Produto = CABO FLEX PP HEPR 90O 4X 1,5MM 1KV
+CodBarra = null Produto = CABO FLEX PP HEPR 90O 4X 4MM 1KV
+CodBarra = null Produto = CABO FLEX PP HEPR 90O 2X 1,5MM 1KV
+CodBarra = null Produto = ABRACADEIRA FRONTEC NYLON 300MMX3,6MM
+CodBarra = null Produto = CABO TELEF CCI 50 2 PARES
+CodBarra = null Produto = CURVA HORZ.PERF.ZINC. 100X 50 -90G 314276
+CodBarra = null Produto = CURVA VERT.EXT.PERF.ZINC. 100X 50 90G 330246
+CodBarra = null Produto = TE HORIZ.LISO 100X50 90G 425904
+CodBarra = null Produto = BOX RETO DE ALUM 3/4*
+CodBarra = null Produto = UNIDUT RETO COMUM *UR* 3/4* UR034(C-PB)
+CodBarra = null Produto = FITA 3M ISOL.SCOTH-33+ 19MMX20M
+CodBarra = null Produto = FITA 3M AUTO FUSAO 23BR 19MMX10M
+CodBarra = null Produto = CABO FLEX. 750V 1MM VM
+CodBarra = null Produto = TERMINAL ISOL. PINO 0,5/1,5MM-TPP-21-C/TPP-1,5-8
+CodBarra = null Produto = TERMINAL ISOL. PINO 1,5/2,5MM-TPP-22-C/TPP-2,5-8
+CodBarra = null Produto = TERMINAL ISOL. PINO 4,0/6,0MM-TPP-23/TPP-6-12
+CodBarra = null Produto = TERMINAL ISOL. GARFO 1,5/2,5MM-TPF-22-5 M5
+CodBarra = null Produto = TERMINAL ISOL. GARFO 4,0/6,0MM TPF-23-5/TPF-6-5
+CodBarra = null Produto = ABRACADEIRA FRONTEC NYLON 108MMX2,5MM
+CodBarra = null Produto = ABRACADEIRA FRONTEC NYLON 200MMX4,8MM
+CodBarra = null Produto = ROL.PEER PEE. 6304-2RLD/C3#20X52X15
+CodBarra = null Produto = ANEL TRAVA 501020-E
+CodBarra = null Produto = ANEL TRAVA 501018-E
+CodBarra = null Produto = VERGALHAO CA-25 LISO - 5/8-16,00MM - 12MTS
+CodBarra = null Produto = ELETRODO SOLDA OK SERRALHEIRO 13 - 3,25MM A
+CodBarra = null Produto = PAPEL A-4 BRANCO 75 RMS C/500 FLS COPIMAX
+CodBarra = null Produto = MOTOR SERRA 1CV 4
+CodBarra = null Produto = AMACIADOR G.PANIZ - PAT. 001022
+CodBarra = null Produto = PEITO DE FRANGO RICO
+CodBarra = null Produto = PEITO DE FRANGO RICO
+CodBarra = null Produto = CONECTOR RJ-45
+CodBarra = null Produto = COFRE EMBUTIR ESPECIAL
+CodBarra = null Produto = TECLADO USB MULTIMIDIA PRETO 0132 BRIGHT
+CodBarra = null Produto = MOUSE PS2 PRETO ESPANHA
+CodBarra = null Produto = MOUSE USB PRETO 0365 TDA
+CodBarra = null Produto = TECLADO NUMERICO USB 608676 MAXPRINT
+CodBarra = null Produto = TELEFONE COM FIO PLENO PRETO
+CodBarra = null Produto = OUTROS OLEOS LUBRIFICANTES AUTOMOTIVOS
+CodBarra = null Produto = JG. DE PCS DO ELEMENTO DO FILTRO DE OLEO
+CodBarra = null Produto = CJ ELEMENTO DO FILTRO
+CodBarra = null Produto = ELEMENTO DO FILTRO
+CodBarra = null Produto = EMBALAGEM 40X60
+CodBarra = null Produto = EMBALAGEM 35X50
+CodBarra = null Produto = DISJUNTOR WEG MDW-3P 32A C
+CodBarra = null Produto = DISJUNTOR WEG MPW40 2,5 - 4A
+CodBarra = null Produto = INTERRUPTOR MAR-GIRIUS 1P 2-POS 15A
+CodBarra = null Produto = LAMINA P/ SERRA FITA 2,82 MT STARRET MK 5/8
+CodBarra = null Produto = LAMINA P/ SERRA FITA 2,48 MT STARRET MK 5/8
+CodBarra = null Produto = ENGATE FLEXIVEL PLASTICO BRANCO
+CodBarra = null Produto = TE ROSCA (A)1/2 AMANCO
+CodBarra = null Produto = TORNEIRA PLAST.PIA VALEPLAST B.MOVEL
+CodBarra = null Produto = NIPEL ROSCA(A) 1/2 PVC AMANCO
+CodBarra = null Produto = LUVA SOLD/ROSCA 40X1.1/4" TG/AM
+CodBarra = null Produto = JOELHO 90 PVC SOLD40MM TG/AM
+CodBarra = null Produto = JOELHO 45 PVC SOLD 40MM TG/AM
+CodBarra = null Produto = TUBO PVC SOLD.40MM TG
+CodBarra = null Produto = LUVA PVC SOLD 40MM TG/AM
+CodBarra = null Produto = LUVA SOLD/ROSCA 32X1" TG/AM
+CodBarra = null Produto = JOELHO 90 PVC SOLD32MM TG/AM
+CodBarra = null Produto = TUBO PVC SOLD.32MM PLASTILIT
+CodBarra = null Produto = TUBO PVC ESG.150MM TG
+CodBarra = null Produto = CURVA 90 PVC ESG150MM LG
+CodBarra = null Produto = PAINEL BRI EMB. QD LED 29,5X29,5 CM 24 6,5K 434369
+CodBarra = null Produto = LUVA LATEX DESC (M)
+CodBarra = null Produto = REFRI SCHIN LARANJA VIVA 1L
+CodBarra = null Produto = REFRI SCHIN LARANJA VIVA 1L
+CodBarra = null Produto = SWITCH 8 PORTAS 10/100
+CodBarra = null Produto = TERMINAL DIREÇÃO
+CodBarra = null Produto = OLEO TRANSMISSOR ATF
+CodBarra = null Produto = FRETE
+CodBarra = null Produto = DESINFETANTE ECONOMICO CITRUS IL
+CodBarra = null Produto = RELOGIO DE PONTO - CONTRO ID
+CodBarra = null Produto = LIXEIRA 25LT C/ PEDAL DELLA PLAST RETA NGULAR
+CodBarra = null Produto = AMACIADORA BECKER PATRIMONIO
+CodBarra = null Produto = BALANCA TOLEDO - PRIX 4 PLUS
+CodBarra = null Produto = BALANCA
+CodBarra = null Produto = GANCHO P/ DESOSSA EM ACO INOX
+CodBarra = null Produto = ESGUICHO LAVAGEM AUTOS TOTAL
+CodBarra = null Produto = JG REPARO VALVULA
+CodBarra = null Produto = MOTOR SERRA BENGUÍ 1CV 4 PÓLOS
+CodBarra = null Produto = AMACIADOR C.A.F PATRIMÔNIO 1631
+CodBarra = null Produto = AMACIADOR BECKER PATRIMÔNIO 1814
+CodBarra = null Produto = MOTOR 1/2CV AMACIADOR PATRIMÔNIO 854
+CodBarra = null Produto = AMACIADOR C.A.F PATRIMÔNIO 1153
+CodBarra = null Produto = GANCHO DUPLO P/ ASSADOR DE FRANGO
+CodBarra = null Produto = GANCHO SIMPLES P/ ASSADOR DE FRANGO
+CodBarra = null Produto = BEB.VIN.TTO.SE.GALIOTO 2LT
+CodBarra = null Produto = CABO REDE 4P/ 305M TEX-PR/ AZ/BR
+CodBarra = null Produto = GAB 2B C/FONTE 200WGA149 MULTIL
+CodBarra = null Produto = MOUSE ESPANHA PRETO USB
+CodBarra = null Produto = CABO DE FORCA P/FONTE NOVA NORMA
+CodBarra = null Produto = PM IPX1800E2+PRO CELERON PC WARE
+CodBarra = null Produto = MEMORIA NOTE DDR 4GB/1333 MARKVISION
+CodBarra = null Produto = TECLADO/ MOUSE S/FIO 1871 PISK
+CodBarra = null Produto = HD SATAII 320GB 7200 WDIGTAL
+CodBarra = null Produto = TECLADO USB TC193 SLIM MULTILASER
+CodBarra = null Produto = REFRIG.SPLASH GUARANA 2,5LT.
+CodBarra = null Produto = PANETONE PANGOSTOSO CHOCOTONE 400GR.
+CodBarra = null Produto = PANETONE PANGOSTOSO CHOCOTONE 400GR.
+CodBarra = null Produto = PESSEGO CALDA OLE 450GR
+CodBarra = null Produto = PESSEGO CALDA OLE 450GR
+CodBarra = null Produto = ABACAXI CALDA MARIZA 400GR.
+CodBarra = null Produto = ABACAXI CALDA MARIZA 400GR.
+CodBarra = null Produto = AMEIXA CALDA OLE 150G
+CodBarra = null Produto = AMEIXA CALDA OLE 150G
+CodBarra = null Produto = FAROFA TEMP.MARIZA C/BAT.PALHA 500GR.
+CodBarra = null Produto = FAROFA TEMP.MARIZA C/BAT.PALHA 500GR.
+CodBarra = null Produto = ARROZ T.1 PARB.BRILHANTE 1KG
+CodBarra = null Produto = UVA PASSAS PRETA C/SEMENTE PT 250G.
+CodBarra = null Produto = UVA PASSAS PRETA C/SEMENTE PT 250G.
+CodBarra = null Produto = FEIJAO CARIOCA GAMA LOPES 1KG FAD/30
+CodBarra = null Produto = ACUCAR CRIST.CAUAXI 1KG FAD/30
+CodBarra = null Produto = ACUCAR CRIST.CAUAXI 1KG FAD/30
+CodBarra = null Produto = OLEO SOJA ABC PET.900ML CX/20
+CodBarra = null Produto = OLEO SOJA ABC PET.900ML CX/20
+CodBarra = null Produto = MARG.C/SAL ADORITA 500G. CX/12
+CodBarra = null Produto = MARG.C/SAL ADORITA 500G. CX/12
+CodBarra = null Produto = RESISTENCIA 2000W 127V P/ BALCAO TERMICO
+CodBarra = null Produto = ENGRENAGEM P/ PICADOR DE CARNE CAF
+CodBarra = null Produto = REATOR ELET PHIL 1X20W 127/220V
+CodBarra = null Produto = DETERGENTE LIQ. FC LIMAO 500ML
+CodBarra = null Produto = BUCHA ESTABILIZADOR
+CodBarra = null Produto = BUCHA ESTABILIZADOR 2
+CodBarra = null Produto = BOCAL LORENZETTI LOUCA P/TETO (232)
+CodBarra = null Produto = FANTA UVA 310ML
+CodBarra = null Produto = BORRACHA ESTABILIZADOR
+CodBarra = null Produto = DISJUNTOR MOTOR S0 20/25A - 3RV1021-4DA10
+CodBarra = null Produto = PLUGUE PERLEX 2P+T ABNT 20A 1048 CZ
+CodBarra = null Produto = DISJUNTOS SCH K32A 3P X 50A C
+CodBarra = null Produto = ELASTICO P/DINHEIRO PCT 1KG - PREMIER
+CodBarra = null Produto = DISJUNTOR MOTOR S0 17/22A - 3RV1021-4DA10
+CodBarra = null Produto = FILTRO SECADOR DANFOSS DML 164 1/2 R S T 350 X 1/2
+CodBarra = null Produto = SERVIÇO MANUTENÇÃO DE CAMINHOES
+CodBarra = null Produto = CONJ DE ORIFICIO DANFOSS C/ FILTRO NR 01 0,7 TON
+CodBarra = null Produto = CAFE VACUO TRAD. MARANATA 250G.
+CodBarra = null Produto = MARG.C/SAL PRIMOR 500G. CX/12
+CodBarra = null Produto = ARROZ INT. PARB. URBANO 1KG
+CodBarra = null Produto = DESLIZADOR EMBREAGEM
+CodBarra = null Produto = FARIN.MANDI.DAGUA. TRAD.ALIMENTOS
+CodBarra = null Produto = OLEO MISTO QUINTA DO CAIS VD. 500 ML
+CodBarra = null Produto = SAL MOIDO NOTA10 1KG.
+CodBarra = null Produto = PALITO P/ DENTE THEOTO C/100
+CodBarra = null Produto = GUARDA.PAPEL SCALA 23/20
+CodBarra = null Produto = GRAMPO 26/6 COBREADO DUBLIN - ACC
+CodBarra = null Produto = PANO LIMPEZA COPALIMPA LISO 68X40CM
+CodBarra = null Produto = AZEITONA V.MARIZA SC.200G
+CodBarra = null Produto = MAIONESE QUERO TP 1,012GR
+CodBarra = null Produto = MAIONESE QUERO TP 1,012GR
+CodBarra = null Produto = SACO DE LIXO 15L
+CodBarra = null Produto = FOSFORO PARANA CX C/1
+CodBarra = null Produto = ETIQUETAS 100X80 EM BOPP FOSCO
+CodBarra = null Produto = AMAC.R.YPE CONC.DELICADO 500ML
+CodBarra = null Produto = ETIQUETAS 40X40 PERSONALIZADA C/20MTS
+CodBarra = null Produto = BOTA 82BPC ACQUAFLEX PVC C.CURTO BR43
+CodBarra = null Produto = COMPRESSOR EMBRACO 1/3+ HP 127V FFI-12 HBX R-134
+CodBarra = null Produto = SOPA VONO CALDINHO D FEIJAO 18G
+CodBarra = null Produto = SOPA VONO CALDINHO D FEIJAO 18G
+CodBarra = null Produto = ENG. COMP NR.22 C STB 60 15- D
+CodBarra = null Produto = ENG. MOTORA NR.10/22 C 16-D =C=STB
+CodBarra = null Produto = PNEU 295/80 R 22.5 X MULTI Z
+CodBarra = null Produto = ARQUIVO MORTO POLIONDA VERMELHO
+CodBarra = null Produto = BOTA 82BPC ACQUAFLEX PVC C.CURTO BR44
+CodBarra = null Produto = DISCO CORTE INOX NORTON
+CodBarra = null Produto = SERVIÇO DE MANUTENÇÃO CORRETIVA
+CodBarra = null Produto = BATATA OND CRONY CHURRASCO 40X54G CX
+CodBarra = null Produto = BATATA OND CRONY CHURRASCO 40X54G CX
+CodBarra = null Produto = FILTRO DE AR DO MOTOR
+CodBarra = null Produto = CAPACITOR ELETRICO
+CodBarra = null Produto = SERVIÇO DE MANUTENÇÃO CORRETIVA 350,00
+CodBarra = null Produto = SACO PELBD/INC/LS 50X98X0,12 SF
+CodBarra = null Produto = DISJUNTOR SCH K32A 1P X 16AB
+CodBarra = null Produto = RECIBO COMERCIAL S/CANHOTO PEQUENO
+CodBarra = null Produto = VALE COM CANHOTO C/ 50 FLS- SAO DOMINGOS
+CodBarra = null Produto = CANETA ESCRITA GROSSA AZUL CX C/50 UND BIC
+CodBarra = null Produto = GRAMPO GALVANIZADO 26/6 CX C/ 5000 UN
+CodBarra = null Produto = CLIPS GALVANIZADO 3/0 CX C/ 50UND -FERPLAS
+CodBarra = null Produto = TUBO DE COBRE EM BOBINA 1/4 PAREDE 1/32 6,35MM
+CodBarra = null Produto = TUBO DE COBRE EM BOBINA 1/4 PAREDE 1/32 6,35MM
+CodBarra = null Produto = BACON SADIA
+CodBarra = null Produto = BACON SADIA
+CodBarra = null Produto = CAIXA LUNARE
+CodBarra = null Produto = CAPILAR 0,36 M P/ GELADEIRA (ROLO C/3 MTS)
+CodBarra = null Produto = CAPILAR 0,36 M P/ GELADEIRA (ROLO C/3 MTS)
+CodBarra = null Produto = EXPOSITOR VERM 4BD NOVO MODELO
+CodBarra = null Produto = FILTRO BUJAO CARTER DE OLEO
+CodBarra = null Produto = CANETA ESCRITA GROSSA VERMELHA CX C/50 UND BIC
+CodBarra = null Produto = CANETA ESCRITA GROSSA PRETA CX C/ 50 UND BIC
+CodBarra = null Produto = GRAXA LIQUIDA 70ML
+CodBarra = null Produto = LIVRO PROTOCOLO C/ 100FLS - SAO DOMINGOS
+CodBarra = null Produto = CANETA MARCA TEXTO AMARELA CX C/12UND
+CodBarra = null Produto = CANETA MARCA TEXTO AZUL JOCAR OFFICE
+CodBarra = null Produto = PROTETOR LOMBAR TAM M
+CodBarra = null Produto = PINCEL ATOMICO AZUL JOCAR OFFICE
+CodBarra = null Produto = PINCEL ATOMICO VERMELHO - BRW
+CodBarra = null Produto = CARTOLINA AZUL 50 X 66 120G PILAR
+CodBarra = null Produto = LUVA TRICOTADA PIGMENTADA BRANCA
+CodBarra = null Produto = FITA DUREX TRANSPA. 48 X 50 - CELTA
+CodBarra = null Produto = OLEO MOTOR DIES 15W40
+CodBarra = null Produto = GRAMPEADOR METAL
+CodBarra = null Produto = EXTRATOR DE GRAMPO TIPO ESPATULA
+CodBarra = null Produto = RETENTOR DE DEDACAO RADIAL
+CodBarra = null Produto = BOLSA AR TRAS TRUCK SC 124 / 2010
+CodBarra = null Produto = BOTA PVC BRANCA C.CURTO N.38
+CodBarra = null Produto = VALE S/ CANHOTO C/ 50 FLS - SAO DOMINGOS
+CodBarra = null Produto = CARBONO AZUL 2 FACES CX C/100 FLS UNIC
+CodBarra = null Produto = PALHETA LIMPADOR SC 124/MANN
+CodBarra = null Produto = CORRETIVO LIQUIDO 18ML FRAMA
+CodBarra = null Produto = ENVELOPE 24X34 BRANCO CX C/ 500 UND-IPECOL
+CodBarra = null Produto = CLIPS GALVANIZADO 4/0 CX C/ 50UND -FERPLAS
+CodBarra = null Produto = LACRE P/ MALOTE VERDE TAM. GRD 23CM PCT
+CodBarra = null Produto = CALCULADORA MASTER PRINT 12 DIG MP-1061
+CodBarra = null Produto = REGUA PLASTICA TRANSP 30 CM WALEU
+CodBarra = null Produto = LUVA LATEX S/ AMIDO TAM G
+CodBarra = null Produto = FILME PVC PLAST. EASYPACK 10MT
+CodBarra = null Produto = GAS R-402B - EOS
+CodBarra = null Produto = GAS R-402B - EOS
+CodBarra = null Produto = GAS R-22 - FORANE
+CodBarra = null Produto = GAS R-22 - FORANE
+CodBarra = null Produto = CANETA MARCA TEXTO VERDE JOCAR OFFICE
+CodBarra = null Produto = LAPIS PRETO N2 HB CX C/ 144 - BRW
+CodBarra = null Produto = BORRACHA BRANCA TK CINTA PLASTICA - MASTERPRINT
+CodBarra = null Produto = PASTA SANFONADA A-4 12 DIVISORIA FUME DAC
+CodBarra = null Produto = CANETA MARCA TEXTO ROSA LUMICOLOR PILOT
+CodBarra = null Produto = LAPISEIRA TECNICA 0.9 CX/12 JOCAR.
+CodBarra = null Produto = POSTIT 76 X 102 LARANJA C/ 100 FLS - BRW
+CodBarra = null Produto = ELASTICO P/DINHEIRO N18 AMARELO C/100G -
+CodBarra = null Produto = PASTA SUSPENSA MARMORIZADA PLASTIFICADA CX C/ 50UN
+CodBarra = null Produto = PASTA L A4 CRISTAL C/ 10UND PLASTPARK
+CodBarra = null Produto = ESTILETE LARGO - MASTERPRINT
+CodBarra = null Produto = PINCEL ATOMICO PRETO CX C/12 UND PILOT
+CodBarra = null Produto = COLA BRANCA 90G POLAR
+CodBarra = null Produto = LUVA LONGATEX TAM M
+CodBarra = null Produto = PAPEL ALUM.BOREDA 0.30X7,5M.
+CodBarra = null Produto = AMAC.R.DOWNY CONC.FRESC. PRIM 500ML
+CodBarra = null Produto = VINAGRE ALC.GOTA 500ML
+CodBarra = null Produto = COPO D.FC TRANSP.100X180ML CX/25
+CodBarra = null Produto = PERFIL U SIMPLES 100X40 - CH11-3,00MM
+CodBarra = null Produto = PERFIL ENRIJECIDO 100X40X15-3,00MM
+CodBarra = null Produto = CANTONEIRA SIMPLES 1X 1/8
+CodBarra = null Produto = FOSFORO GUARANY  C/1
+CodBarra = null Produto = FOSFORO GUARANY  C/1
+CodBarra = null Produto = CANTONEIRA SIMPLES 2X 3/16
+CodBarra = null Produto = FILTRO COMBUSTIVEL
+CodBarra = null Produto = MOTOR MOEDOR BECCARO PAT.00826
+CodBarra = null Produto = AMACIADOR BECCARO PAT.001527 - TAP2
+CodBarra = null Produto = AMACIADOR BECCARO PAT.001753 - JUR2
+CodBarra = null Produto = ALVEJANTE BRILUX MULTI 1L
+CodBarra = null Produto = CORREIA POWER SPAN GOODYEAR A46
+CodBarra = null Produto = CORREIA POWER SPAN GOODYEAR B33
+CodBarra = null Produto = COLA 3M 73GR
+CodBarra = null Produto = CIRCULADOR DE ELGIN 1/25 127/220V
+CodBarra = null Produto = DESINF. PINHO BRIL BRISA DO MAR
+CodBarra = null Produto = LIMPADOR VEJA MULTIUSO
+CodBarra = null Produto = FILTRO DE AR
+CodBarra = null Produto = FILTRO SECADOR
+CodBarra = null Produto = LEITOR IMA ID BT MOT LI4278 USB PRETO
+CodBarra = null Produto = PALETEIRA HIDRAULICA MANUAL 680 RSN
+CodBarra = null Produto = MODLUNARE
+CodBarra = null Produto = BOBINA P/ PONTO ELETRONICO
+CodBarra = null Produto = CABO DE INTERL PCI SAIDA AC
+CodBarra = null Produto = SUPORTE APOIO ETIQUETA - PRIX4 UNO
+CodBarra = null Produto = DISPLAYCD 19DIG
+CodBarra = null Produto = SELO DE LACRE AT SERIE 21443109
+CodBarra = null Produto = HIG ASSEPTGEL CRISTAL 1,05KG
+CodBarra = null Produto = FRALDA PROCESSADA
+CodBarra = null Produto = FRALDA PROCESSADA
+CodBarra = null Produto = AGULHA REDONDA PROCESSADA
+CodBarra = null Produto = AGULHA REDONDA PROCESSADA
+CodBarra = null Produto = F.SEP. MBO 400 VOLVO FH.FM (PSD490)
+CodBarra = null Produto = FILTRO AR 5000 VALV_ APU _ SCANIA
+CodBarra = null Produto = ELEMENTO LUBRIFICANTE HU10 _ 77 _ LX
+CodBarra = null Produto = TAMPA DO IMPRESSO - PRIX4 UNP
+CodBarra = null Produto = LEITOR COD BARRA 1D
+CodBarra = null Produto = ZB IMP ETI ZT230 203D
+CodBarra = null Produto = CARBONO PRETO A4 C/100FLS - HARDCOPY 4
+CodBarra = null Produto = ELASTICO P/DINHEIRO PCT C/500G - MAMUTH6
+CodBarra = null Produto = FITA GOMADA MARROM 48 X 50 - CELTA 11
+CodBarra = null Produto = PINCEL P/ QUADRO BRANCO PRETO CX C/12
+CodBarra = null Produto = QUADRO FELTRO MOLD ALUMINIO 90X60
+CodBarra = null Produto = FITA SERRA 3.15
+CodBarra = null Produto = TRANSPALETE BALANCA 700X 1A
+CodBarra = null Produto = FITA SERRA 3.25
+CodBarra = null Produto = VOLANTE NR 98
+CodBarra = null Produto = DISJUNTOR SCH K32A 1P X 20AC
+CodBarra = null Produto = AFIADOR/CHAIRA 5540/12 BR 30CM
+CodBarra = null Produto = CABO FLEX PP HEPR 90O 4X 6MM 1KV
+CodBarra = null Produto = LAMP. TASCH TUBELED T8 20,5W BIV
+CodBarra = null Produto = TABUA DE CARNE PP 500X600X15 MM
+CodBarra = null Produto = MAC.ESPAG.AMORATI 500G
+CodBarra = null Produto = MAC.ESPAG.AMORATI 500G
+CodBarra = null Produto = DOCE LEITE FRIMESA TRAD. 400GR
+CodBarra = null Produto = DOCE LEITE FRIMESA TRAD. 400GR
+CodBarra = null Produto = COMPRESSOR HERMETICO ELGIN (M.P) 1.1/4 220V
+CodBarra = null Produto = EMBAL. PLAST. UNISOLD PAD 30X50/700
+CodBarra = null Produto = TRELICA TR SI-8LL 12 MTS 6.0 X 4.2 X 3.4
+CodBarra = null Produto = LIXEIRA 60LT BASCULANTE SANREMO REF 2
+CodBarra = null Produto = TELA DOLDADA Q 196 2,45X6M 100X100-ARAME 5.0X5.0MM
+CodBarra = null Produto = RELE TRON F FASE C/S NEUTRO FSN-22 MM 220V
+CodBarra = null Produto = CANETA 0.7 AZUL CX C/50 UND COMPACTOR
+CodBarra = null Produto = CONEC PERFUR P10-95MM D1,5 10MM CDP 70
+CodBarra = null Produto = CLORODIFLURMETANO GAS
+CodBarra = null Produto = TERMINAL DIRECAO
+CodBarra = null Produto = FILE DO PEITO DO FRANGO
+CodBarra = null Produto = FILE DO PEITO DO FRANGO
+CodBarra = null Produto = SENSOR FULL GAUGE NTC PRETO 2MT
+CodBarra = null Produto = PROJETOR RET 45W P/PL E-27 160W
+CodBarra = null Produto = PCI CONCTORES IMPRESSOR - PRIX4UNO
+CodBarra = null Produto = CABO INTERL PCI PRINC, PCI CONECTORES
+CodBarra = null Produto = SUPORTE APOIO ETIQUETA - PRIX4 UNO
+CodBarra = null Produto = SELO DE LACRE AT SERIE 21443107
+CodBarra = null Produto = LAMPADA ELET 45W X 220 ESP 6,5K
+CodBarra = null Produto = LAMPADA BRILHA LED BULB 9-W
+CodBarra = null Produto = BOCAL DECORADO REF 100W
+CodBarra = null Produto = PAINEL DISPLAY 6,15KG
+CodBarra = null Produto = TECLADO 6,15,30 KG-PRIX4 DUE (C3-5102)
+CodBarra = null Produto = CABECOTE TERMINO KF2003-GC30E
+CodBarra = null Produto = PARACH. DIANTEIRO VW GOL G7
+CodBarra = null Produto = ARROZ T.1 PARB.FAZENDA 1KG
+CodBarra = null Produto = FARINHA TRIGO MIRELA S/FERM.1KG
+CodBarra = null Produto = FARINHA TRIGO MIRELA S/FERM.1KG
+CodBarra = null Produto = FARINHA ROSCA MARIZA 400G
+CodBarra = null Produto = FARINHA ROSCA MARIZA 400G
+CodBarra = null Produto = COLORI MARATA 97G. PCT/10
+CodBarra = null Produto = FOLHA DE LOURO CECIM 10GR
+CodBarra = null Produto = TECLADO 6,15 KG-PRIX4 UNO (C3-5102)
+CodBarra = null Produto = ROLO APOIO ETIQUETA - FTP
+CodBarra = null Produto = PLACA ADPTADORA RJ45 MONTADACONFORME DESENHO
+CodBarra = null Produto = SELO DE LACRE AT SERIE 21443108
+CodBarra = null Produto = SAL P/CHUR.CECIM 1KG.
+CodBarra = null Produto = SAL P/CHUR.CECIM 1KG.
+CodBarra = null Produto = PANO PRATO ECOTEXTIL EST 40X62CM
+CodBarra = null Produto = MECANISMO FUJITSU - RETRABALHADO (C3-5102)
+CodBarra = null Produto = CABO TRIPOLAR F+M 180 - 2.5M
+CodBarra = null Produto = MECANISMO FUJITSU - RETRABALHADO (C3-5102)
+CodBarra = null Produto = CANETA 0.7 AZUL CX C/50 UND COMPACTOR
+CodBarra = null Produto = CANETA 0.7 PRETA CX C/50 UND COMPACTOR
+CodBarra = null Produto = PSX16, ELET, 24 VOLTS AC, TORRE TSU 217, GARF.45,3
+CodBarra = null Produto = NO BREAK 1400VA BIVOLT
+CodBarra = null Produto = PARKER AR-6355RS
+CodBarra = null Produto = PRATO CONFORME DESENHO
+CodBarra = null Produto = SELO DE LACRE AT SERIE 21657791
+CodBarra = null Produto = DETERGENTE LIQUIDO LIMPOL
+CodBarra = null Produto = CEL. CARGA PENGUI II 25KG
+CodBarra = null Produto = BOM AR AIR WICK FLORES DE JASMIM
+CodBarra = null Produto = INSETICIDA AERO BAYGON
+CodBarra = null Produto = SABAO EM BARRA FC COCO 1KG
+CodBarra = null Produto = MULTI-USO ECONOMICO LARANJA 500ML
+CodBarra = null Produto = MULTI-USO ECONOMICO TRADICIONAL
+CodBarra = null Produto = ESTOPA BRANCA EXTRA
+CodBarra = null Produto = POLIA ESTICADOR
+CodBarra = null Produto = RETENTOR RODA
+CodBarra = null Produto = CORREIA SINCRONIZADA
+CodBarra = null Produto = SUPERFLEX PRETO 598
+CodBarra = null Produto = ADESIVO JUNTA
+CodBarra = null Produto = OLEO GEAR GL5 140 LITROS
+CodBarra = null Produto = AJUSTADOR AUTOMATICO
+CodBarra = null Produto = ELETRODUTO NORMAL LISO 3/4 BR
+CodBarra = null Produto = TOMADA CLARIS PAD BRA 20A 0615 SEM PLACA
+CodBarra = null Produto = CABO FLEX PP HEPR 90O 3X4MM 1KV
+CodBarra = null Produto = CONECTOR INTELLI DER.PERF. P-10/95 D-1.5/10MM CDP7
+CodBarra = null Produto = PARAFUSO JOMARCA CAB PANELA P/BUCHH.S08(4,8 X 38)
+CodBarra = null Produto = BUCHA JOMARCA NYLON 08MM 10006
+CodBarra = null Produto = LAMP H7 12V 55W GAUSS
+CodBarra = null Produto = SACO 12X27 1/2KG
+CodBarra = null Produto = CHARQUE FRINENSE
+CodBarra = null Produto = CHARQUE FRINENSE
+CodBarra = null Produto = TERMOSTATO FULL GAUGE RET. EMBUTIR C/C
+CodBarra = null Produto = RELE TERMICO WEG RW27 2D3
+CodBarra = null Produto = CONTATOR WEG CWM18 11 220V
+CodBarra = null Produto = TEMPORIZADOR WEG RTW RE01 30-300V
+CodBarra = null Produto = MINICONTATORES WEG CW07 10 1NA 220V
+CodBarra = null Produto = RELE FALTA DE FASE TRON FF-01
+CodBarra = null Produto = CONSERVADEIRA VERTICAL SLIM TIJUCA 127V
+CodBarra = null Produto = PEITO DE FRANGO BONASA
+CodBarra = null Produto = PEITO DE FRANGO BONASA
+CodBarra = null Produto = PARKER RAD-30011
+CodBarra = null Produto = COXA DE FRANGO S/PELE BONASA
+CodBarra = null Produto = COXA DE FRANGO S/PELE BONASA
+CodBarra = null Produto = TRASEIRO DESOSSA COMPLETO - BOI
+CodBarra = null Produto = TRASEIRO DESOSSA COMPLETO - BOI
+CodBarra = null Produto = LAMP 67 12V 10W GE
+CodBarra = null Produto = LAMP 67 24V 5W NEOLUX GASS
+CodBarra = null Produto = LAMP H7 24V 70W GAUSS
+CodBarra = null Produto = LAMP PINGO DAGUA GRANDE 12V 3W GAUSS
+CodBarra = null Produto = LAMP PINGO DAGUA GRANDE 24V GAUSS
+CodBarra = null Produto = BIOROOTER - BIOD BIOLOGICO
+CodBarra = null Produto = BUCHA MOLA
+CodBarra = null Produto = MOTOR 2CV 4POLOS
+CodBarra = null Produto = LAMPADA FLUOR PHIL  32W SUPER 85
+CodBarra = null Produto = REATOR ELET PHIL 1X16W 127/220V
+CodBarra = null Produto = MOUSE CLASSIC BOX OPTICO PRETO USB
+CodBarra = null Produto = TECLADO USB TC193 SLIM MULTLASER
+CodBarra = null Produto = CABO CORDOPLAST PP 1000V 4X4,0MM
+CodBarra = null Produto = PLACA MAE 1151 H110MHC DDR4 VGA/HDMI - BIOSTAR
+CodBarra = null Produto = BOMBA SCHNEIDER BCR2010 3/4 CV MONO 127V
+CodBarra = null Produto = SACO PELBD/INC/LS 90X100X0,18
+CodBarra = null Produto = SACO PELBD/INC/LS 77X85X0,30 FOLHA
+CodBarra = null Produto = SACO PELBD/INC/LS 77X98X0,20
+CodBarra = null Produto = 10X4CB-8.8 ESPIGAO 2591 A
+CodBarra = null Produto = PO M10 MA X 1,50 SIMPLES POL.
+CodBarra = null Produto = MOLA MB-544-2 DT MICRO-ONIBUS LO-916 (EURO5) ANO:2
+CodBarra = null Produto = FARIN.MANDI.AMAR.FINA CONDESSA 1KG
+CodBarra = null Produto = FILME PVC PLAST. FORTPACK 28CMX50M
+CodBarra = null Produto = PAPEL ALUM.FORTPACK 45CMX7, 5M.
+CodBarra = null Produto = MAIONESE QUERO FOOD SCH 1020KG
+CodBarra = null Produto = ERVILHA C/MILHO OLE LT.200G.
+CodBarra = null Produto = COADOR CAFE
+CodBarra = null Produto = COLORI.MARIZA 100GR.
+CodBarra = null Produto = FOLHA DE LOURO MARIZA 15GR
+CodBarra = null Produto = COMPO LAC BEMBOM 200G FAD /50
+CodBarra = null Produto = ALHO UNID
+CodBarra = null Produto = REDINHA DE TEMPERO
+CodBarra = null Produto = MARIL PESTISC 80G CAL
+CodBarra = null Produto = MARIL PESTISC 80G PRO
+CodBarra = null Produto = ENG. MOTORA NR.98 C 19-D =B=JM
+CodBarra = null Produto = ENG. FIBRA NR.98 C 62-D=VS=B=ECCEL=JM
+CodBarra = null Produto = LAMINA P/ SERRA FITA 3,15 MT STARRET MK 5/8
+CodBarra = null Produto = BOTA PVC BRANCA C.CURTO N.35
+CodBarra = null Produto = BOTA PVC BRANCA C.CURTO N.36
+CodBarra = null Produto = BOTA PVC BRANCA C.CURTO N.40
+CodBarra = null Produto = BOTA PVC BRANCA C.CURTO N.42
+CodBarra = null Produto = ARLA REDUX32 GRANEL LT
+CodBarra = null Produto = TEXACO MARFAK MP2 20 KG
+CodBarra = null Produto = SERVIÇO DE PNEUS
+CodBarra = null Produto = COPO 180ML BRANO PCT C/100 UND-COPOBRAS
+CodBarra = null Produto = ARAME RECOZIDO N.18 - 1,24MM
+CodBarra = null Produto = PREGO 2X11 - 17X21
+CodBarra = null Produto = CONECTOR P/HAST (12,00MM) 1/2-5/8*
+CodBarra = null Produto = HASTE C.WELD BX CAMAD
+CodBarra = null Produto = CABO FLEX. 750V 6MM PT
+CodBarra = null Produto = CABO FLEX. 750V 2,5MM PT
+CodBarra = null Produto = OLEO DIESEL BS10
+CodBarra = null Produto = MAC.INST.MARATA GALINHA 85G
+CodBarra = null Produto = SACOLA 21X35 2KG A.D. PLASJOPE - MIL
+CodBarra = null Produto = SACOLA REFOR.BCA DIAMANTE 30X45 06P
+CodBarra = null Produto = SACOLA REFOR.BCA DIAMANTE 42X53 06P
+CodBarra = null Produto = SACO DE POLIETILENO LISO 50X98X0,12
+CodBarra = null Produto = SACO DE POLIETILENO LISO 77X97X0,20
+CodBarra = null Produto = OVO CODORNA C/30
+CodBarra = null Produto = FONTE REAL ATX 250W BLUECASE
+CodBarra = null Produto = TECLADO PS2 MULTIMIDIA KS30
+CodBarra = null Produto = LIXEIRA GARI 120L RODA 200 MM BRALIMPA AZUL
+CodBarra = null Produto = LIXEIRA GARI 120L RODA 200 MM BRALIMPA BRANCO
+CodBarra = null Produto = SERVIÇO DE RECAPAGEN
+CodBarra = null Produto = CANETA DETEC PEN
+CodBarra = null Produto = COMPRESSOR ELGIN
+CodBarra = null Produto = VENTILADOR D457 220V 1F HCM28/HCM64 HGM64/HGM80
+CodBarra = null Produto = COMPRESSOR EMBRACO 1/3+ 110V R134 S/RESF C/CAP 119
+CodBarra = null Produto = AGUA ENVASADA DE 15LTS
+CodBarra = null Produto = AGUA ENVASADA DE 15LTS
+CodBarra = null Produto = SERVIÇO EM BALANÇA
+CodBarra = null Produto = PASTA L A4 CRISTAL PCTC/10UND
+CodBarra = null Produto = LIMPA ALUMINIO ECONOMICO 500ML
+CodBarra = null Produto = RODO PLASTICO 60 CM
+CodBarra = null Produto = ARRUELA FIBRA NR 22/98
+CodBarra = null Produto = ENG. COMP NR.98 C 62/ 19 - D
+CodBarra = null Produto = BOVINO, MACHO ACIMA DE 36 MESES
+CodBarra = null Produto = BOVINO, FEMEA, ACIMA DE 36 MESES
+CodBarra = null Produto = BOVINO, FEMEA, ACIMA DE 36 MESES
+CodBarra = null Produto = CERV. GLACIAL LATA
+CodBarra = null Produto = CERV. GLACIAL LATA
+CodBarra = null Produto = PNEU 275/80 R 22.5 X VM530L 242
+CodBarra = null Produto = PAO DE ALHO ASSADO
+CodBarra = null Produto = PAO DE ALHO ASSADO
+CodBarra = null Produto = BALANCA TRUCK MB ATEGO
+CodBarra = null Produto = ARQUIVO MORTO POLIONDA AZUL
+CodBarra = null Produto = NOTA NEUTRA C/COPIA
+CodBarra = null Produto = TESOURA 8,5
+CodBarra = null Produto = PASTA TRANSP C/ABA 6CM
+CodBarra = null Produto = FEIJAO PRETO GAMA LOPES 1KG FAD/30
+CodBarra = null Produto = FEIJAO PRETO GAMA LOPES 1KG FAD/30
+CodBarra = null Produto = LEITE PO INT. ITALAC 200G.
+CodBarra = null Produto = ROLAMENTO COMPLETO SUPORTE CARDAN
+CodBarra = null Produto = OLEO  FREIO
+CodBarra = null Produto = VINAGRE ALC.GLOBO 1000ML
+CodBarra = null Produto = ERVILHA C/MILHO QUERO LT.200GR.
+CodBarra = null Produto = AZEITE OLIV. E .VIRG.VD.500ML
+CodBarra = null Produto = LAMPADA FLUOR PHIL  32W
+CodBarra = null Produto = COPO D.BONOPLAST 100X180ML. CX/25
+CodBarra = null Produto = SOQUETE RD C/RAB P/FL.15/40W INS10
+CodBarra = null Produto = ABRACADEIRA FRONTEC NYLON 209MMX2,5MM
+CodBarra = null Produto = MANN FILTER CF600/1 (AFI-572RS)
+CodBarra = null Produto = MANN FILTER C23610 (A1151/AFI5719RS)
+CodBarra = null Produto = DIANTEIRO BOVINO RESFRIADO
+CodBarra = null Produto = DIANTEIRO BOVINO RESFRIADO
+CodBarra = null Produto = CERV. CERPA GOLD 350ML-PACOTE
+CodBarra = null Produto = CERV. CERPA GOLD 350ML-PACOTE
+CodBarra = null Produto = SACO 45X70 20KG
+CodBarra = null Produto = CADEIRA MADEIRA CERPA TIJUCA 70X70
+CodBarra = null Produto = MESA MADEIRA CERPA TIJUCA 70X70
+CodBarra = null Produto = FILE DE COXA C/SOBRECOXA PERDIGAO
+CodBarra = null Produto = FILE DE COXA C/SOBRECOXA PERDIGAO
+CodBarra = null Produto = RESISTENCIA MIG PLUS 1600X130 1600W 22 OV 4 VENT.
+CodBarra = null Produto = DISPLAY CD
+CodBarra = null Produto = VERGALHAO CA-50 NERVURADO- 3/8-10,00MM - 12MTS
+CodBarra = null Produto = VERGALHAO CA-50 NERVURADO- 5/16 8,00MM - 12MTS
+CodBarra = null Produto = DISCO CORTE INOX NORTON 7X16X7/8 BNA 12
+CodBarra = null Produto = PREGO 3X19 - 19X33
+CodBarra = null Produto = MOLA 2V VIRADA DIANT CAMINHAO ATEGO
+CodBarra = null Produto = RELE SEQUENCIA DE FASE 220 VCA 50/60 HZ
+CodBarra = null Produto = BATENTE FEIXE DE MOLA DA SUP. DIANT ATEGO
+CodBarra = null Produto = ESPIGAO MOLA 12X200 CABECA BAIXA
+CodBarra = null Produto = PORCA 12X1,50MM SEXTAVADA DIN 934 MB=ESPIGAO TODOS
+CodBarra = null Produto = BUCHA OLHO MOLA DIANT 2184 PARTE TRASEIRA ATEGO
+CodBarra = null Produto = REBITE DE MOLA
+CodBarra = null Produto = PARAFUSO FERRO POLEGADA NC 5/16X4
+CodBarra = null Produto = PORCA 5/16MM SEXTAVADA UNC
+CodBarra = null Produto = CONTATOR WEG CWM25 11 220V
+CodBarra = null Produto = T-BONE STEAK
+CodBarra = null Produto = T-BONE STEAK
+CodBarra = null Produto = TOMADA LOUCA 557 1717/30
+CodBarra = null Produto = BOBINA PARA CALCULADORA 57X30 VIA CX C/30
+CodBarra = null Produto = CONTATOR WEG CWB18 11 220V
+CodBarra = null Produto = DETERGENTE LIQ. FC NEUTRO 500ML
+CodBarra = null Produto = AMAC.R.YPE CONC.BLUE 500ML
+CodBarra = null Produto = ROLAMENTO SKF 6201 ZZ (12X32X10)
+CodBarra = null Produto = ROLAMENTO SKF 6204 ZZ (15X35X11)
+CodBarra = null Produto = DESINFETANTE ECONOMICO JASMIN 1LT
+CodBarra = null Produto = DESINFETANTE ECONOMICO EUCALIPTO
+CodBarra = null Produto = SACO 21 X 35 2KG A.D. PLASJOPE - ML
+CodBarra = null Produto = RODO PLASTICO 40 CM
+CodBarra = null Produto = PAPEL ALUMINIO 30CM X 7,5M BOREDA CX. C
+CodBarra = null Produto = PNEU 275/80 R 22.5 X VM530L 250
+CodBarra = null Produto = KIT DE CORREIAS T-800 R T-600 R
+CodBarra = null Produto = AGUA SANITARIA ECONOMICA 1L
+CodBarra = null Produto = VENTILADOR 400 MM 220/380V TRIF 50/60HZ
+CodBarra = null Produto = ABRACADEIRA PLASTICA 20CM 200 X 3,36
+CodBarra = null Produto = BATERIA 100 AH - OBENAUS
+CodBarra = null Produto = ENG. FERRO N.98 C 61-D=VS=B=JM
+CodBarra = null Produto = ENG. FIBRA NR.22 C 60-D=HD=G=VS=BM 10/22
+CodBarra = null Produto = CARACOL NR.98 S/VS/ECCEL
+CodBarra = null Produto = MILHO BCO. CANJ TALENTOS 500G
+CodBarra = null Produto = MILHO BCO. CANJ TALENTOS 500G
+CodBarra = null Produto = CREME LEITE CAMPONESA UHT 200G
+CodBarra = null Produto = CREME LEITE CAMPONESA UHT 200G
+CodBarra = null Produto = ENERG MONSTER ASSAULTLT 473 ML
+CodBarra = null Produto = ENERG MONSTER GREEN 473 ML
+CodBarra = null Produto = ENERG MONSTER ULTRA 473 ML
+CodBarra = null Produto = NECTAR GOIABA SEM ACUCAR LT 290 ML
+CodBarra = null Produto = DEL VALLE FRUT CITRUS 250 ML
+CodBarra = null Produto = LEITE COND.ITALAC TP 270G
+CodBarra = null Produto = LEITE COND.ITALAC TP 270G
+CodBarra = null Produto = FARINHA ARROZ CECIM 500G
+CodBarra = null Produto = LEITE COCO IMPERIAL 500ML
+CodBarra = null Produto = HD 500 SATA II 5900 RPM 16MB PEPILINE SEAGATE
+CodBarra = null Produto = CARTUCHO 21 HP PRETO
+CodBarra = null Produto = CANELA PO CECIM 25GR
+CodBarra = null Produto = CANELA PO CECIM 25GR
+CodBarra = null Produto = LEITE PO INT.ELEGE 200G.
+CodBarra = null Produto = MAC.SEM.HILEIA 500GR FD/10
+CodBarra = null Produto = MAC.SEM.HILEIA 500GR FD/10
+CodBarra = null Produto = LEITOR BIOMETRICO C/CABO FLAT
+CodBarra = null Produto = TINTA ZARCOTEX - PRETO 929 LATAO
+CodBarra = null Produto = FITA SERRA 2.82
+CodBarra = null Produto = LEITE PO INT. PIRACANJUBA 200G.
+CodBarra = null Produto = ACUCAR TRIP. POLAR 1KG
+CodBarra = null Produto = ACUCAR TRIP. POLAR 1KG
+CodBarra = null Produto = MAC.ESP.AZUL GALO 8 500GR
+CodBarra = null Produto = MAC.ESP.AZUL GALO 8 500GR
+CodBarra = null Produto = PALITO P/ DENTE GINA C/100
+CodBarra = null Produto = MOLHO TOM. OLEO TRAD.340GR.
+CodBarra = null Produto = PANO PRATO ALVEJADO XADREZ 45X75CM
+CodBarra = null Produto = ROLAMENTO SKF 6203 ZZ (17X40X12)
+CodBarra = null Produto = ROLAMENTO SKF 6206 ZZ (30X62X16)
+CodBarra = null Produto = PLUGUE STECK 4PX32A 220/250V 9H
+CodBarra = null Produto = ACOPLAMENTO STECK 4PK 32 A 220V
+CodBarra = null Produto = TOMADA SOB PORC 250V 3X30 1717
+CodBarra = null Produto = ROLAMENTO SKF 6207 ZZ (35X72X17)
+CodBarra = null Produto = COPO D.COPOBRAS AGUA 100X180ML CX/25
+CodBarra = null Produto = FILME PVC WYDA PRATIC.15X28CM
+CodBarra = null Produto = EMBALAGEM A VACUO LISA 35X50
+CodBarra = null Produto = EMBALAGEM A VACUO LISA 20X40
+CodBarra = null Produto = PLUGUE PORC 25V 3X30A 1753-30A
+CodBarra = null Produto = ACOPLAMENTO STECK 4PK 32 A 440V
+CodBarra = null Produto = RELE COEL FALTA FASE BVF1-P 208/480 VCA
+CodBarra = null Produto = CHAVE FIM DE CURSO PLAS 31MM 1NA
+CodBarra = null Produto = ROLETE PLAST. SUPERIOR P/CX PLAST
+CodBarra = null Produto = MOLA 2 TRASEIRA CAMINHAO ACCELO 7 TON
+CodBarra = null Produto = MOLA 3 TRASEIRA CAMINHAO ACCELO 7 TON
+CodBarra = null Produto = ESPIGAO 12X6 CA (6.8)
+CodBarra = null Produto = CAD CD CREDAL 10X1 HAPPY ADVENTURE 14F
+CodBarra = null Produto = PEDIDO TILIBRA 1 18 MEDIO 50F 1VIAS
+CodBarra = null Produto = GRAMPO SERTIC EAGLE 26 6 C 500 UND
+CodBarra = null Produto = CARBONO SERTIC CIS PARA MAQUINAS PRETO 10
+CodBarra = null Produto = FITA TRANSP EUROCEL 45X30 - PP33-BJ04
+CodBarra = null Produto = PASTA ELASTICO ACP LINE 55MM 1025 CR
+CodBarra = null Produto = TESOURA LEONORA DE ACO JOCAR INOX
+CodBarra = null Produto = MANGUEIRA TRANÇADA 1/2 250
+CodBarra = null Produto = BOR 400
+CodBarra = null Produto = MOLA FO323-1 DT-CAMINHAO CARGO 712/815/816 ANO2010
+CodBarra = null Produto = OLEO COMP.MARIA 500ML
+CodBarra = null Produto = OLEO COMP.MARIA 500ML
+CodBarra = null Produto = COLORI. 100GR.
+CodBarra = null Produto = FILME PVC WYDA PRATIC.30X28CM
+CodBarra = null Produto = RESISTENCIA MIPAL PLUS 6 MICROS 2400W 220V MONO
+CodBarra = null Produto = RESISTENCIA MIPAL PLUS 4 MICROS 1600W 220V 157CM
+CodBarra = null Produto = SENSOR FULL GAUGE NTC CINZA 2MT
+CodBarra = null Produto = LAPIS C/ BORRACHA PRETO CX C/ 12 UND- JOCAR
+CodBarra = null Produto = CLIPS GALVANIZADO 8/0 CX C/ 25UND -FERPLAS
+CodBarra = null Produto = COMPRESSOR DANFOS 2.5HP 220V
+CodBarra = null Produto = DESINF. FLORES SUAVE 500ML
+CodBarra = null Produto = CANETA MARCA TEXTO LARANJA CX C/12UND
+CodBarra = null Produto = SENSOR DE INOX DO ESCAPE
+CodBarra = null Produto = DETERGENTE MACA 500 CX C/24
+CodBarra = null Produto = SABAO EM BARRA AZUL 200G
+CodBarra = null Produto = FITA DUREX TRANSPA. 19 X 50 - ADELBRAS
+CodBarra = null Produto = SH7000 20L
+CodBarra = null Produto = SACO PEAD 100X140X0,0022
+CodBarra = null Produto = SENSOR DE INOX DO ESCAPE - 2
+CodBarra = null Produto = BOLA TRASEIRO BOI
+CodBarra = null Produto = BOLA TRASEIRO BOI
+CodBarra = null Produto = VINAGRE FIGUEIRA 500ML CX/12
+CodBarra = null Produto = VINAGRE FIGUEIRA 500ML CX/12
+CodBarra = null Produto = ALMOFADA PARA CARIMBO N.3 AZUL CARBRINK
+CodBarra = null Produto = ALMOFADA PARA CARIMBO N.3 AZUL CARBRINK
+CodBarra = null Produto = VERGALHAO LISO -3/8 -12MTS 6 72 KG
+CodBarra = null Produto = OLEO SOJA SINHA PET 500ML CX/20
+CodBarra = null Produto = OLEO SOJA SINHA PET 500ML CX/20
+CodBarra = null Produto = OLEO SOJA CONCORDIA PET 900ML CX/20
+CodBarra = null Produto = OLEO SOJA CONCORDIA PET 900ML CX/20
+CodBarra = null Produto = CREME LEITE CCGL UHT 200G CX/27
+CodBarra = null Produto = CREME LEITE CCGL UHT 200G CX/27
+CodBarra = null Produto = ROLAMENTO RODA DT INT
+CodBarra = null Produto = PORCA PINHAO
+CodBarra = null Produto = LEITE COND.PIRACANJUBA TP 270G CX/27
+CodBarra = null Produto = LEITE COND.PIRACANJUBA TP 270G CX/27
+CodBarra = null Produto = BATATA PALHA SULLPER 400GR. CX/10
+CodBarra = null Produto = BATATA PALHA SULLPER 400GR. CX/10
+CodBarra = null Produto = REP VALV SECADOR APU K
+CodBarra = null Produto = ARROZ T.1 PARB. BIANCO 1KG FD/30
+CodBarra = null Produto = SACO PEAD 80X210X0,0022
+CodBarra = null Produto = SAL MOIDO VENEZA 1KG FD/30
+CodBarra = null Produto = SAL MOIDO VENEZA 1KG FD/30
+CodBarra = null Produto = CAFE SANTA CLARA 100G CX/50
+CodBarra = null Produto = CAFE SANTA CLARA 100G CX/50
+CodBarra = null Produto = CAFE ALMOF. TRAD. STA. CLARA 250G CX/20
+CodBarra = null Produto = CAFE ALMOF. TRAD. STA. CLARA 250G CX/20
+CodBarra = null Produto = SARD. OLEO TRAD G. COSTA 125G CX/50
+CodBarra = null Produto = SARD. OLEO TRAD G. COSTA 125G CX/50
+CodBarra = null Produto = REPARO CILINDRO BASCULAMENTO
+CodBarra = null Produto = REBITE 10X12 FERRO LATONADO
+CodBarra = null Produto = MAIONESE QUERO TP 270G CX/24
+CodBarra = null Produto = MAIONESE QUERO TP 270G CX/24
+CodBarra = null Produto = MACARRAO VICCARI 500G FD/10
+CodBarra = null Produto = MACARRAO VICCARI 500G FD/10
+CodBarra = null Produto = SACO PEAD 80X100X0,0022
+CodBarra = null Produto = CALCULADORA MASTER PRINT 8 DIG MP-1031
+CodBarra = null Produto = ENVELOPE 22X32 BRANCO CX C/ 500 UND-IPECOL
+CodBarra = null Produto = CLIPS GALVANIZADO 6/0 CX C/ 25UND -FERPLAS
+CodBarra = null Produto = ESTILETE ESTREITO - TZYX
+CodBarra = null Produto = SACO TRANSPARENTE P/ PASTA CATALOGO TAM OFICIO
+CodBarra = null Produto = LAMINA DE SERRA 5/8 X 0,45 X 6D X 2,80
+CodBarra = null Produto = ARQUIVO MORTO POLIONDA VERDE
+CodBarra = null Produto = 110MS-BATERIA BR 110MS ONU 2794 - BAT. ELE. UMIDAS
+CodBarra = null Produto = COMPRESSOR AR
+CodBarra = null Produto = CAM. RIGIDO MOD.VM 330 8X2R SEM GTIN
+CodBarra = null Produto = DEL VALLE FRUT UVA PET 250ML
+CodBarra = null Produto = DISJUNTOS SCH K32A 3P X 40A C
+CodBarra = null Produto = HD SSD SATA 120GB A400 - KINGSTON
+CodBarra = null Produto = TRAVA ARANHA CUBO TS
+CodBarra = null Produto = ARRUELA TRAVA CUBO TS
+CodBarra = null Produto = OVO BRANCO EXTRA
+CodBarra = null Produto = DETERGENTE ECONOMICO FLORAL 1L
+CodBarra = null Produto = MACAXEIRA
+CodBarra = null Produto = MACAXEIRA
+CodBarra = null Produto = LUMINARIA AVNTLED
+CodBarra = null Produto = LUVA LISA 3/4 BR
+CodBarra = null Produto = PNEU 215/75 R 17 5 126/124M FS 557 FS 557
+CodBarra = null Produto = FILTRO SECADOR 210 X 5/8 R12 22 134
+CodBarra = null Produto = FILTRO SECADOR 210 X 3/8 R12 22 134
+CodBarra = null Produto = TAMPA NORMAL 2 MOD RJ BR
+CodBarra = null Produto = CJ CLARIS 2 TOMADAS 2P
+CodBarra = null Produto = TOMADA INDUSTRIAL 220V
+CodBarra = null Produto = BOCAL DECORADO BRANCO 417
+CodBarra = null Produto = CARTOLINA AMARELA 50X66 120G-PILAR
+CodBarra = null Produto = CALCULADORA DE MESA 12DIG - KAZ
+CodBarra = null Produto = CABO FLEX. 750V 2,5MM VD
+CodBarra = null Produto = CABO FLEX. 750V 1,5MM PT
+CodBarra = null Produto = GASOLINA COMUM
+CodBarra = null Produto = PEN DRIVE 16GB
+CodBarra = null Produto = SABAO EM PO ALA FLOR DE 500G
+CodBarra = null Produto = CAFE ALMOF. TRAD. STA. CLARA 100G CX/50
+CodBarra = null Produto = CAFE ALMOF. TRAD. STA. CLARA 100G CX/50
+CodBarra = null Produto = CAFE ALMOF. TRAD. STA. CLARA 100G
+CodBarra = null Produto = CAFE ALMOF. TRAD. STA. CLARA 100G
+CodBarra = null Produto = LAMPADA FLUOR OSRAM 20W T10
+CodBarra = null Produto = SABAO EM PO ALA F. MARACUJA 500G
+CodBarra = null Produto = SABAO EM PO ALA F. BRANCAS 500G
+CodBarra = null Produto = CAPILAR 0,42 (ROLO C/3 MTS)
+CodBarra = null Produto = CAPILAR 0,42 (ROLO C/3 MTS)
+CodBarra = null Produto = FILTRO SECADOR FERRO 10 X 2 X 1/4 ROSCA
+CodBarra = null Produto = FILTRO SECADOR 210 X 1/2 R12 22 134 ROSCA
+CodBarra = null Produto = CURVA 90 1.3/8 PAREDE 1,12MM COBRE
+CodBarra = null Produto = SERVIÇO DE COLETA DE RESIDUO ORGANICO
+CodBarra = null Produto = LUVA 1,3/8 PAREDE 1,12MM COBRE
+CodBarra = null Produto = LUVA 3/8 PAREDE 0.58MM COBRE
+CodBarra = null Produto = OLEO MINERAL FATOR 160P 1LT
+CodBarra = null Produto = CERV. CERPA SHIN LT 269ML-CX 12UN
+CodBarra = null Produto = CERV. CERPA SHIN LT 269ML-CX 12UN
+CodBarra = null Produto = ROLAMENTO RODA DT EXT
+CodBarra = null Produto = RETENTOR CUBO RODA DT
+CodBarra = null Produto = CIRCULADOR DE AR ELCO 1/25 127/220V
+CodBarra = null Produto = CONJ. DE VENTILADOR DANFOSS P/ UNID. C ONDENS 220V
+CodBarra = null Produto = MOLA 1SB.DIANTEIRA CAMINHAO ATEGO
+CodBarra = null Produto = BUCHA OLHO MOLA DIANT 2184 PARTE DIANTEIRA ATEGO
+CodBarra = null Produto = ESPIGAO MOLA 12X125 CABECA BAIXA
+CodBarra = null Produto = PORCA 18MM
+CodBarra = null Produto = GRAMPO DE MOLA TR
+CodBarra = null Produto = TECLADO PS2 STANDARD MULT TC064
+CodBarra = null Produto = TECLADO MAX USB PADRAO
+CodBarra = null Produto = CJ DUALE UP 1TOM 2P+T 20A BR 852021
+CodBarra = null Produto = CJ DUALE UP 1TC SIMPLES+TOM 10A BR 853021
+CodBarra = null Produto = PLACA DUALE UP 4X2 3MOD 852031
+CodBarra = null Produto = SUPORTE DUALE 4X2 E 4X4 850200
+CodBarra = null Produto = MOD BRAVA/DUALEUP INT SIMPLES-10A
+CodBarra = null Produto = MOD BRAVA/DUALE UP TOM 10.A BR 573421/872011
+CodBarra = null Produto = PLACA DUALE UP 4X2 2MOD SEP 850222
+CodBarra = null Produto = CJ DUALE UP 1TC SIMP 10A BR 851011
+CodBarra = null Produto = CAIXA PVC 4X4 PT CEMAR 913137
+CodBarra = null Produto = CAIXA PVC 4X2 PT CEMAR 913136/689044
+CodBarra = null Produto = PLACA DUALE UP 4X4 CEGA BR 850451
+CodBarra = null Produto = ELETRODUTO TIGRE FLEX CORR AM 3/4
+CodBarra = null Produto = CABO FURUK WA SOHOPLUS LAN UTP
+CodBarra = null Produto = CONECTOR FURUKAWA FEMEA SHOPLUS CAT6 BR35050413
+CodBarra = null Produto = PORCA 5/160MM
+CodBarra = null Produto = CHAPA INOX BRILHOSA (430) - CH 26 -0,50MM - 2X1,25
+CodBarra = null Produto = REBITE REPUXO 4,0X12-5/32X1/2
+CodBarra = null Produto = DISCO CORTE INOX STILEX 4.1/2 X 3/64 X 7/8
+CodBarra = null Produto = CERV. CERPA NEVADA LT 350 ML
+CodBarra = null Produto = CERV. CERPA NEVADA LT 350 ML
+CodBarra = null Produto = QUEIJO RALADO 50G
+CodBarra = null Produto = QUEIJO RALADO 50G
+CodBarra = null Produto = TEMP.SABOR AMI COMP.S/PIM.300 GR
+CodBarra = null Produto = MOTOBOMBA LEAO 230/001/22TR + 4R5PA-06
+CodBarra = null Produto = MOLA TMB-05-1 TRUCK KLL ATEGO 2425
+CodBarra = null Produto = 12X4CB-8.8 ESPIGAO 2585 A
+CodBarra = null Produto = 12X7CB-8.8 ESPIGAO 2585 A
+CodBarra = null Produto = SIFAO SANFONADO UNIVERS.COPO CROMADO ASTRA
+CodBarra = null Produto = SALG TRIGO PETICITOS BARBECUE 24X50G
+CodBarra = null Produto = PO M12 MB X 1,50 SIMPLES POL
+CodBarra = null Produto = SIFAO UNIVERSAL SANFONADO CROMADO ASTRA
+CodBarra = null Produto = BATATA PALHA SULLPER 24X70
+CodBarra = null Produto = BATATA PALHA SULLPER 24X70
+CodBarra = null Produto = SALG TRIGO PETICITOS CARNE DE SOL 24X50G
+CodBarra = null Produto = ELETRO VENTILADOR UNIVERSAL 12" 24V
+CodBarra = null Produto = FAROL ATEGO 13/... L/D H7+H1
+CodBarra = null Produto = LENTE VW C/ BASE
+CodBarra = null Produto = MOLA MB-513-1-B DT ATEGO 1518/1718/1725/2425
+CodBarra = null Produto = PALH LIMP MB 1938 98-... ACELO-AXOR ...-06 CARGO 1
+CodBarra = null Produto = CAB.GOL, G5-6 FOX 1.6 10/COMP
+CodBarra = null Produto = FAROL ATEGO 13/... L/D H7+H1
+CodBarra = null Produto = SACO 24 X 38 KG 3KG A D PLASJOPE - MIL
+CodBarra = null Produto = PORCA 10MM TRAVANTE
+CodBarra = null Produto = PORCA 10MM
+CodBarra = null Produto = PARAFUSO SX 10 X 40MM
+CodBarra = null Produto = ALAVANCA GARFO EIXOTS
+CodBarra = null Produto = SERVIÇO DE CONTROLE DE PRAGA
+CodBarra = null Produto = BATERIA M60GD
+CodBarra = null Produto = LAMPADA BRILHA TUBELED 18-W
+CodBarra = null Produto = BUCHA BARRA ESTABILIZADOR
+CodBarra = null Produto = LAMINA DE SERRA 5/8 X 0,50 MMX 3,15
+CodBarra = null Produto = LAMINA DE SERRA 5/8 X 0,50 MMX 3,15
+CodBarra = null Produto = P.A BOVINA ESPECIAL
+CodBarra = null Produto = P.A BOVINA ESPECIAL
+CodBarra = null Produto = DIANTEIRO VACA C/OSSO RESF
+CodBarra = null Produto = DIANTEIRO VACA C/OSSO RESF
+CodBarra = null Produto = PROTETOR LOMBAR TAM G
+CodBarra = null Produto = BOTAO MONOBLOCO
+CodBarra = null Produto = PROTETOR LOMBAR TAM P
+CodBarra = null Produto = CAPACITOR DUPLO 55 + 2,5 MF 440V VAC C
+CodBarra = null Produto = ANEL BUJAO DO CATER DE OLEO N
+CodBarra = null Produto = KIT REVISAO
+CodBarra = null Produto = LIMPADOR SISTEMA DE INJECAO DIESEL
+CodBarra = null Produto = DIES FUEL TREAT E INJEC
+CodBarra = null Produto = CESTA BASICA
+CodBarra = null Produto = TUBO DE COBRE EM BOBINA 3/8 PAREDE 1/32 9,52MM
+CodBarra = null Produto = TUBO DE COBRE EM BOBINA 3/8 PAREDE 1/32 9,52MM
+CodBarra = null Produto = TUBO DE COBRE EM BOBINA 1/2 PAREDE 1/32 12,70MM
+CodBarra = null Produto = TUBO DE COBRE EM BOBINA 1/2 PAREDE 1/32 12,70MM
+CodBarra = null Produto = PORCA CURTA DE LATAO 3/8"
+CodBarra = null Produto = PORCA CURTA DE LATAO 1/2"
+CodBarra = null Produto = FILTRO SECADOR DANFOSS DML 083 3/8 RR
+CodBarra = null Produto = CONTATOR BOB 220V 12A 1NA
+CodBarra = null Produto = DISJUNTOR SCH K32A 2P X 25 AC
+CodBarra = null Produto = CABO FLEX PP  90O 2X 4MM
+CodBarra = null Produto = CRUZETA NR. 22
+CodBarra = null Produto = PNEU 175/70 R 14
+CodBarra = null Produto = PNEU 205/55 R 16
+CodBarra = null Produto = PROGRAMADOR HORARIO (TIMER)
+CodBarra = null Produto = PINCEL TIGRE CHATO RETO NR 815 18 CERDA
+CodBarra = null Produto = CARTOLINA ESCOLAR MILLENIUM BIGNARDI
+CodBarra = null Produto = SH6000 QUALIFOOD 50L
+CodBarra = null Produto = START DESENGRAXA F 50L VG
+CodBarra = null Produto = TINTA GUACHE MARIPEL 250 ML
+CodBarra = null Produto = START LUBRI F 5L VG
+CodBarra = null Produto = START
+CodBarra = null Produto = GAS EM BOTIJAO DE 45 KG ONU 1075 GLP CLAS 2.1
+CodBarra = null Produto = GAS EM BOTIJAO DE 45 KG ONU 1075 GLP CLAS 2.1
+CodBarra = null Produto = START DECAP INIBIT F 50L
+CodBarra = null Produto = BOTA PVC BRANCA C.CURTO N.37
+CodBarra = null Produto = BOTA PVC BRANCA C.CURTO N.39
+CodBarra = null Produto = BOTA PVC BRANCA C.CURTO N.41
+CodBarra = null Produto = LUVA TRICOTADA PIGMENTADA BRANCA 4 FIO
+CodBarra = null Produto = KIT EMB MB 1417/18 PLATOFLEX
+CodBarra = null Produto = COURO BOVINO
+CodBarra = null Produto = COURO BOVINO
+CodBarra = null Produto = LAMPADA 1 POLO
+CodBarra = null Produto = LAMPADA FAROL H7 24V
+CodBarra = null Produto = LAMPADA 2 POLO 24V
+CodBarra = null Produto = TRASEIRO DE BOI GORDO
+CodBarra = null Produto = TRASEIRO DE BOI GORDO
+CodBarra = null Produto = DIANTEIRO DE BOI GORDO
+CodBarra = null Produto = DIANTEIRO DE BOI GORDO
+CodBarra = null Produto = COURO BUBALINO
+CodBarra = null Produto = COURO BUBALINO
+CodBarra = null Produto = TUBO DISTANCIADOR MOLA TRASEIRA
+CodBarra = null Produto = ROLO TIGRE ESPUMA
+CodBarra = null Produto = BANDEJA P/ PINTURA 1,3LT PTA ALTAS
+CodBarra = null Produto = MOLHA DEDO EM GEL 12G
+CodBarra = null Produto = ARQUIVO MORTO POLIONDA AMARELO
+CodBarra = null Produto = MOTOR 1CV 4POLOS
+CodBarra = null Produto = LAMPADA OUROLUX LED BULBO 12-W
+CodBarra = null Produto = PLUGUE PERLEX 2P+T ABNT 10A 25V 1043
+CodBarra = null Produto = LUVA 20MMX 1/2 BUCHA LATAO AZUL
+CodBarra = null Produto = LUVA 25MMX 1/2+BUCHA LATAO
+CodBarra = null Produto = FITA VEDA ROSCA 12MMX50
+CodBarra = null Produto = ADESIVO 75GR PLASTICO
+CodBarra = null Produto = CUBA INOX RETNG. 56X34
+CodBarra = null Produto = ARGAMASSA ACII 20 KG
+CodBarra = null Produto = TAMPA RESERVATOARIO RADIADOR
+CodBarra = null Produto = RESERVATORIO AGUA 0203
+CodBarra = null Produto = INTERRUPTOR NIVEL AGUA
+CodBarra = null Produto = ADITIVO RADIADOR CONCENTRADO
+CodBarra = null Produto = MILHO VERDE QUERO LTA.200G
+CodBarra = null Produto = MILHO VERDE QUERO LTA.200G
+CodBarra = null Produto = MICRO MOTOR 1/25 HP 220V P/ FORC C/ HELICE ELCO
+CodBarra = null Produto = MILHO VERDE QUERO LTA.200G
+CodBarra = null Produto = MILHO VERDE QUERO LTA.200G
+CodBarra = null Produto = REATOR ELET POP 1X16W BIVOLT
+CodBarra = null Produto = SERVIÇO EM MANUTENÇÃO
+CodBarra = null Produto = ENG. AMACIADOR AMC-18 Z-18
+CodBarra = null Produto = ABRACADEIRA  NYLON 280X4,8MM BR
+CodBarra = null Produto = CAMINHAO ATEGO 2426/48 6X2 MERCEDEZ-BENZ
+CodBarra = null Produto = ITENS MANUTENCAO DE IMPRESSORA
+CodBarra = null Produto = PELICULA BROTHER 8157
+CodBarra = null Produto = CARTUCHO BROTHER 8157
+CodBarra = null Produto = LAMPADA TUBOLAR T8 60 CM 10W
+CodBarra = null Produto = CILINDRO BROTHER 8157
+CodBarra = null Produto = LAMPADA TUBOLAR T8 120 CM 20W
+CodBarra = null Produto = CARTUCHO BROTHER 7065
+CodBarra = null Produto = ROLO FUSOR BROTHER 7065
+CodBarra = null Produto = CILINDRO BROTHER 7065
+CodBarra = null Produto = INSTALACAO ROLO 7065
+CodBarra = null Produto = KIT FUSAO COMPLETA BROTHER 8112
+CodBarra = null Produto = LIMPEZA BROTHER 8112
+CodBarra = null Produto = PO BROTHER
+CodBarra = null Produto = LIMPEZA BROTHER 1512
+CodBarra = null Produto = OLEO COMP. CARMELITA 500ML
+CodBarra = null Produto = OLEO COMP. CARMELITA 500ML
+CodBarra = null Produto = CAMINHAO SCANIA/P 310 B8X2
+CodBarra = null Produto = TOSCANA FRIMESA
+CodBarra = null Produto = TOSCANA FRIMESA
+CodBarra = null Produto = CAPILAR 1/4 SAE 2MM 1M FLEXIVEL CONECTOR 2 LADOS
+CodBarra = null Produto = CAPILAR 1/4 SAE 2MM 1M FLEXIVEL CONECTOR 1 LADOS
+CodBarra = null Produto = RECORTE P.A.
+CodBarra = null Produto = RECORTE P.A.
+CodBarra = null Produto = RECORTE DIANTEIRO
+CodBarra = null Produto = RECORTE DIANTEIRO
+CodBarra = null Produto = ETANOL
+CodBarra = null Produto = CALCULADORA ELGIM 12 DIG MA 5121 ELET. MESA C/ BOB
+CodBarra = null Produto = TANQUE COMBUSTIVEL 275L RETANGULAR
+CodBarra = null Produto = RELE COEL TEMP PE 3 MIN
+CodBarra = null Produto = OLEO LIZA 900ML
+CodBarra = null Produto = OLEO LIZA 900ML
+CodBarra = null Produto = OLEO COMP.MARIA 200ML
+CodBarra = null Produto = OLEO COMP.MARIA 200ML
+CodBarra = null Produto = ALHO 500G
+CodBarra = null Produto = ENERG MONSTER LO CARB 473 ML
+CodBarra = null Produto = LOCAÇÃO DE MAQUINAS E EQUIPAMENTOS
+CodBarra = null Produto = GANCHO ACOUGUE AB-5 ESTRANHADO
+CodBarra = null Produto = ENG. FERRO NR22 C47 D10/22 BM
+CodBarra = null Produto = ENG. PINHAO NR22 C15 D=HD=VS=BM 10/22
+CodBarra = null Produto = ROLAMENTO CARDAN
+CodBarra = null Produto = LOMBO SUINO RAINHA DA PAZ
+CodBarra = null Produto = LOMBO SUINO RAINHA DA PAZ
+CodBarra = null Produto = BATATA OND CRONY NATURAL 54G
+CodBarra = null Produto = BATATA OND CRONY NATURAL 54G
+CodBarra = null Produto = MOLA 1BS DIANTEIRA CAMINHAO ACCELO 9 TON
+CodBarra = null Produto = SERVICO
+CodBarra = null Produto = CONVERSOR USB
+CodBarra = null Produto = ADAPTADOR USB
+CodBarra = null Produto = COMPRESSOR MT36 3HP 220V/3F/60HZ
+CodBarra = null Produto = GAS R134A 13,6 KG
+CodBarra = null Produto = CABO FLEX PP HEPR 90O 2X 2,5MM 1KV
+CodBarra = null Produto = DUALE UP 1TOM 2P+T 10A BR 852011
+CodBarra = null Produto = INT LORENZ 1TC SIM+TOM 2P+T 10A 4X2
+CodBarra = null Produto = BOTA ELASTICO PRETA B/PVC N.43
+CodBarra = null Produto = PROTETOR LOMBAR TAM GG
+CodBarra = null Produto = LUVA MALHA ACO M
+CodBarra = null Produto = LUVA MALHA ACO G
+CodBarra = null Produto = REGULADOR DE VOLTAGEM
+CodBarra = null Produto = FILME PVC 38CM X 1000 MT
+CodBarra = null Produto = TINTA P/ CARIMBO AZUL 40ML 12UN
+CodBarra = null Produto = TINTA P/ CARIMBO PRETA 40ML 12UN
+CodBarra = null Produto = PRANCHETA ACRILICO OFICIO
+CodBarra = null Produto = ESMERILHADEIRA ANG. 115MM 4 1/2 POL 220V
+CodBarra = null Produto = DISCO DESBASTE P/ METAL 4.1/2
+CodBarra = null Produto = DISCO CORTE INOX 180 X 1.6 X 22 23MM
+CodBarra = null Produto = VALVULA TERM. DANF. R-22 MOD.TEX 2 3/8 X1/2 S/ORIF
+CodBarra = null Produto = VALVULA EXPANSAO TES2 3/8X1/2R
+CodBarra = null Produto = VALVULA 1/4 10 CM
+CodBarra = null Produto = TUBO COBRE EM BOBINA 5/16" 1/32" 7,93 MM
+CodBarra = null Produto = MANGUEIRA GLA 1/2 1000 PSI TERMOPLAST AZUL
+CodBarra = null Produto = FILTRO OLEO
+CodBarra = null Produto = CUBO RODA TRASEIRA HONDA CITY
+CodBarra = null Produto = RESISTENCIA FORCADOR DUPLA 1,20M 1000W 220V
+CodBarra = null Produto = PRESSOSTATO BAIXA KP1 REARME AUTOMATICO
+CodBarra = null Produto = CARTUCHO DE CILINDRO BROTHER IKON SUPRY DR-720
+CodBarra = null Produto = UNIDADE DA FUSÃO BROTHER L5102
+CodBarra = null Produto = BOTINA SEG BI-DENS C/BICO PVC N.41
+CodBarra = null Produto = CAPA DE CHUVA COM FORRO AMARELA G
+CodBarra = null Produto = OLEO LUBRIF. P/ TRANSMISSÃO
+CodBarra = null Produto = LIMPA CONTATO SPRAY 300 ML
+CodBarra = null Produto = OLEO ANTI-FERRUGEM SPRAY 756 GR
+CodBarra = null Produto = TEMPERO MISTO MARATA 97G PCT/10
+CodBarra = null Produto = TEMPERO MISTO MARATA 97G PCT/10
+CodBarra = null Produto = REBITE ALUMINIO 4,0 X 19MM
+CodBarra = null Produto = CONECTOR DER.PERF. 16-95 MM CDP-95
+CodBarra = null Produto = CLIMATIZADOR RESFRIAR UNIVERSAL 12V
+CodBarra = null Produto = CABO PP 4 VIAS  1MM
+CodBarra = null Produto = COIFA ALAVANCA
+CodBarra = null Produto = FONTE REAL ATX 500W 5850
+CodBarra = null Produto = PLACA ELETRONICA UNIVERSAL 220V PARA SPLIT
+CodBarra = null Produto = FILTRO DE VENTILACAO
+CodBarra = null Produto = KIT DE SERVIÇO
+CodBarra = null Produto = CARTUCHO COMP HP 22
+CodBarra = null Produto = PAPEL FOTO A4 135G
+CodBarra = null Produto = BUCHO TIPO 2 SANTA CRUZ (ALTM)
+CodBarra = null Produto = BUCHO TIPO 2 SANTA CRUZ (ALTM)
+CodBarra = null Produto = BUCHO TIPO 2 SANTA CRUZ (B.BCO)
+CodBarra = null Produto = BUCHO TIPO 2 SANTA CRUZ (B.BCO)
+CodBarra = null Produto = LIMPADOR DE PARABRISAS
+CodBarra = null Produto = ENG. PINHAO NR.98 C 19-D=VS=B=BM=JM
+CodBarra = null Produto = SILICONE ALTA TEMPERATURA 50G TEK BOND
+CodBarra = null Produto = CJ BIELA-PISTAO DIREITO 4VC(S) / 4VE(S)
+CodBarra = null Produto = CJ BIELA-PISTAO ESQUERDO 4VC(S) / 4VE(S)
+CodBarra = null Produto = CJ PLACA DE VALVULAS 4VC S
+CodBarra = null Produto = CJ GUARNICOES 4TC /4TE
+CodBarra = null Produto = CARGA PO ABC 4 KG
+CodBarra = null Produto = CARGA PO ABC 6 KG
+CodBarra = null Produto = CARGA AP 10 LTS
+CodBarra = null Produto = BOTA PVC CANO CURTO BRANCA 43
+CodBarra = null Produto = CORREIA A 35
+CodBarra = null Produto = CABO FLEX PP  4X2,5MM
+CodBarra = null Produto = AREIA
+CodBarra = null Produto = CIMENTO 50 KG
+CodBarra = null Produto = TELHA FIBRA 2,44 X 50 CM
+CodBarra = null Produto = LIXA P/ MASSA 120 G
+CodBarra = null Produto = TELHA FIBRA ONDINA 4 MM 2,44 X 50 CM
+CodBarra = null Produto = MASSA PVA 18 LT
+CodBarra = null Produto = PREGO TELHEIRO 18 X 30
+CodBarra = null Produto = MANTA 45 CM AUTO ADESIVA ROLO
+CodBarra = null Produto = BEBIDA SIDRA CERESER MISTA 660ML
+CodBarra = null Produto = COSTELA DESOSSADA
+CodBarra = null Produto = COSTELA DESOSSADA
+CodBarra = null Produto = ADITIVO QUIMIKAL 1 LT
+CodBarra = null Produto = LIXA P/ MASSA 150 G
+CodBarra = null Produto = REJUNTE CINZA PLATINA
+CodBarra = null Produto = MASSA PLASTICA PRETA 400G
+CodBarra = null Produto = TELHA TRANSPARENTE 2,44 X 50 CM
+CodBarra = null Produto = CARTOLINA BRANCA 180G 50X66
+CodBarra = null Produto = CARTOLINA BRANCA 120G 50X66
+CodBarra = null Produto = CARTOLINA BRANCA 140G 48X66
+CodBarra = null Produto = ELETRODO 60.13 3,25MM
+CodBarra = null Produto = VASSOURA JARDIM 18 DENTES C/CB
+CodBarra = null Produto = BARRA ROSQUEADA AÇO 3/8 X 3000MM
+CodBarra = null Produto = PORCA SEXT ALTA 3/8
+CodBarra = null Produto = ARRUELA LISA 2/8
+CodBarra = null Produto = ABRACADEIRA NYLON 151 MMX3,65 MM
+CodBarra = null Produto = RODA POLIURETANO
+CodBarra = null Produto = ACIDO MURIATICO 1 LT
+CodBarra = null Produto = TRASEIRO DESTAC. VACA
+CodBarra = null Produto = TRASEIRO DESTAC. VACA
+CodBarra = null Produto = TRASEIRO DESTAC. BOI
+CodBarra = null Produto = TRASEIRO DESTAC. BOI
+CodBarra = null Produto = CONTRA FILE DESTAC. 
+CodBarra = null Produto = CONTRA FILE DESTAC. 
+CodBarra = null Produto = OXIGENIO 1 M
+CodBarra = null Produto = ACETILENO 1 KG
+CodBarra = null Produto = VALVULA CORTA CHAMA
+CodBarra = null Produto = MONITOR 15.6 MLP156 HDMI PCTOP
+CodBarra = null Produto = CARGA CO2 06 KG
+CodBarra = null Produto = CARGA PO ABC 20 KG
+CodBarra = null Produto = CAPA P/CARRETA DE 20 KG
+CodBarra = null Produto = SUPORTE DE PAREDE P/EXTINTOR
+CodBarra = null Produto = CONJ DE ORIFICIO DANFOSS C/ FILTRO NR 03 1,5 TON
+CodBarra = null Produto = TEE DE COBRE 7/8 X 7/8 X 7/8
+CodBarra = null Produto = TEE DE COBRE 7/8 X 7/8 X 7/8
+CodBarra = null Produto = VENTILADOR 500 MM 220/380V TRIF 50/60HZ EXAUSTOR
+CodBarra = null Produto = TEE DE COBRE 3/8 PAREDE 0,58 MM
+CodBarra = null Produto = TEE DE COBRE 3/8 PAREDE 0,58 MM
+CodBarra = null Produto = DOBRADICA EXTERNA MOD 1220

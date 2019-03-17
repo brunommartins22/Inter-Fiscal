@@ -5,24 +5,33 @@
  */
 package br.com.interagese.interfiscal.view;
 
+import br.com.interagese.interfiscal.business.FireFiscalTempBusiness;
+import br.com.interagese.interfiscal.business.FireFiscalTempBusinessBean;
 import br.com.interagese.interfiscal.business.FireTabproBusiness;
 import br.com.interagese.interfiscal.business.FireTabproBusinessBean;
+import br.com.interagese.interfiscal.business.FiscalTempBusiness;
+import br.com.interagese.interfiscal.business.FiscalTempBusinessBean;
 import br.com.interagese.interfiscal.business.TabproBusiness;
 import br.com.interagese.interfiscal.business.TabproBusinessBean;
+import br.com.interagese.interfiscal.entity.Fiscaltemp;
+import br.com.interagese.interfiscal.entity.Sessao;
 import br.com.interagese.interfiscal.entity.Tabpro;
-import br.com.interagese.interfiscal.message.OptionPane;
 import br.com.interagese.interfiscal.utils.Actions;
 import br.com.interagese.interfiscal.utils.Utils;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.StringReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
-import javax.swing.plaf.metal.MetalButtonUI;
-import org.postgresql.jdbc2.optional.SimpleDataSource;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -30,9 +39,12 @@ import org.postgresql.jdbc2.optional.SimpleDataSource;
  */
 public class JfrmGeral extends javax.swing.JFrame {
 
-    private Actions a = new Actions();
+    private Actions a = new Actions(this);
     private TabproBusiness tabproBusiness = new TabproBusinessBean();
     private FireTabproBusiness fireTabproBusiness = new FireTabproBusinessBean();
+    private FiscalTempBusiness fiscalTempBusiness = new FiscalTempBusinessBean();
+    private FireFiscalTempBusiness fireFiscalTempBusiness = new FireFiscalTempBusinessBean();
+    private JFrame jfrmPrincipal = this;
 
     /**
      * Creates new form JfrmGeral
@@ -43,23 +55,25 @@ public class JfrmGeral extends javax.swing.JFrame {
     }
 
     public void definirFormulario() {
-        a.iconApplication(this);
-        this.setName("interfiscal");
-        this.setTitle("Inter - Fiscal(1.01.001)");
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setLocationRelativeTo(null);
-        a.mapearTeclas(this);
+        try {
+            a.iconApplication(jfrmPrincipal);
+            this.setName("interfiscal");
 
-        jButton1.setUI(new MetalButtonUI());
-        jButton2.setUI(new MetalButtonUI());
-        jButton3.setUI(new MetalButtonUI());
+            Properties arquivo = new Properties();
+            arquivo.load(new StringReader(IOUtils.toString(getClass().getResourceAsStream("/configuracao/versao.properties"))));
 
-        iniciarTimer().start();
-    }
+            this.setTitle(arquivo.getProperty("versao") + " - " + arquivo.getProperty("data"));
 
-    public JDlgCarregando carregarJdialog(String txt) {
-        JDlgCarregando carregando = new JDlgCarregando(this, false, txt);
-        return carregando;
+            setExtendedState(JFrame.MAXIMIZED_BOTH);
+            setLocationRelativeTo(null);
+            a.mapearTeclas(jfrmPrincipal);
+
+            iniciarTimer().start();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+            m.setVisible(true);
+        }
     }
 
     /**
@@ -83,20 +97,30 @@ public class JfrmGeral extends javax.swing.JFrame {
             jLabel1 = new javax.swing.JLabel();
             jLabel2 = new javax.swing.JLabel();
             jToolBar2 = new javax.swing.JToolBar();
-            jButton3 = new javax.swing.JButton();
-            jButton2 = new javax.swing.JButton();
-            jButton1 = new javax.swing.JButton();
+            jButtonMix = new javax.swing.JButton();
+            jButtonImportacao = new javax.swing.JButton();
+            jButtonTributacao = new javax.swing.JButton();
+            jButtonConfig = new javax.swing.JButton();
+            jButtonSair = new javax.swing.JButton();
             jMenuBar1 = new javax.swing.JMenuBar();
             jMenu1 = new javax.swing.JMenu();
             jMenuItem1 = new javax.swing.JMenuItem();
             jMenuItem2 = new javax.swing.JMenuItem();
+            jMenuItem8 = new javax.swing.JMenuItem();
             jMenu3 = new javax.swing.JMenu();
             jMenuItem5 = new javax.swing.JMenuItem();
             jMenuItem6 = new javax.swing.JMenuItem();
             jMenu2 = new javax.swing.JMenu();
             jMenuItem3 = new javax.swing.JMenuItem();
             jMenuItem4 = new javax.swing.JMenuItem();
+            jMenuItem7 = new javax.swing.JMenuItem();
+            jMenuItem9 = new javax.swing.JMenuItem();
 
+            addWindowListener(new java.awt.event.WindowAdapter() {
+                public void windowOpened(java.awt.event.WindowEvent evt) {
+                    formWindowOpened(evt);
+                }
+            });
             getContentPane().setLayout(new java.awt.CardLayout());
 
             javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -107,7 +131,7 @@ public class JfrmGeral extends javax.swing.JFrame {
             );
             jDesktopPane1Layout.setVerticalGroup(
                 jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 371, Short.MAX_VALUE)
+                .addGap(0, 360, Short.MAX_VALUE)
             );
 
             jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -122,44 +146,63 @@ public class JfrmGeral extends javax.swing.JFrame {
 
             jToolBar2.setRollover(true);
 
-            jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fiscal.png"))); // NOI18N
-            jButton3.setToolTipText("MIx Fiscal");
-            jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jButton3.setFocusable(false);
-            jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-            jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-            jButton3.addActionListener(new java.awt.event.ActionListener() {
+            jButtonMix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fiscal.png"))); // NOI18N
+            jButtonMix.setToolTipText("MIx - Fiscal");
+            jButtonMix.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jButtonMix.setFocusable(false);
+            jButtonMix.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            jButtonMix.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            jButtonMix.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton3ActionPerformed(evt);
+                    jButtonMixActionPerformed(evt);
                 }
             });
-            jToolBar2.add(jButton3);
+            jToolBar2.add(jButtonMix);
 
-            jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/importação.png"))); // NOI18N
-            jButton2.setToolTipText("Importação");
-            jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jButton2.setFocusable(false);
-            jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-            jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-            jButton2.addActionListener(new java.awt.event.ActionListener() {
+            jButtonImportacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/importação.png"))); // NOI18N
+            jButtonImportacao.setToolTipText("Importação - Fiscal");
+            jButtonImportacao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jButtonImportacao.setFocusable(false);
+            jButtonImportacao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            jButtonImportacao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            jButtonImportacao.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton2ActionPerformed(evt);
+                    jButtonImportacaoActionPerformed(evt);
                 }
             });
-            jToolBar2.add(jButton2);
+            jToolBar2.add(jButtonImportacao);
 
-            jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/config.png"))); // NOI18N
-            jButton1.setToolTipText("Configuração");
-            jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jButton1.setFocusable(false);
-            jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-            jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-            jButton1.addActionListener(new java.awt.event.ActionListener() {
+            jButtonTributacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tribu.png"))); // NOI18N
+            jButtonTributacao.setToolTipText("Tributação - Fiscal");
+            jButtonTributacao.setFocusable(false);
+            jButtonTributacao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            jButtonTributacao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            jToolBar2.add(jButtonTributacao);
+
+            jButtonConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/config.png"))); // NOI18N
+            jButtonConfig.setToolTipText("Configuração Sistema");
+            jButtonConfig.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jButtonConfig.setFocusable(false);
+            jButtonConfig.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            jButtonConfig.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            jButtonConfig.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton1ActionPerformed(evt);
+                    jButtonConfigActionPerformed(evt);
                 }
             });
-            jToolBar2.add(jButton1);
+            jToolBar2.add(jButtonConfig);
+
+            jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sair.png"))); // NOI18N
+            jButtonSair.setToolTipText("Finalizar Sistema");
+            jButtonSair.setFocusable(false);
+            jButtonSair.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            jButtonSair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonSairActionPerformed(evt);
+                }
+            });
+            jToolBar2.add(jButtonSair);
 
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
             jPanel1.setLayout(jPanel1Layout);
@@ -172,8 +215,8 @@ public class JfrmGeral extends javax.swing.JFrame {
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
+                    .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jDesktopPane1)
                     .addGap(0, 0, 0)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,9 +225,9 @@ public class JfrmGeral extends javax.swing.JFrame {
 
             getContentPane().add(jPanel1, "card2");
 
-            jMenu1.setText("Importação");
+            jMenu1.setText("Módulos");
 
-            jMenuItem1.setText("Mix Fiscal");
+            jMenuItem1.setText("Mix - Fiscal");
             jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jMenuItem1ActionPerformed(evt);
@@ -192,14 +235,27 @@ public class JfrmGeral extends javax.swing.JFrame {
             });
             jMenu1.add(jMenuItem1);
 
-            jMenuItem2.setText("Inter-Importação");
+            jMenuItem2.setText("Importação -  Fiscal");
+            jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem2ActionPerformed(evt);
+                }
+            });
             jMenu1.add(jMenuItem2);
+
+            jMenuItem8.setText("Tributação - Fiscal");
+            jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem8ActionPerformed(evt);
+                }
+            });
+            jMenu1.add(jMenuItem8);
 
             jMenuBar1.add(jMenu1);
 
             jMenu3.setText("Relatórios");
 
-            jMenuItem5.setText("Mix Fiscal - Atualização de produtos sintético");
+            jMenuItem5.setText(" Atualização de produtos sintético");
             jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jMenuItem5ActionPerformed(evt);
@@ -207,7 +263,7 @@ public class JfrmGeral extends javax.swing.JFrame {
             });
             jMenu3.add(jMenuItem5);
 
-            jMenuItem6.setText("Mix Fiscal - Atualização de produtos analítico");
+            jMenuItem6.setText(" Atualização de produtos analítico");
             jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jMenuItem6ActionPerformed(evt);
@@ -235,6 +291,22 @@ public class JfrmGeral extends javax.swing.JFrame {
             });
             jMenu2.add(jMenuItem4);
 
+            jMenuItem7.setText("Restore Impostos Mix-Fiscal");
+            jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem7ActionPerformed(evt);
+                }
+            });
+            jMenu2.add(jMenuItem7);
+
+            jMenuItem9.setText("Sair");
+            jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem9ActionPerformed(evt);
+                }
+            });
+            jMenu2.add(jMenuItem9);
+
             jMenuBar1.add(jMenu2);
 
             setJMenuBar(jMenuBar1);
@@ -243,11 +315,11 @@ public class JfrmGeral extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        jButton3.doClick();
+        jButtonMix.doClick();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        jButton1.doClick();
+        jButtonConfig.doClick();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 
@@ -256,82 +328,333 @@ public class JfrmGeral extends javax.swing.JFrame {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    JDlgCarregando carregando = carregarJdialog("");
-                    carregando.setVisible(true);
-                    String texto = "Iniciando Atualização EAN...";
-                    carregando.loadBarra(texto, 0, 0, true);
-                    fireTabproBusiness.getGerarEanbyCodigo();
-                    tabproBusiness.getGerarEanbyCodigo();
-                    List<Tabpro> resultTabpro = tabproBusiness.getAll();
-                    int i = 1;
-                    for (Tabpro item : resultTabpro) {
-                        carregando.loadBarra("Atualizando EAN ", i, resultTabpro.size(), false);
-                        String codAntes = "before = " + item.getCodbarun();
-                        item.setCodbarun(Utils.retirarCaracteresEspeciais(item.getCodbarun()));
-                        String codDepois = "After = " + item.getCodbarun();
-                        tabproBusiness.update(item);
-                        fireTabproBusiness.update(item);
-                        carregando.setTexto(codAntes + "   " + codDepois);
-                        i++;
+                    try {
+                        String resp = "0";
+                        while (resp.equals("0")) {
+                            resp = a.getAutentication();
+                            JDlgCarregando carregando = a.carregarJdialog("Carregando ...");
+                            carregando.setVisible(resp.equals("0") || resp.equals("1"));
+                            carregando.loadBarra("Validando Usuário ...", 0, 0, true);
+                            switch (resp) {
+                                case ("1"): {
+                                    String texto = "Iniciando Atualização EAN...";
+                                    carregando.loadBarra(texto, 0, 0, true);
+                                    fireTabproBusiness.getGerarEanbyCodigo();
+                                    tabproBusiness.getGerarEanbyCodigo();
+                                    List<Tabpro> resultTabpro = tabproBusiness.getAll();
+                                    int i = 1;
+                                    for (Tabpro item : resultTabpro) {
+                                        carregando.loadBarra("Atualizando EAN ", i, resultTabpro.size(), false);
+                                        String codAntes = "before = " + item.getCodbarun();
+                                        item.setCodbarun(Utils.retirarCaracteresEspeciais(item.getCodbarun()));
+                                        String codDepois = "After = " + item.getCodbarun();
+                                        tabproBusiness.update(item);
+                                        fireTabproBusiness.update(item);
+                                        carregando.setTexto(codAntes + "   " + codDepois);
+                                        i++;
+                                    }
+                                    carregando.loadBarra("Dados Atualizados com sucesso ...", 0, 0, true);
+                                    carregando.setTexto("Finalizando Atualização de EAN's !!");
+                                    break;
+                                }
+                                case "0": {
+                                    carregando.loadBarra("Senha Inválida, tente novamente ...", 0, 0, true);
+                                    break;
+                                }
+                                default: {
+
+                                    break;
+                                }
+                            }
+
+                            Thread.sleep(1500);
+                            carregando.dispose();
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                        m.setVisible(true);
                     }
-
-                    carregando.setVisible(false);
-                    OptionPane.showMessageDialog("Mensagem", "Dados Atualizados com sucesso !!!", null, () -> {
-
-                        Thread.sleep(1000);
-
-                        return null; //To change body of generated lambdas, choose Tools | Templates.
-                    });
                 }
             }).start();
-        } catch (Exception e) {
-            e.printStackTrace();
-            JDlgMensagem mensagem = new JDlgMensagem(this, true, e);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JDlgMensagem mensagem = new JDlgMensagem(jfrmPrincipal, true, ex);
             mensagem.setVisible(true);
 
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonMixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMixActionPerformed
+        getCarregarMixFiscal(false);
+    }//GEN-LAST:event_jButtonMixActionPerformed
+
+    public void getCarregarMixFiscal(boolean startedAutomatic) {
         try {
-            MixFiscal principal = new MixFiscal(this);
-            jDesktopPane1.add(principal);
-            principal.setMaximum(true);
-            principal.setVisible(true);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        JDlgCarregando carregando = a.carregarJdialog("Carregando ...");
+                        carregando.setVisible(!startedAutomatic);
+                        MixFiscal principal = null;
+                        if (Sessao.mixfiscal) {
+                            carregando.loadBarra("Carregando Módulo Mix-Fiscal ...", 0, 0, true);
+
+                            principal = new MixFiscal(jfrmPrincipal);
+
+                            carregando.loadBarra("Inciando Aplicação ...", 0, 0, true);
+                            carregando.setTexto("Modulo carregado com sucesso !!");
+                            Thread.sleep(1500);
+                            carregando.dispose();
+                            jDesktopPane1.add(principal);
+
+                            if (!startedAutomatic) {
+                                principal.setVisible(true);
+                                principal.setSize(new Dimension(1080, 620));
+                                a.getPositionInternalFrame(principal);
+                            }
+
+                        } else {
+                            carregando.loadBarra("Modulo não Autorizado para uso ...", 0, 0, true);
+                            carregando.setTexto("Entre em contato com o suporte do sistema !!");
+                            Thread.sleep(2000);
+                            carregando.dispose();
+                        }
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                        m.setVisible(true);
+                    }
+                }
+            }).start();
         } catch (Exception ex) {
             ex.printStackTrace();
             JDlgMensagem mensagem = new JDlgMensagem(this, true, ex);
             mensagem.setVisible(true);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JDlgSetting conf = new JDlgSetting(this, true);
-        conf.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfigActionPerformed
         try {
-            InterImposto principal = new InterImposto(this);
-            jDesktopPane1.add(principal);
-            principal.setMaximum(true);
-            principal.setVisible(true);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String resp = "0";
+                        while (resp.equals("0")) {
+                            resp = a.getAutentication();
+
+                            JDlgCarregando carregando = a.carregarJdialog("Carregando ...");
+                            carregando.setVisible(resp.equals("0") || resp.equals("1"));
+                            carregando.loadBarra("Validando Usuário ...", 0, 0, true);
+                            switch (resp) {
+                                case ("1"): {
+                                    carregando.loadBarra("Carregando configuração do sistema ...", 0, 0, true);
+                                    JDlgSetting conf = new JDlgSetting(jfrmPrincipal, false);
+                                    carregando.loadBarra("Abrindo Configurações ...", 0, 0, true);
+                                    carregando.setTexto("Configurações carregadas com sucesso !!");
+
+                                    conf.setVisible(true);
+                                    break;
+                                }
+                                case "0": {
+                                    carregando.loadBarra("Senha Inválida, tente novamente ...", 0, 0, true);
+                                    break;
+                                }
+                                default: {
+
+                                    break;
+                                }
+                            }
+
+                            Thread.sleep(1500);
+                            carregando.dispose();
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                        m.setVisible(true);
+                    }
+                }
+            }).start();
         } catch (Exception ex) {
             ex.printStackTrace();
             JDlgMensagem mensagem = new JDlgMensagem(this, true, ex);
             mensagem.setVisible(true);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonConfigActionPerformed
+
+    private void jButtonImportacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImportacaoActionPerformed
+        try {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        JDlgCarregando carregando = a.carregarJdialog("Carregando ...");
+                        carregando.setVisible(true);
+                        ImpostoFiscal principal = null;
+                        if (Sessao.importacaofiscal) {
+                            carregando.loadBarra("Carregando Módulo de Importação ...", 0, 0, true);
+
+                            principal = new ImpostoFiscal(jfrmPrincipal);
+
+                            carregando.loadBarra("Inciando Aplicação ...", 0, 0, true);
+                            carregando.setTexto("Modulo carregado com sucesso !!");
+                            Thread.sleep(1500);
+                            carregando.dispose();
+                            jDesktopPane1.add(principal);
+                            principal.setSize(new Dimension(1080, 620));
+                            a.getPositionInternalFrame(principal);
+                            principal.setVisible(true);
+
+                        } else {
+                            carregando.loadBarra("Modulo não Autorizado para uso ...", 0, 0, true);
+                            carregando.setTexto("Entre em contato com o suporte do sistema !!");
+                            Thread.sleep(2000);
+                            carregando.dispose();
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                        m.setVisible(true);
+                    }
+                }
+            }).start();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JDlgMensagem mensagem = new JDlgMensagem(this, true, ex);
+            mensagem.setVisible(true);
+        }
+    }//GEN-LAST:event_jButtonImportacaoActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        JDlgRelatorio relatorio = new JDlgRelatorio(this, true, "1");
+        JDlgRelatorio relatorio = new JDlgRelatorio(this, false, "1");
         relatorio.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        JDlgRelatorio relatorio = new JDlgRelatorio(this, true, "2");
+        JDlgRelatorio relatorio = new JDlgRelatorio(this, false, "2");
         relatorio.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        try {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String resp = "0";
+                    try {
+                        while (resp.equals("0")) {
+                            resp = a.getAutentication();
+                            JDlgCarregando carregando = a.carregarJdialog("Carregando ...");
+                            carregando.setVisible(resp.equals("0") || resp.equals("1"));
+                            carregando.loadBarra("Validando Usuário ...", 0, 0, true);
+                            switch (resp) {
+                                case ("1"): {
+                                    String texto = "Sincronizando Tabelas...";
+                                    carregando.loadBarra(texto, 0, 0, true);
+
+                                    List<Fiscaltemp> result = fiscalTempBusiness.getAll();
+
+                                    Integer size = result.size();
+                                    texto = size > 0 ? "Iniciando Atualização do Banco de Dados..." : "";
+                                    carregando.loadBarra(texto, 0, 0, true);
+
+                                    //**********************************************************
+                                    int max = 200;
+                                    int calc = size / max;
+
+                                    if ((size % max) > 0) {
+                                        calc++;
+                                    }
+                                    int inserts = 0;
+                                    //**********************************************************
+                                    for (int p = 0; p < calc; p++) {
+                                        carregando.loadBarra("Carregando Tributação ", inserts, size, false);
+                                        List<Fiscaltemp> resultFiscalTempCalc = new ArrayList<>();
+                                        for (int e = inserts; e < (inserts + max); e++) {
+                                            if (e >= size) {
+                                                break;
+                                            }
+                                            resultFiscalTempCalc.add(result.get(e));
+                                        }
+                                        fiscalTempBusiness.getRestoreTributacaoMixFiscal(resultFiscalTempCalc);
+                                        inserts = inserts + max;
+                                        texto = "Atualizando Banco de Dados...";
+                                        carregando.loadBarra(texto, 0, 0, true);
+                                        carregando.setTexto(texto);
+                                    }
+                                    break;
+                                }
+                                case "0": {
+                                    carregando.loadBarra("Senha Inválida, tente novamente ...", 0, 0, true);
+                                    break;
+                                }
+                                default: {
+
+                                    break;
+                                }
+                            }
+
+                            Thread.sleep(1500);
+                            carregando.dispose();
+
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                        m.setVisible(true);
+                    }
+
+                }
+            }).start();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JDlgMensagem mensagem = new JDlgMensagem(this, true, ex);
+            mensagem.setVisible(true);
+
+        }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            Properties conf = a.carregarArquivo("Configuracao\\conf.cfg");
+            if (conf.getProperty("PRIMEIROACESSO").equals("1")) {
+                boolean resp = jDlgBoasVindas.jDlgBoasVindasIniciar(jfrmPrincipal);
+                if (resp) {
+                    jButtonConfig.doClick();
+                } else {
+                    this.dispose();
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JDlgMensagem mensagem = new JDlgMensagem(jfrmPrincipal, true, ex);
+            mensagem.setVisible(true);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+        Integer resp = JOptionPane.showConfirmDialog(this, "Deseja realmente sair do sistema?", "Mensagem", JOptionPane.YES_NO_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        jButtonSair.doClick();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        jButtonImportacao.doClick();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        jButtonTributacao.doClick();
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,9 +693,11 @@ public class JfrmGeral extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonConfig;
+    private javax.swing.JButton jButtonImportacao;
+    private javax.swing.JButton jButtonMix;
+    private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton jButtonTributacao;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -386,6 +711,9 @@ public class JfrmGeral extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JToolBar jToolBar2;

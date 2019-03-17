@@ -60,7 +60,7 @@ public class jDlgBoasVindas extends javax.swing.JDialog {
         jEditorPane1.setEditable(false);
         jEditorPane1.setContentType("text/html"); // NOI18N
         jEditorPane1.setForeground(new java.awt.Color(55, 55, 132));
-        jEditorPane1.setText("<html>\n<head>\n<style>\nbody {\n        color:#373784\n}\n</style>\n</head>\n<body>\n<b>\n<p>Seja bem-vindo ao Interage Inter-Fiscal.</p>\n</b>\n<p>Para começar a utilizá-lo e ter acesso as tabelas geradas pela mix-fiscal é necessário\n  realizar as configurações necessárias.\n</p> </body>\n</html>");
+        jEditorPane1.setText("<html>\n<head>\n<style>\nbody {\n        color:#373784\n}\n</style>\n</head>\n<body>\n<b>\n<center><p>Seja Bem-Vindo ao Interage Inter-Fiscal.</p></center>\n</b>\n<p>\nEste módulo fiscal, foi desenvolvido pela empresa Interage Sistemas.\nOnde trás como ferramentas disponivéis os seguintes processos:\n</p>\n</br>\n<p>\n1 - Mix - Fiscal:\n</p>\n<p> \n- Processo este realizado por uma empresa que se responsabiliza pela fiscalização das partes tributárias de sua empresa. \n</p>\n</br>\n<p>\n2 - Imposto - Fiscal:\n</p>\n<p>\n- Processo este realizado para que sejam exportadas tabelas em excel, onde possam ser retiras as informações sobre a parte fiscal da empresa em questao, e com a correção da mesma poderá ser importada para o sistema novamente.\n</p>\n<p>\n3 - Tributação - Fiscal:\n</p>\n<p>\n- Processo este realizado para ajustar as tabelas de tributação, através de uma base de tributos atualizada pela Interage.\n</p>\n<p>\nObs¹: Ao clicar em continuar você terá que entrar com sua senha de administrador, onde será necessário configurar o sistema para uso. \n</p>\n </body>\n</html>");
         jEditorPane1.setFocusable(false);
         jEditorPane1.setSelectedTextColor(new java.awt.Color(41, 121, 174));
         jScrollPane2.setViewportView(jEditorPane1);
@@ -72,7 +72,7 @@ public class jDlgBoasVindas extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jBtContinuar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -84,7 +84,7 @@ public class jDlgBoasVindas extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtContinuar)
@@ -98,15 +98,17 @@ public class jDlgBoasVindas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtContinuarActionPerformed
-        dispose();
+       dispose();
         resp = true;
 
     }//GEN-LAST:event_jBtContinuarActionPerformed
 
     private void jBtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancelarActionPerformed
-        int option = JOptionPane.showConfirmDialog(null, "Deseja encerrar a inicialização e finalizar o sistema?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        int option = JOptionPane.showConfirmDialog(null, "Deseja encerrar a inicialização do sistema?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (option == JOptionPane.YES_OPTION) {
-            System.exit(0);
+//            System.exit(0);
+            dispose();
+            resp = false;
         }
     }//GEN-LAST:event_jBtCancelarActionPerformed
 

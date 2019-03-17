@@ -1656,4 +1656,14 @@ public class Utils {
 
     }
 
+    public static boolean DayOfTodayEqualsFinalDate() {
+        boolean result = false;
+        Calendar cal = Calendar.getInstance();
+        if (cal.getTime().getDate() == cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+            result = true;
+        }
+
+        return result;
+    }
+
 }

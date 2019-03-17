@@ -1,0 +1,5 @@
+Inter-Fiscal - 15-03-2019 21:56:14 ? java.lang.IllegalArgumentException: invalid selectionMode
+	at javax.swing.DefaultListSelectionModel.setSelectionMode(DefaultListSelectionModel.java:98)
+	at javax.swing.JTable.setSelectionMode(JTable.java:1974)
+	at br.com.interagese.interfiscal.view.ImpostoFiscal$14.run(ImpostoFiscal.java:855)
+	at java.lang.Thread.run(Thread.java:748)

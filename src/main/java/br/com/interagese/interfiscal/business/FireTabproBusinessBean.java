@@ -2,11 +2,8 @@ package br.com.interagese.interfiscal.business;
 
 import br.com.interagese.interfiscal.entity.ImportacaoImp;
 import br.com.interagese.interfiscal.entity.Tabpro;
-import br.com.interagese.interfiscal.entity.Tabprofil;
-import br.com.interagese.interfiscal.entity.Tabproimp;
 import br.com.interagese.interfiscal.persistence.FireTabproDao;
 import java.util.List;
-import javax.persistence.TypedQuery;
 
 public class FireTabproBusinessBean extends AbstractBusinessCrud<Tabpro, FireTabproDao> implements FireTabproBusiness {
 
@@ -31,7 +28,7 @@ public class FireTabproBusinessBean extends AbstractBusinessCrud<Tabpro, FireTab
     }
 
     @Override
-    public List<ImportacaoImp> getProdutobyDescorCod(Object obj, Integer codfil, Integer tipo) {
+    public List<Object[]> getProdutobyDescorCod(Object obj, Integer codfil, Integer tipo) {
         return getDao().getProdutobyDescorCod(obj, codfil, tipo);
     }
 

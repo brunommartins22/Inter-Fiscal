@@ -6,6 +6,7 @@
 package br.com.interagese.interfiscal.view;
 
 import br.com.interagese.interfiscal.utils.Actions;
+import javax.swing.JFrame;
 
 /**
  *
@@ -13,14 +14,16 @@ import br.com.interagese.interfiscal.utils.Actions;
  */
 public class JDlgCarregando extends javax.swing.JDialog {
 
-    private Actions a = new Actions();
     private String texto;
+    private JFrame principal;
+    private Actions a = new Actions(principal);
 
     /**
      * Creates new form JDlgMensagem
      */
     public JDlgCarregando(java.awt.Frame parent, boolean modal, String txt) {
         super(parent, modal);
+        principal = (JFrame) parent;
         initComponents();
         definirFormulario();
         jTextArea1.setText(txt);

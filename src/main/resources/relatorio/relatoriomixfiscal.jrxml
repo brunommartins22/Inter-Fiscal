@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio mix-fiscal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="781ef13a-82a7-4e7a-b80d-3d7c625c3361">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="empresa" class="java.lang.String"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<field name="nomeProduto" class="java.lang.String"/>
+	<field name="ean" class="java.lang.String"/>
+	<field name="ncm" class="java.lang.String"/>
+	<field name="cest" class="java.lang.String"/>
+	<field name="cstTemp" class="java.lang.String"/>
+	<field name="pisCstE" class="java.lang.String"/>
+	<field name="sncAlq" class="java.lang.Double"/>
+	<field name="pisCstS" class="java.lang.String"/>
+	<field name="cofinsCstE" class="java.lang.String"/>
+	<field name="cofinsCstS" class="java.lang.String"/>
+	<field name="pisAlqE" class="java.lang.Double"/>
+	<field name="cofinsAlqE" class="java.lang.Double"/>
+	<field name="pisAlqS" class="java.lang.Double"/>
+	<field name="cofinsAlqS" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="90" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="89" width="802" height="1" uuid="f35e7615-a282-4c02-8126-1aa30d8c77d3"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="34" width="802" height="20" uuid="8ed3e945-c5fb-4ae3-9d55-458be0559454"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório Sintético de Produtos - Mix Fiscal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="61" y="0" width="593" height="20" uuid="60975011-d7c3-498e-a8e8-98329048b664"/>
+				<textElement markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="714" y="0" width="88" height="20" uuid="1ec13a3c-e5eb-4188-956c-68bbb727a024"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="75" width="148" height="15" uuid="c9c7837b-6d0f-4e75-b377-181c0ab4f4fa"/>
+				<textElement markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Produto "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="61" height="20" uuid="a2ad115b-0055-42bb-b381-a76cf35a4385"/>
+				<textElement markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Empresa: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="75" width="54" height="15" uuid="cfb7ad2a-439b-4a26-a7de-618a12122a88"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ncm"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="75" width="47" height="15" uuid="685afed6-0f89-4f5d-b487-743aed51521b"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cest"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="75" width="66" height="15" uuid="79647f40-a916-45a9-b4c9-791d3b8aaef7"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cst Icms S"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="75" width="47" height="15" uuid="5db0aa07-4181-4a90-8081-a54618d7c057"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Icms S."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="347" y="75" width="56" height="15" uuid="88a1ef6b-be84-4acc-81ce-b3dc3abf98eb"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cst Pis E."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="75" width="56" height="15" uuid="f8097d7a-a9ae-4b68-bfb6-cf59674769bc"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cst Pis S."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="458" y="75" width="72" height="15" uuid="13691ae8-4ccc-446d-a0d9-ed8dc0782a36"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cst Cofins E."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="75" width="73" height="15" uuid="ecdd721b-62cf-4951-bbd9-aab6868c176e"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cst Cofins S."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="601" y="75" width="42" height="15" uuid="ba997b99-9a13-4d3e-83eb-ce4158955bc3"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pis E."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="642" y="75" width="58" height="15" uuid="ba76ca45-4eb0-48d4-bb1c-8425e9940049"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cofins E."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="654" y="0" width="61" height="20" uuid="57340b16-9944-465b-ba33-4d9b4924195f"/>
+				<textElement markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Data/Hora: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="699" y="75" width="42" height="15" uuid="6b3875c7-b26b-422d-acff-dd6557ce6a40"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pis S."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="740" y="75" width="58" height="15" uuid="286bc350-009b-4d67-b7fe-f45ffa35110d"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cofins S."]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="0" width="148" height="16" uuid="2c809a9f-219f-4a7c-89c2-37a968f464bf"/>
+				<textElement markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{ean}==null?" - ":$F{ean})+ " / "+($F{nomeProduto}==null?" - ":$F{nomeProduto})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="147" y="0" width="54" height="16" uuid="9218743b-33eb-4f49-95ed-cdf43f49f484"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ncm}==null?" - ":$F{ncm}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="200" y="0" width="47" height="16" uuid="ecfc6014-daf7-41e5-9317-1230a7d04442"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cest}==null?" - ":$F{cest}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="237" y="0" width="66" height="16" uuid="8c4e46be-137a-4f40-8b73-88d103fe0f0b"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cstTemp}==null?" - ":$F{cstTemp}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="301" y="0" width="47" height="16" uuid="129e7a6a-d5ea-4c9c-ba56-c4036894e0e3"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sncAlq}==null?0.0:$F{sncAlq}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="347" y="0" width="56" height="16" uuid="ac66ca71-2438-4d12-b125-fbb8e9ddef4a"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pisCstE}==null?" - ":$F{pisCstE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="402" y="0" width="56" height="16" uuid="bc8bc641-c210-4a14-80ae-297d531c04b2"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pisCstS}==null?" - ":$F{pisCstS}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="458" y="0" width="71" height="16" uuid="52b316c2-238d-4191-b9b0-779b932de13d"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cofinsCstE}==null?" - ":$F{cofinsCstE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="528" y="0" width="73" height="16" uuid="07f925ff-73e5-444d-8c6a-9fa3061b8503"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cofinsCstS}==null?" - ":$F{cofinsCstS}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="600" y="0" width="43" height="16" uuid="7bd392e8-4627-471e-ad99-9f643b4d4ed7"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pisAlqE}==null?" - ":$F{pisAlqE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="642" y="0" width="58" height="16" uuid="2624a060-4979-4857-9503-e2e4ce6460ce"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cofinsAlqE}==null?" - ":$F{cofinsAlqE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="699" y="0" width="43" height="16" uuid="41c07909-6ddd-41c8-ad24-4927dfd127aa"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pisAlqS}==null?" - ":$F{pisAlqS}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="741" y="0" width="58" height="16" uuid="d1f061e4-d081-4452-ad55-9a02ef4616aa"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cofinsAlqS}==null?" - ":$F{cofinsAlqS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="22" splitType="Stretch"/>
+	</summary>
+</jasperReport>

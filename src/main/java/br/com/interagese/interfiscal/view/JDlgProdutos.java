@@ -13,6 +13,7 @@ import br.com.interagese.interfiscal.message.OptionPane;
 import br.com.interagese.interfiscal.table.ProdutosTableModel;
 import br.com.interagese.interfiscal.utils.Actions;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.metal.MetalButtonUI;
 
@@ -21,20 +22,22 @@ import javax.swing.plaf.metal.MetalButtonUI;
  * @author bruno
  */
 public class JDlgProdutos extends javax.swing.JDialog {
-    
-    private Actions a = new Actions();
+
     private TabproBusiness tabproBusiness = new TabproBusinessBean();
     private ProdutosTableModel produtosTableModel;
+    private JFrame principal;
+    private Actions a = new Actions(principal);
 
     /**
      * Creates new form JDlgMensagem
      */
     public JDlgProdutos(java.awt.Frame parent, boolean modal, String texto) {
         super(parent, modal);
+        principal = (JFrame) parent;
         initComponents();
         definirFormulario(texto);
     }
-    
+
     public void definirFormulario(String texto) {
         a.iconApplication(this);
         this.setTitle("Pesquisa de Produtos");
@@ -148,7 +151,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
                         return null; //To change body of generated lambdas, choose Tools | Templates.
                     });
                 }
-                
+
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());

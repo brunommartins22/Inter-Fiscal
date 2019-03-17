@@ -5,19 +5,24 @@
  */
 package br.com.interagese.interfiscal.view;
 
+import br.com.interagese.interfiscal.business.FiscalTempBusiness;
+import br.com.interagese.interfiscal.business.FiscalTempBusinessBean;
 import br.com.interagese.interfiscal.business.TabfilBusiness;
 import br.com.interagese.interfiscal.business.TabfilBusinessBean;
 import br.com.interagese.interfiscal.business.TabproBusiness;
 import br.com.interagese.interfiscal.business.TabproBusinessBean;
+import br.com.interagese.interfiscal.entity.Fiscaltemp;
 import br.com.interagese.interfiscal.entity.Sessao;
-import br.com.interagese.interfiscal.entity.Tabfil;
 import br.com.interagese.interfiscal.entity.Tabpro;
+import br.com.interagese.interfiscal.message.OptionPane;
 import br.com.interagese.interfiscal.utils.Actions;
+import br.com.interagese.interfiscal.utils.DadosImpressao;
 import br.com.interagese.interfiscal.utils.Utils;
+import java.io.InputStream;
 import java.util.Date;
-import javax.swing.DefaultComboBoxModel;
+import java.util.List;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.plaf.metal.MetalButtonUI;
 
 /**
@@ -26,11 +31,12 @@ import javax.swing.plaf.metal.MetalButtonUI;
  */
 public class JDlgRelatorio extends javax.swing.JDialog {
 
-    private Actions a = new Actions();
     private TabfilBusiness tabfilBusiness = new TabfilBusinessBean();
     private TabproBusiness tabproBusiness = new TabproBusinessBean();
+    private FiscalTempBusiness fiscalTempBusiness = new FiscalTempBusinessBean();
     private JFrame principal = null;
     private Tabpro produto = null;
+    private Actions a = new Actions(principal);
 
     /**
      * Creates new form JDlgMensagem
@@ -49,12 +55,17 @@ public class JDlgRelatorio extends javax.swing.JDialog {
         jLblProduto.setText("* Nenhum Produto Informado!!");
         JbtnSearch.setUI(new MetalButtonUI());
         jBtnPrint.setUI(new MetalButtonUI());
-        jCbxFilial.setModel(new DefaultComboBoxModel(tabfilBusiness.getAll().toArray(new Tabfil[]{})));
+//        jCbxFilial.setModel(new DefaultComboBoxModel(tabfilBusiness.getAll().toArray(new Tabfil[]{})));
         jDateChooser1.getDateEditor().getUiComponent().setEnabled(false);
         jDateChooser2.getDateEditor().getUiComponent().setEnabled(false);
         jDateChooser1.setDate(Utils.getDatePrimeiroDiaDoMes());
         jDateChooser2.setDate(new Date());
 
+    }
+
+    public JDlgCarregando carregarJdialog(String txt) {
+        JDlgCarregando carregando = new JDlgCarregando(principal, false, txt);
+        return carregando;
     }
 
     /**
@@ -70,10 +81,8 @@ public class JDlgRelatorio extends javax.swing.JDialog {
         JbtnSearch = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTxtProd = new javax.swing.JTextField();
-        jCbxFilial = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -103,9 +112,6 @@ public class JDlgRelatorio extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel5.setText("Data:");
-
-        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
-        jLabel3.setText("Filial:");
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel4.setText("Tipo Tributação:");
@@ -156,7 +162,6 @@ public class JDlgRelatorio extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -178,7 +183,6 @@ public class JDlgRelatorio extends javax.swing.JDialog {
                                     .addComponent(jLblProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(3, 3, 3)
                                     .addComponent(JbtnSearch))
-                                .addComponent(jCbxFilial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(12, 12, 12))))
         );
@@ -192,10 +196,6 @@ public class JDlgRelatorio extends javax.swing.JDialog {
                         .addComponent(jLabel2)
                         .addComponent(jTxtProd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(JbtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jCbxFilial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -213,7 +213,7 @@ public class JDlgRelatorio extends javax.swing.JDialog {
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel1, "card2");
@@ -239,7 +239,7 @@ public class JDlgRelatorio extends javax.swing.JDialog {
                     jTxtProd.setText("");
                     jLblProduto.setText("* Nenhum Produto Informado!!");
                 }
-                jCbxFilial.requestFocus();
+                jComboBox2.requestFocus();
             } else {
                 produto = null;
                 jLblProduto.setText("* Nenhum Produto Informado!!");
@@ -253,21 +253,66 @@ public class JDlgRelatorio extends javax.swing.JDialog {
 
     private void jBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPrintActionPerformed
         try {
-            //********************** Validar Campos ****************************
-            String mensagem = "";
-            if (jDateChooser1.getDate() == null && jDateChooser2.getDate() == null) {
-                mensagem = "Nenhum Período Informado !!";
-            } else if (jDateChooser1.getDate() == null && jDateChooser2.getDate() != null) {
-                mensagem = "Data Inicial não Informada !!";
-            } else if (jDateChooser1 != null && jDateChooser2.getDate() == null) {
-                mensagem = "Data Final não Informada !!";
-            }
-            throw new Exception(mensagem);
-            //******************************************************************
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        JDlgCarregando carregando = carregarJdialog("carregando ...");
+                        carregando.setVisible(true);
+                        carregando.loadBarra("Processando Validação de Impressao ...", 0, 0, true);
+                        //********************** Validar Campos ****************************
+                        String mensagem = null;
+                        if (jDateChooser1.getDate() == null && jDateChooser2.getDate() == null) {
+                            mensagem = "Nenhum Período Informado !!";
+                        } else if (jDateChooser1.getDate() == null && jDateChooser2.getDate() != null) {
+                            mensagem = "Data Inicial não Informada !!";
+                        } else if (jDateChooser1 != null && jDateChooser2.getDate() == null) {
+                            mensagem = "Data Final não Informada !!";
+                        }
+                        if (mensagem != null && !mensagem.isEmpty()) {
+
+                            carregando.loadBarra(mensagem, 0, 0, true);
+                            carregando.setTexto("Error...");
+                            carregando.setVisible(false);
+
+                            Thread.sleep(1500);
+
+                            return;
+                        }
+                        Thread.sleep(1500);
+                        carregando.loadBarra("Carregando Relatório de Produtos ...", 0, 0, true);
+                        List<Fiscaltemp> resultTemp = fiscalTempBusiness.getListagemRelatorio((produto == null ? null : produto.getCodbarun().trim()), jComboBox2.getSelectedIndex(), jDateChooser1.getDate(), jDateChooser2.getDate());
+                        if (resultTemp == null || resultTemp.isEmpty()) {
+                            carregando.loadBarra("Nenhum Produto localizado na Base de Dados !!", 0, 0, true);
+                            carregando.setTexto("Finalizando Operação...");
+                            carregando.setVisible(false);
+
+                            Thread.sleep(1500);
+                            return;
+                        }
+
+                        InputStream is = getClass().getResourceAsStream("/relatorio/relatoriomixfiscal.jasper");
+                        DadosImpressao impressao = new DadosImpressao(is);
+                        carregando.loadBarra("Gerando Relatório de Produtos ...", 0, 0, true);
+                        carregando.setTexto("Carregando Relatorio...");
+                        carregando.setVisible(false);
+                        Thread.sleep(1500);
+                        impressao.buildJDialog(resultTemp, principal).setVisible(true);
+
+                        //******************************************************************
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        JDlgMensagem mensagem2 = new JDlgMensagem(principal, true, ex);
+                        mensagem2.setVisible(true);
+                    }
+                }
+            }).start();
         } catch (Exception ex) {
             ex.printStackTrace();
-            JDlgMensagem mensagem = new JDlgMensagem(null, true, ex);
+            JDlgMensagem mensagem = new JDlgMensagem(principal, true, ex);
             mensagem.setVisible(true);
+
         }
     }//GEN-LAST:event_jBtnPrintActionPerformed
 
@@ -329,12 +374,10 @@ public class JDlgRelatorio extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbtnSearch;
     private javax.swing.JButton jBtnPrint;
-    private javax.swing.JComboBox<Tabfil> jCbxFilial;
     private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

@@ -93,17 +93,44 @@
             ADD  CSTCOFINSE VARCHAR(4)
         </sql>
     </changeSet>
-    
-    <changeSet id="CREATE TABLE FISCALTEMP"
-                author = "InterFiscal - Bruno" dbms="postgresql" runOnChange="true" >
+    <changeSet id="ADD REMCONTR ON TABPRO" author="InterFiscal - Bruno">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="TABPROIMPE" />
+                <columnExists tableName="TABPRO" columnName="REMCONTR"/>
+            </not>
+        </preConditions>
+        <sql>
+            ALTER TABLE TABPRO 
+            ADD  REMCONTR CHAR(1) DEFAULT 'N'
+        </sql>
+    </changeSet>
+    
+    <changeSet id="ADD CSTPIS,CSTCOFINS,CSTIPI ON TABPRO" author="InterFiscal - Bruno">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="TABPRO" columnName="CSTPIS"/>
+                <columnExists tableName="TABPRO" columnName="CSTCOFINS"/>
+                <columnExists tableName="TABPRO" columnName="CSTIPI"/>
+            </not>
+        </preConditions>
+        <sql>
+            ALTER TABLE TABPRO 
+            ADD CSTPIS	VARCHAR(2),
+            ADD CSTCOFINS VARCHAR(2),
+            ADD CSTIPI VARCHAR(2)
+        </sql>
+    </changeSet>
+    
+    <changeSet id="CREATE TABLE FISCALTEMP"
+               author = "InterFiscal - Bruno" dbms="postgresql" runOnChange="true" >
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="FISCALTEMP" />
             </not>
         </preConditions>
         <sql splitStatements="true">
+            
             CREATE TABLE FISCALTEMP (
-            codigo serial,
             nome_produto VARCHAR(200),
             codigo_produto VARCHAR(6),
             ncm VARCHAR(10) ,
@@ -240,14 +267,27 @@
             icms_saida   boolean,
             atualizacao_piscofins TIMESTAMP,
             atualizacao_icmsentrada TIMESTAMP,
-            atualizacao_icmssaida TIMESTAMP 
+            atualizacao_icmssaida TIMESTAMP, 
+            data_registro TIMESTAMP
             );
             ALTER TABLE
             FISCALTEMP ADD CONSTRAINT PK_FISCALTEMP PRIMARY KEY
-            (CODIGO);
+            (codigo_produto);
       
         </sql>
     </changeSet>
+    
+    <!--    <changeSet id="Adicionar campo DATA_REGISTRO na FISCALTEMP"
+               author="Integrado - BRUNO" runOnChange="true" dbms="postgresql" >
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="FISCALTEMP" columnName="DATA_REGISTRO" />
+            </not>
+        </preConditions>
+        <addColumn tableName="FISCALTEMP">
+            <column name="DATA_REGISTRO " type="TIMESTAMP" />
+        </addColumn>
+    </changeSet>-->
     
     <changeSet id="CREATE TABLE TABPROIMPE"
                author="InterFiscal - Bruno" runOnChange="true">
@@ -605,6 +645,7 @@
             where p.codpro is not null
         </sql>
     </changeSet>
+    
     
     <changeSet id="Adicionar campo QUARTOBOV na TABPRO"
                author="Integrado - José" runOnChange="true">

@@ -5,26 +5,32 @@
  */
 package br.com.interagese.interfiscal.utils;
 
-
+import br.com.interagese.interfiscal.entity.Log;
+import br.com.interagese.interfiscal.view.JDlgAutentication;
+import br.com.interagese.interfiscal.view.JDlgCarregando;
+import br.com.interagese.interfiscal.view.JDlgMensagem;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.lang.reflect.Constructor;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.Properties;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -45,6 +51,12 @@ import org.apache.commons.io.IOUtils;
  * @author bruno
  */
 public class Actions {
+
+    private javax.swing.JFrame jfrmPrincipal;
+
+    public Actions(javax.swing.JFrame principal) {
+        jfrmPrincipal = principal;
+    }
 
     /**
      * jtp(JTextPane); typePosition(R-right;L-Left;C-center;J-Justify)
@@ -107,7 +119,7 @@ public class Actions {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
-                    int result = JOptionPane.showConfirmDialog(null,"Deseja Realmente sair do sistema?",null,JOptionPane.YES_NO_OPTION);
+                    int result = JOptionPane.showConfirmDialog(null, "Deseja Realmente sair do sistema?", null, JOptionPane.YES_NO_OPTION);
                     if (result == JOptionPane.YES_OPTION) {
                         window.dispose();
                         System.exit(0);
@@ -116,9 +128,6 @@ public class Actions {
             });
 
         }
-
-        
-        
     }
 
     /**
@@ -149,6 +158,7 @@ public class Actions {
         icon.setImage(icon.getImage().getScaledInstance(32, 32, 100));
         w.setIconImage(icon.getImage());
     }
+
     public void iconApplicationInternalFrame(JInternalFrame w) {
         ImageIcon icon = new ImageIcon(getClass().getResource("/imagens/icone-x4.png"));
         icon.setImage(icon.getImage().getScaledInstance(16, 16, 100));
@@ -165,7 +175,6 @@ public class Actions {
 //    public void telaRegistrada(String nameTela) {
 //        Sessao.TELA = nameTela;
 //    }
-
     public boolean possuiLetra(String text) {
         boolean temLetra = false;
         for (int i = 0; i < text.length(); i++) {
@@ -176,7 +185,15 @@ public class Actions {
         }
         return temLetra;
     }
-    
+
+    /**
+     * carregar arquivo properties
+     *
+     * @param path
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public Properties carregarArquivo(String path) throws FileNotFoundException, IOException {
 
         File database = new File(path);
@@ -196,4 +213,110 @@ public class Actions {
         return props;
 
     }
+
+    /**
+     * instance dialog carregando
+     *
+     * @param txt
+     * @return
+     */
+    public JDlgCarregando carregarJdialog(String txt) {
+        JDlgCarregando carregando = new JDlgCarregando(jfrmPrincipal, false, txt);
+        return carregando;
+    }
+
+    /**
+     * gerar log de error, sucess, product not tributation
+     *
+     * @param logApp
+     * @param valueModulo
+     */
+    public void carregarLog(Log logApp, Integer valueModulo) {
+        try {
+            if (logApp != null) {
+                String pathLogSucess = "";
+                String pathLogError = "";
+                switch (valueModulo) {
+                    case 1: {//mix-fiscal
+                        pathLogSucess = "Log-MixFiscal\\log-sucess.txt";
+                        pathLogError = "Log-MixFiscal\\log-error.txt";
+                        break;
+                    }
+                    case 2: {//importacao-fiscal
+                        pathLogSucess = "Log-Importacao\\log-sucess.txt";
+                        pathLogError = "Log-Importacao\\log-error.txt";
+                        break;
+                    }
+                }
+                if (logApp.getError() == null || logApp.equals("")) {
+
+                    File log = new File(pathLogSucess);
+                    String linha = "";
+                    if (!Utils.DayOfTodayEqualsFinalDate()) {
+                        BufferedReader buffRead = new BufferedReader(new FileReader(log.getAbsolutePath()));
+
+                        while (buffRead.ready()) {
+                            linha += buffRead.readLine() + "\r\n";
+                        }
+                        buffRead.close();
+                    }
+                    log.delete();
+                    FileWriter arq = new FileWriter(log);
+                    PrintWriter gravarArq = new PrintWriter(arq);
+
+                    if (!linha.isEmpty() || !linha.equals("")) {
+                        gravarArq.printf(linha);
+                    }
+                    String txt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(logApp.getDataLog()) + " -> ";
+
+                    if (logApp.getQtdPisConfins() != null) {
+                        txt += " PisCofins = " + logApp.getQtdPisConfins() + " itens";
+                    }
+                    if (logApp.getQtdIcmsEntrada() != null) {
+                        txt += " IcmsEntrada = " + logApp.getQtdIcmsEntrada() + " itens";
+                    }
+                    if (logApp.getQtdIcmsSaida() != null) {
+                        txt += " IcmsSaida = " + logApp.getQtdIcmsSaida() + " itens ;";
+                    }
+                    if (logApp.getQtdPisConfins() == null && logApp.getQtdIcmsEntrada() == null && logApp.getQtdIcmsSaida() == null) {
+                        txt += " Nenhuma Atualização Disponivel ...";
+                    }
+
+                    gravarArq.printf(linha + txt);
+                    arq.close();
+                } else {
+                    File logError = new File(pathLogError);
+                    if (!logError.exists()) {
+                        logError.delete();
+                    }
+                    logError.mkdirs();
+                    FileWriter error = new FileWriter(logError);
+                    PrintWriter gravarError = new PrintWriter(error);
+                    gravarError.printf(logApp.getError());
+                    error.close();
+                }
+                logApp = null;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JDlgMensagem mensagem = new JDlgMensagem(jfrmPrincipal, true, ex);
+            mensagem.setVisible(true);
+        }
+    }
+
+    /**
+     * intance dialog autentication
+     *
+     * @return boolean
+     */
+    public String getAutentication() {
+        JDlgAutentication autentic = new JDlgAutentication(jfrmPrincipal, true);
+        return autentic.isValidation;
+    }
+
+    public void getPositionInternalFrame(JInternalFrame frame) {
+        Dimension d = frame.getDesktopPane().getSize();
+        frame.setLocation((d.width - frame.getSize().width) / 2, (d.height - frame.getSize().height) / 2);
+    }
+
 }

@@ -71,7 +71,12 @@ public abstract class AbstractTableModel<T extends Object> extends javax.swing.t
     }
 
     public void addItens(List<T> result) {
-        list.addAll(result);
+        if (result != null) {
+            list.addAll(result);
+        } else {
+            list = new ArrayList<>();
+        }
+        updateTableListener();
     }
 
     public T setItem(int index, T item) {

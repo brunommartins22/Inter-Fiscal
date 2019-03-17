@@ -5,22 +5,19 @@
  */
 package br.com.interagese.interfiscal.view;
 
+import br.com.interagese.interfiscal.business.TabfilBusiness;
+import br.com.interagese.interfiscal.business.TabfilBusinessBean;
+import br.com.interagese.interfiscal.entity.Sessao;
+import br.com.interagese.interfiscal.entity.Tabfil;
 import br.com.interagese.interfiscal.utils.Actions;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.metal.MetalButtonUI;
-import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -28,67 +25,64 @@ import org.apache.commons.io.IOUtils;
  */
 public class JDlgSetting extends javax.swing.JDialog {
 
-    private Actions a = new Actions();
     private String texto;
+    private TabfilBusiness tabfilBusiness = new TabfilBusinessBean();
+    private javax.swing.JFrame jfrmPrincipal;
+    private Actions a;
 
     /**
      * Creates new form JDlgMensagem
      */
-    public JDlgSetting(java.awt.Frame parent, boolean modal) {
+    public JDlgSetting(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        jfrmPrincipal = parent;
+
         definirFormulario();
     }
 
     public void definirFormulario() {
+        a = new Actions(jfrmPrincipal);
         a.iconApplication(this);
         this.setTitle("Configuração");
         this.setLocationRelativeTo(null);
         JbtnOk.setUI(new MetalButtonUI());
+        jCbxFilial.setModel(new DefaultComboBoxModel(tabfilBusiness.getAll().toArray(new Tabfil[]{})));
         carregarDatabase();
         jFormattedTextField1.requestFocus();
+
     }
 
     public void carregarDatabase() {
         try {
 
-            Properties p = carregarArquivo("C:\\InterageSE\\DataBase.cfg");
+            Properties p = a.carregarArquivo("C:\\InterageSE\\DataBase.cfg");
 
             if (p != null) {
                 jTextField1.setText(p.getProperty("BDPOSTGRES"));
                 jTextField2.setText(p.getProperty("BDPRINCIPAL"));
 
-                File conf = new File("C:\\InterageSe\\inter-fiscal\\Configuracao\\conf.cfg");
+                File conf = new File("Configuracao\\conf.cfg");
 
-                Properties arq = carregarArquivo(conf.getPath());
+                Properties arq = a.carregarArquivo(conf.getPath());
                 jFormattedTextField1.setText(arq.getProperty("H1"));
                 jFormattedTextField2.setText(arq.getProperty("H2"));
+
+                jSpinnerHoras.getModel().setValue(Integer.parseInt(arq.getProperty("INFOHORAS")));
+                jSpinnerQtdEnvio.getModel().setValue(Integer.parseInt(arq.getProperty("QTDENVIO")));
+
+                jRadioButtonMix.setSelected(arq.getProperty("MIXFISCAL").equals("true"));
+                jRadioButtonImportacao.setSelected(arq.getProperty("IMPORTACAOFISCAL").equals("true"));
+
+                String codFil = arq.getProperty("FILIAL");
+
+                jCbxFilial.setSelectedItem(tabfilBusiness.findById(Integer.parseInt(codFil)));
 
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
             dispose();
         }
-    }
-
-    public Properties carregarArquivo(String path) throws FileNotFoundException, IOException {
-
-        File database = new File(path);
-
-        Properties props = new Properties();
-
-        if (database.exists() == true) {
-
-            FileInputStream fis = new FileInputStream(database);
-
-            props.load(new StringReader(IOUtils.toString(fis, StandardCharsets.UTF_8).replace("\\", "/")));
-
-            fis.close();
-
-        }
-
-        return props;
-
     }
 
     /**
@@ -113,6 +107,18 @@ public class JDlgSetting extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jSpinnerHoras = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jSpinnerQtdEnvio = new javax.swing.JSpinner();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jCbxFilial = new javax.swing.JComboBox<>();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jRadioButtonMix = new javax.swing.JRadioButton();
+        jRadioButtonImportacao = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -120,7 +126,8 @@ public class JDlgSetting extends javax.swing.JDialog {
         JbtnOk.setBackground(new java.awt.Color(0, 51, 102));
         JbtnOk.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         JbtnOk.setForeground(new java.awt.Color(255, 255, 255));
-        JbtnOk.setText("Ok");
+        JbtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
+        JbtnOk.setText("Confirmar");
         JbtnOk.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         JbtnOk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         JbtnOk.addActionListener(new java.awt.event.ActionListener() {
@@ -137,20 +144,15 @@ public class JDlgSetting extends javax.swing.JDialog {
         jLabel1.setText("DB Postgres:");
 
         jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 102));
         jLabel3.setText("DB Firebird:");
 
         jTextField2.setEditable(false);
-        jTextField2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField2.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -164,8 +166,8 @@ public class JDlgSetting extends javax.swing.JDialog {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2)
+                    .addComponent(jTextField1))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -175,11 +177,11 @@ public class JDlgSetting extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Timer", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 14), new java.awt.Color(0, 66, 100))); // NOI18N
@@ -203,7 +205,7 @@ public class JDlgSetting extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jFormattedTextField1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jFormattedTextField1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jFormattedTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jFormattedTextField1KeyPressed(evt);
@@ -216,12 +218,40 @@ public class JDlgSetting extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         jFormattedTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jFormattedTextField2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jFormattedTextField2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jFormattedTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jFormattedTextField2KeyPressed(evt);
             }
         });
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel5.setText("Info. Atualização:");
+
+        jSpinnerHoras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jSpinnerHorasKeyPressed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 3, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(201, 7, 7));
+        jLabel8.setText("* Atualização por hora(s)");
+
+        jLabel9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel9.setText("Qtd. Envio:");
+
+        jSpinnerQtdEnvio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jSpinnerQtdEnvioKeyPressed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("SansSerif", 3, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(201, 7, 7));
+        jLabel10.setText("* Definição da Qtd. de registros p/ envio");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -229,21 +259,35 @@ public class JDlgSetting extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jFormattedTextField1)
-                    .addComponent(jLabel7))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jFormattedTextField1)
+                                .addComponent(jLabel7))
+                            .addGap(41, 41, 41)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel6)
+                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jSpinnerHoras)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSpinnerQtdEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel10))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -252,7 +296,86 @@ public class JDlgSetting extends javax.swing.JDialog {
                     .addComponent(jLabel4)
                     .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jSpinnerHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jSpinnerQtdEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filial", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 14), new java.awt.Color(0, 66, 100))); // NOI18N
+
+        jCbxFilial.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jCbxFilial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCbxFilialKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCbxFilial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jCbxFilial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modulos Fiscais", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 14)), "Modulos Fiscais", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 14), new java.awt.Color(0, 66, 100))); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel11.setText("Ativação:");
+
+        jRadioButtonMix.setText("MIx-Fiscal");
+        jRadioButtonMix.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jRadioButtonMixKeyPressed(evt);
+            }
+        });
+
+        jRadioButtonImportacao.setText("Importação-Fiscal");
+        jRadioButtonImportacao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jRadioButtonImportacaoKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addGap(56, 56, 56)
+                .addComponent(jRadioButtonMix)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButtonImportacao)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jRadioButtonMix)
+                    .addComponent(jRadioButtonImportacao))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -261,13 +384,12 @@ public class JDlgSetting extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JbtnOk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JbtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -275,11 +397,15 @@ public class JDlgSetting extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JbtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(JbtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, "card2");
@@ -287,17 +413,53 @@ public class JDlgSetting extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JDlgCarregando carregarJdialog(String txt) {
+        JDlgCarregando carregando = new JDlgCarregando(jfrmPrincipal, false, txt);
+        return carregando;
+    }
+
     private void JbtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnOkActionPerformed
         try {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        JDlgCarregando carregando = carregarJdialog("Carregando...");
+                        carregando.setVisible(true);
+                        carregando.loadBarra("Carregando Arquivo de configuração ...", 0, 0, true);
+                        FileWriter fw = new FileWriter(new File("Configuracao\\conf.cfg"));
+                        PrintWriter pw = new PrintWriter(fw);
+                        pw.printf("H1=" + jFormattedTextField1.getText()
+                                + "\r\nH2=" + jFormattedTextField2.getText()
+                                + "\r\nFILIAL=" + ((Tabfil) jCbxFilial.getSelectedItem()).getCodfil()
+                                + "\r\nINFOHORAS=" + jSpinnerHoras.getValue().toString()
+                                + "\r\nQTDENVIO=" + jSpinnerQtdEnvio.getValue().toString()
+                                + "\r\nMIXFISCAL=" + jRadioButtonMix.isSelected()
+                                + "\r\nIMPORTACAOFISCAL=" + jRadioButtonImportacao.isSelected()
+                                + "\r\nPRIMEIROACESSO=0");
+                        Thread.sleep(1000);
+                        carregando.loadBarra("Gravando Arquivo de configuração ...", 0, 0, true);
+                        fw.close();
+                        Thread.sleep(1000);
+                        carregando.loadBarra("Arquivo de Configuração Salvo com Sucesso ...", 0, 0, true);
+                        carregando.setTexto("Finalizando operação ...");
+                        Sessao.mixfiscal = jRadioButtonMix.isSelected();
+                        Sessao.importacaofiscal = jRadioButtonImportacao.isSelected();
+                        Thread.sleep(1500);
+                        carregando.dispose();
+                        dispose();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        JDlgMensagem mensagem = new JDlgMensagem(jfrmPrincipal, true, ex);
+                        mensagem.setVisible(true);
+                    }
+                }
+            }).start();
 
-            FileWriter fw = new FileWriter(new File("C:\\InterageSe\\inter-fiscal\\Configuracao\\conf.cfg"));
-            PrintWriter pw = new PrintWriter(fw);
-            pw.printf("H1=" + jFormattedTextField1.getText() + " \n H2=" + jFormattedTextField2.getText());
-            fw.close();
-            JOptionPane.showMessageDialog(this, "Arquivo de Configuração Salvo com Sucesso !!");
-            dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
+            ex.printStackTrace();
+            JDlgMensagem mensagem = new JDlgMensagem(jfrmPrincipal, true, ex);
+            mensagem.setVisible(true);
         }
     }//GEN-LAST:event_JbtnOkActionPerformed
 
@@ -309,13 +471,39 @@ public class JDlgSetting extends javax.swing.JDialog {
 
     private void jFormattedTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField2KeyPressed
         if (evt.getKeyCode() == evt.VK_ENTER) {
-            JbtnOk.requestFocus();
+            jSpinnerHoras.requestFocus();
         }
     }//GEN-LAST:event_jFormattedTextField2KeyPressed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void jCbxFilialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCbxFilialKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            JbtnOk.requestFocus();
+        }
+    }//GEN-LAST:event_jCbxFilialKeyPressed
+
+    private void jSpinnerHorasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinnerHorasKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            jSpinnerQtdEnvio.requestFocus();
+        }
+    }//GEN-LAST:event_jSpinnerHorasKeyPressed
+
+    private void jSpinnerQtdEnvioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinnerQtdEnvioKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            jRadioButtonMix.requestFocus();
+        }
+    }//GEN-LAST:event_jSpinnerQtdEnvioKeyPressed
+
+    private void jRadioButtonMixKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRadioButtonMixKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            jRadioButtonImportacao.requestFocus();
+        }
+    }//GEN-LAST:event_jRadioButtonMixKeyPressed
+
+    private void jRadioButtonImportacaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRadioButtonImportacaoKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            jCbxFilial.requestFocus();
+        }
+    }//GEN-LAST:event_jRadioButtonImportacaoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -364,16 +552,28 @@ public class JDlgSetting extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbtnOk;
+    private javax.swing.JComboBox<Tabfil> jCbxFilial;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JRadioButton jRadioButtonImportacao;
+    private javax.swing.JRadioButton jRadioButtonMix;
+    private javax.swing.JSpinner jSpinnerHoras;
+    private javax.swing.JSpinner jSpinnerQtdEnvio;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables

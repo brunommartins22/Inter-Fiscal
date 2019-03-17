@@ -3,10 +3,13 @@ package br.com.interagese.interfiscal.view;
 import br.com.interagese.interfiscal.entity.Sessao;
 import br.com.interagese.interfiscal.utils.Actions;
 import br.com.interagese.interfiscal.utils.JPAUtil;
+import java.awt.Graphics;
+import java.awt.Image;
 
 import java.awt.Window;
 import java.io.IOException;
 import java.sql.Connection;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
@@ -21,7 +24,7 @@ import org.hibernate.internal.SessionImpl;
 
 public class JDlgSplashScreen extends javax.swing.JDialog {
 
-    private Actions a = new Actions();
+    private Actions a = new Actions(null);
 
     public JDlgSplashScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -36,13 +39,13 @@ public class JDlgSplashScreen extends javax.swing.JDialog {
 
     private void definirFormulario() {
         a.iconApplication(this);
-        dispose();
+//        dispose();
 
-        setUndecorated(true);
+//        setUndecorated(true);
         //**********************************************************************
-        a.settingImgJLabel(jLblImg, "/imagens/carregando.png", 650, 250, 100);
-
-        pack();
+        a.settingImgJLabel(jLblImg, "/imagens/carregando.png", 620, 207, 100);
+//        pack();
+        this.setSize(620, 240);
         setLocationRelativeTo(null);
 
     }
@@ -53,7 +56,12 @@ public class JDlgSplashScreen extends javax.swing.JDialog {
 
         jLblImg = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLblImg.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         getContentPane().add(jLblImg, java.awt.BorderLayout.CENTER);
@@ -61,6 +69,10 @@ public class JDlgSplashScreen extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        System.exit(0);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -106,15 +118,17 @@ public class JDlgSplashScreen extends javax.swing.JDialog {
 
             Window window = SwingUtilities.getWindowAncestor(new JFrame());
 
-            JDlgSplashScreen dialog = new JDlgSplashScreen(window, "Importação de Imposto", ModalityType.APPLICATION_MODAL);
+            JDlgSplashScreen dialog = new JDlgSplashScreen(window, "Inter-Fiscal", ModalityType.APPLICATION_MODAL);
 
             worker.addPropertyChangeListener((evt) -> {
                 if (evt.getPropertyName().equals("state")) {
                     if (evt.getNewValue() == SwingWorker.StateValue.DONE) {
                         JfrmGeral jp = new JfrmGeral();
                         dialog.dispose();
-                        jp.setVisible(true);
-
+//                        jp.setVisible(true);
+                        if (Sessao.mixfiscal) {
+                            jp.getCarregarMixFiscal(true);
+                        }
                         Sessao.frame = jp;
                     }
                 }

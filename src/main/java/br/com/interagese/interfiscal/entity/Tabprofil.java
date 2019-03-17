@@ -62,7 +62,7 @@ public class Tabprofil implements Model {
     @Size(max = 8)
     @Column(name = "RGUSUARIO",updatable = false)
     private String rgusuario;
-    @Column(name = "RGDATA",updatable = false)
+    @Column(name = "RGDATA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date rgdata;
     @Size(max = 1)

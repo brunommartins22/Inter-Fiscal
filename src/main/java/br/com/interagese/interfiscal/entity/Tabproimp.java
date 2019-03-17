@@ -5,15 +5,12 @@
  */
 package br.com.interagese.interfiscal.entity;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 /**
@@ -36,7 +33,7 @@ public class Tabproimp implements Model {
     @Column(name = "ICMSORIG",updatable = false)
     private String icmsorig;
     @Size(max = 1)
-    @Column(name = "ICMSMODBC",updatable = false)
+    @Column(name = "ICMSMODBC")
     private String icmsmodbc;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "ICMSPREDBC")

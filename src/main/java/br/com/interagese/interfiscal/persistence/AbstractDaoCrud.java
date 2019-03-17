@@ -45,6 +45,7 @@ abstract class AbstractDaoCrud<T extends Model> implements DaoCrud<T> {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
+            throw new RuntimeException(e);
         } finally {
             if (em.isOpen()) {
                 em.close();
@@ -105,6 +106,7 @@ abstract class AbstractDaoCrud<T extends Model> implements DaoCrud<T> {
             em.getTransaction().commit();
 
         } catch (Exception e) {
+            System.out.println(entity.getId());
             e.printStackTrace();
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
@@ -232,7 +234,7 @@ abstract class AbstractDaoCrud<T extends Model> implements DaoCrud<T> {
     public List<T> getSearchAll(int position) {
         EntityManager em = getEntityManager();
         try {
-            return em.createNativeQuery("SELECT * FROM " + entityClass.getAnnotation(Table.class).name() + " o order by o.codigo", entityClass).setFirstResult(position).setMaxResults(100).getResultList();
+            return em.createNativeQuery("SELECT * FROM " + entityClass.getAnnotation(Table.class).name() + " o order by o.codigo_produto", entityClass).setFirstResult(position).setMaxResults(100).getResultList();
         } finally {
             em.close();
         }

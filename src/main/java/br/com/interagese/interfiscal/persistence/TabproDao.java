@@ -8,22 +8,23 @@ import javax.persistence.TypedQuery;
 
 @DataBase(getType = DataBase.dataBaseType.POSTGRES)
 public class TabproDao extends AbstractDaoCrud<Tabpro> {
-
-    private Actions a = new Actions();
-
+    
+    private Actions a = new Actions(null);
+    
     @Override
     public Integer getMaxRowCount() {
         return 50;
     }
-
+    
     public Tabpro getProdutoByCod(Integer icodpro) {
         try {
-            return (Tabpro) getEntityManager().createNativeQuery("Select * from tabpro tp where tp.icodpro =" + icodpro, Tabpro.class).getSingleResult();
+            TypedQuery<Tabpro> result = (TypedQuery<Tabpro>) getEntityManager().createNativeQuery("Select * from tabpro tp where tp.icodpro =" + icodpro, Tabpro.class);
+            return result.getResultList().isEmpty() ? null : result.getResultList().get(0);
         } finally {
             getEntityManager().close();
         }
     }
-
+    
     public List<Tabpro> getProdutobyDescorCod(Object o) {
         try {
             String query = "SELECT * FROM tabpro tp WHERE";
@@ -35,13 +36,13 @@ public class TabproDao extends AbstractDaoCrud<Tabpro> {
             }
 //        System.out.println("SQL : "+query);
             TypedQuery<Tabpro> result = (TypedQuery<Tabpro>) getEntityManager().createNativeQuery(query, Tabpro.class);
-
+            
             return result.getResultList();
         } finally {
             getEntityManager().close();
         }
     }
-
+    
     public void getGerarEanbyCodigo() {
         try {
             String sql = "insert into tabprocod(codpro, codigo, unid, qtdun, vldesconto)"

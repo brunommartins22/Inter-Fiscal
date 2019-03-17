@@ -8,6 +8,7 @@ package br.com.interagese.interfiscal.view;
 import br.com.interagese.interfiscal.utils.Actions;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import javax.swing.JFrame;
 
 /**
  *
@@ -15,7 +16,8 @@ import java.io.StringWriter;
  */
 public class JDlgMensagem extends javax.swing.JDialog {
 
-    private Actions a = new Actions();
+    private JFrame principal;
+    private Actions a = new Actions(principal);
     private String texto;
 
     /**
@@ -23,6 +25,7 @@ public class JDlgMensagem extends javax.swing.JDialog {
      */
     public JDlgMensagem(java.awt.Frame parent, boolean modal, Exception txt) {
         super(parent, modal);
+        principal = (JFrame) parent;
         initComponents();
         definirFormulario();
         StringWriter writer = new StringWriter();

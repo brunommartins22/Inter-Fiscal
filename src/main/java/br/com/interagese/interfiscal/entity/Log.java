@@ -19,6 +19,10 @@ public class Log {
     private Integer qtdIcmsSaida;
     private String error;
 
+    public Log() {
+        dataLog = new Date();
+    }
+
     /**
      * @return the dataLog
      */
