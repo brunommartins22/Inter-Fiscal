@@ -5,6 +5,7 @@
  */
 package br.com.interagese.interfiscal.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -18,10 +19,10 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author bruno
+ * @author Bruno Martins
  */
 @Entity
-@Table(name = "TABPROIMPE")
+@Table(name = "tabproimpe")
 @NamedQueries({
     @NamedQuery(name = "Tabproimpe.findAll", query = "SELECT t FROM Tabproimpe t")})
 public class Tabproimpe implements Model {
@@ -30,75 +31,76 @@ public class Tabproimpe implements Model {
     @EmbeddedId
     protected TabproimpePK tabproimpePK;
     @Size(max = 20)
-    @Column(name = "EAN")
+    @Column(name = "ean", updatable = false)
     private String ean;
     @Size(max = 2)
-    @Column(name = "TIPO_MVA")
+    @Column(name = "tipo_mva")
     private String tipoMva;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "MVA")
+    @Column(name = "mva")
     private Double mva;
-    @Column(name = "MVA_DISTRIBUIDOR")
+    @Column(name = "mva_distribuidor")
     private Double mvaDistribuidor;
-    @Column(name = "MVA_DATA_INI")
+    @Column(name = "mva_data_ini")
     @Temporal(TemporalType.TIMESTAMP)
     private Date mvaDataIni;
-    @Column(name = "MVA_DATA_FIM")
+    @Column(name = "mva_data_fim")
     @Temporal(TemporalType.TIMESTAMP)
     private Date mvaDataFim;
-    @Column(name = "CREDITO_OUTORGADO")
+    @Column(name = "credito_outorgado")
     private Integer creditoOutorgado;
     @Size(max = 3)
-    @Column(name = "EI_CST")
+    @Column(name = "ei_cst")
     private String eiCst;
-    @Column(name = "EI_ALQ")
+    @Column(name = "ei_alq")
     private Double eiAlq;
-    @Column(name = "EI_ALQST")
+    @Column(name = "ei_alqst")
     private Double eiAlqst;
-    @Column(name = "EI_RBC")
+    @Column(name = "ei_rbc")
     private Double eiRbc;
-    @Column(name = "EI_RBCST")
+    @Column(name = "ei_rbcst")
     private Double eiRbcst;
     @Size(max = 3)
-    @Column(name = "ED_CST")
+    @Column(name = "ed_cst")
     private String edCst;
-    @Column(name = "ED_ALQ")
+    @Column(name = "ed_alq")
     private Double edAlq;
-    @Column(name = "ED_ALQST")
+    @Column(name = "ed_alqst")
     private Double edAlqst;
-    @Column(name = "ED_RBC")
+    @Column(name = "ed_rbc")
     private Double edRbc;
-    @Column(name = "ED_RBCST")
+    @Column(name = "ed_rbcst")
     private Double edRbcst;
     @Size(max = 3)
-    @Column(name = "ES_CST")
+    @Column(name = "es_cst")
     private String esCst;
-    @Column(name = "ES_ALQ")
+    @Column(name = "es_alq")
     private Double esAlq;
-    @Column(name = "ES_ALQST")
+    @Column(name = "es_alqst")
     private Double esAlqst;
-    @Column(name = "ES_RBC")
+    @Column(name = "es_rbc")
     private Double esRbc;
-    @Column(name = "ES_RBCST")
+    @Column(name = "es_rbcst")
     private Double esRbcst;
     @Size(max = 3)
-    @Column(name = "NFI_CST")
+    @Column(name = "nfi_cst")
     private String nfiCst;
     @Size(max = 3)
-    @Column(name = "NFD_CST")
+    @Column(name = "nfd_cst")
     private String nfdCst;
     @Size(max = 4)
-    @Column(name = "NFS_CSOSN")
+    @Column(name = "nfs_csosn")
     private String nfsCsosn;
-    @Column(name = "NF_ALQ")
+    @Column(name = "nf_alq")
     private Double nfAlq;
     @Size(max = 500)
-    @Column(name = "FUNDAMENTO_LEGAL")
+    @Column(name = "fundamento_legal")
     private String fundamentoLegal;
-  
     @Size(max = 1)
-    @Column(name = "MIXFISCAL")
+    @Column(name = "mixfiscal")
     private String mixfiscal;
+    @Column(name = "dtenvserv", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtenvserv;
 
     public Tabproimpe() {
     }
@@ -335,6 +337,22 @@ public class Tabproimpe implements Model {
         this.fundamentoLegal = fundamentoLegal;
     }
 
+    public String getMixfiscal() {
+        return mixfiscal;
+    }
+
+    public void setMixfiscal(String mixfiscal) {
+        this.mixfiscal = mixfiscal;
+    }
+
+    public Date getDtenvserv() {
+        return dtenvserv;
+    }
+
+    public void setDtenvserv(Date dtenvserv) {
+        this.dtenvserv = dtenvserv;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -357,7 +375,7 @@ public class Tabproimpe implements Model {
 
     @Override
     public String toString() {
-        return "br.com.interagese.transmissornfe.business.entity.Tabproimpe[ tabproimpePK=" + tabproimpePK + " ]";
+        return "br.com.interagese.interfiscal.app.Tabproimpe[ tabproimpePK=" + tabproimpePK + " ]";
     }
 
     @Override
@@ -368,14 +386,6 @@ public class Tabproimpe implements Model {
     @Override
     public void setId(Object object) {
         this.tabproimpePK = (TabproimpePK) object;
-    }
-
-    public String getMixfiscal() {
-        return mixfiscal;
-    }
-
-    public void setMixfiscal(String mixfiscal) {
-        this.mixfiscal = mixfiscal;
     }
 
 }

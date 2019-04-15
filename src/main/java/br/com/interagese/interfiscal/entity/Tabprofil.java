@@ -18,10 +18,10 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author bruno
+ * @author Bruno Martins
  */
 @Entity
-@Table(name = "TABPROFIL")
+@Table(name = "tabprofil")
 @NamedQueries({
     @NamedQuery(name = "Tabprofil.findAll", query = "SELECT t FROM Tabprofil t")})
 public class Tabprofil implements Model {
@@ -30,205 +30,206 @@ public class Tabprofil implements Model {
     @EmbeddedId
     protected TabprofilPK tabprofilPK;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QTDPRO",updatable = false)
+    @Column(name = "qtdpro", updatable = false)
     private Double qtdpro;
-    @Column(name = "QTDRESPRO",updatable = false)
+    @Column(name = "qtdrespro", updatable = false)
     private Double qtdrespro;
-    @Column(name = "QTDDEVPRO",updatable = false)
+    @Column(name = "qtddevpro", updatable = false)
     private Double qtddevpro;
-    @Column(name = "QTDMIN",updatable = false)
+    @Column(name = "qtdmin", updatable = false)
     private Double qtdmin;
-    @Column(name = "QTDMAX",updatable = false)
+    @Column(name = "qtdmax", updatable = false)
     private Double qtdmax;
-    @Column(name = "QTDMETA",updatable = false)
+    @Column(name = "qtdmeta", updatable = false)
     private Double qtdmeta;
-    @Column(name = "QTDULTINV",updatable = false)
+    @Column(name = "qtdultinv", updatable = false)
     private Double qtdultinv;
-    @Column(name = "DTULTINV",updatable = false)
+    @Column(name = "dtultinv", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtultinv;
-    @Column(name = "PRATPRO",updatable = false)
+    @Column(name = "pratpro", updatable = false)
     private Double pratpro;
-    @Column(name = "PRVAPRO",updatable = false)
+    @Column(name = "prvapro", updatable = false)
     private Double prvapro;
-    @Column(name = "PRCUPRO",updatable = false)
+    @Column(name = "prcupro", updatable = false)
     private Double prcupro;
-    @Column(name = "PERCDESCCO",updatable = false)
+    @Column(name = "percdescco", updatable = false)
     private Double percdescco;
-    @Column(name = "PERCDESCAT",updatable = false)
+    @Column(name = "percdescat", updatable = false)
     private Double percdescat;
-    @Column(name = "RGCODUSU",updatable = false)
+    @Column(name = "rgcodusu", updatable = false)
     private Integer rgcodusu;
     @Size(max = 8)
-    @Column(name = "RGUSUARIO",updatable = false)
+    @Column(name = "rgusuario", updatable = false)
     private String rgusuario;
-    @Column(name = "RGDATA")
+    @Column(name = "rgdata")
     @Temporal(TemporalType.TIMESTAMP)
     private Date rgdata;
     @Size(max = 1)
-    @Column(name = "RGEVENTO",updatable = false)
+    @Column(name = "rgevento", updatable = false)
     private String rgevento;
-    @Column(name = "OUTCUSTO",updatable = false)
+    @Column(name = "outcusto", updatable = false)
     private Double outcusto;
-    @Column(name = "MARGLUCAT",updatable = false)
+    @Column(name = "marglucat", updatable = false)
     private Double marglucat;
-    @Column(name = "MARGLUCVA",updatable = false)
+    @Column(name = "marglucva", updatable = false)
     private Double marglucva;
-    @Column(name = "PRATPROSUG",updatable = false)
+    @Column(name = "pratprosug", updatable = false)
     private Double pratprosug;
-    @Column(name = "PRVAPROSUG",updatable = false)
+    @Column(name = "prvaprosug", updatable = false)
     private Double prvaprosug;
-    @Column(name = "PRCUPROSUG",updatable = false)
+    @Column(name = "prcuprosug", updatable = false)
     private Double prcuprosug;
-    @Column(name = "OUTCUSTOSUG",updatable = false)
+    @Column(name = "outcustosug", updatable = false)
     private Double outcustosug;
-    @Column(name = "MARLUCSUGAT",updatable = false)
+    @Column(name = "marlucsugat", updatable = false)
     private Double marlucsugat;
-    @Column(name = "MARLUCSUGVA",updatable = false)
+    @Column(name = "marlucsugva", updatable = false)
     private Double marlucsugva;
-    @Column(name = "CONTREFFIL",updatable = false)
+    @Column(name = "contreffil", updatable = false)
     private Character contreffil;
-    @Column(name = "CONTRPLANO",updatable = false)
+    @Column(name = "contrplano", updatable = false)
     private Character contrplano;
-    @Column(name = "QTDDESCO",updatable = false)
+    @Column(name = "qtddesco", updatable = false)
     private Integer qtddesco;
     @Size(max = 20)
-    @Column(name = "LOCAPROD",updatable = false)
+    @Column(name = "locaprod", updatable = false)
     private String locaprod;
-    @Column(name = "PRVEANT",updatable = false)
+    @Column(name = "prveant", updatable = false)
     private Double prveant;
-    @Column(name = "PERCDESCCOCC",updatable = false)
+    @Column(name = "percdesccocc", updatable = false)
     private Double percdesccocc;
-    @Column(name = "PERCDESCATCC",updatable = false)
+    @Column(name = "percdescatcc", updatable = false)
     private Double percdescatcc;
-    @Column(name = "PERCDESCCOAP",updatable = false)
+    @Column(name = "percdesccoap", updatable = false)
     private Double percdesccoap;
-    @Column(name = "PERCDESCATAP",updatable = false)
+    @Column(name = "percdescatap", updatable = false)
     private Double percdescatap;
-    @Column(name = "QTDMINVEN",updatable = false)
+    @Column(name = "qtdminven", updatable = false)
     private Double qtdminven;
-    @Column(name = "QTDROM",updatable = false)
+    @Column(name = "qtdrom", updatable = false)
     private Double qtdrom;
-    @Column(name = "QTDENT",updatable = false)
+    @Column(name = "qtdent", updatable = false)
     private Double qtdent;
-    @Column(name = "PRCOMPRAAT",updatable = false)
+    @Column(name = "prcompraat", updatable = false)
     private Double prcompraat;
-    @Column(name = "PRCOMPRAVA",updatable = false)
+    @Column(name = "prcomprava", updatable = false)
     private Double prcomprava;
-    @Column(name = "PRCUSVAR",updatable = false)
+    @Column(name = "prcusvar", updatable = false)
     private Double prcusvar;
-    @Column(name = "PRCOMATSUG",updatable = false)
+    @Column(name = "prcomatsug", updatable = false)
     private Double prcomatsug;
-    @Column(name = "PRCOMVASUG",updatable = false)
+    @Column(name = "prcomvasug", updatable = false)
     private Double prcomvasug;
-    @Column(name = "PRCUVARSUG",updatable = false)
+    @Column(name = "prcuvarsug", updatable = false)
     private Double prcuvarsug;
-    @Column(name = "QTDESTANT",updatable = false)
+    @Column(name = "qtdestant", updatable = false)
     private Double qtdestant;
-    @Column(name = "FORNCONCIL",updatable = false)
+    @Column(name = "fornconcil", updatable = false)
     private Integer fornconcil;
-    @Column(name = "PERCCONCIL",updatable = false)
+    @Column(name = "percconcil", updatable = false)
     private Double percconcil;
-    @Column(name = "DTALTERCAO",updatable = false)
+    @Column(name = "dtaltercao", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtaltercao;
-    @Column(name = "CODUSUALT",updatable = false)
+    @Column(name = "codusualt", updatable = false)
     private Integer codusualt;
     @Size(max = 8)
-    @Column(name = "NOMUSUALT",updatable = false)
+    @Column(name = "nomusualt", updatable = false)
     private String nomusualt;
-    @Column(name = "ULTPRCOMPRA",updatable = false)
+    @Column(name = "ultprcompra", updatable = false)
     private Double ultprcompra;
-    @Column(name = "ALICMSCOM",updatable = false)
+    @Column(name = "alicmscom", updatable = false)
     private Double alicmscom;
-    @Column(name = "ALIPICOM",updatable = false)
+    @Column(name = "alipicom", updatable = false)
     private Double alipicom;
-    @Column(name = "VLDESCOCOM",updatable = false)
+    @Column(name = "vldescocom", updatable = false)
     private Double vldescocom;
-    @Column(name = "VLFRETECOM",updatable = false)
+    @Column(name = "vlfretecom", updatable = false)
     private Double vlfretecom;
-    @Column(name = "VLSEGCOM",updatable = false)
+    @Column(name = "vlsegcom", updatable = false)
     private Double vlsegcom;
-    @Column(name = "OUTDESPCOM",updatable = false)
+    @Column(name = "outdespcom", updatable = false)
     private Double outdespcom;
-    @Column(name = "PRCUSTOCOM",updatable = false)
+    @Column(name = "prcustocom", updatable = false)
     private Double prcustocom;
-    @Column(name = "FATORSUBST",updatable = false)
+    @Column(name = "fatorsubst", updatable = false)
     private Double fatorsubst;
-    @Column(name = "FATORPISCOM")
+    @Column(name = "fatorpiscom")
     private Double fatorpiscom;
-    @Column(name = "FATORCOFINSCOM")
+    @Column(name = "fatorcofinscom")
     private Double fatorcofinscom;
-    @Column(name = "PRMEPRO",updatable = false)
+    @Column(name = "prmepro", updatable = false)
     private Double prmepro;
-    @Column(name = "PERCCPP",updatable = false)
+    @Column(name = "perccpp", updatable = false)
     private Double perccpp;
-    @Column(name = "PERCCPPSUG",updatable = false)
+    @Column(name = "perccppsug", updatable = false)
     private Double perccppsug;
-    @Column(name = "PRVENDAANTVA",updatable = false)
+    @Column(name = "prvendaantva", updatable = false)
     private Double prvendaantva;
-    @Column(name = "PRVENDAANTAT",updatable = false)
+    @Column(name = "prvendaantat", updatable = false)
     private Double prvendaantat;
     @Size(max = 4)
-    @Column(name = "CSTCOM",updatable = false)
+    @Column(name = "cstcom", updatable = false)
     private String cstcom;
-    @Column(name = "QTDQUABOV",updatable = false)
+    @Column(name = "qtdquabov", updatable = false)
     private Integer qtdquabov;
-    @Column(name = "QTDPREPRO",updatable = false)
+    @Column(name = "qtdprepro", updatable = false)
     private Double qtdprepro;
-    @Column(name = "DTULTPEDIDO",updatable = false)
+    @Column(name = "dtultpedido", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtultpedido;
-    @Column(name = "QTDPEDIDO",updatable = false)
+    @Column(name = "qtdpedido", updatable = false)
     private Double qtdpedido;
     @Size(max = 2)
-    @Column(name = "UNIDPED",updatable = false)
+    @Column(name = "unidped", updatable = false)
     private String unidped;
-    @Column(name = "QTDDESCAT",updatable = false)
+    @Column(name = "qtddescat", updatable = false)
     private Double qtddescat;
-    @Column(name = "QTDMINVENAT",updatable = false)
+    @Column(name = "qtdminvenat", updatable = false)
     private Double qtdminvenat;
-    @Column(name = "PRMAXCONS",updatable = false)
+    @Column(name = "prmaxcons", updatable = false)
     private Double prmaxcons;
-    @Column(name = "VLAJUCUSTO",updatable = false)
+    @Column(name = "vlajucusto", updatable = false)
     private Double vlajucusto;
     @Size(max = 2)
-    @Column(name = "UFORIGEM",updatable = false)
+    @Column(name = "uforigem", updatable = false)
     private String uforigem;
-    @Column(name = "VBCICMSSTRET",updatable = false)
-    private Double vbcicmsstret;
-    @Column(name = "VICMSSTRET",updatable = false)
-    private Double vicmsstret;
-    @Column(name = "PST",updatable = false)
-    private Double pst;
-    @Column(name = "PFCPRET",updatable = false)
-    private Double pfcpret;
-    @Column(name = "VBCFCPRET",updatable = false)
-    private Double vbcfcpret;
-    @Column(name = "VFCPRET",updatable = false)
-    private Double vfcpret;
-    @Column(name = "PCRED",updatable = false)
+    @Column(name = "pcred", updatable = false)
     private Double pcred;
-    @Column(name = "PFCP",updatable = false)
-    private Double pfcp;
-    @Column(name = "PERCLUCRO",updatable = false)
+    @Column(name = "perclucro", updatable = false)
     private Double perclucro;
-
+    @Column(name = "pfcp", updatable = false)
+    private Double pfcp;
+    @Column(name = "pfcpret", updatable = false)
+    private Double pfcpret;
+    @Column(name = "pst", updatable = false)
+    private Double pst;
+    @Column(name = "vbcfcpret", updatable = false)
+    private Double vbcfcpret;
+    @Column(name = "vbcicmsstret", updatable = false)
+    private Double vbcicmsstret;
+    @Column(name = "vfcpret", updatable = false)
+    private Double vfcpret;
+    @Column(name = "vicmsstret", updatable = false)
+    private Double vicmsstret;
     @Size(max = 3)
-    @Column(name = "NAT_REC")
+    @Column(name = "nat_rec")
     private String natRec;
     @Size(max = 4)
-    @Column(name = "CSTIPIE")
+    @Column(name = "cstipie", updatable = false)
     private String cstipie;
     @Size(max = 4)
-    @Column(name = "CSTPISE")
+    @Column(name = "cstpise")
     private String cstpise;
     @Size(max = 4)
-    @Column(name = "CSTCOFINSE")
+    @Column(name = "cstcofinse")
     private String cstcofinse;
-
+    @Column(name = "dtenvserv", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtenvserv;
     @Size(max = 1)
-    @Column(name = "MIXFISCAL")
+    @Column(name = "mixfiscal")
     private String mixfiscal;
 
     public Tabprofil() {
@@ -866,68 +867,12 @@ public class Tabprofil implements Model {
         this.uforigem = uforigem;
     }
 
-    public Double getVbcicmsstret() {
-        return vbcicmsstret;
-    }
-
-    public void setVbcicmsstret(Double vbcicmsstret) {
-        this.vbcicmsstret = vbcicmsstret;
-    }
-
-    public Double getVicmsstret() {
-        return vicmsstret;
-    }
-
-    public void setVicmsstret(Double vicmsstret) {
-        this.vicmsstret = vicmsstret;
-    }
-
-    public Double getPst() {
-        return pst;
-    }
-
-    public void setPst(Double pst) {
-        this.pst = pst;
-    }
-
-    public Double getPfcpret() {
-        return pfcpret;
-    }
-
-    public void setPfcpret(Double pfcpret) {
-        this.pfcpret = pfcpret;
-    }
-
-    public Double getVbcfcpret() {
-        return vbcfcpret;
-    }
-
-    public void setVbcfcpret(Double vbcfcpret) {
-        this.vbcfcpret = vbcfcpret;
-    }
-
-    public Double getVfcpret() {
-        return vfcpret;
-    }
-
-    public void setVfcpret(Double vfcpret) {
-        this.vfcpret = vfcpret;
-    }
-
     public Double getPcred() {
         return pcred;
     }
 
     public void setPcred(Double pcred) {
         this.pcred = pcred;
-    }
-
-    public Double getPfcp() {
-        return pfcp;
-    }
-
-    public void setPfcp(Double pfcp) {
-        this.pfcp = pfcp;
     }
 
     public Double getPerclucro() {
@@ -938,6 +883,61 @@ public class Tabprofil implements Model {
         this.perclucro = perclucro;
     }
 
+    public Double getPfcp() {
+        return pfcp;
+    }
+
+    public void setPfcp(Double pfcp) {
+        this.pfcp = pfcp;
+    }
+
+    public Double getPfcpret() {
+        return pfcpret;
+    }
+
+    public void setPfcpret(Double pfcpret) {
+        this.pfcpret = pfcpret;
+    }
+
+    public Double getPst() {
+        return pst;
+    }
+
+    public void setPst(Double pst) {
+        this.pst = pst;
+    }
+
+    public Double getVbcfcpret() {
+        return vbcfcpret;
+    }
+
+    public void setVbcfcpret(Double vbcfcpret) {
+        this.vbcfcpret = vbcfcpret;
+    }
+
+    public Double getVbcicmsstret() {
+        return vbcicmsstret;
+    }
+
+    public void setVbcicmsstret(Double vbcicmsstret) {
+        this.vbcicmsstret = vbcicmsstret;
+    }
+
+    public Double getVfcpret() {
+        return vfcpret;
+    }
+
+    public void setVfcpret(Double vfcpret) {
+        this.vfcpret = vfcpret;
+    }
+
+    public Double getVicmsstret() {
+        return vicmsstret;
+    }
+
+    public void setVicmsstret(Double vicmsstret) {
+        this.vicmsstret = vicmsstret;
+    }
 
     public String getNatRec() {
         return natRec;
@@ -971,6 +971,22 @@ public class Tabprofil implements Model {
         this.cstcofinse = cstcofinse;
     }
 
+    public Date getDtenvserv() {
+        return dtenvserv;
+    }
+
+    public void setDtenvserv(Date dtenvserv) {
+        this.dtenvserv = dtenvserv;
+    }
+
+    public String getMixfiscal() {
+        return mixfiscal;
+    }
+
+    public void setMixfiscal(String mixfiscal) {
+        this.mixfiscal = mixfiscal;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -993,7 +1009,7 @@ public class Tabprofil implements Model {
 
     @Override
     public String toString() {
-        return "br.com.interagese.transmissornfe.business.entity.Tabprofil[ tabprofilPK=" + tabprofilPK + " ]";
+        return "br.com.interagese.interfiscal.app.Tabprofil[ tabprofilPK=" + tabprofilPK + " ]";
     }
 
     @Override
@@ -1004,14 +1020,6 @@ public class Tabprofil implements Model {
     @Override
     public void setId(Object object) {
         this.tabprofilPK = (TabprofilPK) object;
-    }
-
-    public String getMixfiscal() {
-        return mixfiscal;
-    }
-
-    public void setMixfiscal(String mixfiscal) {
-        this.mixfiscal = mixfiscal;
     }
 
 }

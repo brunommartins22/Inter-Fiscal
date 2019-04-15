@@ -1666,4 +1666,12 @@ public class Utils {
         return result;
     }
 
+    static List<Integer> getBytesInDecimal(byte[] arrayBytes) {
+
+        List<Integer> result = new ArrayList<>(arrayBytes.length);
+        for (byte b : arrayBytes) {
+            result.add(b & 0xff);
+        }
+        return result;
+    }
 }

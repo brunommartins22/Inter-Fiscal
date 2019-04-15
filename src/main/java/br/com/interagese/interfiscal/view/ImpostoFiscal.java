@@ -8,8 +8,7 @@ package br.com.interagese.interfiscal.view;
 import br.com.interagese.interfiscal.business.FireTabproBusinessBean;
 import br.com.interagese.interfiscal.business.FireTabprofilBusinessBean;
 import br.com.interagese.interfiscal.business.FireTabproimpBusinessBean;
-import br.com.interagese.interfiscal.business.TabfilBusiness;
-import br.com.interagese.interfiscal.business.TabfilBusinessBean;
+import br.com.interagese.interfiscal.business.FireTabfilBusinessBean;
 import br.com.interagese.interfiscal.entity.ImportacaoImp;
 import br.com.interagese.interfiscal.entity.Log;
 import br.com.interagese.interfiscal.entity.Tabfil;
@@ -48,6 +47,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
+import br.com.interagese.interfiscal.business.FireTabfilBusiness;
 
 /**
  *
@@ -55,22 +55,34 @@ import org.apache.poi.ss.usermodel.Row;
  */
 public class ImpostoFiscal extends JInternalFrame {
 
-    private JFrame jFramePrincipal;
-    private Actions a = new Actions(jFramePrincipal);
-    private ItensTableModel tableModel = null;
-    private FireTabproBusinessBean fireTabproBusiness = new FireTabproBusinessBean();
-    private FireTabproimpBusinessBean fireTabproimpBusinessBean = new FireTabproimpBusinessBean();
-    private FireTabprofilBusinessBean fireTabprofilBusinessBean = new FireTabprofilBusinessBean();
-    private TabfilBusiness tabfilBusiness = new TabfilBusinessBean();
-    private Integer codfil = null;
-    private Integer tipo = null;
-    private boolean exportAll = false;
+    private static JFrame jFramePrincipal;
+    private final Actions a;
+    private ItensTableModel tableModel;
+    private final FireTabproBusinessBean fireTabproBusiness;
+    private final FireTabproimpBusinessBean fireTabproimpBusinessBean;
+    private final FireTabprofilBusinessBean fireTabprofilBusinessBean;
+    private final FireTabfilBusiness tabfilBusiness;
+    private Integer codfil;
+    private Integer tipo;
+    private boolean exportAll;
 
     /**
      * Creates new form JfrmPrincipal
+     *
+     * @param pai
      */
-    public ImpostoFiscal(JFrame pai) {
+    public ImpostoFiscal(javax.swing.JFrame pai) {
         jFramePrincipal = pai;
+        this.exportAll = false;
+        this.tipo = null;
+        this.codfil = null;
+        this.tabfilBusiness = new FireTabfilBusinessBean();
+        this.fireTabprofilBusinessBean = new FireTabprofilBusinessBean();
+        this.fireTabproimpBusinessBean = new FireTabproimpBusinessBean();
+        this.fireTabproBusiness = new FireTabproBusinessBean();
+        this.tableModel = null;
+        this.a = new Actions(jFramePrincipal);
+
         initComponents();
         definirFormulario();
     }
@@ -218,7 +230,7 @@ public class ImpostoFiscal extends JInternalFrame {
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addComponent(jLabel5)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(JlblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JlblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabel1)
                     .addGap(0, 0, Short.MAX_VALUE))
@@ -457,7 +469,7 @@ public class ImpostoFiscal extends JInternalFrame {
                 @Override
                 public void run() {
 
-                    JDlgCarregando carregando = a.carregarJdialog("Exportando...");
+                    JDlgCarregando carregando = a.carregarJdialog("Exportando...", jFramePrincipal);
                     if (!tableModel.getResultList().isEmpty()) {
                         JFileChooser chooser = new JFileChooser();
                         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -669,7 +681,7 @@ public class ImpostoFiscal extends JInternalFrame {
                         public void run() {
 
                             try {
-                                JDlgCarregando carregando = a.carregarJdialog("Atualizando...");
+                                JDlgCarregando carregando = a.carregarJdialog("Atualizando...", jFramePrincipal);
                                 carregando.setVisible(true);
                                 String texto = "Iniciando Ajustes de Tributação fiscal ...";
                                 carregando.loadBarra(texto, 0, 0, true);
@@ -808,12 +820,12 @@ public class ImpostoFiscal extends JInternalFrame {
                 public void run() {
                     try {
 
-                        JDlgCarregando carregando = a.carregarJdialog("");
+                        JDlgCarregando carregando = a.carregarJdialog("", jFramePrincipal);
                         codfil = ((Tabfil) jCbxFilial.getSelectedItem()).getCodfil();
                         tipo = jCbxTipo.getSelectedIndex();
                         carregando.setVisible(true);
                         carregando.loadBarra("Iniciando Pesquisa...", 0, 0, true);
-                        if (jTxtProd.getText() != null ) {
+                        if (jTxtProd.getText() != null) {
                             List<Object[]> query = fireTabproBusiness.getProdutobyDescorCod(jTxtProd.getText(), codfil, tipo);
                             tableModel.addItens(null);
                             if (!query.isEmpty()) {
@@ -906,7 +918,7 @@ public class ImpostoFiscal extends JInternalFrame {
                 @Override
                 public void run() {
                     try {
-                        JDlgCarregando carregando = a.carregarJdialog("Processo em manutenção ...");
+                        JDlgCarregando carregando = a.carregarJdialog("Processo em manutenção ...", jFramePrincipal);
                         carregando.setVisible(true);
                         carregando.loadBarra("Operação Não Autorizada !!", 0, 0, true);
                         Thread.sleep(1500);

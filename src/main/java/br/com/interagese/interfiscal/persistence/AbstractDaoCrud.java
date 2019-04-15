@@ -7,7 +7,6 @@ import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.Table;
 
 abstract class AbstractDaoCrud<T extends Model> implements DaoCrud<T> {
@@ -57,15 +56,14 @@ abstract class AbstractDaoCrud<T extends Model> implements DaoCrud<T> {
     /**
      * Método para executar um query de update
      */
-    public void executeUpdate(Query query) {
-
+    @Override
+    public void executeUpdate(List<String> sqls) {
+        em = getEntityManager();
         try {
-            EntityManager em = getEntityManager();
-
             em.getTransaction().begin();
-
-            query.executeUpdate();
-
+            for (String sql : sqls) {
+                em.createNativeQuery(sql).executeUpdate();
+            }
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,12 +80,22 @@ abstract class AbstractDaoCrud<T extends Model> implements DaoCrud<T> {
 
     @Override
     public T findById(Object id) {
+        T t = null;
+        em = getEntityManager();
+        try {
 
-        EntityManager em = getEntityManager();
+            t = em.find(entityClass, id);
 
-        T t = em.find(entityClass, id);
-
-        em.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+        } finally {
+            if (em.isOpen()) {
+                em.close();
+            }
+        }
 
         return t;
 
@@ -195,7 +203,7 @@ abstract class AbstractDaoCrud<T extends Model> implements DaoCrud<T> {
     @Override
     public Object count() {
 
-        EntityManager em = getEntityManager();
+        em = getEntityManager();
         try {
             return em.createNativeQuery("SELECT COUNT(*) FROM " + entityClass.getAnnotation(Table.class).name() + " ").getSingleResult();
         } finally {

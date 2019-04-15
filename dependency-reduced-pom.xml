@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>br.com.bruno</groupId>
   <artifactId>Inter-Fiscal</artifactId>
-  <version>x4.4.0.2.1</version>
+  <version>x4.4.0.2.3</version>
   <build>
     <resources>
       <resource>
@@ -107,6 +107,7 @@
                 <mainClass>br.com.interagese.interfiscal.app.Main</mainClass>
               </classPath>
               <jre>
+                <maxHeapSize>450</maxHeapSize>
                 <minVersion>1.8.0</minVersion>
               </jre>
               <versionInfo>

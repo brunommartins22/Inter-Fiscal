@@ -17,7 +17,7 @@ public class WebService {
 
     public WebTarget getClientService() {
         Client result = new ResteasyClientBuilder().build();
-        return result.target("localhost:8080/Inter-Fiscal-service/api/services");
+        return result.target("http://localhost:8080/inter-fiscal-service/api/services/");
     }
 
 }

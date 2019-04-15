@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  * @author bruno
  */
 public class JDlgCarregando extends javax.swing.JDialog {
-
+    
     private String texto;
     private JFrame principal;
     private Actions a = new Actions(principal);
@@ -27,27 +27,27 @@ public class JDlgCarregando extends javax.swing.JDialog {
         initComponents();
         definirFormulario();
         jTextArea1.setText(txt);
-
+        
     }
-
+    
     public void definirFormulario() {
         a.iconApplication(this);
         this.dispose();
         this.setUndecorated(true);
         this.setLocationRelativeTo(null);
-
+        
     }
-
+    
     public String getTexto() {
         return texto;
     }
-
+    
     public void setTexto(String texto) {
         jTextArea1.append("\n" + texto);
         jScrollPane1.getVerticalScrollBar().setValue(jScrollPane1.getVerticalScrollBar().getMaximum());
         this.texto = jTextArea1.getText();
     }
-
+    
     public void loadBarra(String text, Integer valorAtual, Integer valorTotal, boolean isAviso) {
         jProgressBar1.setMaximum(valorTotal);
         jProgressBar1.setValue(valorAtual);
@@ -57,9 +57,14 @@ public class JDlgCarregando extends javax.swing.JDialog {
         } else {
             jProgressBar1.setIndeterminate(false);
             jProgressBar1.setString(text + " - " + valorAtual + " de " + valorTotal);
-
+            
         }
         jProgressBar1.setStringPainted(true);
+    }
+    
+    public void limparBufferText() {
+        System.gc();
+        jTextArea1.setText("");
     }
 
     /**

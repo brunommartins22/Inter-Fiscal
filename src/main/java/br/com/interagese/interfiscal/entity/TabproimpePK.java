@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author bruno
+ * @author Bruno Martins
  */
 @Embeddable
 public class TabproimpePK implements Serializable {
@@ -22,12 +22,12 @@ public class TabproimpePK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
-    @Column(name = "CODIGO_PRODUTO")
+    @Column(name = "codigo_produto",updatable = false)
     private String codigoProduto;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "CODIGO_FILIAL")
-    private Integer codigoFilial;
+    @Column(name = "codigo_filial",updatable = false)
+    private int codigoFilial;
 
     public TabproimpePK() {
     }
@@ -45,11 +45,11 @@ public class TabproimpePK implements Serializable {
         this.codigoProduto = codigoProduto;
     }
 
-    public Integer getCodigoFilial() {
+    public int getCodigoFilial() {
         return codigoFilial;
     }
 
-    public void setCodigoFilial(Integer codigoFilial) {
+    public void setCodigoFilial(int codigoFilial) {
         this.codigoFilial = codigoFilial;
     }
 
@@ -79,7 +79,7 @@ public class TabproimpePK implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.interagese.transmissornfe.business.entity.TabproimpePK[ codigoProduto=" + codigoProduto + ", codigoFilial=" + codigoFilial + " ]";
+        return "br.com.interagese.interfiscal.app.TabproimpePK[ codigoProduto=" + codigoProduto + ", codigoFilial=" + codigoFilial + " ]";
     }
     
 }

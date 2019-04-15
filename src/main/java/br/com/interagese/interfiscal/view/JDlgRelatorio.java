@@ -7,8 +7,7 @@ package br.com.interagese.interfiscal.view;
 
 import br.com.interagese.interfiscal.business.FiscalTempBusiness;
 import br.com.interagese.interfiscal.business.FiscalTempBusinessBean;
-import br.com.interagese.interfiscal.business.TabfilBusiness;
-import br.com.interagese.interfiscal.business.TabfilBusinessBean;
+import br.com.interagese.interfiscal.business.FireTabfilBusinessBean;
 import br.com.interagese.interfiscal.business.TabproBusiness;
 import br.com.interagese.interfiscal.business.TabproBusinessBean;
 import br.com.interagese.interfiscal.entity.Fiscaltemp;
@@ -24,6 +23,7 @@ import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.plaf.metal.MetalButtonUI;
+import br.com.interagese.interfiscal.business.FireTabfilBusiness;
 
 /**
  *
@@ -31,7 +31,7 @@ import javax.swing.plaf.metal.MetalButtonUI;
  */
 public class JDlgRelatorio extends javax.swing.JDialog {
 
-    private TabfilBusiness tabfilBusiness = new TabfilBusinessBean();
+    private FireTabfilBusiness tabfilBusiness = new FireTabfilBusinessBean();
     private TabproBusiness tabproBusiness = new TabproBusinessBean();
     private FiscalTempBusiness fiscalTempBusiness = new FiscalTempBusinessBean();
     private JFrame principal = null;
@@ -280,7 +280,6 @@ public class JDlgRelatorio extends javax.swing.JDialog {
 
                             return;
                         }
-                        Thread.sleep(1500);
                         carregando.loadBarra("Carregando Relatório de Produtos ...", 0, 0, true);
                         List<Fiscaltemp> resultTemp = fiscalTempBusiness.getListagemRelatorio((produto == null ? null : produto.getCodbarun().trim()), jComboBox2.getSelectedIndex(), jDateChooser1.getDate(), jDateChooser2.getDate());
                         if (resultTemp == null || resultTemp.isEmpty()) {
@@ -288,7 +287,7 @@ public class JDlgRelatorio extends javax.swing.JDialog {
                             carregando.setTexto("Finalizando Operação...");
                             carregando.setVisible(false);
 
-                            Thread.sleep(1500);
+                            Thread.sleep(1000);
                             return;
                         }
 
@@ -297,7 +296,6 @@ public class JDlgRelatorio extends javax.swing.JDialog {
                         carregando.loadBarra("Gerando Relatório de Produtos ...", 0, 0, true);
                         carregando.setTexto("Carregando Relatorio...");
                         carregando.setVisible(false);
-                        Thread.sleep(1500);
                         impressao.buildJDialog(resultTemp, principal).setVisible(true);
 
                         //******************************************************************

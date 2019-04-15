@@ -2,6 +2,7 @@ package br.com.interagese.interfiscal.persistence;
 
 import br.com.interagese.interfiscal.entity.Model;
 import java.util.List;
+import javax.persistence.Query;
 
 public interface DaoCrud<T extends Model> {
 
@@ -22,9 +23,11 @@ public interface DaoCrud<T extends Model> {
     public List<T> getSearchAll(int position);
 
     public List<T> getAll(String parameter);
-    
-    public List<T> getSearchAll(int position,String parameter);
-    
+
+    public List<T> getSearchAll(int position, String parameter);
+
     public void updateList(List<T> entity);
+
+    public void executeUpdate(List<String> ListSql);
 
 }

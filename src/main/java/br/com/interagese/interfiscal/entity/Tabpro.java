@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.interagese.interfiscal.entity;
 
 import java.util.Date;
@@ -13,8 +18,12 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ *
+ * @author Bruno Martins
+ */
 @Entity
-@Table(name = "TABPRO")
+@Table(name = "tabpro")
 @NamedQueries({
     @NamedQuery(name = "Tabpro.findAll", query = "SELECT t FROM Tabpro t")})
 public class Tabpro implements Model {
@@ -24,337 +33,353 @@ public class Tabpro implements Model {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 6)
-    @Column(name = "CODPRO", updatable = false)
+    @Column(name = "codpro", updatable = false)
     private String codpro;
     @Size(max = 50)
-    @Column(name = "DESCPRO", updatable = false)
+    @Column(name = "descpro", updatable = false)
     private String descpro;
     @Size(max = 200)
-    @Column(name = "DETALHE", updatable = false)
+    @Column(name = "detalhe", updatable = false)
     private String detalhe;
     @Size(max = 20)
-    @Column(name = "CODBARUN")
+    @Column(name = "codbarun", updatable = false)
     private String codbarun;
     @Size(max = 20)
-    @Column(name = "CODBARCX", updatable = false)
+    @Column(name = "codbarcx", updatable = false)
     private String codbarcx;
     @Size(max = 20)
-    @Column(name = "CODREFER", updatable = false)
+    @Column(name = "codrefer", updatable = false)
     private String codrefer;
     @Size(max = 2)
-    @Column(name = "UNEMB", updatable = false)
+    @Column(name = "unemb", updatable = false)
     private String unemb;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QTDEMB", updatable = false)
+    @Column(name = "qtdemb", updatable = false)
     private Double qtdemb;
     @Size(max = 2)
-    @Column(name = "UNIDADE", updatable = false)
+    @Column(name = "unidade", updatable = false)
     private String unidade;
     @Size(max = 6)
-    @Column(name = "CODVAS", updatable = false)
+    @Column(name = "codvas", updatable = false)
     private String codvas;
-    @Column(name = "VLCOMI", updatable = false)
+    @Column(name = "vlcomi", updatable = false)
     private Double vlcomi;
     @Size(max = 6)
-    @Column(name = "GRUPRO", updatable = false)
+    @Column(name = "grupro", updatable = false)
     private String grupro;
-    @Column(name = "FABPRO", updatable = false)
+    @Column(name = "fabpro", updatable = false)
     private Integer fabpro;
-    @Column(name = "FORPRO01", updatable = false)
+    @Column(name = "forpro01", updatable = false)
     private Integer forpro01;
-    @Column(name = "FORPRO02", updatable = false)
+    @Column(name = "forpro02", updatable = false)
     private Integer forpro02;
-    @Column(name = "FORPRO03", updatable = false)
+    @Column(name = "forpro03", updatable = false)
     private Integer forpro03;
     @Size(max = 10)
-    @Column(name = "DOCFOR01", updatable = false)
+    @Column(name = "docfor01", updatable = false)
     private String docfor01;
     @Size(max = 10)
-    @Column(name = "DOCFOR02", updatable = false)
+    @Column(name = "docfor02", updatable = false)
     private String docfor02;
     @Size(max = 10)
-    @Column(name = "DOCFOR03", updatable = false)
+    @Column(name = "docfor03", updatable = false)
     private String docfor03;
-    @Column(name = "QTDULTENT01", updatable = false)
+    @Column(name = "qtdultent01", updatable = false)
     private Double qtdultent01;
-    @Column(name = "QTDULTENT02", updatable = false)
+    @Column(name = "qtdultent02", updatable = false)
     private Double qtdultent02;
-    @Column(name = "QTDULTENT03", updatable = false)
+    @Column(name = "qtdultent03", updatable = false)
     private Double qtdultent03;
-    @Column(name = "ULTPRCOM01", updatable = false)
+    @Column(name = "ultprcom01", updatable = false)
     private Double ultprcom01;
-    @Column(name = "ULTPRCOM02", updatable = false)
+    @Column(name = "ultprcom02", updatable = false)
     private Double ultprcom02;
-    @Column(name = "ULTPRCOM03", updatable = false)
+    @Column(name = "ultprcom03", updatable = false)
     private Double ultprcom03;
-    @Column(name = "DTULTCOM01", updatable = false)
+    @Column(name = "dtultcom01", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtultcom01;
-    @Column(name = "DTULTCOM02", updatable = false)
+    @Column(name = "dtultcom02", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtultcom02;
-    @Column(name = "DTULTCOM03", updatable = false)
+    @Column(name = "dtultcom03", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtultcom03;
-    @Column(name = "DTCHEGADA", updatable = false)
+    @Column(name = "dtchegada", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtchegada;
-    @Column(name = "DTSAIPRO", updatable = false)
+    @Column(name = "dtsaipro", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtsaipro;
-    @Column(name = "ICMS")
+    @Column(name = "icms")
     private Double icms;
     @Size(max = 2)
-    @Column(name = "INDICE")
+    @Column(name = "indice")
     private String indice;
-    @Column(name = "PESO", updatable = false)
+    @Column(name = "peso", updatable = false)
     private Character peso;
-    @Column(name = "LARGURA", updatable = false)
+    @Column(name = "largura", updatable = false)
     private Double largura;
-    @Column(name = "ALTURA", updatable = false)
+    @Column(name = "altura", updatable = false)
     private Double altura;
-    @Column(name = "MASSACOMPR", updatable = false)
+    @Column(name = "massacompr", updatable = false)
     private Character massacompr;
-    @Column(name = "CONTRQUANT", updatable = false)
+    @Column(name = "contrquant", updatable = false)
     private Character contrquant;
-    @Column(name = "CONTRREFER", updatable = false)
+    @Column(name = "contrrefer", updatable = false)
     private Character contrrefer;
-    @Column(name = "CONTRCOMP", updatable = false)
+    @Column(name = "contrcomp", updatable = false)
     private Character contrcomp;
-    @Column(name = "CONTRPONTO", updatable = false)
+    @Column(name = "contrponto", updatable = false)
     private Character contrponto;
-    @Column(name = "BAIXAPONTO", updatable = false)
+    @Column(name = "baixaponto", updatable = false)
     private Integer baixaponto;
-    @Column(name = "STPROD", updatable = false)
+    @Column(name = "stprod", updatable = false)
     private Character stprod;
-    @Column(name = "QUALPROD", updatable = false)
+    @Column(name = "qualprod", updatable = false)
     private Character qualprod;
-    @Column(name = "RGCODUSU", updatable = false)
+    @Column(name = "rgcodusu", updatable = false)
     private Integer rgcodusu;
     @Size(max = 8)
-    @Column(name = "RGUSUARIO", updatable = false)
+    @Column(name = "rgusuario", updatable = false)
     private String rgusuario;
-    @Column(name = "RGDATA")
+    @Column(name = "rgdata")
     @Temporal(TemporalType.TIMESTAMP)
     private Date rgdata;
     @Size(max = 1)
-    @Column(name = "RGEVENTO", updatable = false)
+    @Column(name = "rgevento", updatable = false)
     private String rgevento;
-    @Column(name = "FATORPIS")
+    @Column(name = "fatorpis")
     private Double fatorpis;
-    @Column(name = "FATORCOFINS")
+    @Column(name = "fatorcofins")
     private Double fatorcofins;
-    @Column(name = "SUBSTRIB", updatable = false)
+    @Column(name = "substrib", updatable = false)
     private Character substrib;
-    @Column(name = "IPI", updatable = false)
+    @Column(name = "ipi", updatable = false)
     private Character ipi;
-    @Column(name = "PERCIPI", updatable = false)
+    @Column(name = "percipi", updatable = false)
     private Double percipi;
-    @Column(name = "MEIOAMEIO", updatable = false)
+    @Column(name = "meioameio", updatable = false)
     private Character meioameio;
-    @Column(name = "TPSUBEST", updatable = false)
+    @Column(name = "tpsubest", updatable = false)
     private Character tpsubest;
     @Size(max = 100)
-    @Column(name = "MODELO", updatable = false)
+    @Column(name = "modelo", updatable = false)
     private String modelo;
     @Size(max = 100)
-    @Column(name = "TAMANHO", updatable = false)
+    @Column(name = "tamanho", updatable = false)
     private String tamanho;
-    @Column(name = "PERCLUCRO", updatable = false)
+    @Column(name = "perclucro", updatable = false)
     private Double perclucro;
-//    @Column(name = "REMCONTR")
-//    private Character remcontr;
-    @Column(name = "LIBQUANT", updatable = false)
+    @Column(name = "remcontr", updatable = false)
+    private Character remcontr;
+    @Column(name = "libquant", updatable = false)
     private Character libquant;
-    @Column(name = "VLCOMIAVVA", updatable = false)
+    @Column(name = "vlcomiavva", updatable = false)
     private Double vlcomiavva;
-    @Column(name = "VLCOMICCVA", updatable = false)
+    @Column(name = "vlcomiccva", updatable = false)
     private Double vlcomiccva;
-    @Column(name = "VLCOMIAPVA", updatable = false)
+    @Column(name = "vlcomiapva", updatable = false)
     private Double vlcomiapva;
-    @Column(name = "VLCOMIAVAT", updatable = false)
+    @Column(name = "vlcomiavat", updatable = false)
     private Double vlcomiavat;
-    @Column(name = "VLCOMICCAT", updatable = false)
+    @Column(name = "vlcomiccat", updatable = false)
     private Double vlcomiccat;
-    @Column(name = "VLCOMIAPAT", updatable = false)
+    @Column(name = "vlcomiapat", updatable = false)
     private Double vlcomiapat;
-    @Column(name = "DTVENC01", updatable = false)
+    @Column(name = "dtvenc01", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtvenc01;
-    @Column(name = "DTVENC02", updatable = false)
+    @Column(name = "dtvenc02", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtvenc02;
     @Size(max = 20)
-    @Column(name = "LTVENC01", updatable = false)
+    @Column(name = "ltvenc01", updatable = false)
     private String ltvenc01;
     @Size(max = 20)
-    @Column(name = "LTVENC02", updatable = false)
+    @Column(name = "ltvenc02", updatable = false)
     private String ltvenc02;
-    @Column(name = "BALANCA", updatable = false)
+    @Column(name = "balanca", updatable = false)
     private Character balanca;
     @Size(max = 8)
-    @Column(name = "CLASFISCAL")
+    @Column(name = "clasfiscal")
     private String clasfiscal;
-    @Column(name = "CODALUSER", updatable = false)
+    @Column(name = "codaluser", updatable = false)
     private Integer codaluser;
-    @Column(name = "CODCOLECAO", updatable = false)
+    @Column(name = "codcolecao", updatable = false)
     private Integer codcolecao;
-    @Column(name = "QUANTPED", updatable = false)
+    @Column(name = "quantped", updatable = false)
     private Double quantped;
-    @Column(name = "DTCHEGPED", updatable = false)
+    @Column(name = "dtchegped", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtchegped;
     @Size(max = 10)
-    @Column(name = "CORCONSUL", updatable = false)
+    @Column(name = "corconsul", updatable = false)
     private String corconsul;
-    @Column(name = "CASADEC", updatable = false)
+    @Column(name = "casadec", updatable = false)
     private Integer casadec;
     @Size(max = 4)
-    @Column(name = "CST")
+    @Column(name = "cst")
     private String cst;
     @Size(max = 250)
-    @Column(name = "CORES", updatable = false)
+    @Column(name = "cores", updatable = false)
     private String cores;
-    @Column(name = "TRIBMONO", updatable = false)
+    @Column(name = "tribmono", updatable = false)
     private Character tribmono;
-    @Column(name = "PESOBRUTO", updatable = false)
+    @Column(name = "pesobruto", updatable = false)
     private Double pesobruto;
-    @Column(name = "PESOLIQUIDO", updatable = false)
+    @Column(name = "pesoliquido", updatable = false)
     private Double pesoliquido;
-    @Column(name = "LIBDESCONTO", updatable = false)
+    @Column(name = "libdesconto", updatable = false)
     private Character libdesconto;
     @Size(max = 2)
-    @Column(name = "TIPOITEM", updatable = false)
+    @Column(name = "tipoitem", updatable = false)
     private String tipoitem;
     @Size(max = 3)
-    @Column(name = "EXIPI", updatable = false)
+    @Column(name = "exipi", updatable = false)
     private String exipi;
     @Size(max = 2)
-    @Column(name = "CODGEN")
+    @Column(name = "codgen")
     private String codgen;
     @Size(max = 4)
-    @Column(name = "CODLST", updatable = false)
+    @Column(name = "codlst", updatable = false)
     private String codlst;
     @Size(max = 9)
-    @Column(name = "CODANP", updatable = false)
+    @Column(name = "codanp", updatable = false)
     private String codanp;
     @Size(max = 21)
-    @Column(name = "CODIF", updatable = false)
+    @Column(name = "codif", updatable = false)
     private String codif;
     @Size(max = 1)
-    @Column(name = "CLASTERAP", updatable = false)
+    @Column(name = "clasterap", updatable = false)
     private String clasterap;
     @Size(max = 1)
-    @Column(name = "USOPROLONG", updatable = false)
+    @Column(name = "usoprolong", updatable = false)
     private String usoprolong;
     @Size(max = 13)
-    @Column(name = "REGMSMED", updatable = false)
+    @Column(name = "regmsmed", updatable = false)
     private String regmsmed;
     @Size(max = 1)
-    @Column(name = "UNIDMED", updatable = false)
+    @Column(name = "unidmed", updatable = false)
     private String unidmed;
     @Size(max = 5)
-    @Column(name = "CODDCBINS", updatable = false)
+    @Column(name = "coddcbins", updatable = false)
     private String coddcbins;
     @Size(max = 1)
-    @Column(name = "CESTABAS", updatable = false)
+    @Column(name = "cestabas", updatable = false)
     private String cestabas;
     @Size(max = 1)
-    @Column(name = "DESONFOLHA", updatable = false)
+    @Column(name = "desonfolha", updatable = false)
     private String desonfolha;
-    @Column(name = "DIASVENC", updatable = false)
+    @Column(name = "diasvenc", updatable = false)
     private Integer diasvenc;
     @Size(max = 1)
-    @Column(name = "ORIGPROD", updatable = false)
+    @Column(name = "origprod", updatable = false)
     private String origprod;
-    @Column(name = "ICODPRO", updatable = false)
+    @Basic(optional = false)
+    @Column(name = "icodpro", updatable = false)
     private Integer icodpro;
     @Size(max = 1)
-    @Column(name = "FARMAPOP", updatable = false)
+    @Column(name = "farmapop", updatable = false)
     private String farmapop;
-    @Column(name = "QUANTUND", updatable = false)
+    @Column(name = "quantund", updatable = false)
     private Double quantund;
     @Size(max = 10)
-    @Column(name = "UNIDEMB", updatable = false)
+    @Column(name = "unidemb", updatable = false)
     private String unidemb;
     @Size(max = 1)
-    @Column(name = "CHAMATEC", updatable = false)
+    @Column(name = "chamatec", updatable = false)
     private String chamatec;
-    @Column(name = "DETALHE2", updatable = false)
-    private String detalhe2 = "";
+    @Size(max = 2147483647)
+    @Column(name = "detalhe2", updatable = false)
+    private String detalhe2;
     @Size(max = 7)
-    @Column(name = "CEST")
+    @Column(name = "cest")
     private String cest;
     @Size(max = 5)
-    @Column(name = "CODDCB", updatable = false)
+    @Column(name = "coddcb", updatable = false)
     private String coddcb;
     @Size(max = 2)
-    @Column(name = "CODLISTA", updatable = false)
+    @Column(name = "codlista", updatable = false)
     private String codlista;
     @Size(max = 1)
-    @Column(name = "IMPCUPOM", updatable = false)
+    @Column(name = "impcupom", updatable = false)
     private String impcupom;
     @Size(max = 20)
-    @Column(name = "CODSPED", updatable = false)
+    @Column(name = "codsped", updatable = false)
     private String codsped;
     @Size(max = 1)
-    @Column(name = "TPVENCIMNETO", updatable = false)
+    @Column(name = "tpvencimneto", updatable = false)
     private String tpvencimneto;
     @Size(max = 13)
-    @Column(name = "CODANVISA", updatable = false)
+    @Column(name = "codanvisa", updatable = false)
     private String codanvisa;
-    @Column(name = "DTULTPEDIDO", updatable = false)
+    @Column(name = "dtultpedido", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtultpedido;
     @Size(max = 1)
-    @Column(name = "MEDPOSNEG", updatable = false)
+    @Column(name = "medposneg", updatable = false)
     private String medposneg;
     @Size(max = 2)
-    @Column(name = "UNIDPED", updatable = false)
+    @Column(name = "unidped", updatable = false)
     private String unidped;
-    @Size(max = 1)
-    @Column(name = "INDESCALA", updatable = false)
-    private String indescala;
-    @Size(max = 14)
-    @Column(name = "CNPJFAB", updatable = false)
-    private String cnpjfab;
     @Size(max = 10)
-    @Column(name = "CBENEF", updatable = false)
+    @Column(name = "cbenef", updatable = false)
     private String cbenef;
-    @Column(name = "PDIF", updatable = false)
+    @Column(name = "pdif", updatable = false)
     private Double pdif;
-    @Size(max = 95)
-    @Column(name = "COMBDESCANP", updatable = false)
+    @Size(max = 80)
+    @Column(name = "combdescanp", updatable = false)
     private String combdescanp;
-
+    @Size(max = 14)
+    @Column(name = "cnpjfab", updatable = false)
+    private String cnpjfab;
     @Size(max = 1)
-    @Column(name = "QUARTOBOV", updatable = false)
+    @Column(name = "indescala", updatable = false)
+    private String indescala;
+//    @Size(max = 1)
+//    @Column(name = "tpvencimento", updatable = false)
+//    private String tpvencimento;
+    @Size(max = 1)
+    @Column(name = "quartobov", updatable = false)
     private String quartobov;
-
     @Size(max = 2)
-    @Column(name = "UNIDADEQUARTO", updatable = false)
+    @Column(name = "unidadequarto", updatable = false)
     private String unidadequarto;
-
-    @Column(name = "NATPRO")
+    @Column(name = "propglp", updatable = false)
+    private Double propglp;
+    @Column(name = "propgnn", updatable = false)
+    private Double propgnn;
+    @Column(name = "propgni", updatable = false)
+    private Double propgni;
+    @Column(name = "provpart", updatable = false)
+    private Double provpart;
+    @Column(name = "dtenvserv", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtenvserv;
+    @Size(max = 4)
+    @Column(name = "natpro")
     private String natpro;
-
     @Size(max = 2)
-    @Column(name = "CSTPIS")
-    private String cstPis;
-
+    @Column(name = "cstpis")
+    private String cstpis;
     @Size(max = 2)
-    @Column(name = "CSTCOFINS")
-    private String cstCofins;
-
+    @Column(name = "cstcofins")
+    private String cstcofins;
     @Size(max = 2)
-    @Column(name = "CSTIPI")
-    private String cstIpi;
+    @Column(name = "cstipi", updatable = false)
+    private String cstipi;
 
     public Tabpro() {
     }
 
     public Tabpro(String codpro) {
         this.codpro = codpro;
+    }
+
+    public Tabpro(String codpro, Integer icodpro) {
+        this.codpro = codpro;
+        this.icodpro = icodpro;
     }
 
     public String getCodpro() {
@@ -813,13 +838,14 @@ public class Tabpro implements Model {
         this.perclucro = perclucro;
     }
 
-//    public Character getRemcontr() {
-//        return remcontr;
-//    }
-//
-//    public void setRemcontr(Character remcontr) {
-//        this.remcontr = remcontr;
-//    }
+    public Character getRemcontr() {
+        return remcontr;
+    }
+
+    public void setRemcontr(Character remcontr) {
+        this.remcontr = remcontr;
+    }
+
     public Character getLibquant() {
         return libquant;
     }
@@ -1268,22 +1294,6 @@ public class Tabpro implements Model {
         this.unidped = unidped;
     }
 
-    public String getIndescala() {
-        return indescala;
-    }
-
-    public void setIndescala(String indescala) {
-        this.indescala = indescala;
-    }
-
-    public String getCnpjfab() {
-        return cnpjfab;
-    }
-
-    public void setCnpjfab(String cnpjfab) {
-        this.cnpjfab = cnpjfab;
-    }
-
     public String getCbenef() {
         return cbenef;
     }
@@ -1308,6 +1318,30 @@ public class Tabpro implements Model {
         this.combdescanp = combdescanp;
     }
 
+    public String getCnpjfab() {
+        return cnpjfab;
+    }
+
+    public void setCnpjfab(String cnpjfab) {
+        this.cnpjfab = cnpjfab;
+    }
+
+    public String getIndescala() {
+        return indescala;
+    }
+
+    public void setIndescala(String indescala) {
+        this.indescala = indescala;
+    }
+
+//    public String getTpvencimento() {
+//        return tpvencimento;
+//    }
+//
+//    public void setTpvencimento(String tpvencimento) {
+//        this.tpvencimento = tpvencimento;
+//    }
+
     public String getQuartobov() {
         return quartobov;
     }
@@ -1322,6 +1356,78 @@ public class Tabpro implements Model {
 
     public void setUnidadequarto(String unidadequarto) {
         this.unidadequarto = unidadequarto;
+    }
+
+    public Double getPropglp() {
+        return propglp;
+    }
+
+    public void setPropglp(Double propglp) {
+        this.propglp = propglp;
+    }
+
+    public Double getPropgnn() {
+        return propgnn;
+    }
+
+    public void setPropgnn(Double propgnn) {
+        this.propgnn = propgnn;
+    }
+
+    public Double getPropgni() {
+        return propgni;
+    }
+
+    public void setPropgni(Double propgni) {
+        this.propgni = propgni;
+    }
+
+    public Double getProvpart() {
+        return provpart;
+    }
+
+    public void setProvpart(Double provpart) {
+        this.provpart = provpart;
+    }
+
+    public Date getDtenvserv() {
+        return dtenvserv;
+    }
+
+    public void setDtenvserv(Date dtenvserv) {
+        this.dtenvserv = dtenvserv;
+    }
+
+    public String getNatpro() {
+        return natpro;
+    }
+
+    public void setNatpro(String natpro) {
+        this.natpro = natpro;
+    }
+
+    public String getCstpis() {
+        return cstpis;
+    }
+
+    public void setCstpis(String cstpis) {
+        this.cstpis = cstpis;
+    }
+
+    public String getCstcofins() {
+        return cstcofins;
+    }
+
+    public void setCstcofins(String cstcofins) {
+        this.cstcofins = cstcofins;
+    }
+
+    public String getCstipi() {
+        return cstipi;
+    }
+
+    public void setCstipi(String cstipi) {
+        this.cstipi = cstipi;
     }
 
     @Override
@@ -1346,7 +1452,7 @@ public class Tabpro implements Model {
 
     @Override
     public String toString() {
-        return "br.com.interagese.transmissornfe.business.entity.Tabpro[ codpro=" + codpro + " ]";
+        return "br.com.interagese.interfiscal.app.Tabpro[ codpro=" + codpro + " ]";
     }
 
     @Override
@@ -1356,57 +1462,7 @@ public class Tabpro implements Model {
 
     @Override
     public void setId(Object object) {
-        this.codpro = codpro;
-    }
-
-    public String getNatpro() {
-        return natpro;
-    }
-
-    public void setNatpro(String natPro) {
-        this.natpro = natPro;
-    }
-
-    /**
-     * @return the cstPis
-     */
-    public String getCstPis() {
-        return cstPis;
-    }
-
-    /**
-     * @param cstPis the cstPis to set
-     */
-    public void setCstPis(String cstPis) {
-        this.cstPis = cstPis;
-    }
-
-    /**
-     * @return the cstCofins
-     */
-    public String getCstCofins() {
-        return cstCofins;
-    }
-
-    /**
-     * @param cstCofins the cstCofins to set
-     */
-    public void setCstCofins(String cstCofins) {
-        this.cstCofins = cstCofins;
-    }
-
-    /**
-     * @return the cstIpi
-     */
-    public String getCstIpi() {
-        return cstIpi;
-    }
-
-    /**
-     * @param cstIpi the cstIpi to set
-     */
-    public void setCstIpi(String cstIpi) {
-        this.cstIpi = cstIpi;
+        this.codpro = object.toString();
     }
 
 }

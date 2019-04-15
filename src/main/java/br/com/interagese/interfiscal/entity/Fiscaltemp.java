@@ -5,15 +5,16 @@
  */
 package br.com.interagese.interfiscal.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,7 +24,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author bruno
+ * @author Bruno Martins
  */
 @Entity
 @Table(name = "fiscaltemp")
@@ -32,7 +33,6 @@ import javax.validation.constraints.Size;
 public class Fiscaltemp implements Model {
 
     private static final long serialVersionUID = 1L;
-
     @Size(max = 200)
     @Column(name = "nome_produto")
     private String nomeProduto;
@@ -106,7 +106,9 @@ public class Fiscaltemp implements Model {
     @Column(name = "cofins_alq_s_before")
     private Double cofinsAlqSBefore;
     @Column(name = "codigo_filial")
-    private Integer codigoFilial;
+    private String codigoFilial;
+    @Column(name = "codigo_crt")
+    private String codigoCrt;
     @Size(max = 20)
     @Column(name = "ean")
     private String ean;
@@ -369,30 +371,10 @@ public class Fiscaltemp implements Model {
     @Column(name = "data_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataRegistro;
-    @Transient
-    private String cstTemp;
-    @Transient
-    private List<Piscofins> resultPisCofins;
-    @Transient
-    private List<IcmsEntrada> resultIcmsEntrada;
-    @Transient
-    private List<IcmsSaida> resultIcmsSaida;
+//    @Transient
+//    private String cfop;
 
     public Fiscaltemp() {
-
-    }
-
-    public String getCstTemp() {
-        if (sncCst == null || sncCst.equals("")) {
-            cstTemp = sncCsosn;
-        } else {
-            cstTemp = sncCst;
-        }
-        return cstTemp;
-    }
-
-    public void setCstTemp(String cstTemp) {
-        this.cstTemp = cstTemp;
     }
 
     public Fiscaltemp(String codigoProduto) {
@@ -607,11 +589,11 @@ public class Fiscaltemp implements Model {
         this.cofinsAlqSBefore = cofinsAlqSBefore;
     }
 
-    public Integer getCodigoFilial() {
+    public String getCodigoFilial() {
         return codigoFilial;
     }
 
-    public void setCodigoFilial(Integer codigoFilial) {
+    public void setCodigoFilial(String codigoFilial) {
         this.codigoFilial = codigoFilial;
     }
 
@@ -1495,6 +1477,14 @@ public class Fiscaltemp implements Model {
         this.atualizacaoIcmssaida = atualizacaoIcmssaida;
     }
 
+    public Date getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -1530,69 +1520,17 @@ public class Fiscaltemp implements Model {
         this.codigoProduto = object.toString();
     }
 
-    /**
-     * @return the dataRegistro
-     */
-    public Date getDataRegistro() {
-        return dataRegistro;
+    public String getCodigoCrt() {
+        return codigoCrt;
     }
 
-    /**
-     * @param dataRegistro the dataRegistro to set
-     */
-    public void setDataRegistro(Date dataRegistro) {
-        this.dataRegistro = dataRegistro;
+    public void setCodigoCrt(String codigoCrt) {
+        this.codigoCrt = codigoCrt;
     }
 
-    /**
-     * @return the resultPisCofins
-     */
-    public List<Piscofins> getResultPisCofins() {
-        if (resultPisCofins == null) {
-            resultPisCofins = new ArrayList<>();
-        }
-        return resultPisCofins;
-    }
-
-    /**
-     * @param resultPisCofins the resultPisCofins to set
-     */
-    public void setResultPisCofins(List<Piscofins> resultPisCofins) {
-        this.resultPisCofins = resultPisCofins;
-    }
-
-    /**
-     * @return the resultIcmsEntrada
-     */
-    public List<IcmsEntrada> getResultIcmsEntrada() {
-        if (resultIcmsEntrada == null) {
-            resultIcmsEntrada = new ArrayList<>();
-        }
-        return resultIcmsEntrada;
-    }
-
-    /**
-     * @param resultIcmsEntrada the resultIcmsEntrada to set
-     */
-    public void setResultIcmsEntrada(List<IcmsEntrada> resultIcmsEntrada) {
-        this.resultIcmsEntrada = resultIcmsEntrada;
-    }
-
-    /**
-     * @return the resultIcmsSaida
-     */
-    public List<IcmsSaida> getResultIcmsSaida() {
-        if (resultIcmsSaida == null) {
-            resultIcmsSaida = new ArrayList<>();
-        }
-        return resultIcmsSaida;
-    }
-
-    /**
-     * @param resultIcmsSaida the resultIcmsSaida to set
-     */
-    public void setResultIcmsSaida(List<IcmsSaida> resultIcmsSaida) {
-        this.resultIcmsSaida = resultIcmsSaida;
-    }
-
+//    public String getCfop(){
+//        return cfop;
+//    }
+//    public void setCfop(String cfop){
+//        this.cfop = cfop;F
 }

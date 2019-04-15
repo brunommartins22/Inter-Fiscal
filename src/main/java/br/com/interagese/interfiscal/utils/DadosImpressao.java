@@ -5,8 +5,7 @@
  */
 package br.com.interagese.interfiscal.utils;
 
-import br.com.interagese.interfiscal.business.TabfilBusiness;
-import br.com.interagese.interfiscal.business.TabfilBusinessBean;
+import br.com.interagese.interfiscal.business.FireTabfilBusinessBean;
 import br.com.interagese.interfiscal.business.TabusuBusiness;
 import br.com.interagese.interfiscal.business.TabusuBusinessBean;
 import br.com.interagese.interfiscal.entity.Tabusu;
@@ -16,6 +15,7 @@ import java.io.InputStream;
 import java.util.List;
 import javax.swing.JDialog;
 import net.sf.jasperreports.engine.JRException;
+import br.com.interagese.interfiscal.business.FireTabfilBusiness;
 
 /**
  *
@@ -25,7 +25,7 @@ public class DadosImpressao extends ReportBuilder {
 
     private Tabusu usuario;
     private TabusuBusiness tabusuBusiness = new TabusuBusinessBean();
-    private TabfilBusiness tabfilBusiness = new TabfilBusinessBean();
+    private FireTabfilBusiness tabfilBusiness = new FireTabfilBusinessBean();
 
     public DadosImpressao(InputStream pathJasper) {
         super(pathJasper);

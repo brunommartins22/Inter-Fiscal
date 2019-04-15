@@ -52,7 +52,7 @@ import org.apache.commons.io.IOUtils;
  */
 public class Actions {
 
-    private javax.swing.JFrame jfrmPrincipal;
+    private static javax.swing.JFrame jfrmPrincipal;
 
     public Actions(javax.swing.JFrame principal) {
         jfrmPrincipal = principal;
@@ -218,10 +218,11 @@ public class Actions {
      * instance dialog carregando
      *
      * @param txt
+     * @param pai
      * @return
      */
-    public JDlgCarregando carregarJdialog(String txt) {
-        JDlgCarregando carregando = new JDlgCarregando(jfrmPrincipal, false, txt);
+    public JDlgCarregando carregarJdialog(String txt, JFrame pai) {
+        JDlgCarregando carregando = new JDlgCarregando(pai, false, txt);
         return carregando;
     }
 
@@ -238,13 +239,13 @@ public class Actions {
                 String pathLogError = "";
                 switch (valueModulo) {
                     case 1: {//mix-fiscal
-                        pathLogSucess = "Log-MixFiscal\\log-sucess.txt";
-                        pathLogError = "Log-MixFiscal\\log-error.txt";
+                        pathLogSucess = "Log-MixFiscal\\log-sucess-mix.txt";
+                        pathLogError = "Log-MixFiscal\\log-error-mix.txt";
                         break;
                     }
                     case 2: {//importacao-fiscal
-                        pathLogSucess = "Log-Importacao\\log-sucess.txt";
-                        pathLogError = "Log-Importacao\\log-error.txt";
+                        pathLogSucess = "Log-Importacao\\log-sucess-import.txt";
+                        pathLogError = "Log-Importacao\\log-error-import.txt";
                         break;
                     }
                 }
@@ -260,7 +261,7 @@ public class Actions {
                         }
                         buffRead.close();
                     }
-                    log.delete();
+//                    log.delete();
                     FileWriter arq = new FileWriter(log);
                     PrintWriter gravarArq = new PrintWriter(arq);
 
@@ -282,7 +283,7 @@ public class Actions {
                         txt += " Nenhuma Atualização Disponivel ...";
                     }
 
-                    gravarArq.printf(linha + txt);
+                    gravarArq.printf(txt);
                     arq.close();
                 } else {
                     File logError = new File(pathLogError);

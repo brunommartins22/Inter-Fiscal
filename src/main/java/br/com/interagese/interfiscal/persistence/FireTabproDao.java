@@ -1,6 +1,7 @@
 package br.com.interagese.interfiscal.persistence;
 
 import br.com.interagese.interfiscal.annotation.DataBase;
+import br.com.interagese.interfiscal.entity.Fiscaltemp;
 import br.com.interagese.interfiscal.entity.ImportacaoImp;
 import br.com.interagese.interfiscal.entity.Tabpro;
 import br.com.interagese.interfiscal.utils.Actions;
@@ -195,6 +196,37 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
 
             if (!query.isEmpty()) {
                 query.forEach((o) -> {
+                    
+//                    Fiscaltemp temp = new Fiscaltemp();
+//                    temp.setNomeProduto(o[0] != null ? (String) o[0] : "");
+//                    temp.setCodigoProduto(o[1] != null ? (String) o[1] : "");
+//                    temp.setEan(o[2] != null ? (String) o[2] : "");
+//                    temp.setNcm(o[4] != null ? (String) o[4] : "");
+//                    temp.setCfop(o[5] != null ? (String) o[5] : "");
+//                    temp.setCest(o[6] != null ? (String) o[6] : "");
+//                    temp.setEsCst(o[7] != null ? (String) o[7] : "");
+//                    temp.setEsAlq(o[8] != null ? (Double) o[8] : 0.0);
+//                    temp.setEsAlqst(o[9] != null ? (Double) o[9] : 0.0);
+//                    temp.setEsRbc(o[10] != null ? (Double) o[11] : 0.0);
+//                    temp.setEsRbcst(o[11] != null ? (Double) o[11] : 0.0);
+//                    temp.setSncCst(o[12] != null ? (String) o[12] : "");
+//                    temp.setSncAlq(o[13] != null ? (Double) o[13] : 0.0);
+//                    temp.setSncAlqst(o[14] != null ? (Double) o[14] : 0.0);
+//                    temp.setSncRbc(o[15] != null ? (Double) o[15] : 0.0);
+//                    temp.setSncRbcst(o[16] != null ? (Double) o[16] : 0.0);
+//                    temp.setPisCstE(o[17] != null ? (String) o[17] : "");
+//                    temp.setPisAlqE(o[18] != null ? (Double) o[18] : 0.0);
+//                    temp.setPisCstS(o[19] != null ? (String) o[19] : "");
+//                    temp.setPisAlqS(o[20] != null ? (Double) o[20] : 0.0);
+//                    temp.setCofinsCstE(o[21] != null ? (String) o[21] : "");
+//                    temp.setCofinsAlqE(o[22] != null ? (Double) o[22] : 0.0);
+//                    temp.setCofinsCstS(o[23] != null ? (String) o[23] : "");
+//                    temp.setCofinsAlqS(o[24] != null ? (Double) o[24] : 0.0);
+//                    temp.setCodNaturezaReceita(o[25] != null ? (String) o[25] : "");
+//                    temp.setDataRegistro(o[26] != null ? (Date) o[26] : null);
+                   
+                    
+                    
                     ImportacaoImp imp = new ImportacaoImp();
 
                     imp.setNomeproduto(o[0] != null ? (String) o[0] : "");

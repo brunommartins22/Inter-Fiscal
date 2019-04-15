@@ -14,32 +14,27 @@ import br.com.interagese.interfiscal.business.IcmssaidaBusiness;
 import br.com.interagese.interfiscal.business.IcmssaidaBusinessBean;
 import br.com.interagese.interfiscal.business.PisCofinsBusiness;
 import br.com.interagese.interfiscal.business.PisCofinsBusinessBean;
-import br.com.interagese.interfiscal.business.TabfilBusiness;
-import br.com.interagese.interfiscal.business.TabfilBusinessBean;
+import br.com.interagese.interfiscal.business.FireTabfilBusinessBean;
 import br.com.interagese.interfiscal.business.TabproBusiness;
 import br.com.interagese.interfiscal.business.TabproBusinessBean;
-import br.com.interagese.interfiscal.entity.BaseInterage;
+import br.com.interagese.interfiscal.entity.AtualizacaoFiscalTemp;
 import br.com.interagese.interfiscal.entity.Fiscaltemp;
 import br.com.interagese.interfiscal.entity.IcmsEntrada;
 import br.com.interagese.interfiscal.entity.IcmsSaida;
+import br.com.interagese.interfiscal.entity.ImpTemp;
 import br.com.interagese.interfiscal.entity.Log;
 import br.com.interagese.interfiscal.entity.Piscofins;
 import br.com.interagese.interfiscal.entity.Sessao;
 import br.com.interagese.interfiscal.entity.Tabfil;
+import br.com.interagese.interfiscal.entity.Tabpro;
 import br.com.interagese.interfiscal.table.BaseInterageTableModel;
 import br.com.interagese.interfiscal.table.IcmsEntradaTableModel;
 import br.com.interagese.interfiscal.table.IcmsSaidaTableModel;
 import br.com.interagese.interfiscal.table.piscofinsTableModel;
 import br.com.interagese.interfiscal.utils.Actions;
-import br.com.interagese.interfiscal.utils.Utils;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.TrayIcon;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigInteger;
@@ -47,6 +42,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -55,6 +51,7 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 import javax.swing.plaf.metal.MetalButtonUI;
+import br.com.interagese.interfiscal.business.FireTabfilBusiness;
 
 /**
  *
@@ -62,32 +59,38 @@ import javax.swing.plaf.metal.MetalButtonUI;
  */
 public class MixFiscal extends JInternalFrame {
 
-    private JFrame jfrmPrincipal;
-    private Actions a = new Actions(jfrmPrincipal);
-    private PisCofinsBusiness pisCofinsBusiness = new PisCofinsBusinessBean();
-    private IcmsentradaBusiness icmsentradaBusiness = new IcmsentradaBusinessBean();
-    private IcmssaidaBusiness icmssaidaBusiness = new IcmssaidaBusinessBean();
-    private FiscalTempBusinessBean fiscalTempBusinessBean = new FiscalTempBusinessBean();
-    private TabproBusiness tabproBusiness = new TabproBusinessBean();
+    private static JFrame jfrmPrincipal;
+    private final Actions a;
+    private final PisCofinsBusiness pisCofinsBusiness;
+    private final IcmsentradaBusiness icmsentradaBusiness;
+    private final IcmssaidaBusiness icmssaidaBusiness;
+    private final FiscalTempBusinessBean fiscalTempBusinessBean;
+    private final TabproBusiness tabproBusiness;
     private piscofinsTableModel tableModelPisCofins;
     private IcmsEntradaTableModel tableModelIcmsEntrada;
     private IcmsSaidaTableModel tableModelIcmsSaida;
     private BaseInterageTableModel baseInterageTableModel;
-    private FireTabproBusiness fireTabproBusiness = new FireTabproBusinessBean();
-    private TabfilBusiness tabfilBusiness = new TabfilBusinessBean();
-    private Tabfil filial = null;
+    private final FireTabproBusiness fireTabproBusiness;
+    private final FireTabfilBusiness tabfilBusiness;
     private Integer contUpdate;
     private Integer infoHoras;
-    private Integer qtdEnvio;
-    private boolean isExecute;
 
     /**
      * Creates new form JFrmPrincipal
+     *
+     * @param pai
      */
-    public MixFiscal(JFrame pai) {
+    public MixFiscal(javax.swing.JFrame pai) {
         jfrmPrincipal = pai;
-        infoHoras = Sessao.infoHoras * 3600;
-        qtdEnvio = Sessao.qtdEnvio;
+        this.tabfilBusiness = new FireTabfilBusinessBean();
+        this.fireTabproBusiness = new FireTabproBusinessBean();
+        this.tabproBusiness = new TabproBusinessBean();
+        this.fiscalTempBusinessBean = new FiscalTempBusinessBean();
+        this.icmssaidaBusiness = new IcmssaidaBusinessBean();
+        this.icmsentradaBusiness = new IcmsentradaBusinessBean();
+        this.pisCofinsBusiness = new PisCofinsBusinessBean();
+        this.a = new Actions(jfrmPrincipal);
+
         initComponents();
         definirFormulario();
 
@@ -106,60 +109,58 @@ public class MixFiscal extends JInternalFrame {
         jBtnAtualizar.setUI(new MetalButtonUI());
         jBtnSincronizar.setUI(new MetalButtonUI());
         contUpdate = 1;
-        isExecute = false;
-        TimerTask runnable = new TimerTask() {
-            public void run() {
-                try {
-                    if (Sessao.mixfiscal) {
-                        Date data = new Date();
-                        Properties conf = a.carregarArquivo("Configuracao\\conf.cfg");
-                        String hora1 = conf.getProperty("H1");
-                        String hora2 = conf.getProperty("H2");
-                        SimpleDateFormat formate = new SimpleDateFormat("HH:mm");
-                        String dataH = formate.format(data);
+        if (Sessao.manutencao.equals("A")) {
+            infoHoras = Sessao.infoHoras * 3600;
+            TimerTask runnable = new TimerTask() {
+                public void run() {
+                    try {
+                        if (Sessao.mixfiscal) {
+                            infoHoras = (Sessao.infoHoras * 3600);
+                            Date data = new Date();
+                            Properties conf = a.carregarArquivo("Configuracao\\conf.cfg");
+                            String hora1 = conf.getProperty("H1");
+                            String hora2 = conf.getProperty("H2");
+                            SimpleDateFormat formate = new SimpleDateFormat("HH:mm");
+                            String dataH = formate.format(data);
 
-                        Integer codfil = Integer.parseInt(conf.getProperty("FILIAL"));
-                        filial = tabfilBusiness.findById(codfil);
-                        System.out.println("Hora1 = " + hora1);
-                        System.out.println("Hora2 = " + hora2);
-                        System.out.println("DataH = " + dataH);
-                        System.out.println("Executable = " + (isExecute ? "true" : "false"));
-                        if ((dataH.equals(hora1.trim()) || dataH.equals(hora2.trim())) && !isExecute) {
-                            isExecute = true;
-                            jBtnSincronizar.doClick();
-                        } else if ((contUpdate == infoHoras) && (((BigInteger) pisCofinsBusiness.count()).intValue() > 0 || ((BigInteger) icmsentradaBusiness.count()).intValue() > 0 || ((BigInteger) icmssaidaBusiness.count()).intValue() > 0)) {
-                            jBtnAtualizar.doClick();
-                            TrayIcon ic = Sessao.iconInformation;
-                            if (ic != null) {
-                                ic.displayMessage("Inter-Fiscal", "Atualização Disponivel ...", TrayIcon.MessageType.INFO);
-                                contUpdate = 0;
+//                            Integer codfil = Integer.parseInt(conf.getProperty("FILIAL"));
+//                            filial = tabfilBusiness.findById(codfil);
+                            if ((dataH.equals(hora1.trim()) || dataH.equals(hora2.trim())) && !Sessao.isExecuting) {
+                                Sessao.isExecuting = true;
+                                jBtnSincronizar.doClick();
+                            } else if ((Objects.equals(contUpdate, infoHoras)) && (((BigInteger) pisCofinsBusiness.count()).intValue() > 0 || ((BigInteger) icmsentradaBusiness.count()).intValue() > 0 || ((BigInteger) icmssaidaBusiness.count()).intValue() > 0)) {
+                                jBtnAtualizar.doClick();
+                                TrayIcon ic = Sessao.iconInformation;
+                                if (ic != null) {
+                                    ic.displayMessage("Inter-Fiscal", "Atualização Disponivel ...", TrayIcon.MessageType.INFO);
+                                    contUpdate = 0;
+                                }
+                            } else if ((!dataH.equals(hora1.trim())) && (!dataH.equals(hora2.trim()))) {
+                                Sessao.isExecuting = false;
                             }
-                        } else if ((!dataH.equals(hora1.trim())) && (!dataH.equals(hora2.trim()))) {
-                            isExecute = false;
+                            contUpdate++;
                         }
-                        contUpdate++;
+                    } catch (Exception ex) {
+                        Log logApp = new Log();
+                        StringWriter writer = new StringWriter();
+                        PrintWriter pw = new PrintWriter(writer);
+                        ex.printStackTrace(pw);
+                        logApp.setError("Inter-Fiscal - " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " → " + writer.toString());
+                        a.carregarLog(logApp, 1);
                     }
-                } catch (Exception ex) {
-                    Log logApp = new Log();
-                    StringWriter writer = new StringWriter();
-                    PrintWriter pw = new PrintWriter(writer);
-                    ex.printStackTrace(pw);
-                    logApp.setError("Inter-Fiscal - " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " → " + writer.toString());
-                    a.carregarLog(logApp, 1);
+
                 }
-
-            }
-        };
-        Timer t = new Timer();
-        t.schedule(runnable, 1000, 10000);
-
+            };
+            Timer t = new Timer();
+            t.schedule(runnable, 1000, 10000);
+        }
     }
 
     public void carregarListagem() {
         tableModelPisCofins = new piscofinsTableModel(pisCofinsBusiness.getSearchAll(0, "carregar-piscofins"));
         tableModelIcmsEntrada = new IcmsEntradaTableModel(icmsentradaBusiness.getSearchAll(0, "carregar-icmsentrada"));
         tableModelIcmsSaida = new IcmsSaidaTableModel(icmssaidaBusiness.getSearchAll(0, "carregar-icmssaida"));
-        baseInterageTableModel = new BaseInterageTableModel(fiscalTempBusinessBean.getAllBaseInterage());
+        baseInterageTableModel = new BaseInterageTableModel(fiscalTempBusinessBean.getSearchAllBaseInterage(0, null));
 
         carregarSizeList(((Number) pisCofinsBusiness.count()).intValue(), ((Number) icmsentradaBusiness.count()).intValue(), ((Number) icmssaidaBusiness.count()).intValue(), ((Number) fiscalTempBusinessBean.count()).intValue());
 
@@ -235,6 +236,7 @@ public class MixFiscal extends JInternalFrame {
             jLabelBaseInterage = new javax.swing.JLabel();
 
             setClosable(true);
+            setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
             setIconifiable(true);
             setMaximizable(true);
             setResizable(true);
@@ -475,7 +477,7 @@ public class MixFiscal extends JInternalFrame {
                 @Override
                 public void run() {
                     try {
-                        JDlgCarregando carregando = a.carregarJdialog("Carregando...");
+                        JDlgCarregando carregando = a.carregarJdialog("Carregando...", jfrmPrincipal);
                         carregando.setVisible(true);
                         carregando.loadBarra("Atualizando...", 0, 0, true);
                         carregarListagem();
@@ -503,57 +505,91 @@ public class MixFiscal extends JInternalFrame {
     }//GEN-LAST:event_jBtnAtualizarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-//        int result = JOptionPane.showConfirmDialog(null, "Deseja Realmente sair do sistema?", null, JOptionPane.YES_NO_OPTION);
-//        if (result == JOptionPane.YES_OPTION) {
-//            System.exit(0);
-//        }
 
-        this.dispose();
 
     }//GEN-LAST:event_formWindowClosing
 
     private void jBtnSincronizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSincronizarActionPerformed
-        try {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Log logApp = new Log();
-                    try {
 
-                        JDlgCarregando carregando = a.carregarJdialog("Sincronizando...");
-                        carregando.setVisible(true);
-                        String texto = "Sincronizando Tabelas...";
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                JDlgCarregando carregando = null;
+                Log logApp = null;
+                try {
+
+                    carregando = a.carregarJdialog("Sincronizando...", jfrmPrincipal);
+                    carregando.setVisible(true);
+                    String texto = "Sincronizando Tabelas...";
+                    carregando.loadBarra(texto, 0, 0, true);
+
+                    List<Piscofins> resultPisCofins = pisCofinsBusiness.getAll("carregar-piscofins");
+                    List<IcmsEntrada> resultIcmsEntrada = icmsentradaBusiness.getAll("carregar-icmsentrada");
+                    List<IcmsSaida> resultIcmsSaida = icmssaidaBusiness.getAll("carregar-icmssaida");
+
+                    String mensagem = "";
+                    logApp = new Log();
+                    if (!resultPisCofins.isEmpty() || !resultIcmsEntrada.isEmpty() || !resultIcmsSaida.isEmpty()) {
+
+                        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getMaximum());
+                        baseInterageTableModel.updateTableListener();
+
+                        //******************* filial ***********************
+                        String codFilial = "";
+                        String regime = "";
+                        for (int i = 0; i < Sessao.resultFilial.size(); i++) {
+                            Tabfil filial = Sessao.resultFilial.get(i);
+                            codFilial += filial.getCodfil() + ((Sessao.resultFilial.size() > 1) ? "," : "");
+                            regime = filial.getCrt().toString();
+                        }
+
+                        //********************** calc ********************** 
+                        Integer size = 0;
+                        int max = Sessao.qtdEnvio;
+                        int calc = 0;
+
+                        int inserts = 0;
+                        //***************************************************
+                        texto = "Iniciando Atualização da tabela Histórico...";
                         carregando.loadBarra(texto, 0, 0, true);
+                        carregando.setTexto("Atualizando...");
+                        Fiscaltemp f = null;
 
-                        List<Piscofins> resultPisCofins = pisCofinsBusiness.getAll("carregar-piscofins");
-                        List<IcmsEntrada> resultIcmsEntrada = icmsentradaBusiness.getAll("carregar-icmsentrada");
-                        List<IcmsSaida> resultIcmsSaida = icmssaidaBusiness.getAll("carregar-icmssaida");
-                        String mensagem = "";
-                        if (!resultPisCofins.isEmpty() || !resultIcmsEntrada.isEmpty() || !resultIcmsSaida.isEmpty()) {
-                            jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getMaximum());
-                            baseInterageTableModel.updateTableListener();
+                        int cont = 1;
+                        boolean isInsert;
 
-                            texto = "Iniciando Atualização da tabela Histórico...";
+                        Date inicioOperacao = new Date();
+
+                        List<Fiscaltemp> resultFiscaltempCalcInsert = null;
+                        List<Fiscaltemp> resultFiscaltempCalcUpdate = null;
+
+                        if (!resultPisCofins.isEmpty()) {
+
+                            System.out.println("list " + resultPisCofins.size() + "log " + logApp);
+                            logApp.setQtdPisConfins(resultPisCofins.size());
+
+                            Thread.sleep(1200);
+                            texto = "Preparando Tabela Temp - Pis/Cofins Mix Fiscal...";
                             carregando.loadBarra(texto, 0, 0, true);
-                            carregando.setTexto("Atualizando...");
-                            Fiscaltemp f = null;
+                            carregando.setTexto("Carregando Tabela Temp - Pis/Cofins Mix Fiscal...");
+                            Thread.sleep(1200);
 
-                            int cont = 1;
-                            boolean isInsert;
-                            Date inicioOperacao = new Date();
+                            size = resultPisCofins.size();
+                            calc = size / max;
+                            if ((size % max) > 0) {
+                                calc++;
+                            }
+                            inserts = 0;
+                            for (int p = 0; p < calc; p++) {
+                                carregando.loadBarra("Pis/Cofins", inserts, size, false);
+                                resultFiscaltempCalcInsert = new ArrayList<>();
+                                resultFiscaltempCalcUpdate = new ArrayList<>();
+                                for (int e = inserts; e < (inserts + max); e++) {
+                                    if (e >= size) {
+                                        break;
+                                    }
+                                    Piscofins pc = resultPisCofins.get(e);
 
-                            if (!resultPisCofins.isEmpty()) {
-                                System.out.println("list " + resultPisCofins.size() + "log " + logApp);
-                                logApp.setQtdPisConfins(resultPisCofins.size());
-
-                                Thread.sleep(1200);
-                                texto = "Preparando Tabela Temp - Pis/Cofins Mix Fiscal...";
-                                carregando.loadBarra(texto, 0, 0, true);
-                                carregando.setTexto("Carregando Tabela Temp - Pis/Cofins Mix Fiscal...");
-                                Thread.sleep(1200);
-
-                                for (Piscofins pc : resultPisCofins) {
-                                    carregando.loadBarra("Pis/Cofins ", cont, resultPisCofins.size(), false);
                                     f = fiscalTempBusinessBean.findById(pc.getCodigoProduto().toString());
                                     isInsert = false;
                                     if (f == null) {
@@ -561,6 +597,8 @@ public class MixFiscal extends JInternalFrame {
                                         isInsert = true;
                                     }
                                     f.setNomeProduto(pc.getNmProduto());
+                                    f.setCodigoFilial(codFilial);
+                                    f.setCodigoCrt(regime);
                                     f.setCodigoProduto(pc.getCodigoProduto().toString());
                                     f.setEan(pc.getEan() != null ? pc.getEan().toString() : "");
                                     f.setNcm(pc.getNcm());
@@ -577,34 +615,56 @@ public class MixFiscal extends JInternalFrame {
                                     f.setCofinsAlqS(pc.getCofinsAlqS());
 
                                     f.setPisCofins(true);
-                                    f.setAtualizacaoPiscofins(new Date());
-                                    f.setDataRegistro(new Date());
+                                    f.setAtualizacaoPiscofins(inicioOperacao);
+                                    f.setDataRegistro(inicioOperacao);
 
                                     if (isInsert) {
-                                        fiscalTempBusinessBean.insert(f);
+                                        resultFiscaltempCalcInsert.add(f);
                                     } else {
-                                        fiscalTempBusinessBean.update(f);
+                                        resultFiscaltempCalcUpdate.add(f);
                                     }
-
-                                    texto = "Pis/Cofins =" + cont + " Registro = " + (isInsert ? "Inserido" : "Atualizado");
-                                    carregando.setTexto(texto);
                                     cont++;
+                                }
 
+                                inserts = inserts + max;
+                                texto = "Atualizando Pis/Cofins no Banco de Dados...";
+                                carregando.loadBarra(texto, 0, 0, true);
+                                carregando.setTexto("Pis/Cofins -> Registrando Lote de " + max + " Registro(s)");
+                                if (!resultFiscaltempCalcInsert.isEmpty()) {
+                                    fiscalTempBusinessBean.insertList(resultFiscaltempCalcInsert);
+                                }
+                                if (!resultFiscaltempCalcUpdate.isEmpty()) {
+                                    fiscalTempBusinessBean.updateList(resultFiscaltempCalcUpdate);
                                 }
                             }
+                        }
 
-                            if (!resultIcmsEntrada.isEmpty()) {
-                                logApp.setQtdIcmsEntrada(resultIcmsEntrada.size());
+                        if (!resultIcmsEntrada.isEmpty()) {
+                            logApp.setQtdIcmsEntrada(resultIcmsEntrada.size());
+                            carregando.limparBufferText();
+                            Thread.sleep(500);
+                            texto = "Preparando Tabela Temp - Icms Entrada Mix Fiscal...";
+                            carregando.loadBarra(texto, 0, 0, true);
+                            carregando.setTexto("Carregando Tabela Temp - Icms Entrada Mix Fiscal...");
+                            Thread.sleep(1200);
 
-                                Thread.sleep(500);
-                                texto = "Preparando Tabela Temp - Icms Entrada Mix Fiscal...";
-                                carregando.loadBarra(texto, 0, 0, true);
-                                carregando.setTexto("Carregando Tabela Temp - Icms Entrada Mix Fiscal...");
-                                Thread.sleep(1200);
+                            cont = 1;
+                            size = resultIcmsEntrada.size();
+                            calc = size / max;
+                            if ((size % max) > 0) {
+                                calc++;
+                            }
+                            inserts = 0;
+                            for (int p = 0; p < calc; p++) {
+                                carregando.loadBarra("Icms Entrada", inserts, size, false);
+                                resultFiscaltempCalcInsert = new ArrayList<>();
+                                resultFiscaltempCalcUpdate = new ArrayList<>();
+                                for (int e = inserts; e < (inserts + max); e++) {
+                                    if (e >= size) {
+                                        break;
+                                    }
+                                    IcmsEntrada ie = resultIcmsEntrada.get(e);
 
-                                cont = 1;
-                                for (IcmsEntrada ie : resultIcmsEntrada) {
-                                    carregando.loadBarra("Icms Entrada ", cont, resultIcmsEntrada.size(), false);
                                     f = fiscalTempBusinessBean.findById(ie.getCodigoProduto().toString());
                                     isInsert = false;
                                     if (f == null) {
@@ -612,6 +672,8 @@ public class MixFiscal extends JInternalFrame {
                                         isInsert = true;
                                     }
                                     f.setNomeProduto(ie.getNmProduto());
+                                    f.setCodigoFilial(codFilial);
+                                    f.setCodigoCrt(regime);
                                     f.setCodigoProduto(ie.getCodigoProduto().toString());
                                     f.setEan(ie.getEan() != null ? ie.getEan().toString() : "");
                                     f.setTipoMva(ie.getTipoMva());
@@ -641,33 +703,57 @@ public class MixFiscal extends JInternalFrame {
                                     f.setNfAlq(ie.getNfAlq());
                                     f.setFundamentoLegal(ie.getFundamentoLegal());
                                     f.setIcmsEntrada(true);
-                                    f.setAtualizacaoIcmsentrada(new Date());
-                                    f.setDataRegistro(new Date());
+                                    f.setAtualizacaoIcmsentrada(inicioOperacao);
+                                    f.setDataRegistro(inicioOperacao);
 
                                     if (isInsert) {
-                                        fiscalTempBusinessBean.insert(f);
+                                        resultFiscaltempCalcInsert.add(f);
                                     } else {
-                                        fiscalTempBusinessBean.update(f);
+                                        resultFiscaltempCalcUpdate.add(f);
                                     }
 
-                                    texto = "Icms Entrada =" + cont + " Registro = " + (isInsert ? "Inserido" : "Atualizado");
-                                    carregando.setTexto(texto);
                                     cont++;
                                 }
-                            }
-
-                            if (!resultIcmsSaida.isEmpty()) {
-                                logApp.setQtdIcmsSaida(resultIcmsSaida.size());
-
-                                Thread.sleep(500);
-                                texto = "Preparando Tabela Temp - Icms Saída Mix Fiscal...";
+                                inserts = inserts + max;
+                                texto = "Atualizando Icms Entrada no Banco de Dados...";
                                 carregando.loadBarra(texto, 0, 0, true);
-                                carregando.setTexto("Carregando Tabela Temp - Icms Saída Mix Fiscal...");
-                                Thread.sleep(1200);
+                                carregando.setTexto("Icms Entrada -> Registrando Lote de " + max + " Registro(s)");
+                                if (!resultFiscaltempCalcInsert.isEmpty()) {
+                                    fiscalTempBusinessBean.insertList(resultFiscaltempCalcInsert);
+                                }
+                                if (!resultFiscaltempCalcUpdate.isEmpty()) {
+                                    fiscalTempBusinessBean.updateList(resultFiscaltempCalcUpdate);
+                                }
+                            }
+                        }
 
-                                cont = 1;
-                                for (IcmsSaida is : resultIcmsSaida) {
-                                    carregando.loadBarra("Icms Saída ", cont, resultIcmsSaida.size(), false);
+                        if (!resultIcmsSaida.isEmpty()) {
+                            logApp.setQtdIcmsSaida(resultIcmsSaida.size());
+                            carregando.limparBufferText();
+                            Thread.sleep(500);
+                            texto = "Preparando Tabela Temp - Icms Saída Mix Fiscal...";
+                            carregando.loadBarra(texto, 0, 0, true);
+                            carregando.setTexto("Carregando Tabela Temp - Icms Saída Mix Fiscal...");
+                            Thread.sleep(1200);
+
+                            cont = 1;
+                            size = resultIcmsSaida.size();
+                            calc = size / max;
+                            if ((size % max) > 0) {
+                                calc++;
+                            }
+                            inserts = 0;
+                            for (int p = 0; p < calc; p++) {
+                                carregando.loadBarra("Icms Saída", inserts, size, false);
+                                resultFiscaltempCalcInsert = new ArrayList<>();
+                                resultFiscaltempCalcUpdate = new ArrayList<>();
+                                for (int e = inserts; e < (inserts + max); e++) {
+                                    if (e >= size) {
+                                        break;
+                                    }
+
+                                    IcmsSaida is = resultIcmsSaida.get(e);
+
                                     f = fiscalTempBusinessBean.findById(is.getCodigoProduto().toString());
                                     isInsert = false;
                                     if (f == null) {
@@ -675,6 +761,8 @@ public class MixFiscal extends JInternalFrame {
                                         isInsert = true;
                                     }
                                     f.setNomeProduto(is.getNmProduto());
+                                    f.setCodigoFilial(codFilial);
+                                    f.setCodigoCrt(regime);
                                     f.setCodigoProduto(is.getCodigoProduto().toString());
                                     f.setEan(is.getEan() != null ? is.getEan().toString().trim() : "");
 
@@ -692,125 +780,306 @@ public class MixFiscal extends JInternalFrame {
                                     f.setFecp(is.getFecp());
 
                                     f.setIcmsSaida(true);
-                                    f.setAtualizacaoIcmssaida(new Date());
-                                    f.setDataRegistro(new Date());
+                                    f.setAtualizacaoIcmssaida(inicioOperacao);
+                                    f.setDataRegistro(inicioOperacao);
 
                                     if (isInsert) {
-                                        fiscalTempBusinessBean.insert(f);
+                                        resultFiscaltempCalcInsert.add(f);
                                     } else {
-                                        fiscalTempBusinessBean.update(f);
+                                        resultFiscaltempCalcUpdate.add(f);
                                     }
-
-                                    texto = "Icms Saída =" + cont + " Registro = " + (isInsert ? "Inserido" : "Atualizado");
-                                    carregando.setTexto(texto);
                                     cont++;
-
                                 }
-                            }
-
-                            List<Fiscaltemp> resutlFinal = new ArrayList<>();
-
-                            Thread.sleep(500);
-                            texto = "Preparando Atualização do Banco de Dados da Interage ...";
-                            carregando.loadBarra(texto, 0, 0, true);
-                            carregando.setTexto("Carregando Base Interage...");
-                            resutlFinal = fiscalTempBusinessBean.getCarregarFiscalTemp(inicioOperacao);
-                            Thread.sleep(1000);
-
-                            //**********************************************************
-                            Integer size = resutlFinal.size();
-                            int max = Sessao.qtdEnvio;
-                            int calc = size / max;
-
-                            if ((size % max) > 0) {
-                                calc++;
-                            }
-                            int inserts = 0;
-                            //**********************************************************
-                            for (int p = 0; p < calc; p++) {
-                                carregando.loadBarra("Carregando Tributação ", inserts, size, false);
-                                List<Fiscaltemp> resultFiscalTempCalc = new ArrayList<>();
-                                for (int e = inserts; e < (inserts + max); e++) {
-                                    if (e >= size) {
-                                        break;
-                                    }
-                                    Fiscaltemp i = resutlFinal.get(e);
-                                    texto = "Base Interage= " + e + " de " + (size - 1) + " Codigo_Produto= " + i.getCodigoProduto();
-                                    BaseInterage b = baseInterageTableModel.getFindCodList(i.getCodigoProduto());
-                                    if (b == null) {
-                                        b = new BaseInterage();
-                                        b.setCodBarras(i.getEan());
-                                        b.setCodProduto(i.getCodigoProduto());
-                                        b.setNmProduto(i.getNomeProduto());
-                                        b.setPisCofins(true);
-                                        b.setAtualizacaoPisCofins(i.getAtualizacaoPiscofins());
-                                        baseInterageTableModel.addItem(b);
-                                    } else {
-                                        b.setPisCofins(true);
-                                        b.setAtualizacaoPisCofins(new Date());
-
-                                    }
-                                    jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getMaximum());
-                                    baseInterageTableModel.updateTableListener();
-                                    resultFiscalTempCalc.add(i);
-                                    carregando.setTexto(texto);
-                                }
-
-                                fiscalTempBusinessBean.getGerarTributos(resultFiscalTempCalc, filial);
                                 inserts = inserts + max;
-                                texto = "Atualizando Banco de Dados...";
+                                texto = "Atualizando Icms Saída no Banco de Dados...";
                                 carregando.loadBarra(texto, 0, 0, true);
-                                carregando.setTexto(texto);
+                                carregando.setTexto("Icms Saída -> Registrando Lote de " + max + " Registro(s)");
+                                if (!resultFiscaltempCalcInsert.isEmpty()) {
+                                    fiscalTempBusinessBean.insertList(resultFiscaltempCalcInsert);
+                                }
+                                if (!resultFiscaltempCalcUpdate.isEmpty()) {
+                                    fiscalTempBusinessBean.updateList(resultFiscaltempCalcUpdate);
+                                }
                             }
-
-//                            tableModelPisCofins.setItems(null);
-//                            tableModelIcmsEntrada.setItems(null);
-//                            tableModelIcmsSaida.setItems(null);
-//
-//                            carregarSizeList(tableModelPisCofins.getRowCount(), tableModelIcmsEntrada.getRowCount(), tableModelIcmsSaida.getRowCount(), ((Number) fiscalTempBusinessBean.count()).intValue());
-//
-//                            tableModelPisCofins.updateTableListener();
-//                            tableModelIcmsEntrada.updateTableListener();
-//                            tableModelIcmsSaida.updateTableListener();
-                            pisCofinsBusiness.deleteAll();
-                            icmsentradaBusiness.deleteAll();
-                            icmssaidaBusiness.deleteAll();
-
-                            carregarListagem();
-
-                            //*********************************************************
-                            mensagem = "Dados Enviados com sucesso !!";
-                        } else {
-                            mensagem = "Nenhuma Atualização Disponível no momento !!";
                         }
 
-                        Thread.sleep(1000);
-                        carregando.loadBarra(mensagem, 0, 0, true);
+                        carregando.limparBufferText();
                         Thread.sleep(500);
-                        carregando.setTexto("Finalizando Sincronização ...");
+                        texto = "Preparando Atualização do Banco de Dados da Interage ...";
+                        carregando.loadBarra(texto, 0, 0, true);
+                        carregando.setTexto("Carregando Base Interage...");
+                        List<Fiscaltemp> resutlFinal = fiscalTempBusinessBean.getCarregarFiscalTemp(inicioOperacao);
+                        baseInterageTableModel.addItens(null);
                         Thread.sleep(1000);
 
-                        a.carregarLog(logApp, 1);
-                        carregando.dispose();
+                        //**********************************************************
+                        size = resutlFinal.size();
+                        calc = size / max;
 
-                    } catch (Exception ex) {
-                        StringWriter writer = new StringWriter();
-                        PrintWriter pw = new PrintWriter(writer);
-                        ex.printStackTrace(pw);
-                        logApp.setError("Inter-Fiscal - " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " → " + writer.toString());
-                        a.carregarLog(logApp, 1);
-                        JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
-                        m.setVisible(true);
+                        if ((size % max) > 0) {
+                            calc++;
+                        }
+                        inserts = 0;
+                        cont = 0;
+                        //**********************************************************
+                        for (int p = 0; p < calc; p++) {
+
+                            carregando.loadBarra("Carregando Tributação", inserts, size, false);
+                            List<String> listString = new ArrayList<>();
+                            for (int e = inserts; e < (inserts + max); e++) {
+                                if (e >= size) {
+                                    break;
+                                }
+                                f = resutlFinal.get(e);
+                                texto = f.getCodigoProduto() + " - " + f.getNomeProduto();
+                                carregando.setTexto(texto);
+
+                                for (Tabpro produto : fiscalTempBusinessBean.getListTabproByCod(Integer.parseInt(f.getCodigoProduto()))) {
+                                    AtualizacaoFiscalTemp aTemp = new AtualizacaoFiscalTemp();
+
+                                    aTemp.setCodpro(produto.getCodpro());
+                                    aTemp.setCodfil(codFilial);
+
+                                    //******** TABPRO **********************************************
+                                    //********************** Pis Cofins ****************************
+                                    aTemp.setClasFiscal(f.getNcm() != null && !f.getNcm().equals("") ? f.getNcm() : produto.getClasfiscal() == null ? "" : produto.getClasfiscal());
+                                    //produto.setCodbarun(f.getEan() != null ? f.getEan() : null);
+                                    aTemp.setFatorPis(f.getPisAlqS()== null || f.getPisAlqS() == 0.0 ? (produto.getFatorpis() == null ? 0.0 : produto.getFatorpis()) : f.getPisAlqS());
+                                    aTemp.setFatorCofins(f.getCofinsAlqS() == null || f.getCofinsAlqS() == 0.0 ? (produto.getFatorcofins() == null ? 0.0 : produto.getFatorcofins()) : f.getCofinsAlqS());
+                                    aTemp.setCstPis(f.getPisCstS() == null || f.getPisCstS().equals("") ? (produto.getCstpis() == null ? "" : produto.getCstpis()) : f.getPisCstS());
+                                    aTemp.setCstCofins(f.getCofinsCstS() == null || f.getCofinsCstS().equals("") ? (produto.getCstcofins() == null ? "" : produto.getCstcofins()) : f.getCofinsCstS());
+
+                                    //********************** Icms Saída ****************************
+                                    aTemp.setIcmsSimples(f.getSncAlq() == null || f.getSncAlq() == 0.0 ? (produto.getIcms() == null ? 0.0 : produto.getIcms()) : f.getSncAlq());
+                                    aTemp.setCest((f.getCest() != null && !f.getCest().equals("")) ? f.getCest().replace(".", "") : (produto.getCest() == null ? "" : produto.getCest()));
+                                    aTemp.setCst(regime.equals("1") ? (f.getSncCsosn() == null || f.getSncCsosn().equals("0.0") || f.getSncCsosn().equals("") ? (produto.getCst() == null ? "" : produto.getCst()) : f.getSncCsosn()) : (f.getSncCst() == null || f.getSncCst().equals("0.0") || f.getSncCst().equals("") ? (produto.getCst() == null ? "" : produto.getCst()) : f.getSncCst()));
+
+                                    //********************** Update RgData *************************
+                                    aTemp.setRgdata(inicioOperacao);
+
+                                    //************** Gerando Tipo Trib and ModBc *******************
+                                    String tipoTrib = "";
+                                    String modBc = "";
+
+                                    if (f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida()) {
+
+                                        String valueTrib = regime.equals("1") ? f.getSncCsosn() : f.getSncCst();
+
+                                        //************************* Indice *************************
+                                        switch (valueTrib) {
+                                            case "10":
+                                            case "30":
+                                            case "50":
+                                            case "60":
+                                            case "70":
+                                            case "90":
+                                            case "141":
+                                            case "201":
+                                            case "202":
+                                            case "203":
+                                            case "500":
+                                            case "900":
+                                            case "P10":
+                                            case "P90": {
+                                                tipoTrib = "SS";
+                                                break;
+                                            }
+                                            case "40":
+                                            case "300": {
+                                                tipoTrib = "II";
+                                                break;
+                                            }
+                                            case "41":
+                                            case "400": {
+                                                tipoTrib = "NN";
+                                                break;
+                                            }
+                                            default: {
+                                                tipoTrib = "PT";
+                                                break;
+                                            }
+                                        }
+
+                                        aTemp.setIndice(tipoTrib);
+
+                                        //************************* IcmsModBc **********************
+                                        switch (valueTrib) {
+                                            case "00":
+                                            case "10":
+                                            case "20":
+                                            case "51":
+                                            case "70":
+                                            case "90":
+                                            case "900": {
+                                                modBc = "0";
+                                                break;
+                                            }
+                                            default: {
+                                                modBc = "";
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //****** TABPROFIL *********************************************
+                                    if (f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins()) {
+                                        //********************* Pis/Cofins *********************
+                                        aTemp.setNatRec(f.getCodNaturezaReceita() == null ? "" : f.getCodNaturezaReceita());
+                                    }
+                                    //****** TABPROIMP *****************************************
+                                    List<ImpTemp> resultImps = fiscalTempBusinessBean.getExistTabproimp(aTemp.getCodpro());
+                                    for (ImpTemp imps : resultImps) {
+                                        if (imps.getResultTpImpos().equals("") && (f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida()) && (f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins())) {
+                                            imps.setIsInsertTemp(true);
+                                            imps.setIsUpdateTemp(false);
+                                        } else if ((f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida()) || (f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins())) {
+                                            int count = imps.getResultTpImpos().split(",").length;
+                                            if (count == 2) {
+                                                imps.setIsInsertTemp(false);
+                                                imps.setIsUpdateTemp(true);
+                                            } else {
+                                                imps.setIsInsertTemp(true);
+                                                imps.setIsUpdateTemp(true);
+                                                imps.setTpImpos(imps.getResultTpImpos().split(",")[0].equals("D") ? "A" : "D");
+                                            }
+
+                                            imps.setTpUpdate("");
+                                            //****************** Pis/cofins ********************
+                                            if (f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins()) {
+                                                imps.setTpUpdate("P");
+                                            }
+                                            //****************** Icms Saída ********************
+                                            if (f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida()) {
+                                                imps.setTpUpdate(!aTemp.equals("") ? "PI" : "I");
+                                            }
+
+                                        }
+                                        aTemp.getResultImpTemp().add(imps);
+                                    }
+
+                                    //****************** Pis/cofins ********************
+                                    aTemp.setPisCst(f.getPisCstS() == null ? "" : f.getPisCstS());
+                                    aTemp.setPispPis(f.getPisAlqS() == null ? 0.0 : f.getPisAlqS());
+                                    aTemp.setCofinsCst(f.getCofinsCstS() == null ? "" : f.getCofinsCstS());
+                                    aTemp.setCofinspCofins(f.getCofinsAlqS() == null ? 0.0 : f.getCofinsAlqS());
+                                    //****************** Icms Saída ********************
+                                    aTemp.setIcmspIcmsSt(f.getSncAlqst() == null ? 0.0 : f.getSncAlqst());
+                                    aTemp.setIcmspRedBc(f.getSncRbc() == null ? 0.0 : f.getSncRbc());
+                                    aTemp.setIcmspRedBcSt(f.getSncRbcst() == null ? 0.0 : f.getSncRbcst());
+                                    aTemp.setIcmsModBc(modBc);
+
+                                    //*** TABPROIMPE *******************************************
+                                    if (f.getIcmsEntrada() != null && !f.getIcmsEntrada().equals("") && f.getIcmsEntrada()) {
+                                        resultImps = fiscalTempBusinessBean.getExistTabproimpE(aTemp.getCodpro());
+                                        for (ImpTemp imp : resultImps) {
+                                            if (imp.getValorImpe() == 0) {
+                                                imp.setIsInsertTemp(true);
+                                            } else {
+                                                imp.setIsInsertTemp(false);
+                                            }
+                                            aTemp.getResultImpe().add(imp);
+                                        }
+
+                                        aTemp.setEan(f.getEan());
+                                        aTemp.setTipoMva(f.getTipoMva());
+                                        aTemp.setMva(f.getMva());
+                                        aTemp.setMvaDistribuidor(f.getMvaDistribuidor());
+                                        aTemp.setMvaDataIni(f.getMvaDataIni());
+                                        aTemp.setMvaDataFim(f.getMvaDataFim());
+                                        aTemp.setCreditoOutorgado(f.getCreditoOutorgado());
+                                        aTemp.setEiCst(f.getEiCst());
+                                        aTemp.setEiAlq(f.getEiAlq());
+                                        aTemp.setEiAlqst(f.getEiAlqst());
+                                        aTemp.setEiRbc(f.getEiRbc());
+                                        aTemp.setEiRbcst(f.getEiRbcst());
+                                        aTemp.setEdCst(f.getEdCst());
+                                        aTemp.setEdAlq(f.getEdAlq());
+                                        aTemp.setEdAlqst(f.getEdAlqst());
+                                        aTemp.setEdRbc(f.getEdRbc());
+                                        aTemp.setEdRbcst(f.getEdRbcst());
+                                        aTemp.setEsCst(f.getEsCst());
+                                        aTemp.setEsAlq(f.getEsAlq());
+                                        aTemp.setEsAlqst(f.getEsAlqst());
+                                        aTemp.setEsRbc(f.getEsRbc());
+                                        aTemp.setEsRbcst(f.getEsRbcst());
+                                        aTemp.setNfiCst(f.getNfiCst());
+                                        aTemp.setNfdCst(f.getNfdCst());
+                                        aTemp.setNfsCsosn(f.getNfsCsosn());
+                                        aTemp.setNfAlq(f.getNfAlq());
+                                        aTemp.setFundamentoLegal(f.getFundamentoLegal());
+
+                                    }
+
+                                    if ((f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins()) || (f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida())) {
+                                        //****************** Tabpro ******************
+                                        listString.add(aTemp.getExecuteTabpro());
+
+                                        //****************** Tabprofil ***************
+                                        listString.add(aTemp.getExecuteTabprofil());
+
+                                        //****************** Tabproimp ***************
+                                        for (String item : aTemp.getExecuteTabproimp()) {
+                                            listString.add(item);
+                                        }
+
+                                    }
+                                    if (f.getIcmsEntrada() != null && !f.getIcmsEntrada().equals("") && f.getIcmsEntrada()) {
+                                        //****************** Täbproimpe ***************
+                                        for (String item : aTemp.getExecuteTabproimpe()) {
+                                            listString.add(item);
+                                        }
+                                    }
+                                    cont++;
+                                    if (cont == 500) {
+                                        cont = 1;
+                                        carregando.limparBufferText();
+                                    }
+
+                                }
+
+                            }
+                            inserts = inserts + max;
+                            texto = "Atualizando Banco de Dados...";
+                            carregando.loadBarra(texto, 0, 0, true);
+                            carregando.setTexto("Registrando...");
+                            fireTabproBusiness.executeUpdate(listString);
+                            tabproBusiness.executeUpdate(listString);
+                        }
+
+                        pisCofinsBusiness.deleteAll();
+                        icmsentradaBusiness.deleteAll();
+                        icmssaidaBusiness.deleteAll();
+
+                        carregarListagem();
+
+                        //*********************************************************
+                        mensagem = "Dados Enviados com sucesso !!";
+                    } else {
+                        mensagem = "Nenhuma Atualização Disponível no momento !!";
                     }
+
+                    Thread.sleep(1000);
+                    carregando.loadBarra(mensagem, 0, 0, true);
+                    Thread.sleep(500);
+                    carregando.setTexto("Finalizando Sincronização ...");
+                    Thread.sleep(1000);
+
+                    carregando.dispose();
+
+                } catch (Exception ex) {
+                    carregando.limparBufferText();
+                    carregando.dispose();
+                    ex.printStackTrace();
+                    StringWriter writer = new StringWriter();
+                    PrintWriter pw = new PrintWriter(writer);
+                    ex.printStackTrace(pw);
+                    logApp.setError("Inter-Fiscal - " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " → " + writer.toString());
+                    JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                    m.setVisible(true);
                 }
-            }).start();
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JDlgMensagem mensagem = new JDlgMensagem(jfrmPrincipal, true, ex);
-            mensagem.setVisible(true);
-
+                a.carregarLog(logApp, 1);
+            }
         }
+        ).start();
 
 
     }//GEN-LAST:event_jBtnSincronizarActionPerformed

@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author bruno
+ * @author Bruno Martins
  */
 @Embeddable
 public class TabproimpPK implements Serializable {
@@ -22,16 +22,16 @@ public class TabproimpPK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 6)
-    @Column(name = "CODPRO")
+    @Column(name = "codpro",updatable = false)
     private String codpro;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "CODFIL")
+    @Column(name = "codfil",updatable = false)
     private int codfil;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 1)
-    @Column(name = "TPIMPOS")
+    @Column(name = "tpimpos",updatable = false)
     private String tpimpos;
 
     public TabproimpPK() {
@@ -97,7 +97,7 @@ public class TabproimpPK implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.interagese.transmissornfe.business.entity.TabproimpPK[ codpro=" + codpro + ", codfil=" + codfil + ", tpimpos=" + tpimpos + " ]";
+        return "br.com.interagese.interfiscal.app.TabproimpPK[ codpro=" + codpro + ", codfil=" + codfil + ", tpimpos=" + tpimpos + " ]";
     }
     
 }

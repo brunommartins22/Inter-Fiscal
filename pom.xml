@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.com.bruno</groupId>
     <artifactId>Inter-Fiscal</artifactId>
-    <version>x4.4.0.2.1</version>
+    <version>x4.4.0.2.3</version>
     <packaging>jar</packaging>
     
     <dependencies>
@@ -30,10 +30,10 @@
             <version>2.2.9</version>
         </dependency>
         <dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.2</version>
-		</dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.2</version>
+        </dependency>
         
         <dependency>
             <groupId>org.apache.directory.studio</groupId>
@@ -46,7 +46,7 @@
             <artifactId>poi</artifactId>
             <version>3.17</version>
         </dependency>
-         <dependency>
+        <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
             <version>3.5.5</version>
@@ -67,6 +67,7 @@
             <version>5.6.1</version>
             <type>jar</type>
         </dependency>
+        <!-- Client Rest -->
         <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
@@ -82,6 +83,35 @@
             <artifactId>resteasy-jackson2-provider</artifactId>
             <version>3.1.4.Final</version>
         </dependency>
+
+        <!-- Serialização de objetos para json -->
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+        
+        <!-- Api para manipula o json web token -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        
+
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -174,35 +204,7 @@
                     </execution>
                 </executions>
             </plugin>
-<!--            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4.1</version>
-                <configuration>
-                     get all project dependencies 
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                     MainClass in mainfest make a executable jar 
-                    <archive>
-                        <manifest>
-                            <mainClass>br.com.interage.importacao.app.Main</mainClass>
-                        </manifest>
-                    </archive>
 
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                         bind to the packaging phase 
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
-            <!-- Plugin para gerar o .exe a partir do jar da aplicação -->
             <plugin>
                 <groupId>com.akathist.maven.plugins.launch4j</groupId>
                 <artifactId>launch4j-maven-plugin</artifactId>
@@ -227,6 +229,7 @@
                                 </mainClass>
                             </classPath>
                             <jre>
+                                <maxHeapSize>450</maxHeapSize>
                                 <minVersion>1.8.0</minVersion>
                             </jre>
                             <versionInfo>

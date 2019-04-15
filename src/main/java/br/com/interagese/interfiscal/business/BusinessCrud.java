@@ -7,6 +7,7 @@ package br.com.interagese.interfiscal.business;
 
 import br.com.interagese.interfiscal.entity.Model;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -36,4 +37,6 @@ public interface BusinessCrud<T extends Model> {
     public void updateList(List<T> entity);
 
     public Object count();
+
+    public void executeUpdate(List<String> ListSql);
 }

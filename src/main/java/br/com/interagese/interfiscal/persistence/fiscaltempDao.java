@@ -7,19 +7,19 @@ import br.com.interagese.interfiscal.business.FireTabproimpBusinessBean;
 import br.com.interagese.interfiscal.business.FireTabproimpeBusinessBean;
 import br.com.interagese.interfiscal.business.IcmssaidaBusinessBean;
 import br.com.interagese.interfiscal.business.PisCofinsBusinessBean;
-import br.com.interagese.interfiscal.business.TabfilBusinessBean;
+import br.com.interagese.interfiscal.business.FireTabfilBusinessBean;
 import br.com.interagese.interfiscal.business.TabproBusinessBean;
 import br.com.interagese.interfiscal.business.TabprofilBusinessBean;
 import br.com.interagese.interfiscal.business.TabproimpBusinessBean;
 import br.com.interagese.interfiscal.business.TabproimpeBusinessBean;
 import br.com.interagese.interfiscal.entity.Fiscaltemp;
-import br.com.interagese.interfiscal.entity.IcmsEntrada;
 import br.com.interagese.interfiscal.entity.IcmsSaida;
+import br.com.interagese.interfiscal.entity.ImpTemp;
 import br.com.interagese.interfiscal.entity.Piscofins;
+import br.com.interagese.interfiscal.entity.RestoreImp;
 import br.com.interagese.interfiscal.entity.Tabfil;
 import br.com.interagese.interfiscal.entity.Tabpro;
 import br.com.interagese.interfiscal.entity.Tabprofil;
-import br.com.interagese.interfiscal.entity.Tabproimp;
 import br.com.interagese.interfiscal.entity.Tabproimpe;
 import br.com.interagese.interfiscal.utils.Actions;
 import java.math.BigInteger;
@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.TypedQuery;
 
 @DataBase(getType = DataBase.dataBaseType.POSTGRES)
@@ -38,7 +39,7 @@ public class fiscaltempDao extends AbstractDaoCrud<Fiscaltemp> {
     private FireTabproBusinessBean fireTabproBusiness = new FireTabproBusinessBean();
     private FireTabprofilBusinessBean fireTabprofilBusiness = new FireTabprofilBusinessBean();
     private FireTabproimpBusinessBean fireTabproimpBusiness = new FireTabproimpBusinessBean();
-    private TabfilBusinessBean tabfilBusiness = new TabfilBusinessBean();
+    private FireTabfilBusinessBean tabfilBusiness = new FireTabfilBusinessBean();
     private FireTabproimpeBusinessBean fireTabproimpeBusiness = new FireTabproimpeBusinessBean();
     //*************************** PostgreSql ***********************************
     private TabproBusinessBean tabproBusiness = new TabproBusinessBean();
@@ -67,8 +68,8 @@ public class fiscaltempDao extends AbstractDaoCrud<Fiscaltemp> {
     public List<Fiscaltemp> getListagemRelatorio(String codbar, Integer tipo, Date dataIncial, Date dataFinal) {
         try {
             SimpleDateFormat formata = new SimpleDateFormat("yyyy-MM-dd");
-            String date1 = formata.format(dataIncial) + " 00:00";
-            String date2 = formata.format(dataFinal) + " 23:59";
+            String date1 = formata.format(dataIncial);
+            String date2 = formata.format(dataFinal);
             String sql = "SELECT * FROM fiscaltemp ft WHERE";
 
             if (tipo != null) {
@@ -133,9 +134,10 @@ public class fiscaltempDao extends AbstractDaoCrud<Fiscaltemp> {
         }
     }
 
-    public List<Tabprofil> getListTabprofilByCodProduto(String codPro) {
+    public List<Tabprofil> getListTabprofilByCodProduto(Integer codfil, String codPro) {
         try {
-            TypedQuery<Tabprofil> query = (TypedQuery<Tabprofil>) fireTabprofilBusiness.getDao().getEntityManager().createNativeQuery("SELECT * FROM Tabprofil o WHERE o.codpro= :codpro", Tabprofil.class);
+            TypedQuery<Tabprofil> query = (TypedQuery<Tabprofil>) fireTabprofilBusiness.getDao().getEntityManager().createNativeQuery("SELECT * FROM Tabprofil o WHERE o.codfil= :codfil and o.codpro= :codpro", Tabprofil.class);
+            query.setParameter("codfil", codfil);
             query.setParameter("codpro", codPro);
 
             return query.getResultList();
@@ -144,31 +146,75 @@ public class fiscaltempDao extends AbstractDaoCrud<Fiscaltemp> {
         }
     }
 
-    public List<Tabproimp> getExistTabproimp(String codpro, Integer codfil, String tpImpA, String tpimpD) {
+    public List<ImpTemp> getExistTabproimp(String codpro) {
         try {
-            String sql = "SELECT * FROM tabproimp o WHERE o.codfil= :codfil and o.codpro= :codpro and (o.tpimpos= :tpimpA or o.tpimpos= :tpimpD)";
 
-            TypedQuery<Tabproimp> result = (TypedQuery<Tabproimp>) fireTabproimpBusiness.getDao().getEntityManager().createNativeQuery(sql, Tabproimp.class)
-                    .setParameter("codfil", codfil)
-                    .setParameter("codpro", codpro)
-                    .setParameter("tpimpA", tpImpA)
-                    .setParameter("tpimpD", tpimpD);
+            String sql = "select tf.codfil ,"
+                    + "(select count(*) from tabproimp tpi where tpi.codpro = :codpro and tpi.codfil=tf.codfil and tpi.tpimpos='A') as TpA,"
+                    + "(select count(*) from tabproimp tpi where tpi.codpro = :codpro and tpi.codfil=tf.codfil and tpi.tpimpos='D') as TpD "
+                    + "from tabfil tf where tf.mixfiscal='S'";
 
-            return result.getResultList();
+            List<Object[]> resultObject = fireTabproimpBusiness.getDao().getEntityManager().createNativeQuery(sql)
+                    .setParameter("codpro", codpro).getResultList();
+
+            List<ImpTemp> resultImp = new ArrayList<>();
+            for (Object[] o : resultObject) {
+                ImpTemp it = new ImpTemp();
+                it.setCodfil(((Number) o[0]).intValue());
+                it.setValorTpA(((Number) o[1]).intValue());
+                it.setValorTpD(((Number) o[2]).intValue());
+                resultImp.add(it);
+                if (it.getValorTpA() != 0 && it.getValorTpD() != 0) {
+                    it.setResultTpImpos("A,D");
+                } else if (it.getValorTpA() != 0 && it.getValorTpD() == 0) {
+                    it.setResultTpImpos("A");
+                } else if (it.getValorTpA() == 0 && it.getValorTpD() != 0) {
+                    it.setResultTpImpos("D");
+                } else {
+                    it.setResultTpImpos("");
+                }
+            }
+
+            return resultImp;
         } finally {
             fireTabproimpBusiness.getDao().getEntityManager().close();
         }
     }
 
-    public List<Tabproimpe> getExistTabproimpE(String codpro, Integer codfil) {
+    public List<ImpTemp> getExistTabproimpE(String codpro) {
         try {
-            String sql = "SELECT * FROM tabproimpe o where o.codigoProduto = :codpro and o.codigoFilial= :codfil";
+            String sql = "select tf.codfil as filial,"
+                    + "(SELECT COUNT(*) FROM tabproimpe o where o.codigo_produto = :codpro and o.codigo_filial=tf.codfil) as valor"
+                    + " from tabfil tf"
+                    + " where tf.mixfiscal='S'";
 
-            TypedQuery<Tabproimpe> result = (TypedQuery<Tabproimpe>) fireTabproimpeBusiness.getDao().getEntityManager().createNativeQuery(sql, Tabproimpe.class)
+            List<Object[]> resultObject = fireTabproimpeBusiness.getDao().getEntityManager().createNativeQuery(sql).setParameter("codpro", codpro).getResultList();
+
+            List<ImpTemp> resultImpe = new ArrayList<>();
+
+            for (Object[] o : resultObject) {
+                ImpTemp it = new ImpTemp();
+                it.setCodfil((Integer) o[0]);
+                it.setValorImpe(((Number) o[1]).intValue());
+                resultImpe.add(it);
+            }
+
+            return resultImpe;
+        } finally {
+            fireTabproimpeBusiness.getDao().getEntityManager().close();
+        }
+    }
+
+    public Integer getCountExistTabproimpE(String codpro, Integer codfil) {
+        try {
+            String sql = "SELECT COUNT(*) FROM tabproimpe o where o.codigoProduto = :codpro and o.codigoFilial= :codfil";
+
+            TypedQuery<Integer> result = (TypedQuery<Integer>) fireTabproimpeBusiness.getDao().getEntityManager().createNativeQuery(sql, Integer.class
+            )
                     .setParameter("codpro", codpro)
                     .setParameter("codfil", codfil);
 
-            return result.getResultList();
+            return result.getSingleResult();
 
         } finally {
             fireTabproimpeBusiness.getDao().getEntityManager().close();
@@ -181,319 +227,13 @@ public class fiscaltempDao extends AbstractDaoCrud<Fiscaltemp> {
             SimpleDateFormat formata = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             String data1 = formata.format(inicioOperacao);
 
-            TypedQuery<Fiscaltemp> result = (TypedQuery<Fiscaltemp>) getEntityManager().createNativeQuery("select * from fiscaltemp f where f.data_registro >= '" + data1 + "'", Fiscaltemp.class);
+            TypedQuery<Fiscaltemp> result = (TypedQuery<Fiscaltemp>) getEntityManager().createNativeQuery("select * from fiscaltemp f where f.data_registro >= '" + data1 + "'", Fiscaltemp.class
+            );
 
             return result.getResultList().isEmpty() ? null : result.getResultList();
 
         } finally {
             getEntityManager().close();
-        }
-    }
-
-    public void getGerarTributos(List<Fiscaltemp> resultTemp, Tabfil filial) {
-
-        Integer codfil = filial.getCodfil();
-        String regime = filial.getCrt().toString();
-
-        List<Tabpro> resultTabproUpdate = new ArrayList<>();
-
-        List<Tabprofil> resultTabprofilUpdate = new ArrayList<>();
-
-        List<Tabproimp> resultTabproimpInsert = new ArrayList<>();
-        List<Tabproimp> resultTabproimpUpdate = new ArrayList<>();
-
-        List<Tabproimpe> resultTabproimpeInsert = new ArrayList<>();
-        List<Tabproimpe> resultTabproimpeUpdate = new ArrayList<>();
-
-        Date dataAtualizacao = new Date();
-
-        for (Fiscaltemp f : resultTemp) {
-            List<Tabpro> resultTabpro = getListTabproByCod(Integer.parseInt(f.getCodigoProduto()));
-            for (Tabpro produto : resultTabpro) {
-                String codpro = produto.getCodpro();
-                //******** TABPRO **********************************************
-                //********************** Pis Cofins ****************************
-                produto.setClasfiscal(f.getNcm() != null && !f.getNcm().equals("") ? f.getNcm() : produto.getClasfiscal() == null || produto.getClasfiscal().equals("") ? null : produto.getClasfiscal());
-                produto.setCodbarun(f.getEan() != null ? f.getEan() : null);
-                produto.setFatorpis(f.getPisAlqE() == null || f.getPisAlqE() == 0.0 ? produto.getFatorpis() : f.getPisAlqE());
-                produto.setFatorcofins(f.getCofinsAlqE() == null || f.getCofinsAlqE() == 0.0 ? produto.getFatorcofins() : f.getCofinsAlqE());
-                produto.setCstPis(f.getPisCstE() == null || f.getPisCstE().equals("") ? null : f.getPisCstE());
-
-                //********************** Icms Saída ****************************
-                produto.setIcms(f.getSncAlq() == null ? 0.0 : f.getSncAlq());
-                produto.setCest((f.getCest() != null && !f.getCest().isEmpty()) ? f.getCest().replace(".", "") : produto.getCest() == null || produto.getCest().equals("") ? null : produto.getCest());
-                produto.setCst(regime.equals("1") ? (f.getSncCsosn() == null || f.getSncCsosn().equals("0.0") ? (produto.getCst() == null || produto.getCst().equals("") ? null : produto.getCst()) : f.getSncCsosn()) : (f.getSncCst() == null || f.getSncCst().equals("0.0") ? (produto.getCst() == null || produto.getCst().equals("") ? null : produto.getCst()) : f.getSncCst()));
-
-                //********************** Update RgData *************************
-                produto.setRgdata(dataAtualizacao);
-
-                //************** Gerando Tipo Trib and ModBc *******************
-                String tipoTrib = "";
-                String modBc = "";
-
-                if (f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida()) {
-
-                    String valueTrib = regime.equals("1") ? f.getSncCsosn() : f.getSncCst();
-
-                    //************************* Indice *************************
-                    switch (valueTrib) {
-                        case "10":
-                        case "30":
-                        case "50":
-                        case "60":
-                        case "70":
-                        case "90":
-                        case "141":
-                        case "201":
-                        case "202":
-                        case "203":
-                        case "500":
-                        case "900":
-                        case "P10":
-                        case "P90": {
-                            tipoTrib = "SS";
-                            break;
-                        }
-                        case "40":
-                        case "300": {
-                            tipoTrib = "II";
-                            break;
-                        }
-                        case "41":
-                        case "400": {
-                            tipoTrib = "NN";
-                            break;
-                        }
-                        default: {
-                            tipoTrib = "PT";
-                            break;
-                        }
-
-                    }
-                    produto.setIndice(tipoTrib);
-
-                    //***************** Add Prod in ListUpdate *****************
-                    resultTabproUpdate.add(produto);
-
-                    //************************* IcmsModBc **********************
-                    switch (valueTrib) {
-                        case "00":
-                        case "10":
-                        case "20":
-                        case "51":
-                        case "70":
-                        case "90":
-                        case "900": {
-                            modBc = "0";
-                            break;
-                        }
-                        default: {
-                            modBc = "";
-                            break;
-                        }
-                    }
-
-                }
-
-                //****** TABPROFIL *********************************************
-                List<Tabprofil> filiais = getListTabprofilByCodProduto(codpro);
-
-                for (Tabprofil fil : filiais) {
-
-                    if (f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins()) {
-                        //********************* Pis/Cofins *********************
-                        fil.setNatRec(f.getCodNaturezaReceita() == null || f.getCodNaturezaReceita().equals("") ? null : f.getCodNaturezaReceita());
-                        fil.setCstpise(f.getPisCstE() == null || f.getPisCstE().equals("") ? null : f.getPisCstE());
-                        fil.setFatorpiscom(f.getPisAlqE() == null ? 0.0 : f.getPisAlqE());
-                        fil.setCstcofinse(f.getCofinsCstE() == null || f.getCofinsCstE().equals("") ? null : f.getCofinsCstE());
-                        fil.setFatorcofinscom(f.getCofinsAlqE() == null ? 0.0 : f.getCofinsAlqE());
-
-                        //********************* Update RgData ******************
-                        fil.setRgdata(new Date());
-
-                        //************ Add TabFil in UpdateList ****************
-                        fil.setMixfiscal("S");
-                        resultTabprofilUpdate.add(fil);
-
-                    }
-                    //****** TABPROIMP *****************************************
-                    List<Tabproimp> imps = getExistTabproimp(codpro, codfil, "A", "D");
-                    Tabproimp imp = null;
-
-                    if (imps.isEmpty() && (f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida()) && (f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins())) {
-                        int r = 0;
-                        while (r < 2) {
-                            imp = new Tabproimp(codpro, codfil, r == 0 ? "A" : "D");
-
-                            //****************** Pis/cofins ********************
-                            imp.setNcm(f.getNcm());
-                            imp.setPiscst(f.getPisCstS() == null || f.getPisCstS().equals("") ? null : f.getPisCstS());
-                            imp.setPisppis(f.getPisAlqS() == null ? 0.0 : f.getPisAlqS());
-                            imp.setCofinscst(f.getCofinsCstS() == null || f.getCofinsCstS().equals("") ? null : f.getCofinsCstS());
-                            imp.setCofinspcofins(f.getCofinsAlqS() == null ? 0.0 : f.getCofinsAlqS());
-                            //****************** Icms Saída ********************
-                            imp.setIcmscst(regime.equals("1") ? f.getSncCsosn() : f.getSncCst());
-                            imp.setIcmspicms(f.getSncAlq() == null ? 0.0 : f.getSncAlq());
-                            imp.setIcmspicmsst(f.getSncAlqst() == null ? 0.0 : f.getSncAlqst());
-                            imp.setIcmspredbc(f.getSncRbc() == null ? 0.0 : f.getSncRbc());
-                            imp.setIcmspredbcst(f.getSncRbcst() == null ? 0.0 : f.getSncRbcst());
-                            imp.setIcmsmodbc(modBc);
-                            
-                            //**************************************************
-                            imp.setMixfiscal("S");
-
-                            //********* Add Tabproimp in InsertList ************
-                            resultTabproimpInsert.add(imp);
-
-                            r++;
-                        }
-                    } else if ((f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida()) || (f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins())) {
-                        for (int b = 0; b < imps.size(); b++) {
-                            imp = imps.get(b);
-
-                            if (f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins()) {
-                                //************** Pis/cofins ********************
-                                imp.setNcm(f.getNcm());
-                                imp.setPiscst(f.getPisCstS() == null || f.getPisCstS().equals("") ? null : f.getPisCstS());
-                                imp.setPisppis(f.getPisAlqS() == null ? 0.0 : f.getPisAlqS());
-                                imp.setCofinscst(f.getCofinsCstS() == null || f.getCofinsCstS().equals("") ? null : f.getCofinsCstS());
-                                imp.setCofinspcofins(f.getCofinsAlqS() == null ? 0.0 : f.getCofinsAlqS());
-                            }
-                            if (f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida()) {
-                                //************** Icms Saída ********************
-                                imp.setIcmscst(regime.equals("1") ? f.getSncCsosn() : f.getSncCst());
-                                imp.setIcmspicms(f.getSncAlq() == null ? 0.0 : f.getSncAlq());
-                                imp.setIcmspicmsst(f.getSncAlqst() == null ? 0.0 : f.getSncAlqst());
-                                imp.setIcmspredbc(f.getSncRbc() == null ? 0.0 : f.getSncRbc());
-                                imp.setIcmspredbcst(f.getSncRbcst() == null ? 0.0 : f.getSncRbcst());
-                                imp.setIcmsmodbc(modBc);
-                            }
-                            //**************************************************
-                            imp.setMixfiscal("S");
-
-                            resultTabproimpUpdate.add(imp);
-//                            fireTabproimpBusiness.update(imp);
-//                            tabproimpBusiness.update(imp);
-                        }
-                    }
-
-                    //*** TABPROIMPE *******************************************
-                    if (f.getIcmsEntrada() != null && !f.getIcmsEntrada().equals("") && f.getIcmsEntrada()) {
-                        List<Tabproimpe> impes = getExistTabproimpE(codpro, codfil);
-                        Tabproimpe impe = null;
-                        if (impes.isEmpty()) {
-
-                            impe = new Tabproimpe(codpro, codfil);
-                            impe.setEan(f.getEan());
-                            impe.setTipoMva(f.getTipoMva());
-                            impe.setMva(f.getMva());
-                            impe.setMvaDistribuidor(f.getMvaDistribuidor());
-                            impe.setMvaDataIni(f.getMvaDataIni());
-                            impe.setMvaDataFim(f.getMvaDataFim());
-                            impe.setCreditoOutorgado(f.getCreditoOutorgado());
-                            impe.setEiCst(f.getEiCst());
-                            impe.setEiAlq(f.getEiAlq());
-                            impe.setEiAlqst(f.getEiAlqst());
-                            impe.setEiRbc(f.getEiRbc());
-                            impe.setEiRbcst(f.getEiRbcst());
-                            impe.setEdCst(f.getEdCst());
-                            impe.setEdAlq(f.getEdAlq());
-                            impe.setEdAlqst(f.getEdAlqst());
-                            impe.setEdRbc(f.getEdRbc());
-                            impe.setEdRbcst(f.getEdRbcst());
-                            impe.setEsCst(f.getEsCst());
-                            impe.setEsAlq(f.getEsAlq());
-                            impe.setEsAlqst(f.getEsAlqst());
-                            impe.setEsRbc(f.getEsRbc());
-                            impe.setEsRbcst(f.getEsRbcst());
-                            impe.setNfiCst(f.getNfiCst());
-                            impe.setNfdCst(f.getNfdCst());
-                            impe.setNfsCsosn(f.getNfsCsosn());
-                            impe.setNfAlq(f.getNfAlq());
-                            impe.setFundamentoLegal(f.getFundamentoLegal());
-
-                            impe.setMixfiscal("S");
-
-                            resultTabproimpeInsert.add(impe);
-//                            fireTabproimpeBusiness.insert(impe);
-//                            tabproimpeBusiness.insert(impe);
-
-                        } else {
-                            for (int s = 0; s < impes.size(); s++) {
-                                impe = impes.get(s);
-                                impe.setTipoMva(f.getTipoMva());
-                                impe.setMva(f.getMva());
-                                impe.setMvaDistribuidor(f.getMvaDistribuidor());
-                                impe.setMvaDataIni(f.getMvaDataIni());
-                                impe.setMvaDataFim(f.getMvaDataFim());
-                                impe.setCreditoOutorgado(f.getCreditoOutorgado());
-                                impe.setEiCst(f.getEiCst());
-                                impe.setEiAlq(f.getEiAlq());
-                                impe.setEiAlqst(f.getEiAlqst());
-                                impe.setEiRbc(f.getEiRbc());
-                                impe.setEiRbcst(f.getEiRbcst());
-                                impe.setEdCst(f.getEdCst());
-                                impe.setEdAlq(f.getEdAlq());
-                                impe.setEdAlqst(f.getEdAlqst());
-                                impe.setEdRbc(f.getEdRbc());
-                                impe.setEdRbcst(f.getEdRbcst());
-                                impe.setEsCst(f.getEsCst());
-                                impe.setEsAlq(f.getEsAlq());
-                                impe.setEsAlqst(f.getEsAlqst());
-                                impe.setEsRbc(f.getEsRbc());
-                                impe.setEsRbcst(f.getEsRbcst());
-                                impe.setNfiCst(f.getNfiCst());
-                                impe.setNfdCst(f.getNfdCst());
-                                impe.setNfsCsosn(f.getNfsCsosn());
-                                impe.setNfAlq(f.getNfAlq());
-                                impe.setFundamentoLegal(f.getFundamentoLegal());
-                                impe.setMixfiscal("S");
-
-                                resultTabproimpeUpdate.add(impe);
-//                                fireTabproimpeBusiness.update(impe);
-//                                tabproimpeBusiness.update(impe);
-                            }
-                        }
-                    }
-                }
-
-            }
-
-        }
-
-        if (!resultTabproUpdate.isEmpty()) {
-            //Firebird
-            fireTabproBusiness.updateList(resultTabproUpdate);
-            //PostgreSql
-            tabproBusiness.updateList(resultTabproUpdate);
-
-            if (!resultTabprofilUpdate.isEmpty()) {
-                //Firebird
-                fireTabprofilBusiness.updateList(resultTabprofilUpdate);
-                //PostgreSql
-                tabprofilBusiness.updateList(resultTabprofilUpdate);
-            }
-            if (!resultTabproimpInsert.isEmpty()) {
-                //Firebird
-                fireTabproimpBusiness.insertList(resultTabproimpInsert);
-            }
-            if (!resultTabproimpUpdate.isEmpty()) {
-                //Firebird
-                fireTabproimpBusiness.updateList(resultTabproimpUpdate);
-                //PostgreSql
-                tabproimpBusiness.updateList(resultTabproimpUpdate);
-            }
-            if (!resultTabproimpeInsert.isEmpty()) {
-                //Firebird
-                fireTabproimpeBusiness.insertList(resultTabproimpeInsert);
-            }
-            if (!resultTabproimpeUpdate.isEmpty()) {
-                //Firebird
-                fireTabproimpeBusiness.updateList(resultTabproimpeUpdate);
-                //PostgreSql
-                tabproimpeBusiness.updateList(resultTabproimpeUpdate);
-            }
-
         }
     }
 
@@ -535,6 +275,27 @@ public class fiscaltempDao extends AbstractDaoCrud<Fiscaltemp> {
         pisCofinsBusiness.insertList(resultPisCofins);
         icmssaidaBusiness.insertList(resultIcmsSaida);
 
+    }
+
+    public List<RestoreImp> getResultImpTemp(Integer codfil) {
+        try {
+            List<RestoreImp> result = new ArrayList<>();
+            List<Object[]> resultImp = fireTabproimpBusiness.getDao().getEntityManager().createNativeQuery("select i.codpro,i.piscst,i.pisppis,i.cofinscst,i.cofinspcofins from tabproimp i where i.codfil = '" + codfil + "' and i.tpimpos='D'").getResultList();
+
+            resultImp.forEach((o) -> {
+                RestoreImp imp = new RestoreImp();
+                imp.setCodpro(o[0] != null ? (String) o[0] : "");
+                imp.setPisCst(o[1] != null ? (String) o[1] : "");
+                imp.setAliquotaPis(o[2] != null ? (Double) o[2] : 0.0);
+                imp.setCofinsCst(o[3] != null ? (String) o[3] : "");
+                imp.setAliquotaCofins(o[4] != null ? (Double) o[4] : 0.0);
+                result.add(imp);
+            });
+
+            return result;
+        } finally {
+            fireTabproimpBusiness.getDao().getEntityManager().close();
+        }
     }
 
 }

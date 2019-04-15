@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class IcmsSaidaTableModel extends AbstractTableModel<IcmsSaida> {
 
-    public String[] columns = new String[]{"Produto", "Cód Produto", "Cód Barra", "Re 29560", "Cest", "Sac Cst", "Sac Alíquota", "Sac Alíquota ST", "Sac Rbc", "Sac Rbc ST", "Sas Cst", "Sas Alíquota", "Sas Alíquota ST", "Sas Rbc", "Sas Rbc ST", "Svc Cst", "Svc Alíquota","Svc Alíquota ST", "Svc Rbc", "Svc Rbc ST", "Snc Cst", "Snc Alíquota","Snc Alíquota ST","Snc Rbc", "Snc Rbc ST", "Sss Csosn","Svc Csosn", "Fecp", "Fundamento Legal"};
+    public String[] columns = new String[]{"Produto", "Cód Produto", "Cód Barra", "Re 29560", "Cest", "Sac Cst", "Sac Alíquota", "Sac Alíquota ST", "Sac Rbc", "Sac Rbc ST", "Sas Cst", "Sas Alíquota", "Sas Alíquota ST", "Sas Rbc", "Sas Rbc ST", "Svc Cst", "Svc Alíquota","Svc Alíquota ST", "Svc Rbc", "Svc Rbc ST", "Snc Cst", "Snc Alíquota","Snc Alíquota ST","Snc Rbc", "Snc Rbc ST", "Sss Csosn","Svc Csosn","Snc Csosn","Fecp", "Fundamento Legal"};
 
     public IcmsSaidaTableModel(List<IcmsSaida> list) {
         super(list);
@@ -27,7 +27,7 @@ public class IcmsSaidaTableModel extends AbstractTableModel<IcmsSaida> {
 //"Sas Alíquota", "Sas Alíquota ST", "Sas Rbc", "Sas Rbc ST", "Svc Cst", 
 //"Svc Alíquota","Svc Alíquota ST", "Svc Rbc", "Svc Rbc ST", "Snc Cst", 
 //"Snc Alíquota","Snc Alíquota ST","Snc Rbc", "Snc Rbc ST", "Sss Csosn",
-//"Svc Csosn", "Fecp", "Fundamento Legal"
+//"Svc Csosn","Svc Csosn", "Fecp", "Fundamento Legal"
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         IcmsSaida i = getItem(rowIndex);
@@ -114,9 +114,12 @@ public class IcmsSaidaTableModel extends AbstractTableModel<IcmsSaida> {
                 return i.getSvcCsosn();
             }
             case 27:{
-                return i.getFecp();
+                return i.getSncCsosn();
             }
             case 28:{
+                return i.getFecp();
+            }
+            case 29:{
                 return i.getFundamentoLegal();
             }
             default:

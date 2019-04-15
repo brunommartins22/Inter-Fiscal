@@ -29,161 +29,161 @@ public class Tabfil implements Model {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "CODFIL")
+    @Column(name = "CODFIL",updatable = false)
     private Integer codfil;
-    @Column(name = "NOMFIL")
+    @Column(name = "NOMFIL",updatable = false)
     private String nomfil;
-    @Column(name = "ENDFIL")
+    @Column(name = "ENDFIL",updatable = false)
     private String endfil;
-    @Column(name = "BAIFIL")
+    @Column(name = "BAIFIL",updatable = false)
     private String baifil;
-    @Column(name = "CIDFIL")
+    @Column(name = "CIDFIL",updatable = false)
     private String cidfil;
-    @Column(name = "UFFIL")
+    @Column(name = "UFFIL",updatable = false)
     private String uffil;
-    @Column(name = "CNPJFIL")
+    @Column(name = "CNPJFIL",updatable = false)
     private String cnpjfil;
-    @Column(name = "IEFIL")
+    @Column(name = "IEFIL",updatable = false)
     private String iefil;
-    @Column(name = "TELFIL")
+    @Column(name = "TELFIL",updatable = false)
     private String telfil;
-    @Column(name = "RGCODUSU")
+    @Column(name = "RGCODUSU",updatable = false)
     private Integer rgcodusu;
-    @Column(name = "RGUSUARIO")
+    @Column(name = "RGUSUARIO",updatable = false)
     private String rgusuario;
-    @Column(name = "RGDATA")
+    @Column(name = "RGDATA",updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date rgdata;
-    @Column(name = "RGEVENTO")
+    @Column(name = "RGEVENTO",updatable = false)
     private String rgevento;
-    @Column(name = "TPFILIAL")
+    @Column(name = "TPFILIAL",updatable = false)
     private String tpfilial;
-    @Column(name = "CAMSERVER")
+    @Column(name = "CAMSERVER",updatable = false)
     private String camserver;
-    @Column(name = "SITUACAO")
+    @Column(name = "SITUACAO",updatable = false)
     private String situacao;
-    @Column(name = "CAMTEMPOR")
+    @Column(name = "CAMTEMPOR",updatable = false)
     private String camtempor;
-    @Column(name = "CAMTRANSM")
+    @Column(name = "CAMTRANSM",updatable = false)
     private String camtransm;
-    @Column(name = "CAMLOGIN")
+    @Column(name = "CAMLOGIN",updatable = false)
     private String camlogin;
-    @Column(name = "CONTACAIXA")
+    @Column(name = "CONTACAIXA",updatable = false)
     private Integer contacaixa;
-    @Column(name = "PLANOAVISTA")
+    @Column(name = "PLANOAVISTA",updatable = false)
     private Integer planoavista;
-    @Column(name = "PLANOTITBX")
+    @Column(name = "PLANOTITBX",updatable = false)
     private Integer planotitbx;
-    @Column(name = "PLANOSANGS")
+    @Column(name = "PLANOSANGS",updatable = false)
     private Integer planosangs;
-    @Column(name = "PLANOSANGE")
+    @Column(name = "PLANOSANGE",updatable = false)
     private Integer planosange;
-    @Column(name = "CONTASANG")
+    @Column(name = "CONTASANG",updatable = false)
     private Integer contasang;
-    @Column(name = "PLANOVALE")
+    @Column(name = "PLANOVALE",updatable = false)
     private Integer planovale;
-    @Column(name = "NRNOTA")
+    @Column(name = "NRNOTA",updatable = false)
     private Integer nrnota;
-    @Column(name = "FANFIL")
+    @Column(name = "FANFIL",updatable = false)
     private String fanfil;
-    @Column(name = "NUMERO")
+    @Column(name = "NUMERO",updatable = false)
     private String numero;
-    @Column(name = "INSCMUN")
+    @Column(name = "INSCMUN",updatable = false)
     private String inscmun;
-    @Column(name = "CNAEFIL")
+    @Column(name = "CNAEFIL",updatable = false)
     private String cnaefil;
-    @Column(name = "COMPFIL")
+    @Column(name = "COMPFIL",updatable = false)
     private String compfil;
-    @Column(name = "CEPFIL")
+    @Column(name = "CEPFIL",updatable = false)
     private String cepfil;
-    @Column(name = "NRLOTE")
+    @Column(name = "NRLOTE",updatable = false)
     private Integer nrlote;
-    @Column(name = "NRNFSCAN")
+    @Column(name = "NRNFSCAN",updatable = false)
     private Integer nrnfscan;
-    @Column(name = "NRNFSERIE2")
+    @Column(name = "NRNFSERIE2",updatable = false)
     private Integer nrnfserie2;
-    @Column(name = "IESUBST")
+    @Column(name = "IESUBST",updatable = false)
     private String iesubst;
-    @Column(name = "CFOPD")
+    @Column(name = "CFOPD",updatable = false)
     private String cfopd;
-    @Column(name = "CFOPF")
+    @Column(name = "CFOPF",updatable = false)
     private String cfopf;
-    @Column(name = "CFOPE")
+    @Column(name = "CFOPE",updatable = false)
     private String cfope;
-    @Column(name = "CRT")
+    @Column(name = "CRT",updatable = false)
     private Character crt;
-    @Column(name = "CONTFIL")
+    @Column(name = "CONTFIL",updatable = false)
     private String contfil;
-    @Column(name = "FAXFIL")
+    @Column(name = "FAXFIL",updatable = false)
     private String faxfil;
-    @Column(name = "EMAILSERVERFIL")
+    @Column(name = "EMAILSERVERFIL",updatable = false)
     private Character emailserverfil;
-    @Column(name = "EMAILSMTPFIL")
+    @Column(name = "EMAILSMTPFIL",updatable = false)
     private String emailsmtpfil;
-    @Column(name = "EMAILUSUARIOFIL")
+    @Column(name = "EMAILUSUARIOFIL",updatable = false)
     private String emailusuariofil;
-    @Column(name = "SUFRAMA")
+    @Column(name = "SUFRAMA",updatable = false)
     private String suframa;
-    @Column(name = "EMAILFIL")
+    @Column(name = "EMAILFIL",updatable = false)
     private String emailfil;
-    @Column(name = "EMAILPORTA")
+    @Column(name = "EMAILPORTA",updatable = false)
     private String emailporta;
-    @Column(name = "EMAILSENHA")
+    @Column(name = "EMAILSENHA",updatable = false)
     private String emailsenha;
-    @Column(name = "TIPOCERTIF")
+    @Column(name = "TIPOCERTIF",updatable = false)
     private String tipocertif;
-    @Column(name = "PATHSERIECERT")
+    @Column(name = "PATHSERIECERT",updatable = false)
     private String pathseriecert;
-    @Column(name = "SENHACERT")
+    @Column(name = "SENHACERT",updatable = false)
     private String senhacert;
-    @Column(name = "ESCRIPI")
+    @Column(name = "ESCRIPI",updatable = false)
     private Character escripi;
-    @Column(name = "ESCRSUBS")
+    @Column(name = "ESCRSUBS",updatable = false)
     private Character escrsubs;
-    @Column(name = "ESCRPIS")
+    @Column(name = "ESCRPIS",updatable = false)
     private Character escrpis;
-    @Column(name = "ESCRCOFINS")
+    @Column(name = "ESCRCOFINS",updatable = false)
     private Character escrcofins;
-    @Column(name = "CRTNAC")
+    @Column(name = "CRTNAC",updatable = false)
     private Character crtnac;
-    @Column(name = "REGFISC")
+    @Column(name = "REGFISC",updatable = false)
     private Character regfisc;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "PERCIMP")
+    @Column(name = "PERCIMP",updatable = false)
     private Double percimp;
-    @Column(name = "NOMECONT")
+    @Column(name = "NOMECONT",updatable = false)
     private String nomecont;
-    @Column(name = "CPFCONT")
+    @Column(name = "CPFCONT",updatable = false)
     private String cpfcont;
-    @Column(name = "CRCCONT")
+    @Column(name = "CRCCONT",updatable = false)
     private String crccont;
-    @Column(name = "CNPJCONT")
+    @Column(name = "CNPJCONT",updatable = false)
     private String cnpjcont;
-    @Column(name = "CEPCONT")
+    @Column(name = "CEPCONT",updatable = false)
     private String cepcont;
-    @Column(name = "ENDERECOCONT")
+    @Column(name = "ENDERECOCONT",updatable = false)
     private String enderecocont;
-    @Column(name = "NUMEROCONT")
+    @Column(name = "NUMEROCONT",updatable = false)
     private String numerocont;
-    @Column(name = "COMPLCONT")
+    @Column(name = "COMPLCONT",updatable = false)
     private String complcont;
-    @Column(name = "BAIRROCONT")
+    @Column(name = "BAIRROCONT",updatable = false)
     private String bairrocont;
-    @Column(name = "FONECONT")
+    @Column(name = "FONECONT",updatable = false)
     private String fonecont;
-    @Column(name = "FAXCONT")
+    @Column(name = "FAXCONT",updatable = false)
     private String faxcont;
-    @Column(name = "EMAILCONT")
+    @Column(name = "EMAILCONT",updatable = false)
     private String emailcont;
-    @Column(name = "COD_MUNCONT")
+    @Column(name = "COD_MUNCONT",updatable = false)
     private String codMuncont;
-    @Column(name = "FATORIRPJ")
+    @Column(name = "FATORIRPJ",updatable = false)
     private Double fatorirpj;
-    @Column(name = "FATORCSLL")
+    @Column(name = "FATORCSLL",updatable = false)
     private Double fatorcsll;
-    @Column(name = "NRSERIE")
+    @Column(name = "NRSERIE",updatable = false)
     private String nrserie;
-    @Column(name = "PLANOCREDCLI")
+    @Column(name = "PLANOCREDCLI",updatable = false)
     private Integer planocredcli;
 //    @Column(name = "MTEOPT")
 //    private String mteopt;
@@ -198,6 +198,8 @@ public class Tabfil implements Model {
 //    private List<Tabprofil> tabprofilList;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tabfil", fetch = FetchType.EAGER)
 //    private List<Tabproimp> tabproimpList;
+    @Column(name = "MIXFISCAL")
+    private String mixfiscal;
 
     public Tabfil() {
     }
@@ -903,6 +905,14 @@ public class Tabfil implements Model {
     @Override
     public void setId(Object object) {
         this.codfil = (Integer) object;
+    }
+
+    public String getMixfiscal() {
+        return mixfiscal;
+    }
+
+    public void setMixfiscal(String mixfiscal) {
+        this.mixfiscal = mixfiscal;
     }
 
 }

@@ -7,7 +7,7 @@ import br.com.interagese.interfiscal.business.FireTabproimpBusinessBean;
 import br.com.interagese.interfiscal.business.FireTabproimpeBusinessBean;
 import br.com.interagese.interfiscal.business.IcmssaidaBusinessBean;
 import br.com.interagese.interfiscal.business.PisCofinsBusinessBean;
-import br.com.interagese.interfiscal.business.TabfilBusinessBean;
+import br.com.interagese.interfiscal.business.FireTabfilBusinessBean;
 import br.com.interagese.interfiscal.business.TabproBusinessBean;
 import br.com.interagese.interfiscal.business.TabprofilBusinessBean;
 import br.com.interagese.interfiscal.business.TabproimpBusinessBean;
@@ -37,7 +37,7 @@ public class FirefiscaltempDao extends AbstractDaoCrud<Fiscaltemp> {
     private FireTabproBusinessBean fireTabproBusiness = new FireTabproBusinessBean();
     private FireTabprofilBusinessBean fireTabprofilBusiness = new FireTabprofilBusinessBean();
     private FireTabproimpBusinessBean fireTabproimpBusiness = new FireTabproimpBusinessBean();
-    private TabfilBusinessBean tabfilBusiness = new TabfilBusinessBean();
+    private FireTabfilBusinessBean tabfilBusiness = new FireTabfilBusinessBean();
     private FireTabproimpeBusinessBean fireTabproimpeBusiness = new FireTabproimpeBusinessBean();
     //*************************** PostgreSql ***********************************
     private TabproBusinessBean tabproBusiness = new TabproBusinessBean();

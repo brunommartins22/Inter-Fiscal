@@ -14,13 +14,18 @@ import br.com.interagese.interfiscal.business.FiscalTempBusinessBean;
 import br.com.interagese.interfiscal.business.TabproBusiness;
 import br.com.interagese.interfiscal.business.TabproBusinessBean;
 import br.com.interagese.interfiscal.entity.Fiscaltemp;
+import br.com.interagese.interfiscal.entity.RestoreImp;
 import br.com.interagese.interfiscal.entity.Sessao;
+import br.com.interagese.interfiscal.entity.Tabfil;
+import br.com.interagese.interfiscal.entity.TableItensMix;
 import br.com.interagese.interfiscal.entity.Tabpro;
 import br.com.interagese.interfiscal.utils.Actions;
 import br.com.interagese.interfiscal.utils.Utils;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +34,7 @@ import java.util.List;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import org.apache.commons.io.IOUtils;
@@ -39,17 +45,23 @@ import org.apache.commons.io.IOUtils;
  */
 public class JfrmGeral extends javax.swing.JFrame {
 
-    private Actions a = new Actions(this);
-    private TabproBusiness tabproBusiness = new TabproBusinessBean();
-    private FireTabproBusiness fireTabproBusiness = new FireTabproBusinessBean();
-    private FiscalTempBusiness fiscalTempBusiness = new FiscalTempBusinessBean();
-    private FireFiscalTempBusiness fireFiscalTempBusiness = new FireFiscalTempBusinessBean();
-    private JFrame jfrmPrincipal = this;
+    private final Actions a;
+    private final TabproBusiness tabproBusiness;
+    private final FireTabproBusiness fireTabproBusiness;
+    private final FiscalTempBusiness fiscalTempBusiness;
+    private final FireFiscalTempBusiness fireFiscalTempBusiness;
+    private final JFrame jfrmPrincipal;
 
     /**
      * Creates new form JfrmGeral
      */
     public JfrmGeral() {
+        this.a = new Actions(this);
+        this.tabproBusiness = new TabproBusinessBean();
+        this.fireTabproBusiness = new FireTabproBusinessBean();
+        this.fiscalTempBusiness = new FiscalTempBusinessBean();
+        this.fireFiscalTempBusiness = new FireFiscalTempBusinessBean();
+        this.jfrmPrincipal = this;
         initComponents();
         definirFormulario();
     }
@@ -99,7 +111,7 @@ public class JfrmGeral extends javax.swing.JFrame {
             jToolBar2 = new javax.swing.JToolBar();
             jButtonMix = new javax.swing.JButton();
             jButtonImportacao = new javax.swing.JButton();
-            jButtonTributacao = new javax.swing.JButton();
+            jButtonServidor = new javax.swing.JButton();
             jButtonConfig = new javax.swing.JButton();
             jButtonSair = new javax.swing.JButton();
             jMenuBar1 = new javax.swing.JMenuBar();
@@ -114,6 +126,7 @@ public class JfrmGeral extends javax.swing.JFrame {
             jMenuItem3 = new javax.swing.JMenuItem();
             jMenuItem4 = new javax.swing.JMenuItem();
             jMenuItem7 = new javax.swing.JMenuItem();
+            jMenuItem10 = new javax.swing.JMenuItem();
             jMenuItem9 = new javax.swing.JMenuItem();
 
             addWindowListener(new java.awt.event.WindowAdapter() {
@@ -131,7 +144,7 @@ public class JfrmGeral extends javax.swing.JFrame {
             );
             jDesktopPane1Layout.setVerticalGroup(
                 jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 360, Short.MAX_VALUE)
+                .addGap(0, 362, Short.MAX_VALUE)
             );
 
             jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -159,7 +172,7 @@ public class JfrmGeral extends javax.swing.JFrame {
             });
             jToolBar2.add(jButtonMix);
 
-            jButtonImportacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/importação.png"))); // NOI18N
+            jButtonImportacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tribu.png"))); // NOI18N
             jButtonImportacao.setToolTipText("Importação - Fiscal");
             jButtonImportacao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
             jButtonImportacao.setFocusable(false);
@@ -172,12 +185,17 @@ public class JfrmGeral extends javax.swing.JFrame {
             });
             jToolBar2.add(jButtonImportacao);
 
-            jButtonTributacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tribu.png"))); // NOI18N
-            jButtonTributacao.setToolTipText("Tributação - Fiscal");
-            jButtonTributacao.setFocusable(false);
-            jButtonTributacao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-            jButtonTributacao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-            jToolBar2.add(jButtonTributacao);
+            jButtonServidor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/conexao-servidor.png"))); // NOI18N
+            jButtonServidor.setToolTipText("Servidor - Fiscal");
+            jButtonServidor.setFocusable(false);
+            jButtonServidor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            jButtonServidor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            jButtonServidor.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonServidorActionPerformed(evt);
+                }
+            });
+            jToolBar2.add(jButtonServidor);
 
             jButtonConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/config.png"))); // NOI18N
             jButtonConfig.setToolTipText("Configuração Sistema");
@@ -243,7 +261,7 @@ public class JfrmGeral extends javax.swing.JFrame {
             });
             jMenu1.add(jMenuItem2);
 
-            jMenuItem8.setText("Tributação - Fiscal");
+            jMenuItem8.setText("Servidor - Fiscal");
             jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jMenuItem8ActionPerformed(evt);
@@ -299,6 +317,14 @@ public class JfrmGeral extends javax.swing.JFrame {
             });
             jMenu2.add(jMenuItem7);
 
+            jMenuItem10.setText("Ajustar Pis/Cofins");
+            jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem10ActionPerformed(evt);
+                }
+            });
+            jMenu2.add(jMenuItem10);
+
             jMenuItem9.setText("Sair");
             jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -324,65 +350,62 @@ public class JfrmGeral extends javax.swing.JFrame {
 
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        try {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        String resp = "0";
-                        while (resp.equals("0")) {
-                            resp = a.getAutentication();
-                            JDlgCarregando carregando = a.carregarJdialog("Carregando ...");
-                            carregando.setVisible(resp.equals("0") || resp.equals("1"));
-                            carregando.loadBarra("Validando Usuário ...", 0, 0, true);
-                            switch (resp) {
-                                case ("1"): {
-                                    String texto = "Iniciando Atualização EAN...";
-                                    carregando.loadBarra(texto, 0, 0, true);
-                                    fireTabproBusiness.getGerarEanbyCodigo();
-                                    tabproBusiness.getGerarEanbyCodigo();
-                                    List<Tabpro> resultTabpro = tabproBusiness.getAll();
-                                    int i = 1;
-                                    for (Tabpro item : resultTabpro) {
-                                        carregando.loadBarra("Atualizando EAN ", i, resultTabpro.size(), false);
-                                        String codAntes = "before = " + item.getCodbarun();
-                                        item.setCodbarun(Utils.retirarCaracteresEspeciais(item.getCodbarun()));
-                                        String codDepois = "After = " + item.getCodbarun();
-                                        tabproBusiness.update(item);
-                                        fireTabproBusiness.update(item);
-                                        carregando.setTexto(codAntes + "   " + codDepois);
-                                        i++;
-                                    }
-                                    carregando.loadBarra("Dados Atualizados com sucesso ...", 0, 0, true);
-                                    carregando.setTexto("Finalizando Atualização de EAN's !!");
-                                    break;
-                                }
-                                case "0": {
-                                    carregando.loadBarra("Senha Inválida, tente novamente ...", 0, 0, true);
-                                    break;
-                                }
-                                default: {
 
-                                    break;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                JDlgCarregando carregando = null;
+                try {
+                    String resp = "0";
+                    while (resp.equals("0")) {
+                        resp = a.getAutentication();
+                        carregando = a.carregarJdialog("Carregando ...", jfrmPrincipal);
+                        carregando.setVisible(resp.equals("0") || resp.equals("1"));
+                        carregando.loadBarra("Validando Usuário ...", 0, 0, true);
+                        switch (resp) {
+                            case ("1"): {
+                                String texto = "Iniciando Atualização EAN...";
+                                carregando.loadBarra(texto, 0, 0, true);
+                                fireTabproBusiness.getGerarEanbyCodigo();
+                                tabproBusiness.getGerarEanbyCodigo();
+                                List<Tabpro> resultTabpro = tabproBusiness.getAll();
+                                int i = 1;
+                                for (Tabpro item : resultTabpro) {
+                                    carregando.loadBarra("Atualizando EAN ", i, resultTabpro.size(), false);
+                                    String codAntes = "before = " + item.getCodbarun();
+                                    item.setCodbarun(Utils.retirarCaracteresEspeciais(item.getCodbarun()));
+                                    String codDepois = "After = " + item.getCodbarun();
+                                    tabproBusiness.update(item);
+                                    fireTabproBusiness.update(item);
+                                    carregando.setTexto(codAntes + "   " + codDepois);
+                                    i++;
                                 }
+                                carregando.loadBarra("Dados Atualizados com sucesso ...", 0, 0, true);
+                                carregando.setTexto("Finalizando Atualização de EAN's !!");
+                                break;
                             }
+                            case "0": {
+                                carregando.loadBarra("Senha Inválida, tente novamente ...", 0, 0, true);
+                                break;
+                            }
+                            default: {
 
-                            Thread.sleep(1500);
-                            carregando.dispose();
+                                break;
+                            }
                         }
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                        JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
-                        m.setVisible(true);
-                    }
-                }
-            }).start();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JDlgMensagem mensagem = new JDlgMensagem(jfrmPrincipal, true, ex);
-            mensagem.setVisible(true);
 
-        }
+                        Thread.sleep(1500);
+                        carregando.dispose();
+                    }
+                } catch (Exception ex) {
+                    carregando.dispose();
+                    ex.printStackTrace();
+                    JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                    m.setVisible(true);
+                }
+            }
+        }).start();
+
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButtonMixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMixActionPerformed
@@ -390,233 +413,223 @@ public class JfrmGeral extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonMixActionPerformed
 
     public void getCarregarMixFiscal(boolean startedAutomatic) {
-        try {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        JDlgCarregando carregando = a.carregarJdialog("Carregando ...");
-                        carregando.setVisible(!startedAutomatic);
-                        MixFiscal principal = null;
-                        if (Sessao.mixfiscal) {
-                            carregando.loadBarra("Carregando Módulo Mix-Fiscal ...", 0, 0, true);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                JDlgCarregando carregando = null;
+                try {
+                    carregando = a.carregarJdialog("Carregando ...", jfrmPrincipal);
+                    carregando.setVisible(!startedAutomatic);
+                    MixFiscal principal = null;
+                    if (Sessao.mixfiscal) {
+                        carregando.loadBarra("Carregando Módulo Mix-Fiscal ...", 0, 0, true);
+
+                        if (Sessao.jInternalFrameMixfiscal == null) {
                             principal = new MixFiscal(jfrmPrincipal);
 
-                            carregando.loadBarra("Inciando Aplicação ...", 0, 0, true);
-                            carregando.setTexto("Modulo carregado com sucesso !!");
-                            Thread.sleep(1500);
-                            carregando.dispose();
-                            jDesktopPane1.add(principal);
-
-                            if (!startedAutomatic) {
-                                principal.setVisible(true);
-                                principal.setSize(new Dimension(1080, 620));
-                                a.getPositionInternalFrame(principal);
-                            }
-
                         } else {
-                            carregando.loadBarra("Modulo não Autorizado para uso ...", 0, 0, true);
-                            carregando.setTexto("Entre em contato com o suporte do sistema !!");
-                            Thread.sleep(2000);
-                            carregando.dispose();
-                        }
+                            principal = Sessao.jInternalFrameMixfiscal;
 
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                        JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
-                        m.setVisible(true);
+                            jDesktopPane1.getDesktopManager().closeFrame(principal);
+                            jDesktopPane1.getDesktopManager().deactivateFrame(principal);
+                        }
+                        jDesktopPane1.add(principal);
+
+                        carregando.loadBarra("Inciando Aplicação ...", 0, 0, true);
+                        carregando.setTexto("Modulo carregado com sucesso !!");
+                        Thread.sleep(1500);
+                        carregando.dispose();
+
+                        if (!startedAutomatic) {
+                            principal.setVisible(true);
+                            principal.setSize(new Dimension(1080, 620));
+                            a.getPositionInternalFrame(principal);
+
+                        }
+                        Sessao.jInternalFrameMixfiscal = principal;
+
+                    } else {
+                        carregando.loadBarra("Modulo não Autorizado para uso ...", 0, 0, true);
+                        carregando.setTexto("Entre em contato com o suporte do sistema !!");
+                        Thread.sleep(2000);
+                        carregando.dispose();
                     }
+
+                } catch (Exception ex) {
+                    carregando.dispose();
+                    ex.printStackTrace();
+                    JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                    m.setVisible(true);
                 }
-            }).start();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JDlgMensagem mensagem = new JDlgMensagem(this, true, ex);
-            mensagem.setVisible(true);
-        }
+            }
+        }).start();
+
     }
 
 
     private void jButtonConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfigActionPerformed
-        try {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        String resp = "0";
-                        while (resp.equals("0")) {
-                            resp = a.getAutentication();
 
-                            JDlgCarregando carregando = a.carregarJdialog("Carregando ...");
-                            carregando.setVisible(resp.equals("0") || resp.equals("1"));
-                            carregando.loadBarra("Validando Usuário ...", 0, 0, true);
-                            switch (resp) {
-                                case ("1"): {
-                                    carregando.loadBarra("Carregando configuração do sistema ...", 0, 0, true);
-                                    JDlgSetting conf = new JDlgSetting(jfrmPrincipal, false);
-                                    carregando.loadBarra("Abrindo Configurações ...", 0, 0, true);
-                                    carregando.setTexto("Configurações carregadas com sucesso !!");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                JDlgCarregando carregando = null;
+                try {
+                    String resp = "0";
+                    while (resp.equals("0")) {
+                        resp = a.getAutentication();
 
-                                    conf.setVisible(true);
-                                    break;
-                                }
-                                case "0": {
-                                    carregando.loadBarra("Senha Inválida, tente novamente ...", 0, 0, true);
-                                    break;
-                                }
-                                default: {
+                        carregando = a.carregarJdialog("Carregando ...", jfrmPrincipal);
+                        carregando.setVisible(resp.equals("0") || resp.equals("1"));
+                        carregando.loadBarra("Validando Usuário ...", 0, 0, true);
+                        switch (resp) {
+                            case ("1"): {
+                                carregando.loadBarra("Carregando configuração do sistema ...", 0, 0, true);
+                                JDlgSetting conf = new JDlgSetting(jfrmPrincipal, false);
+                                carregando.loadBarra("Abrindo Configurações ...", 0, 0, true);
+                                carregando.setTexto("Configurações carregadas com sucesso !!");
 
-                                    break;
-                                }
+                                conf.setVisible(true);
+                                break;
                             }
+                            case "0": {
+                                carregando.loadBarra("Senha Inválida, tente novamente ...", 0, 0, true);
+                                break;
+                            }
+                            default: {
 
-                            Thread.sleep(1500);
-                            carregando.dispose();
+                                break;
+                            }
                         }
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                        JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
-                        m.setVisible(true);
+
+                        Thread.sleep(1500);
+                        carregando.dispose();
                     }
+                } catch (Exception ex) {
+                    carregando.dispose();
+                    ex.printStackTrace();
+                    JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                    m.setVisible(true);
                 }
-            }).start();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JDlgMensagem mensagem = new JDlgMensagem(this, true, ex);
-            mensagem.setVisible(true);
-        }
+            }
+        }).start();
+
     }//GEN-LAST:event_jButtonConfigActionPerformed
 
     private void jButtonImportacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImportacaoActionPerformed
-        try {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        JDlgCarregando carregando = a.carregarJdialog("Carregando ...");
-                        carregando.setVisible(true);
-                        ImpostoFiscal principal = null;
-                        if (Sessao.importacaofiscal) {
-                            carregando.loadBarra("Carregando Módulo de Importação ...", 0, 0, true);
 
-                            principal = new ImpostoFiscal(jfrmPrincipal);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                JDlgCarregando carregando = null;
+                try {
+                    carregando = a.carregarJdialog("Carregando ...", jfrmPrincipal);
+                    carregando.setVisible(true);
+                    ImpostoFiscal principal = null;
+                    if (Sessao.importacaofiscal) {
+                        carregando.loadBarra("Carregando Módulo de Importação ...", 0, 0, true);
 
-                            carregando.loadBarra("Inciando Aplicação ...", 0, 0, true);
-                            carregando.setTexto("Modulo carregado com sucesso !!");
-                            Thread.sleep(1500);
-                            carregando.dispose();
-                            jDesktopPane1.add(principal);
-                            principal.setSize(new Dimension(1080, 620));
-                            a.getPositionInternalFrame(principal);
-                            principal.setVisible(true);
+                        principal = new ImpostoFiscal(jfrmPrincipal);
 
-                        } else {
-                            carregando.loadBarra("Modulo não Autorizado para uso ...", 0, 0, true);
-                            carregando.setTexto("Entre em contato com o suporte do sistema !!");
-                            Thread.sleep(2000);
-                            carregando.dispose();
-                        }
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                        JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
-                        m.setVisible(true);
+                        carregando.loadBarra("Inciando Aplicação ...", 0, 0, true);
+                        carregando.setTexto("Modulo carregado com sucesso !!");
+                        Thread.sleep(1000);
+                        carregando.dispose();
+                        jDesktopPane1.add(principal);
+                        principal.setSize(new Dimension(1080, 620));
+                        a.getPositionInternalFrame(principal);
+                        principal.setVisible(true);
+
+                    } else {
+                        carregando.loadBarra("Modulo não Autorizado para uso ...", 0, 0, true);
+                        carregando.setTexto("Entre em contato com o suporte do sistema !!");
+                        Thread.sleep(2000);
+                        carregando.dispose();
                     }
+                } catch (Exception ex) {
+                    carregando.dispose();
+                    ex.printStackTrace();
+                    JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                    m.setVisible(true);
                 }
-            }).start();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JDlgMensagem mensagem = new JDlgMensagem(this, true, ex);
-            mensagem.setVisible(true);
-        }
+            }
+        }).start();
     }//GEN-LAST:event_jButtonImportacaoActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        JDlgRelatorio relatorio = new JDlgRelatorio(this, false, "1");
-        relatorio.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        JDlgRelatorio relatorio = new JDlgRelatorio(this, false, "2");
-        relatorio.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        try {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    String resp = "0";
-                    try {
-                        while (resp.equals("0")) {
-                            resp = a.getAutentication();
-                            JDlgCarregando carregando = a.carregarJdialog("Carregando ...");
-                            carregando.setVisible(resp.equals("0") || resp.equals("1"));
-                            carregando.loadBarra("Validando Usuário ...", 0, 0, true);
-                            switch (resp) {
-                                case ("1"): {
-                                    String texto = "Sincronizando Tabelas...";
-                                    carregando.loadBarra(texto, 0, 0, true);
 
-                                    List<Fiscaltemp> result = fiscalTempBusiness.getAll();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String resp = "0";
+                JDlgCarregando carregando = null;
+                try {
+                    while (resp.equals("0")) {
+                        resp = a.getAutentication();
+                        carregando = a.carregarJdialog("Carregando ...", jfrmPrincipal);
+                        carregando.setVisible(resp.equals("0") || resp.equals("1"));
+                        carregando.loadBarra("Validando Usuário ...", 0, 0, true);
+                        switch (resp) {
+                            case ("1"): {
+                                String texto = "Sincronizando Tabelas...";
+                                carregando.loadBarra(texto, 0, 0, true);
 
-                                    Integer size = result.size();
-                                    texto = size > 0 ? "Iniciando Atualização do Banco de Dados..." : "";
-                                    carregando.loadBarra(texto, 0, 0, true);
+                                List<Fiscaltemp> result = fiscalTempBusiness.getAll();
 
-                                    //**********************************************************
-                                    int max = 200;
-                                    int calc = size / max;
+                                Integer size = result.size();
+                                texto = size > 0 ? "Iniciando Atualização do Banco de Dados..." : "";
+                                carregando.loadBarra(texto, 0, 0, true);
 
-                                    if ((size % max) > 0) {
-                                        calc++;
-                                    }
-                                    int inserts = 0;
-                                    //**********************************************************
-                                    for (int p = 0; p < calc; p++) {
-                                        carregando.loadBarra("Carregando Tributação ", inserts, size, false);
-                                        List<Fiscaltemp> resultFiscalTempCalc = new ArrayList<>();
-                                        for (int e = inserts; e < (inserts + max); e++) {
-                                            if (e >= size) {
-                                                break;
-                                            }
-                                            resultFiscalTempCalc.add(result.get(e));
+                                //**********************************************************
+                                int max = 200;
+                                int calc = size / max;
+
+                                if ((size % max) > 0) {
+                                    calc++;
+                                }
+                                int inserts = 0;
+                                //**********************************************************
+                                for (int p = 0; p < calc; p++) {
+                                    carregando.loadBarra("Carregando Tributação ", inserts, size, false);
+                                    List<Fiscaltemp> resultFiscalTempCalc = new ArrayList<>();
+                                    for (int e = inserts; e < (inserts + max); e++) {
+                                        if (e >= size) {
+                                            break;
                                         }
-                                        fiscalTempBusiness.getRestoreTributacaoMixFiscal(resultFiscalTempCalc);
-                                        inserts = inserts + max;
-                                        texto = "Atualizando Banco de Dados...";
-                                        carregando.loadBarra(texto, 0, 0, true);
-                                        carregando.setTexto(texto);
+                                        resultFiscalTempCalc.add(result.get(e));
                                     }
-                                    break;
+                                    fiscalTempBusiness.getRestoreTributacaoMixFiscal(resultFiscalTempCalc);
+                                    inserts = inserts + max;
+                                    texto = "Atualizando Banco de Dados...";
+                                    carregando.loadBarra(texto, 0, 0, true);
+                                    carregando.setTexto(texto);
                                 }
-                                case "0": {
-                                    carregando.loadBarra("Senha Inválida, tente novamente ...", 0, 0, true);
-                                    break;
-                                }
-                                default: {
-
-                                    break;
-                                }
+                                break;
                             }
+                            case "0": {
+                                carregando.loadBarra("Senha Inválida, tente novamente ...", 0, 0, true);
+                                break;
+                            }
+                            default: {
 
-                            Thread.sleep(1500);
-                            carregando.dispose();
-
+                                break;
+                            }
                         }
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                        JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
-                        m.setVisible(true);
+
+                        Thread.sleep(1500);
+                        carregando.dispose();
+
                     }
-
+                } catch (Exception ex) {
+                    carregando.dispose();
+                    ex.printStackTrace();
+                    JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                    m.setVisible(true);
                 }
-            }).start();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JDlgMensagem mensagem = new JDlgMensagem(this, true, ex);
-            mensagem.setVisible(true);
 
-        }
+            }
+        }).start();
+
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -653,8 +666,171 @@ public class JfrmGeral extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        jButtonTributacao.doClick();
+        jButtonServidor.doClick();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jButtonServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServidorActionPerformed
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String resp = "0";
+                JDlgCarregando carregando = null;
+                try {
+                    carregando = a.carregarJdialog("Carregando ...", jfrmPrincipal);
+                    carregando.setVisible(true);
+                    ServidorFiscal principal = null;
+                    if (Sessao.servidorfiscal) {
+                        carregando.loadBarra("Carregando Módulo Servidor Fiscal ...", 0, 0, true);
+
+                        principal = new ServidorFiscal(jfrmPrincipal);
+
+                        carregando.loadBarra("Inciando Aplicação ...", 0, 0, true);
+                        carregando.setTexto("Modulo carregado com sucesso !!");
+                        Thread.sleep(1500);
+                        carregando.dispose();
+                        jDesktopPane1.add(principal);
+                        principal.setSize(new Dimension(1080, 620));
+                        a.getPositionInternalFrame(principal);
+                        principal.setVisible(true);
+                    } else {
+                        carregando.loadBarra("Modulo não Autorizado para uso ...", 0, 0, true);
+                        carregando.setTexto("Entre em contato com o suporte do sistema !!");
+                        Thread.sleep(2000);
+                        carregando.dispose();
+                    }
+
+                } catch (Exception ex) {
+                    carregando.dispose();
+                    ex.printStackTrace();
+                    JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                    m.setVisible(true);
+                }
+
+            }
+        }).start();
+
+    }//GEN-LAST:event_jButtonServidorActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        JDlgRelatorio relatorio = new JDlgRelatorio(this, false, "2");
+        relatorio.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+//        JDlgRelatorio relatorio = new JDlgRelatorio(this, false, "1");
+//        relatorio.setVisible(true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                JDlgCarregando carregando = null;
+                try {
+                    carregando = a.carregarJdialog("carregando ...", jfrmPrincipal);
+                    carregando.loadBarra("Carregando Atualização Mix-Fiscal", 0, 0, true);
+                    carregando.setVisible(true);
+                    BufferedReader buffRead = new BufferedReader(new FileReader("Log-MixFiscal\\log-sucess-mix.txt"));
+                    List<TableItensMix> resultMix = new ArrayList<>();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    while (buffRead.ready()) {
+                        TableItensMix itensMix = new TableItensMix();
+                        int i = 0;
+                        for (String arq : buffRead.readLine().split("->")) {
+                            switch (i) {
+                                case 0: {
+                                    itensMix.setDataAtualizacao(dateFormat.parse(arq));
+                                    break;
+                                }
+                                default: {
+                                    itensMix.setConteudo(arq);
+                                    break;
+                                }
+                            }
+                            i++;
+                        }
+                        resultMix.add(itensMix);
+                    }
+                    buffRead.close();
+                    carregando.loadBarra("Atualização carregada com sucesso", 0, 0, true);
+                    carregando.setTexto("Iniciando Aplicação ...");
+                    carregando.dispose();
+                    JDlgItensMix dialogMix = new JDlgItensMix(jfrmPrincipal, resultMix);
+                    dialogMix.setVisible(true);
+
+                } catch (Exception ex) {
+                    carregando.dispose();
+                    ex.printStackTrace();
+                    JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                    m.setVisible(true);
+                }
+            }
+        }).start();
+
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                JDlgCarregando carregando = null;
+                try {
+                    carregando = a.carregarJdialog("carregando...", jfrmPrincipal);
+                    carregando.loadBarra("Inciando Atualização Pis/Cofins no Banco de Dados ...", 0, 0, true);
+                    carregando.setVisible(true);
+                    for (Tabfil tabfil : Sessao.resultFilial) {
+                        List<RestoreImp> resultList = fiscalTempBusiness.getResultImpTemp(tabfil.getCodfil());
+                        //********************** calc ********************** 
+                        Integer size = resultList.size();
+                        int max = Sessao.qtdEnvio;
+                        int calc = size / max;
+                        int inserts = 0;
+
+                        if ((size % max) > 0) {
+                            calc++;
+                        }
+
+                        for (int p = 0; p < calc; p++) {
+                            carregando.loadBarra("Atualizando Pis/Cofins", inserts, size, false);
+                            List<String> resultString = new ArrayList<>();
+
+                            for (int e = inserts; e < (inserts + max); e++) {
+                                if (e >= size) {
+                                    break;
+                                }
+                                RestoreImp imp = resultList.get(e);
+                                String sql = "update tabpro set "
+                                        + "cstpis = '" + imp.getPisCst() + "',"
+                                        + "fatorpis = " + imp.getAliquotaPis() + ","
+                                        + "cstcofins = '" + imp.getCofinsCst() + "',"
+                                        + "fatorcofins =" + imp.getAliquotaCofins() + " "
+                                        + "where codpro='" + imp.getCodpro() + "'";
+                                resultString.add(sql);
+                            }
+
+                            inserts = inserts + max;
+                            //carregando.loadBarra("Atualizando Pis/Cofins no Banco de Dados...", 0, 0, true);
+                            carregando.setTexto("Pis/Cofins -> Registrando Lote de " + max + " Registro(s)");
+                            fireTabproBusiness.executeUpdate(resultString);
+                            tabproBusiness.executeUpdate(resultString);
+                        }
+
+                    }
+
+                    carregando.limparBufferText();
+                    carregando.loadBarra("Banco Atualizado com Sucesso", 0, 0, true);
+                    carregando.setTexto("Finalizando Operação ...");
+                    Thread.sleep(1200);
+                    carregando.dispose();
+
+                } catch (Exception ex) {
+                    carregando.dispose();
+                    ex.printStackTrace();
+                    JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                    m.setVisible(true);
+                }
+            }
+        }).start();
+
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -670,16 +846,24 @@ public class JfrmGeral extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JfrmGeral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JfrmGeral.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JfrmGeral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JfrmGeral.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JfrmGeral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JfrmGeral.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JfrmGeral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JfrmGeral.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -697,7 +881,7 @@ public class JfrmGeral extends javax.swing.JFrame {
     private javax.swing.JButton jButtonImportacao;
     private javax.swing.JButton jButtonMix;
     private javax.swing.JButton jButtonSair;
-    private javax.swing.JButton jButtonTributacao;
+    private javax.swing.JButton jButtonServidor;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -706,6 +890,7 @@ public class JfrmGeral extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

@@ -7,15 +7,21 @@ package br.com.interagese.interfiscal.persistence;
 
 import br.com.interagese.interfiscal.annotation.DataBase;
 import br.com.interagese.interfiscal.entity.Tabfil;
+import java.util.List;
 
 /**
  *
  * @author bruno
  */
-@DataBase(getType = DataBase.dataBaseType.FIREBIRD)
-public class Tabfildao extends AbstractDaoCrud<Tabfil>{
-    
-    
-    
-    
+@DataBase(getType = DataBase.dataBaseType.POSTGRES)
+public class Tabfildao extends AbstractDaoCrud<Tabfil> {
+
+    public List<Tabfil> carregarFilialOnMixFiscal() {
+        try {
+            return getEntityManager().createNativeQuery("Select * from tabfil where mixfiscal ='S'", Tabfil.class).getResultList();
+        } finally {
+            getEntityManager().close();
+        }
+    }
+
 }

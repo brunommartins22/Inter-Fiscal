@@ -5,20 +5,24 @@
  */
 package br.com.interagese.interfiscal.entity;
 
+import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author bruno
+ * @author Bruno Martins
  */
 @Entity
-@Table(name = "TABPROIMP")
+@Table(name = "tabproimp")
 @NamedQueries({
     @NamedQuery(name = "Tabproimp.findAll", query = "SELECT t FROM Tabproimp t")})
 public class Tabproimp implements Model {
@@ -27,120 +31,117 @@ public class Tabproimp implements Model {
     @EmbeddedId
     protected TabproimpPK tabproimpPK;
     @Size(max = 3)
-    @Column(name = "ICMSCST")
+    @Column(name = "icmscst")
     private String icmscst;
     @Size(max = 1)
-    @Column(name = "ICMSORIG",updatable = false)
+    @Column(name = "icmsorig", updatable = false)
     private String icmsorig;
     @Size(max = 1)
-    @Column(name = "ICMSMODBC")
+    @Column(name = "icmsmodbc")
     private String icmsmodbc;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "ICMSPREDBC")
+    @Column(name = "icmspredbc")
     private Double icmspredbc;
-    @Column(name = "ICMSPICMS")
+    @Column(name = "icmspicms")
     private Double icmspicms;
     @Size(max = 1)
-    @Column(name = "ICMSMODBCST",updatable = false)
+    @Column(name = "icmsmodbcst", updatable = false)
     private String icmsmodbcst;
-    @Column(name = "ICMSPMVAST",updatable = false)
+    @Column(name = "icmspmvast", updatable = false)
     private Double icmspmvast;
-    @Column(name = "ICMSPREDBCST")
+    @Column(name = "icmspredbcst")
     private Double icmspredbcst;
-    @Column(name = "ICMSPICMSST")
+    @Column(name = "icmspicmsst")
     private Double icmspicmsst;
     @Size(max = 2)
-    @Column(name = "IPIPICST",updatable = false)
+    @Column(name = "ipipicst", updatable = false)
     private String ipipicst;
     @Size(max = 3)
-    @Column(name = "IPICENQ",updatable = false)
+    @Column(name = "ipicenq", updatable = false)
     private String ipicenq;
     @Size(max = 5)
-    @Column(name = "IPICLENQ",updatable = false)
+    @Column(name = "ipiclenq", updatable = false)
     private String ipiclenq;
     @Size(max = 14)
-    @Column(name = "IPICNPJPROD",updatable = false)
+    @Column(name = "ipicnpjprod", updatable = false)
     private String ipicnpjprod;
     @Size(max = 1)
-    @Column(name = "TIPOIPICALC",updatable = false)
+    @Column(name = "tipoipicalc", updatable = false)
     private String tipoipicalc;
-    @Column(name = "IPIVUNID",updatable = false)
+    @Column(name = "ipivunid", updatable = false)
     private Double ipivunid;
-    @Column(name = "IPIPIPI",updatable = false)
+    @Column(name = "ipipipi", updatable = false)
     private Double ipipipi;
     @Size(max = 2)
-    @Column(name = "PISCST")
+    @Column(name = "piscst")
     private String piscst;
     @Size(max = 1)
-    @Column(name = "TIPOPISCALC",updatable = false)
+    @Column(name = "tipopiscalc", updatable = false)
     private String tipopiscalc;
-    @Column(name = "PISPPIS")
+    @Column(name = "pisppis")
     private Double pisppis;
-    @Column(name = "VALIQPROD",updatable = false)
+    @Column(name = "valiqprod", updatable = false)
     private Double valiqprod;
     @Size(max = 1)
-    @Column(name = "TIPOPISSTCALC",updatable = false)
+    @Column(name = "tipopisstcalc", updatable = false)
     private String tipopisstcalc;
-    @Column(name = "PISPPISST",updatable = false)
+    @Column(name = "pisppisst")
     private Double pisppisst;
-    @Column(name = "VALIQPRODST",updatable = false)
+    @Column(name = "valiqprodst", updatable = false)
     private Double valiqprodst;
     @Size(max = 2)
-    @Column(name = "COFINSCST")
+    @Column(name = "cofinscst")
     private String cofinscst;
     @Size(max = 1)
-    @Column(name = "TIPOCOFINSCALC",updatable = false)
+    @Column(name = "tipocofinscalc", updatable = false)
     private String tipocofinscalc;
-    @Column(name = "COFINSPCOFINS")
+    @Column(name = "cofinspcofins")
     private Double cofinspcofins;
-    @Column(name = "COFINSVALIQPROD",updatable = false)
+    @Column(name = "cofinsvaliqprod", updatable = false)
     private Double cofinsvaliqprod;
     @Size(max = 1)
-    @Column(name = "TIPOCOFINSSTCALC",updatable = false)
+    @Column(name = "tipocofinsstcalc", updatable = false)
     private String tipocofinsstcalc;
-    @Column(name = "COFINSPCOFINSST",updatable = false)
+    @Column(name = "cofinspcofinsst")
     private Double cofinspcofinsst;
-    @Column(name = "COFINSVALIQPRODST",updatable = false)
+    @Column(name = "cofinsvaliqprodst", updatable = false)
     private Double cofinsvaliqprodst;
-    @Column(name = "ISSVALIQ",updatable = false)
+    @Column(name = "issvaliq", updatable = false)
     private Double issvaliq;
     @Size(max = 4)
-    @Column(name = "CLISTSERV",updatable = false)
+    @Column(name = "clistserv", updatable = false)
     private String clistserv;
     @Size(max = 3)
-    @Column(name = "EXTIPI",updatable = false)
+    @Column(name = "extipi", updatable = false)
     private String extipi;
     @Size(max = 2)
-    @Column(name = "ICMSMOTDESICMS",updatable = false)
+    @Column(name = "icmsmotdesicms", updatable = false)
     private String icmsmotdesicms;
-    @Column(name = "ICMSPCREDSN",updatable = false)
+    @Column(name = "icmspcredsn", updatable = false)
     private Double icmspcredsn;
     @Size(max = 1)
-    @Column(name = "CSITTRIB",updatable = false)
+    @Column(name = "csittrib", updatable = false)
     private String csittrib;
-    @Column(name = "ICMSPBCOP",updatable = false)
+    @Column(name = "icmspbcop", updatable = false)
     private Double icmspbcop;
     @Size(max = 3)
-    @Column(name = "ICMSCSTINT",updatable = false)
+    @Column(name = "icmscstint", updatable = false)
     private String icmscstint;
-
     @Size(max = 4)
-    @Column(name = "CFOP")
+    @Column(name = "cfop")
     private String cfop;
-
-    @Size(max = 4)
-    @Column(name = "CFOPT",updatable = false)
-    private String cfopt;
-
-    @Column(name = "CODINFNFE",updatable = false)
-    private Integer codinfnfe;
-
     @Size(max = 8)
-    @Column(name = "NCM")
+    @Column(name = "ncm")
     private String ncm;
-
+    @Size(max = 4)
+    @Column(name = "cfopt", updatable = false)
+    private String cfopt;
+    @Column(name = "codinfnfe", updatable = false)
+    private Integer codinfnfe;
+    @Column(name = "dtenvserv", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtenvserv;
     @Size(max = 1)
-    @Column(name = "MIXFISCAL")
+    @Column(name = "mixfiscal")
     private String mixfiscal;
 
     public Tabproimp() {
@@ -466,6 +467,54 @@ public class Tabproimp implements Model {
         this.icmscstint = icmscstint;
     }
 
+    public String getCfop() {
+        return cfop;
+    }
+
+    public void setCfop(String cfop) {
+        this.cfop = cfop;
+    }
+
+    public String getNcm() {
+        return ncm;
+    }
+
+    public void setNcm(String ncm) {
+        this.ncm = ncm;
+    }
+
+    public String getCfopt() {
+        return cfopt;
+    }
+
+    public void setCfopt(String cfopt) {
+        this.cfopt = cfopt;
+    }
+
+    public Integer getCodinfnfe() {
+        return codinfnfe;
+    }
+
+    public void setCodinfnfe(Integer codinfnfe) {
+        this.codinfnfe = codinfnfe;
+    }
+
+    public Date getDtenvserv() {
+        return dtenvserv;
+    }
+
+    public void setDtenvserv(Date dtenvserv) {
+        this.dtenvserv = dtenvserv;
+    }
+
+    public String getMixfiscal() {
+        return mixfiscal;
+    }
+
+    public void setMixfiscal(String mixfiscal) {
+        this.mixfiscal = mixfiscal;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -488,7 +537,7 @@ public class Tabproimp implements Model {
 
     @Override
     public String toString() {
-        return "br.com.interagese.transmissornfe.business.entity.Tabproimp[ tabproimpPK=" + tabproimpPK + " ]";
+        return "br.com.interagese.interfiscal.app.Tabproimp[ tabproimpPK=" + tabproimpPK + " ]";
     }
 
     @Override
@@ -499,70 +548,6 @@ public class Tabproimp implements Model {
     @Override
     public void setId(Object object) {
         this.tabproimpPK = (TabproimpPK) object;
-    }
-
-    /**
-     * @return the cfop
-     */
-    public String getCfop() {
-        return cfop;
-    }
-
-    /**
-     * @param cfop the cfop to set
-     */
-    public void setCfop(String cfop) {
-        this.cfop = cfop;
-    }
-
-    /**
-     * @return the cfopt
-     */
-    public String getCfopt() {
-        return cfopt;
-    }
-
-    /**
-     * @param cfopt the cfopt to set
-     */
-    public void setCfopt(String cfopt) {
-        this.cfopt = cfopt;
-    }
-
-    /**
-     * @return the codinfnfe
-     */
-    public Integer getCodinfnfe() {
-        return codinfnfe;
-    }
-
-    /**
-     * @param codinfnfe the codinfnfe to set
-     */
-    public void setCodinfnfe(Integer codinfnfe) {
-        this.codinfnfe = codinfnfe;
-    }
-
-    /**
-     * @return the ncm
-     */
-    public String getNcm() {
-        return ncm;
-    }
-
-    /**
-     * @param ncm the ncm to set
-     */
-    public void setNcm(String ncm) {
-        this.ncm = ncm;
-    }
-
-    public String getMixfiscal() {
-        return mixfiscal;
-    }
-
-    public void setMixfiscal(String mixfiscal) {
-        this.mixfiscal = mixfiscal;
     }
 
 }

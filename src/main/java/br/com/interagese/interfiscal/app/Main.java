@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +35,7 @@ public class Main {
         if (AppLock.lock()) {
             File LogImportacao = new File("Log-Importacao");
             File LogMixFiscal = new File("Log-MixFiscal");
+            File LogServidorFiscal = new File("Log-ServidorFiscal");
             File Config = new File("Configuracao");
 
             if (!Config.exists()) {
@@ -44,37 +47,79 @@ public class Main {
             if (!LogMixFiscal.exists()) {
                 LogMixFiscal.mkdirs();
             }
+            if (!LogServidorFiscal.exists()) {
+                LogServidorFiscal.mkdirs();
+            }
             File arquivoConf = new File(Config.getPath() + "\\conf.cfg");
-            File arquivoLogSucessMix = new File(LogMixFiscal.getPath() + "\\log-sucess.txt");
-            File arquivoLogErrorMix = new File(LogMixFiscal.getPath() + "\\log-error.txt");
-            File arquivoLogSucessImport = new File(LogImportacao.getPath() + "\\log-sucess.txt");
-            File arquivoLogErrorImport = new File(LogImportacao.getPath() + "\\log-error.txt");
+            File arquivoLogSucessMix = new File(LogMixFiscal.getPath() + "\\log-sucess-mix.txt");
+            File arquivoLogErrorMix = new File(LogMixFiscal.getPath() + "\\log-error-mix.txt");
+            File arquivoLogSucessImport = new File(LogImportacao.getPath() + "\\log-sucess-import.txt");
+            File arquivoLogErrorImport = new File(LogImportacao.getPath() + "\\log-error-import.txt");
+            File arquivoLogSucessServer = new File(LogServidorFiscal.getPath() + "\\log-sucess-server.txt");
+            File arquivoLogErrorServer = new File(LogServidorFiscal.getPath() + "\\log-error-server.txt");
 
             if (!arquivoConf.exists()) {
                 arquivoConf.createNewFile();
-                FileWriter fw = new FileWriter(arquivoConf);
-                PrintWriter pw = new PrintWriter(fw);
-                pw.printf("H1=00:00\r\nH2=00:00\r\nFILIAL=1\r\nINFOHORAS=1\r\nQTDENVIO=300\r\nMIXFISCAL=false\r\nIMPORTACAOFISCAL=false\r\nPRIMEIROACESSO=1");
-                fw.close();
-                Sessao.infoHoras = 1;
-                Sessao.qtdEnvio = 300;
+                Sessao.bdFirebird = "C:\\InterageSE\\DADOS\\INTEGRADO.GDB";
+                Sessao.userFirebird = "SYSDBA";
+                Sessao.pwFirebird = "masterkey";
+                Sessao.ipFirebird = "localhost";
+                Sessao.bdPostgres = "integrado";
+                Sessao.userPostgres = "postgres";
+                Sessao.pwPostgres = "1234";
+                Sessao.ipPostgres = "localhost";
                 Sessao.mixfiscal = false;
                 Sessao.importacaofiscal = false;
+                Sessao.servidorfiscal = false;
+                FileWriter fw = new FileWriter(arquivoConf);
+                PrintWriter pw = new PrintWriter(fw);
+                pw.printf("BDFIREBIRD=" + Sessao.bdFirebird + "\r\n"
+                        + "USERFIREBIRD=" + Sessao.userFirebird + "\r\n"
+                        + "PWFIREBIRD=" + Sessao.pwFirebird + "\r\n"
+                        + "BDPOSTGRES=" + Sessao.bdPostgres + "\r\n"
+                        + "USERPOSTGRES=" + Sessao.userPostgres + "\r\n"
+                        + "PWPOSTGRES=" + Sessao.pwPostgres + "\r\n"
+                        + "MANUTENCAO=A\r\n"
+                        + "H1=00:00\r\n"
+                        + "H2=00:00\r\n"
+                        + "INFOHORAS=1\r\n"
+                        + "QTDENVIO=300\r\n"
+                        + "MIXFISCAL=" + Sessao.mixfiscal + "\r\n"
+                        + "IMPORTACAOFISCAL=" + Sessao.importacaofiscal + "\r\n"
+                        + "SERVIDORFISCAL=" + Sessao.servidorfiscal + "\r\n"
+                        + "PRIMEIROACESSO=1");
+                fw.close();
+
             } else {
                 Properties conf = a.carregarArquivo(arquivoConf.getPath());
-//                if (conf.getProperty("PRIMEIROACESSO").equals("1")) {
-//                    String text = "H1=" + conf.getProperty("H1") + "\r\nH2=" + conf.getProperty("H2") + "\r\nINFOHORAS=" + conf.getProperty("INFOHORAS") + "\r\nQTDENVIO=" + conf.getProperty("QTDENVIO") + "\r\nMIXFISCAL=" + conf.getProperty("MIXFISCAL") + "\r\nIMPORTACAOFISCAL=" + conf.getProperty("IMPORTACAOFISCAL") + "\r\nPRIMEIROACESSO=0";
-//                    arquivoConf.delete();
-//                    arquivoConf.createNewFile();
-//                    FileWriter f = new FileWriter(arquivoConf);
-//                    PrintWriter p = new PrintWriter(f);
-//                    p.printf(text);
-//                    f.close();
-//                }
-                Sessao.infoHoras = Integer.parseInt(conf.getProperty("INFOHORAS"));
-                Sessao.qtdEnvio = Integer.parseInt(conf.getProperty("QTDENVIO"));
+
+                Sessao.bdFirebird = conf.getProperty("BDFIREBIRD");
+                if (Sessao.bdFirebird.contains(":C:")) {
+                    Sessao.ipFirebird = Sessao.bdFirebird.substring(0, Sessao.bdFirebird.indexOf(":C:"));
+                } else {
+                    Sessao.ipFirebird = "localhost";
+                }
+                Sessao.userFirebird = conf.getProperty("USERFIREBIRD");
+                Sessao.pwFirebird = conf.getProperty("PWFIREBIRD");
+                Sessao.bdPostgres = conf.getProperty("BDPOSTGRES");
+                if (Sessao.bdPostgres.contains(":")) {
+                    Sessao.ipPostgres = Sessao.bdPostgres.split(":")[0];
+                } else {
+                    Sessao.ipPostgres = "localhost";
+                }
+                Sessao.userPostgres = conf.getProperty("USERPOSTGRES");
+                Sessao.pwPostgres = conf.getProperty("PWPOSTGRES");
+
                 Sessao.mixfiscal = conf.getProperty("MIXFISCAL").equals("true");
+                if (Sessao.mixfiscal) {
+                    Sessao.manutencao = conf.getProperty("MANUTENCAO");
+                    if (Sessao.manutencao.equals("A")) {
+                        Sessao.infoHoras = Integer.parseInt(conf.getProperty("INFOHORAS"));
+                    }
+                    Sessao.qtdEnvio = Integer.parseInt(conf.getProperty("QTDENVIO"));
+                }
                 Sessao.importacaofiscal = conf.getProperty("IMPORTACAOFISCAL").equals("true");
+                Sessao.servidorfiscal = conf.getProperty("SERVIDORFISCAL").equals("true");
 
             }
 
@@ -89,6 +134,12 @@ public class Main {
             }
             if (!arquivoLogErrorImport.exists()) {
                 arquivoLogErrorImport.createNewFile();
+            }
+            if (!arquivoLogSucessServer.exists()) {
+                arquivoLogSucessServer.createNewFile();
+            }
+            if (!arquivoLogErrorServer.exists()) {
+                arquivoLogErrorServer.createNewFile();
             }
 
             try {

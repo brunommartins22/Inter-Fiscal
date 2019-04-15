@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.interagese.interfiscal.entity;
 
 import java.io.Serializable;
@@ -8,21 +12,22 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ *
+ * @author Bruno Martins
+ */
 @Embeddable
-
 public class TabprofilPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 6)
-    @Column(name = "CODPRO")
+    @Column(name = "codpro",updatable = false)
     private String codpro;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "CODFIL")
+    @Column(name = "codfil",updatable = false)
     private int codfil;
-
-   
 
     public TabprofilPK() {
     }
@@ -40,11 +45,11 @@ public class TabprofilPK implements Serializable {
         this.codpro = codpro;
     }
 
-    public Integer getCodfil() {
+    public int getCodfil() {
         return codfil;
     }
 
-    public void setCodfil(Integer codfil) {
+    public void setCodfil(int codfil) {
         this.codfil = codfil;
     }
 
@@ -66,19 +71,15 @@ public class TabprofilPK implements Serializable {
         if ((this.codpro == null && other.codpro != null) || (this.codpro != null && !this.codpro.equals(other.codpro))) {
             return false;
         }
-        return this.codfil == other.codfil;
+        if (this.codfil != other.codfil) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "br.com.interagese.transmissornfe.business.entity.TabprofilPK[ codpro=" + codpro + ", codfil=" + codfil + " ]";
+        return "br.com.interagese.interfiscal.app.TabprofilPK[ codpro=" + codpro + ", codfil=" + codfil + " ]";
     }
-
-  
-
-    public void setCodfil(int codfil) {
-        this.codfil = codfil;
-    }
-
-   
+    
 }

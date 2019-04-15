@@ -1,5 +1,6 @@
 package br.com.interagese.interfiscal.utils;
 
+import br.com.interagese.interfiscal.entity.Sessao;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -123,108 +124,23 @@ public class JPAUtil {
         return null;
     }
 
-//    public static void executeCreateScript() {
-//
-//        Map propriedadesIntegrado = propriedadesIntegrado();
-//
-//        Connection connection = null;
-//
-//        try {
-//            connection = DriverManager.getConnection(propriedadesIntegrado.get("javax.persistence.jdbc.url").toString(),
-//                    propriedadesIntegrado.get("javax.persistence.jdbc.user").toString(),
-//                    propriedadesIntegrado.get("javax.persistence.jdbc.password").toString());
-//
-//            String[] sqls = {"CREATE TABLE RESUMONFE (\n"
-//                + "    KEYNFE            INTEGER NOT NULL,\n"
-//                + "    CHNFE             VARCHAR(50) NOT NULL,\n"
-//                + "    CNPJ              VARCHAR(14),\n"
-//                + "    CPF               VARCHAR(11),\n"
-//                + "    IE                VARCHAR(14),\n"
-//                + "    NSU               INTEGER,\n"
-//                + "    CSITCONF          VARCHAR(1),\n"
-//                + "    CSITNFE           VARCHAR(1),\n"
-//                + "    CODFIL            INTEGER,\n"
-//                + "    DHEMI             TIMESTAMP,\n"
-//                + "    DHRECBTO          TIMESTAMP,\n"
-//                + "    DIGVAL            VARCHAR(255),\n"
-//                + "    NPROT             VARCHAR(255),\n"
-//                + "    NFEDETALHADA      BLOB SUB_TYPE 1 SEGMENT SIZE 80,\n"
-//                + "    NFERESUMIDA       BLOB SUB_TYPE 1 SEGMENT SIZE 80,\n"
-//                + "    TPNF              VARCHAR(1),\n"
-//                + "    VERSAO            VARCHAR(5),\n"
-//                + "    XNOME             VARCHAR(60),\n"
-//                + "    VNF               DOUBLE PRECISION,\n"
-//                + "    ENTRADANOESTOQUE  VARCHAR(1),\n"
-//                + "    RGCODUSU          INTEGER,\n"
-//                + "    RGUSUARIO         VARCHAR(8),\n"
-//                + "    RGDATA            TIMESTAMP,\n"
-//                + "    RGEVENTO          VARCHAR(1),\n"
-//                + "    SERIE             VARCHAR(3),\n"
-//                + "    NUMERO            INTEGER,\n"
-//                + "    TPAMB             VARCHAR(1)\n"
-//                + ");", "ALTER TABLE RESUMONFE ADD CONSTRAINT PK_RESUMONFE PRIMARY KEY (KEYNFE);",
-//                "ALTER TABLE TABUSU ADD CODCONTA INTEGER;"};
-//
-//            for (String sql : sqls) {
-//                try {
-//                    Statement stam = connection.createStatement();
-//                    stam.executeUpdate(sql);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        } finally {
-//            try {
-//                connection.close();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(JPAUtil.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//    }
     //Faz um map com as propriedades jdbc do banco integrado
     private static Map propriedadesIntegrado() {
 
         try {
             Map mapa = new HashMap();
 
-            Properties props = carregarArquivoDatabase();
-
-            String bdPrincipal = props.getProperty("BDPRINCIPAL");
-            String ipServidor = "";
-
-            if (bdPrincipal != null) {
-
-                int posicaoIp = bdPrincipal.indexOf(":C:");
-
-                if (posicaoIp > -1) {
-                    ipServidor = bdPrincipal.substring(0, posicaoIp);
-                }
-
-                if (ipServidor == null || ipServidor.length() == 0) {
-                    ipServidor = "localhost";
-                }
-
-                bdPrincipal = bdPrincipal.substring(bdPrincipal.indexOf("C:"), bdPrincipal.length());
-
-                props.setProperty("BDPRINCIPAL", bdPrincipal);
-                props.put("IPSERVIDOR", ipServidor);
-
-            }
-
-            System.out.println("INTEGRADO: " + props.getProperty("BDPRINCIPAL"));
-            System.out.println("IP SERVIDOR: " + props.getProperty("IPSERVIDOR"));
+            System.out.println("INTEGRADO: " + Sessao.bdFirebird);
+            System.out.println("IP SERVIDOR: " + Sessao.ipFirebird);
 
             mapa.put("javax.persistence.jdbc.driver", "org.firebirdsql.jdbc.FBDriver");
-            mapa.put("javax.persistence.jdbc.url", "jdbc:firebirdsql:" + props.getProperty("IPSERVIDOR") + "/3050:" + props.getProperty("BDPRINCIPAL") + "?encoding=ISO8859_1");
-            mapa.put("javax.persistence.jdbc.user", "SYSDBA");
-            mapa.put("javax.persistence.jdbc.password", "masterkey");
+            mapa.put("javax.persistence.jdbc.url", "jdbc:firebirdsql:" + Sessao.ipFirebird + "/3050:" + Sessao.bdFirebird + "?encoding=ISO8859_1");
+            mapa.put("javax.persistence.jdbc.user", Sessao.userFirebird);
+            mapa.put("javax.persistence.jdbc.password", Sessao.pwFirebird);
 
             return mapa;
 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(JPAUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -236,48 +152,19 @@ public class JPAUtil {
         try {
             Map mapa = new HashMap();
 
-            Properties props = carregarArquivoDatabase();
+            
 
-            String bdPostgres = props.getProperty("BDPOSTGRES");
-            String ipServidor = "";
-
-            if (bdPostgres != null) {
-                if (bdPostgres.contains(":")) {
-                    int i = 1;
-                    for (String s : bdPostgres.split(":")) {
-                        switch (i) {
-                            case 1: {
-                                ipServidor = s;
-                                break;
-                            }
-                            case 2: {
-                                bdPostgres = s;
-                                break;
-                            }
-                        }
-                        i++;
-                    }
-                }else{
-                    ipServidor="localhost";
-                }
-
-
-                props.setProperty("BDPOSTGRES", bdPostgres);
-                props.put("IPSERVIDOR", ipServidor);
-
-            }
-
-            System.out.println("INTEGRADO: " + props.getProperty("BDPOSTGRES"));
-            System.out.println("IP SERVIDOR: " + props.getProperty("IPSERVIDOR"));
+            System.out.println("INTEGRADO: " + Sessao.bdPostgres);
+            System.out.println("IP SERVIDOR: " + Sessao.ipPostgres);
 
             mapa.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
-            mapa.put("javax.persistence.jdbc.url", "jdbc:postgresql://" + props.getProperty("IPSERVIDOR") + ":5432/" + props.getProperty("BDPOSTGRES"));
-            mapa.put("javax.persistence.jdbc.user", props.getProperty("USERPOSTGRES"));
-            mapa.put("javax.persistence.jdbc.password", props.getProperty("PASSWORDPOSTGRES"));
+            mapa.put("javax.persistence.jdbc.url", "jdbc:postgresql://" + Sessao.ipPostgres + ":5432/" + Sessao.bdPostgres);
+            mapa.put("javax.persistence.jdbc.user", Sessao.userPostgres);
+            mapa.put("javax.persistence.jdbc.password", Sessao.pwPostgres);
 
             return mapa;
 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(JPAUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
 

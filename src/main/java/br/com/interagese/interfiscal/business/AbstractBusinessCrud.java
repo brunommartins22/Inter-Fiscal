@@ -5,6 +5,7 @@ import br.com.interagese.interfiscal.persistence.DaoCrud;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import javax.persistence.Query;
 
 abstract class AbstractBusinessCrud<T extends Model, S extends DaoCrud<T>> implements BusinessCrud<T> {
 
@@ -61,6 +62,11 @@ abstract class AbstractBusinessCrud<T extends Model, S extends DaoCrud<T>> imple
         return dao.getSearchAll(position);
     }
 
+    @Override
+    public void executeUpdate(List<String> ListSql) {
+        dao.executeUpdate(ListSql);
+    }
+
 //    /*@Override
 //    public List<T> getAllWhereDtEnvServIsNull() {
 //        return dao.getAllWhereDtEnvServIsNull();
@@ -103,10 +109,8 @@ abstract class AbstractBusinessCrud<T extends Model, S extends DaoCrud<T>> imple
 
     @Override
     public void updateList(List<T> entity) {
-    dao.updateList(entity);
+        dao.updateList(entity);
     }
-    
-    
 
     @Override
     public T findById(Object id) {
@@ -130,10 +134,7 @@ abstract class AbstractBusinessCrud<T extends Model, S extends DaoCrud<T>> imple
 
     @Override
     public Object count() {
-    return dao.count();
+        return dao.count();
     }
-    
-    
-    
 
 }

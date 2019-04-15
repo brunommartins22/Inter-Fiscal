@@ -1,5 +1,6 @@
 package br.com.interagese.interfiscal.view;
 
+import br.com.interagese.interfiscal.business.FireTabfilBusinessBean;
 import br.com.interagese.interfiscal.entity.Sessao;
 import br.com.interagese.interfiscal.utils.Actions;
 import br.com.interagese.interfiscal.utils.JPAUtil;
@@ -21,10 +22,12 @@ import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import org.hibernate.internal.SessionImpl;
+import br.com.interagese.interfiscal.business.FireTabfilBusiness;
 
 public class JDlgSplashScreen extends javax.swing.JDialog {
 
     private Actions a = new Actions(null);
+    private static FireTabfilBusiness tabfilBusiness = new FireTabfilBusinessBean();
 
     public JDlgSplashScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -125,7 +128,10 @@ public class JDlgSplashScreen extends javax.swing.JDialog {
                     if (evt.getNewValue() == SwingWorker.StateValue.DONE) {
                         JfrmGeral jp = new JfrmGeral();
                         dialog.dispose();
-//                        jp.setVisible(true);
+
+                        Sessao.isExecuting = false;
+                        Sessao.jInternalFrameMixfiscal = null;
+                        Sessao.resultFilial = tabfilBusiness.carregarFilialOnMixFiscal();
                         if (Sessao.mixfiscal) {
                             jp.getCarregarMixFiscal(true);
                         }
