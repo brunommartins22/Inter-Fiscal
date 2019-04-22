@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.com.bruno</groupId>
     <artifactId>Inter-Fiscal</artifactId>
-    <version>x4.4.0.2.3</version>
+    <version>X4.4.0.2.3</version>
     <packaging>jar</packaging>
     
     <dependencies>

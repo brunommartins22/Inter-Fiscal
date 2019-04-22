@@ -4,13 +4,10 @@ import br.com.interagese.interfiscal.business.FireTabfilBusinessBean;
 import br.com.interagese.interfiscal.entity.Sessao;
 import br.com.interagese.interfiscal.utils.Actions;
 import br.com.interagese.interfiscal.utils.JPAUtil;
-import java.awt.Graphics;
-import java.awt.Image;
 
 import java.awt.Window;
 import java.io.IOException;
 import java.sql.Connection;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
@@ -121,7 +118,7 @@ public class JDlgSplashScreen extends javax.swing.JDialog {
 
             Window window = SwingUtilities.getWindowAncestor(new JFrame());
 
-            JDlgSplashScreen dialog = new JDlgSplashScreen(window, "Inter-Fiscal", ModalityType.APPLICATION_MODAL);
+            JDlgSplashScreen dialog = new JDlgSplashScreen(window, "SysContabil", ModalityType.APPLICATION_MODAL);
 
             worker.addPropertyChangeListener((evt) -> {
                 if (evt.getPropertyName().equals("state")) {
