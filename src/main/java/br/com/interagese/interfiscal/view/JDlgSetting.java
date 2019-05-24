@@ -90,7 +90,7 @@ public class JDlgSetting extends javax.swing.JDialog {
 
                 jRadioButtonMix.setSelected(arq.getProperty("MIXFISCAL").equals("true"));
                 jRadioButtonImportacao.setSelected(arq.getProperty("IMPORTACAOFISCAL").equals("true"));
-                jRadioButtonImportacao.setSelected(arq.getProperty("SERVIDORFISCAL").equals("true"));
+                jRadioButtonConexao.setSelected(arq.getProperty("SERVIDORFISCAL").equals("true"));
 
             }
 
