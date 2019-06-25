@@ -153,8 +153,8 @@
         <sql>
             ALTER TABLE FISCALTEMP ALTER COLUMN CODIGO_FILIAL TYPE VARCHAR(20);
         </sql>
-    </changeSet>-->
-    
+    </changeSet>
+    -->
     <changeSet id="CREATE TABLE FISCALTEMP"
                author = "InterFiscal - Bruno" dbms="postgresql" runOnChange="true" >
         <preConditions onFail="MARK_RAN">

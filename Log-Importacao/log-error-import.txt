@@ -1,0 +1,63 @@
+Inter-Fiscal - 17-06-2019 10:13:58 ? javax.persistence.PersistenceException: org.hibernate.exception.SQLGrammarException: could not prepare statement
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1763)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1677)
+	at org.hibernate.jpa.internal.QueryImpl.getResultList(QueryImpl.java:458)
+	at br.com.interagese.interfiscal.persistence.FireTabproDao.getProdutobyDescorCod(FireTabproDao.java:272)
+	at br.com.interagese.interfiscal.business.FireTabproBusinessBean.getProdutobyDescorCod(FireTabproBusinessBean.java:48)
+	at br.com.interagese.interfiscal.view.ImpostoFiscal$14.run(ImpostoFiscal.java:842)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.hibernate.exception.SQLGrammarException: could not prepare statement
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:123)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:126)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:196)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:160)
+	at org.hibernate.loader.Loader.prepareQueryStatement(Loader.java:1884)
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:1861)
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:1838)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:909)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:354)
+	at org.hibernate.loader.Loader.doList(Loader.java:2551)
+	at org.hibernate.loader.Loader.doList(Loader.java:2537)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2367)
+	at org.hibernate.loader.Loader.list(Loader.java:2362)
+	at org.hibernate.loader.custom.CustomLoader.list(CustomLoader.java:353)
+	at org.hibernate.internal.SessionImpl.listCustomQuery(SessionImpl.java:1869)
+	at org.hibernate.internal.AbstractSessionImpl.list(AbstractSessionImpl.java:311)
+	at org.hibernate.internal.SQLQueryImpl.list(SQLQueryImpl.java:141)
+	at org.hibernate.jpa.internal.QueryImpl.list(QueryImpl.java:573)
+	at org.hibernate.jpa.internal.QueryImpl.getResultList(QueryImpl.java:449)
+	... 4 more
+Caused by: org.firebirdsql.jdbc.FBSQLException: GDS Exception. 335544569. Dynamic SQL Error
+SQL error code = -104
+Token unknown - line 1, column 40
+.
+	at org.firebirdsql.jdbc.AbstractPreparedStatement.<init>(AbstractPreparedStatement.java:135)
+	at org.firebirdsql.jdbc.FBPreparedStatement.<init>(FBPreparedStatement.java:45)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.firebirdsql.jdbc.FBStatementFactory.createPreparedStatement(FBStatementFactory.java:89)
+	at org.firebirdsql.jdbc.AbstractConnection.prepareStatement(AbstractConnection.java:1135)
+	at org.firebirdsql.jdbc.AbstractConnection.prepareStatement(AbstractConnection.java:890)
+	at org.firebirdsql.jdbc.AbstractConnection.prepareStatement(AbstractConnection.java:844)
+	at org.firebirdsql.jdbc.AbstractConnection.prepareStatement(AbstractConnection.java:310)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.mchange.v2.c3p0.stmt.GooGooStatementCache$1StmtAcquireTask.run(GooGooStatementCache.java:546)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:648)
+Caused by: org.firebirdsql.gds.GDSException: Dynamic SQL Error
+SQL error code = -104
+Token unknown - line 1, column 40
+.
+	at org.firebirdsql.gds.impl.wire.AbstractJavaGDSImpl.readStatusVector(AbstractJavaGDSImpl.java:2092)
+	at org.firebirdsql.gds.impl.wire.AbstractJavaGDSImpl.receiveResponse(AbstractJavaGDSImpl.java:2042)
+	at org.firebirdsql.gds.impl.wire.AbstractJavaGDSImpl.iscDsqlPrepare(AbstractJavaGDSImpl.java:1465)
+	at org.firebirdsql.gds.impl.GDSHelper.prepareStatement(GDSHelper.java:195)
+	at org.firebirdsql.jdbc.AbstractStatement.prepareFixedStatement(AbstractStatement.java:1401)
+	at org.firebirdsql.jdbc.AbstractPreparedStatement.prepareFixedStatement(AbstractPreparedStatement.java:1261)
+	at org.firebirdsql.jdbc.AbstractPreparedStatement.<init>(AbstractPreparedStatement.java:132)
+	... 16 more

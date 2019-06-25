@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class ImportacaoImp {
 
+    private String tpImpos;
     private String nomeproduto;
     private String codigoproduto;
     private String codigobarra;
@@ -40,6 +41,27 @@ public class ImportacaoImp {
     private Double aliquotaCofinsSaida;
     private String naturezaproduto;
     private Date dataAtualizacao;
+
+    public String getTpImposDesc() {
+        String text = "";
+        if (tpImpos != null) {
+            switch (tpImpos) {
+                case "A": {
+                    text = "NFE - Dentro do Estado";
+                    break;
+                }
+                case "D": {
+                    text = "NFCe - Consumidor Direto";
+                    break;
+                }
+                default: {
+                    text = " - ";
+                }
+            }
+        }
+
+        return text;
+    }
 
     public String getNomeproduto() {
         return nomeproduto;
@@ -319,5 +341,19 @@ public class ImportacaoImp {
 
     public void setRbcSTIcmsSaida(Double rbcSTIcmsSaida) {
         this.rbcSTIcmsSaida = rbcSTIcmsSaida;
+    }
+
+    /**
+     * @return the tpImpos
+     */
+    public String getTpImpos() {
+        return tpImpos;
+    }
+
+    /**
+     * @param tpImpos the tpImpos to set
+     */
+    public void setTpImpos(String tpImpos) {
+        this.tpImpos = tpImpos;
     }
 }

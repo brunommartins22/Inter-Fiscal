@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ItensTableModel extends AbstractTableModel<ImportacaoImp> {
 
-    public String[] columns = new String[]{"Código Produto", "Código Barras", "Produto", "Gênero", "NCM", "CFOP", "CEST", "CST Icms Entrada", "Alq. Icms Entrada", "Alq. ST Icms Entrada", "Rbc Icms Entrada", "Rbc ST Icms Entrada", "CST Icms Saída", "Alq. Icms Saída", "Alq. ST Icms Saída", "Rbc Icms Saída", "Rbc ST Icms Saída", "CST Pis Entrada", "Alq. Pis Entrada", "CST Pis Saída", "Alq. Pis Saída", "CST Cofins Entrada", "Alq. Cofins Entrada", "CST Cofins Saída", "Alq. Cofins Saída", "Natureza Produto", "Data Atualização"};
+    public String[] columns = new String[]{"Cenário", "Código Produto", "Código Barras", "Produto", "Gênero", "NCM", "CFOP", "CEST", "CST Icms Entrada", "Alq. Icms Entrada", "Alq. ST Icms Entrada", "Rbc Icms Entrada", "Rbc ST Icms Entrada", "CST Icms Saída", "Alq. Icms Saída", "Alq. ST Icms Saída", "Rbc Icms Saída", "Rbc ST Icms Saída", "CST Pis Entrada", "Alq. Pis Entrada", "CST Pis Saída", "Alq. Pis Saída", "CST Cofins Entrada", "Alq. Cofins Entrada", "CST Cofins Saída", "Alq. Cofins Saída", "Natureza Produto", "Data Atualização"};
 
     public ItensTableModel(List<ImportacaoImp> list) {
         super(list);
@@ -28,85 +28,88 @@ public class ItensTableModel extends AbstractTableModel<ImportacaoImp> {
         ImportacaoImp i = getItem(rowIndex);
         switch (columnIndex) {
             case 0: {
-                return i.getCodigoproduto();
+                return i.getTpImposDesc();
             }
             case 1: {
-                return i.getCodigobarra();
+                return i.getCodigoproduto();
             }
             case 2: {
+                return i.getCodigobarra();
+            }
+            case 3: {
 
                 return i.getNomeproduto();
             }
-            case 3: {
+            case 4: {
                 return i.getGenero();
             }
-            case 4: {
+            case 5: {
                 return i.getNcm();
             }
-            case 5: {
+            case 6: {
                 return i.getCfop();
             }
-            case 6: {
+            case 7: {
                 return i.getCest();
             }
-            case 7: {
+            case 8: {
                 return i.getCstIcmsEntrada();
             }
-            case 8: {
+            case 9: {
                 return new DecimalFormat("#,##0.00").format(i.getAliquotaIcmsEntrada());
             }
-            case 9: {
+            case 10: {
                 return new DecimalFormat("#,##0.00").format(i.getAliquotaSTIcmsEntrada());
             }
-            case 10: {
+            case 11: {
                 return new DecimalFormat("#,##0.00").format(i.getRbcIcmsEntrada());
             }
-            case 11: {
+            case 12: {
                 return new DecimalFormat("#,##0.00").format(i.getRbcSTIcmsEntrada());
             }
-            case 12: {
+            case 13: {
                 return i.getCstIcmsSaida();
             }
-            case 13: {
+            case 14: {
                 return new DecimalFormat("#,##0.00").format(i.getAliquotaIcmsSaida());
             }
-            case 14: {
+            case 15: {
                 return new DecimalFormat("#,##0.00").format(i.getAliquotaSTIcmsSaida());
             }
-            case 15: {
+            case 16: {
                 return new DecimalFormat("#,##0.00").format(i.getRbcIcmsSaida());
             }
-            case 16: {
+            case 17: {
                 return new DecimalFormat("#,##0.00").format(i.getRbcSTIcmsSaida());
             }
-            case 17: {
+            case 18: {
                 return i.getCstPisEntrada();
             }
-            case 18: {
+            case 19: {
                 return new DecimalFormat("#,##0.00").format(i.getAliquotaPisEntrada());
             }
-            case 19: {
+            case 20: {
                 return i.getCstPisSaida();
             }
-            case 20: {
+            case 21: {
                 return new DecimalFormat("#,##0.00").format(i.getAliquotaPisSaida());
             }
-            case 21: {
+            case 22: {
                 return i.getCstCofinsEntrada();
             }
-            case 22: {
+            case 23: {
                 return new DecimalFormat("#,##0.00").format(i.getAliquotaCofinsEntrada());
             }
-            case 23: {
+            case 24: {
                 return i.getCstCofinsSaida();
             }
-            case 24: {
+            case 25: {
                 return new DecimalFormat("#,##0.00").format(i.getAliquotaCofinsSaida());
             }
-            case 25: {
+            case 26: {
                 return i.getNaturezaproduto();
             }
-            case 26: {
+            case 27: {
                 return new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(i.getDataAtualizacao());
             }
 

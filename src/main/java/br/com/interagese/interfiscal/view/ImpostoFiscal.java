@@ -99,46 +99,53 @@ public class ImpostoFiscal extends JInternalFrame {
     }
 
     public void carregarImpostos() {
-        jTxtProd.setText("");
-        tableModel = new ItensTableModel(fireTabproBusiness.getImportacaoImpostosLimit(codfil, tipo));
-        jTable.setModel(tableModel);
-        JlblTotal.setText("" + ((Number) fireTabproBusiness.countImportacao(codfil, tipo)).intValue());
+        try {
+            jTxtProd.setText("");
+            tableModel = new ItensTableModel(fireTabproBusiness.getImportacaoImpostosLimit(codfil, tipo));
+            jTable.setModel(tableModel);
+            JlblTotal.setText("" + ((Number) fireTabproBusiness.countImportacao(codfil, tipo)).intValue());
 
-        jTable.setAutoResizeMode(jTable.AUTO_RESIZE_OFF);
-        a.setColumn(jTable, 0, 100);
-        a.setColumn(jTable, 1, 100);
-        a.setColumnMinWidth(jTable, 2, 300);
-        a.setColumn(jTable, 3, 100);
-        a.setColumn(jTable, 4, 100);
-        a.setColumn(jTable, 5, 100);
-        a.setColumn(jTable, 6, 100);
-        a.setColumn(jTable, 7, 100);
-        a.setColumn(jTable, 8, 110);
-        a.setColumn(jTable, 9, 110);
-        a.setColumn(jTable, 10, 110);
-        a.setColumn(jTable, 11, 110);
-        a.setColumn(jTable, 12, 110);
-        a.setColumn(jTable, 13, 110);
-        a.setColumn(jTable, 14, 110);
-        a.setColumn(jTable, 15, 110);
-        a.setColumn(jTable, 16, 110);
-        a.setColumn(jTable, 17, 110);
-        a.setColumn(jTable, 18, 110);
-        a.setColumn(jTable, 19, 110);
-        a.setColumn(jTable, 20, 110);
-        a.setColumn(jTable, 21, 110);
-        a.setColumn(jTable, 22, 110);
-        a.setColumn(jTable, 23, 110);
-        a.setColumn(jTable, 24, 110);
-        a.setColumn(jTable, 25, 110);
-        a.setColumn(jTable, 26, 110);
+            jTable.setAutoResizeMode(jTable.AUTO_RESIZE_OFF);
+            a.setColumnMinWidth(jTable, 0, 300);
+            a.setColumnMinWidth(jTable, 1, 300);
+            a.setColumn(jTable, 2, 110);
+            a.setColumn(jTable, 3, 110);
+            a.setColumn(jTable, 4, 110);
+            a.setColumn(jTable, 5, 110);
+            a.setColumn(jTable, 6, 110);
+            a.setColumn(jTable, 7, 110);
+            a.setColumn(jTable, 8, 110);
+            a.setColumn(jTable, 9, 110);
+            a.setColumn(jTable, 10, 110);
+            a.setColumn(jTable, 11, 110);
+            a.setColumn(jTable, 12, 110);
+            a.setColumn(jTable, 13, 110);
+            a.setColumn(jTable, 14, 110);
+            a.setColumn(jTable, 15, 110);
+            a.setColumn(jTable, 16, 110);
+            a.setColumn(jTable, 17, 110);
+            a.setColumn(jTable, 18, 110);
+            a.setColumn(jTable, 19, 110);
+            a.setColumn(jTable, 20, 110);
+            a.setColumn(jTable, 21, 110);
+            a.setColumn(jTable, 22, 110);
+            a.setColumn(jTable, 23, 110);
+            a.setColumn(jTable, 24, 110);
+            a.setColumn(jTable, 25, 110);
+            a.setColumn(jTable, 26, 110);
+            a.setColumn(jTable, 27, 110);
 
-        jBtnImport.setUI(new MetalButtonUI());
-        jBtnExpot.setUI(new MetalButtonUI());
-        jBtnSearch.setUI(new MetalButtonUI());
-        jBtnPrinter.setUI(new MetalButtonUI());
-        exportAll = true;
-        jTxtProd.requestFocus();
+            jBtnImport.setUI(new MetalButtonUI());
+            jBtnExpot.setUI(new MetalButtonUI());
+            jBtnSearch.setUI(new MetalButtonUI());
+            jBtnPrinter.setUI(new MetalButtonUI());
+            exportAll = true;
+            jTxtProd.requestFocus();
+        } catch (InstantiationException | IllegalAccessException ie) {
+            JDlgMensagem mensagem = new JDlgMensagem(jFramePrincipal, true, ie);
+            System.out.println(ie.getMessage());
+            mensagem.setVisible(true);
+        }
     }
 
     /**
@@ -468,148 +475,166 @@ public class ImpostoFiscal extends JInternalFrame {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
+                    try {
 
-                    JDlgCarregando carregando = a.carregarJdialog("Exportando...", jFramePrincipal);
-                    if (!tableModel.getResultList().isEmpty()) {
-                        JFileChooser chooser = new JFileChooser();
-                        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                        int i = chooser.showSaveDialog(jFramePrincipal);
-                        if (i == JFileChooser.APPROVE_OPTION) {
-                            carregando.setVisible(true);
-                            carregando.loadBarra("Exportando Arquivo Excel...", 0, 0, true);
-                            i = 0;
-                            String filename = chooser.getSelectedFile().getAbsolutePath() + ".xls";
-                            HSSFWorkbook workbook = new HSSFWorkbook();
-                            HSSFSheet sheet = workbook.createSheet("FirstSheet");
+                        JDlgCarregando carregando = a.carregarJdialog("Exportando...", jFramePrincipal);
+                        if (!tableModel.getResultList().isEmpty()) {
+                            JFileChooser chooser = new JFileChooser();
+                            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                            int i = chooser.showSaveDialog(jFramePrincipal);
+                            if (i == JFileChooser.APPROVE_OPTION) {
 
-                            HSSFCellStyle txtStyle1 = (HSSFCellStyle) workbook.createCellStyle();
-                            HSSFCellStyle txtStyle2 = (HSSFCellStyle) workbook.createCellStyle();
-                            HSSFCellStyle txtStyle3 = (HSSFCellStyle) workbook.createCellStyle();
+                                List<ImportacaoImp> resultImp = null;
+                                if (exportAll) {
+                                    resultImp = fireTabproBusiness.getImportacaoImpostosAll(codfil, tipo);
+                                } else {
+                                    resultImp = tableModel.getItens();
+                                }
 
-                            HSSFFont txtFont1 = (HSSFFont) workbook.createFont();
-                            HSSFFont txtFont2 = (HSSFFont) workbook.createFont();
-                            HSSFFont txtFont3 = (HSSFFont) workbook.createFont();
+                                if (resultImp.size() > 50000) {
 
-                            txtFont1.setFontName("Arial");
-                            txtFont1.setFontHeightInPoints((short) 18);
-                            txtFont1.setBold(true);
-                            txtFont1.setColor((short) 003366);
-                            txtStyle1.setFont(txtFont1);
+                                }
 
-                            txtFont2.setFontHeightInPoints((short) 14);
-                            txtFont2.setFontName("Arial");
-                            txtFont2.setColor((short) 003366);
-                            txtStyle2.setFont(txtFont2);
+                                carregando.setVisible(true);
+                                carregando.loadBarra("Exportando Arquivo Excel...", 0, 0, true);
+                                i = 0;
+                                String filename = chooser.getSelectedFile().getAbsolutePath() + ".xls";
+                                HSSFWorkbook workbook = new HSSFWorkbook();
+                                HSSFSheet sheet = workbook.createSheet("FirstSheet");
 
-                            txtFont3.setFontHeightInPoints((short) 11);
-                            txtFont3.setFontName("Arial");
-                            txtFont3.setBold(true);
-                            txtFont3.setColor((short) 003366);
-                            txtStyle3.setFont(txtFont3);
+                                HSSFCellStyle txtStyle1 = (HSSFCellStyle) workbook.createCellStyle();
+                                HSSFCellStyle txtStyle2 = (HSSFCellStyle) workbook.createCellStyle();
+                                HSSFCellStyle txtStyle3 = (HSSFCellStyle) workbook.createCellStyle();
 
-                            //******************* titulo ************************
-                            HSSFRow rowTitulo = sheet.createRow((short) i++);
-                            rowTitulo.createCell(4).setCellValue("Importação de Impostos");
-                            rowTitulo.getCell(4).setCellStyle(txtStyle1);
+                                HSSFFont txtFont1 = (HSSFFont) workbook.createFont();
+                                HSSFFont txtFont2 = (HSSFFont) workbook.createFont();
+                                HSSFFont txtFont3 = (HSSFFont) workbook.createFont();
 
-                            HSSFRow rowfilial = sheet.createRow((short) i++);
-                            rowfilial.createCell(0).setCellValue("Filial: ");
-                            rowfilial.createCell(1).setCellValue(((Tabfil) jCbxFilial.getModel().getSelectedItem()).toString());
+                                txtFont1.setFontName("Arial");
+                                txtFont1.setFontHeightInPoints((short) 18);
+                                txtFont1.setBold(true);
+                                txtFont1.setColor((short) 003366);
+                                txtStyle1.setFont(txtFont1);
+
+                                txtFont2.setFontHeightInPoints((short) 14);
+                                txtFont2.setFontName("Arial");
+                                txtFont2.setColor((short) 003366);
+                                txtStyle2.setFont(txtFont2);
+
+                                txtFont3.setFontHeightInPoints((short) 11);
+                                txtFont3.setFontName("Arial");
+                                txtFont3.setBold(true);
+                                txtFont3.setColor((short) 003366);
+                                txtStyle3.setFont(txtFont3);
+
+                                //******************* titulo ************************
+                                HSSFRow rowTitulo = sheet.createRow((short) i++);
+                                rowTitulo.createCell(4).setCellValue("Importação de Impostos");
+                                rowTitulo.getCell(4).setCellStyle(txtStyle1);
+
+                                HSSFRow rowfilial = sheet.createRow((short) i++);
+                                rowfilial.createCell(0).setCellValue("Filial: ");
+                                rowfilial.createCell(1).setCellValue(((Tabfil) jCbxFilial.getModel().getSelectedItem()).toString());
 //                            rowfilial.createCell(5).setCellValue("          Consumidor Final        ");
-                            rowfilial.getCell(0).setCellStyle(txtStyle2);
-                            rowfilial.getCell(1).setCellStyle(txtStyle2);
+                                rowfilial.getCell(0).setCellStyle(txtStyle2);
+                                rowfilial.getCell(1).setCellStyle(txtStyle2);
 //                            rowfilial.getCell(5).setCellStyle(txtStyle2);
 
-                            HSSFRow rowHeader2 = sheet.createRow((short) i++);
-                            rowHeader2.createCell(0).setCellValue("Produto");
-                            rowHeader2.createCell(1).setCellValue("Cód Produto");
-                            rowHeader2.createCell(2).setCellValue("Cód Barras");
-                            rowHeader2.createCell(3).setCellValue("Gênero");
-                            rowHeader2.createCell(4).setCellValue("NCM");
-                            rowHeader2.createCell(5).setCellValue("CFOP");
-                            rowHeader2.createCell(6).setCellValue("CEST");
-                            rowHeader2.createCell(7).setCellValue("CST");
-                            rowHeader2.createCell(8).setCellValue("Icms Saída");
-                            rowHeader2.createCell(9).setCellValue("Pis Entrada");
-                            rowHeader2.createCell(10).setCellValue("Pis Saída");
-                            rowHeader2.createCell(11).setCellValue("Cofins Entrada");
-                            rowHeader2.createCell(12).setCellValue("Cofins Saída");
-                            rowHeader2.createCell(13).setCellValue("Nat Produto");
-                            rowHeader2.createCell(14).setCellValue("Alíquota Pis");
-                            rowHeader2.createCell(15).setCellValue("Alíquota Cofins");
-                            rowHeader2.getCell(0).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(1).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(2).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(3).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(4).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(5).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(6).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(7).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(8).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(9).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(10).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(11).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(12).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(13).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(14).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(15).setCellStyle(txtStyle3);
+                                HSSFRow rowHeader2 = sheet.createRow((short) i++);
+                                rowHeader2.createCell(0).setCellValue("Cenário");
+                                rowHeader2.createCell(1).setCellValue("Produto");
+                                rowHeader2.createCell(2).setCellValue("Cód Produto");
+                                rowHeader2.createCell(3).setCellValue("Cód Barras");
+                                rowHeader2.createCell(4).setCellValue("Gênero");
+                                rowHeader2.createCell(5).setCellValue("NCM");
+                                rowHeader2.createCell(6).setCellValue("CFOP");
+                                rowHeader2.createCell(7).setCellValue("CEST");
+                                rowHeader2.createCell(8).setCellValue("CST");
+                                rowHeader2.createCell(9).setCellValue("Icms Saída");
+                                rowHeader2.createCell(10).setCellValue("Pis Entrada");
+                                rowHeader2.createCell(11).setCellValue("Pis Saída");
+                                rowHeader2.createCell(12).setCellValue("Cofins Entrada");
+                                rowHeader2.createCell(13).setCellValue("Cofins Saída");
+                                rowHeader2.createCell(14).setCellValue("Nat Produto");
+                                rowHeader2.createCell(15).setCellValue("Alíquota Pis");
+                                rowHeader2.createCell(16).setCellValue("Alíquota Cofins");
+                                rowHeader2.getCell(0).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(1).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(2).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(3).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(4).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(5).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(6).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(7).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(8).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(9).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(10).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(11).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(12).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(13).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(14).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(15).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(16).setCellStyle(txtStyle3);
 
-                            //***************************************************
-                            DecimalFormat Formata = new DecimalFormat("#,##0.00000");
-                            int cont = 1;
-                            List<ImportacaoImp> resultImp = null;
-                            if (exportAll) {
-                                resultImp = fireTabproBusiness.getImportacaoImpostosAll(codfil, tipo);
+                                //***************************************************
+                                DecimalFormat Formata = new DecimalFormat("#,##0.00000");
+                                int cont = 1;
+
+                                for (ImportacaoImp item : resultImp) {
+                                    carregando.loadBarra("Exportando Tributação ", cont, resultImp.size(), false);
+                                    HSSFRow rowHeader3 = sheet.createRow(i++);
+                                    rowHeader3.createCell(0).setCellValue(item.getTpImposDesc());
+                                    rowHeader3.createCell(1).setCellValue(item.getNomeproduto());
+                                    rowHeader3.createCell(2).setCellValue(item.getCodigoproduto());
+                                    rowHeader3.createCell(3).setCellValue(item.getCodigobarra());
+                                    rowHeader3.createCell(4).setCellValue(item.getGenero());
+                                    rowHeader3.createCell(5).setCellValue(item.getNcm());
+                                    rowHeader3.createCell(6).setCellValue(item.getCfop());
+                                    rowHeader3.createCell(7).setCellValue(item.getCest());
+                                    rowHeader3.createCell(8).setCellValue(item.getCstIcmsSaida());
+                                    rowHeader3.createCell(9).setCellValue(item.getAliquotaIcmsSaida());
+                                    rowHeader3.createCell(10).setCellValue(item.getCstPisEntrada());
+                                    rowHeader3.createCell(11).setCellValue(item.getCstPisSaida());
+                                    rowHeader3.createCell(12).setCellValue(item.getCstCofinsEntrada());
+                                    rowHeader3.createCell(13).setCellValue(item.getCstCofinsSaida());
+                                    rowHeader3.createCell(14).setCellValue(item.getNaturezaproduto());
+
+                                    rowHeader3.createCell(15).setCellValue(item.getAliquotaPisSaida() != null ? Formata.format(item.getAliquotaPisSaida()) : "0,00");
+
+                                    rowHeader3.createCell(16).setCellValue(item.getAliquotaCofinsSaida() != null ? Formata.format(item.getAliquotaCofinsSaida()) : "0,00");
+
+                                    cont++;
+                                }
+                                try {
+                                    FileOutputStream fileOut = new FileOutputStream(filename);
+                                    workbook.write(fileOut);
+                                    fileOut.close();
+                                    workbook.close();
+                                    carregando.loadBarra("Arquivo Exportado com Sucesso ...", 0, 0, true);
+                                    carregando.setTexto("Finalizando Exportação Fiscal !!");
+                                    Thread.sleep(1500);
+                                    carregando.dispose();
+
+                                } catch (Exception ex) {
+                                    Log logApp = new Log();
+                                    StringWriter writer = new StringWriter();
+                                    PrintWriter pw = new PrintWriter(writer);
+                                    ex.printStackTrace(pw);
+                                    logApp.setError("Inter-Fiscal - " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " → " + writer.toString());
+                                    a.carregarLog(logApp, 2);
+                                    JDlgMensagem mensagem = new JDlgMensagem(jFramePrincipal, true, ex);
+                                    mensagem.setVisible(true);
+                                }
+
                             } else {
-                                resultImp = tableModel.getItens();
-                            }
-                            for (ImportacaoImp item : resultImp) {
-                                carregando.loadBarra("Exportando Tributação ", cont, resultImp.size(), false);
-                                HSSFRow rowHeader3 = sheet.createRow(i++);
-                                rowHeader3.createCell(0).setCellValue(item.getNomeproduto());
-                                rowHeader3.createCell(1).setCellValue(item.getCodigoproduto());
-                                rowHeader3.createCell(2).setCellValue(item.getCodigobarra());
-                                rowHeader3.createCell(3).setCellValue(item.getGenero());
-                                rowHeader3.createCell(4).setCellValue(item.getNcm());
-                                rowHeader3.createCell(5).setCellValue(item.getCfop());
-                                rowHeader3.createCell(6).setCellValue(item.getCest());
-                                rowHeader3.createCell(7).setCellValue(item.getCstIcmsSaida());
-                                rowHeader3.createCell(8).setCellValue(item.getAliquotaIcmsSaida());
-                                rowHeader3.createCell(9).setCellValue(item.getCstPisEntrada());
-                                rowHeader3.createCell(10).setCellValue(item.getCstPisSaida());
-                                rowHeader3.createCell(11).setCellValue(item.getCstCofinsEntrada());
-                                rowHeader3.createCell(12).setCellValue(item.getCstCofinsSaida());
-                                rowHeader3.createCell(13).setCellValue(item.getNaturezaproduto());
-                                rowHeader3.createCell(14).setCellValue(Formata.format(item.getAliquotaPisSaida()));
-                                rowHeader3.createCell(15).setCellValue(Formata.format(item.getAliquotaCofinsSaida()));
-
-                                cont++;
-                            }
-                            try {
-                                FileOutputStream fileOut = new FileOutputStream(filename);
-                                workbook.write(fileOut);
-                                fileOut.close();
-                                workbook.close();
-                                carregando.loadBarra("Arquivo Exportado com Sucesso ...", 0, 0, true);
-                                carregando.setTexto("Finalizando Exportação Fiscal !!");
-                                Thread.sleep(1500);
-                                carregando.dispose();
-
-                            } catch (Exception ex) {
-                                Log logApp = new Log();
-                                StringWriter writer = new StringWriter();
-                                PrintWriter pw = new PrintWriter(writer);
-                                ex.printStackTrace(pw);
-                                logApp.setError("Inter-Fiscal - " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " → " + writer.toString());
-                                a.carregarLog(logApp, 2);
-                                JDlgMensagem mensagem = new JDlgMensagem(jFramePrincipal, true, ex);
-                                mensagem.setVisible(true);
+                                JOptionPane.showMessageDialog(jFramePrincipal, "Operação cancelada pelo usuário!!", null, JOptionPane.ERROR_MESSAGE);
                             }
 
-                        } else {
-                            JOptionPane.showMessageDialog(jFramePrincipal, "Operação cancelada pelo usuário!!", null, JOptionPane.ERROR_MESSAGE);
                         }
-
+                    } catch (InstantiationException | IllegalAccessException ie) {
+                        JDlgMensagem mensagem = new JDlgMensagem(jFramePrincipal, true, ie);
+                        System.out.println(ie.getMessage());
+                        mensagem.setVisible(true);
                     }
                 }
             }).start();
@@ -826,41 +851,12 @@ public class ImpostoFiscal extends JInternalFrame {
                         carregando.setVisible(true);
                         carregando.loadBarra("Iniciando Pesquisa...", 0, 0, true);
                         if (jTxtProd.getText() != null) {
-                            List<Object[]> query = fireTabproBusiness.getProdutobyDescorCod(jTxtProd.getText(), codfil, tipo);
+                            List<ImportacaoImp> query = fireTabproBusiness.getProdutobyDescorCod(jTxtProd.getText(), codfil, tipo);
                             tableModel.addItens(null);
                             if (!query.isEmpty()) {
                                 for (int i = 0; i <= (query.size() - 1); i++) {
                                     carregando.loadBarra("Carregando Pesquisa ", i, query.size() - 1, false);
-                                    Object[] o = query.get(i);
-                                    System.out.println("");
-                                    ImportacaoImp imp = new ImportacaoImp();
-                                    imp.setNomeproduto(o[0] != null ? (String) o[0] : "");
-                                    imp.setCodigoproduto(o[1] != null ? (String) o[1] : "");
-                                    imp.setCodigobarra(o[2] != null ? (String) o[2] : "");
-                                    imp.setGenero(o[3] != null ? (String) o[3] : "");
-                                    imp.setNcm(o[4] != null ? (String) o[4] : "");
-                                    imp.setCfop(o[5] != null ? (String) o[5] : "");
-                                    imp.setCest(o[6] != null ? (String) o[6] : "");
-                                    imp.setCstIcmsEntrada(o[7] != null ? (String) o[7] : "");
-                                    imp.setAliquotaIcmsEntrada(o[8] != null ? (Double) o[8] : 0.0);
-                                    imp.setAliquotaSTIcmsEntrada(o[9] != null ? (Double) o[9] : 0.0);
-                                    imp.setRbcIcmsEntrada(o[10] != null ? (Double) o[10] : 0.0);
-                                    imp.setRbcSTIcmsEntrada(o[11] != null ? (Double) o[11] : 0.0);
-                                    imp.setCstIcmsSaida(o[12] != null ? (String) o[12] : "");
-                                    imp.setAliquotaIcmsSaida(o[13] != null ? (Double) o[13] : 0.0);
-                                    imp.setAliquotaSTIcmsSaida(o[14] != null ? (Double) o[14] : 0.0);
-                                    imp.setRbcIcmsSaida(o[15] != null ? (Double) o[15] : 0.0);
-                                    imp.setRbcSTIcmsSaida(o[16] != null ? (Double) o[16] : 0.0);
-                                    imp.setCstPisEntrada(o[17] != null ? (String) o[17] : "");
-                                    imp.setAliquotaPisEntrada(o[18] != null ? (Double) o[18] : 0.0);
-                                    imp.setCstPisSaida(o[19] != null ? (String) o[19] : "");
-                                    imp.setAliquotaPisSaida(o[20] != null ? (Double) o[20] : 0.0);
-                                    imp.setCstCofinsEntrada(o[21] != null ? (String) o[21] : "");
-                                    imp.setAliquotaCofinsEntrada(o[22] != null ? (Double) o[22] : 0.0);
-                                    imp.setCstCofinsSaida(o[23] != null ? (String) o[23] : "");
-                                    imp.setAliquotaCofinsSaida(o[24] != null ? (Double) o[24] : 0.0);
-                                    imp.setNaturezaproduto(o[25] != null ? (String) o[25] : "");
-                                    imp.setDataAtualizacao(o[26] != null ? (Date) o[26] : null);
+                                    ImportacaoImp imp = query.get(i);
                                     carregando.setTexto(imp.getCodigoproduto() + " - " + imp.getNomeproduto());
                                     tableModel.addItem(imp);
                                     jScrollPane1.getVerticalScrollBar().setValue(jScrollPane1.getVerticalScrollBar().getMaximum());

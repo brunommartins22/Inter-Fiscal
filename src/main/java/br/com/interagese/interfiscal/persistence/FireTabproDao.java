@@ -1,10 +1,12 @@
 package br.com.interagese.interfiscal.persistence;
 
 import br.com.interagese.interfiscal.annotation.DataBase;
-import br.com.interagese.interfiscal.entity.Fiscaltemp;
 import br.com.interagese.interfiscal.entity.ImportacaoImp;
+import br.com.interagese.interfiscal.entity.SincronizadorTable;
 import br.com.interagese.interfiscal.entity.Tabpro;
 import br.com.interagese.interfiscal.utils.Actions;
+import br.com.interagese.interfiscal.utils.TransformNativeQuery;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +25,7 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
         try {
             String sql = "SELECT COUNT(*) FROM tabpro tp "
                     + "INNER JOIN tabprofil tpf ON tpf.codpro = tp.codpro "
-                    + "LEFT JOIN tabproimp tpi ON tpi.codfil = tpf.codfil and tpi.codpro = tpf.codpro "
+                    + "left JOIN tabproimp tpi ON tpi.codfil = tpf.codfil and tpi.codpro = tpf.codpro and (tpi.tpimpos='A' or tpi.tpimpos='D') "
                     + "LEFT JOIN tabproimpe tpe on tpe.CODIGO_PRODUTO = tp.codpro and tpf.codfil = tpe.CODIGO_FILIAL "
                     + "WHERE tpf.codfil = :codfil and tp.rgevento <> '3' and tp.stprod = 'A'";
 
@@ -44,7 +46,7 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
         }
     }
 
-    public List<ImportacaoImp> getImportacaoImpostosAll(Integer codfil, Integer tipo) {
+    public List<ImportacaoImp> getImportacaoImpostosAll(Integer codfil, Integer tipo) throws InstantiationException, IllegalAccessException {
         try {
             List<ImportacaoImp> result = new ArrayList<>();
             int maxRowCount = 1000;
@@ -55,7 +57,8 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
                 diference++;
             }
 
-            String fields = "tp.descpro as nomeProduto,"
+            String fields = "tpi.tpimpos as cenario,"
+                    + "tp.descpro as nomeProduto,"
                     + "tp.codpro as codigoProduto,"
                     + "tp.codbarun as codigoBarra,"
                     + "tp.codgen as genero,"
@@ -86,7 +89,7 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
             for (int i = 0; i < diference; i++) {
                 String sql = "SELECT " + fields + "from tabpro tp "
                         + "inner join tabprofil tpf on tpf.codpro = tp.codpro "
-                        + "left join tabproimp tpi on tpi.codfil = tpf.codfil and tpi.codpro = tp.codpro "
+                        + "left join tabproimp tpi on tpi.codfil = tpf.codfil and tpi.codpro = tp.codpro and (tpi.tpimpos='A' or tpi.tpimpos='D') "
                         + "left join tabproimpe tpe on tpe.CODIGO_PRODUTO = tp.codpro and tpf.codfil = tpe.CODIGO_FILIAL "
                         + "where tpf.codfil = :codfil and tp.rgevento <> '3' and tp.stprod = 'A'";
 
@@ -104,39 +107,9 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
                 List<Object[]> query = getEntityManager().createNativeQuery(sql).setParameter("codfil", codfil).setFirstResult(i * 1000).setMaxResults(1000).getResultList();
 
                 if (!query.isEmpty()) {
-                    query.forEach((o) -> {
-                        ImportacaoImp imp = new ImportacaoImp();
 
-                        imp.setNomeproduto(o[0] != null ? (String) o[0] : "");
-                        imp.setCodigoproduto(o[1] != null ? (String) o[1] : "");
-                        imp.setCodigobarra(o[2] != null ? (String) o[2] : "");
-                        imp.setGenero(o[3] != null ? (String) o[3] : "");
-                        imp.setNcm(o[4] != null ? (String) o[4] : "");
-                        imp.setCfop(o[5] != null ? (String) o[5] : "");
-                        imp.setCest(o[6] != null ? (String) o[6] : "");
-                        imp.setCstIcmsEntrada(o[7] != null ? (String) o[7] : "");
-                        imp.setAliquotaIcmsEntrada(o[8] != null ? (Double) o[8] : 0.0);
-                        imp.setAliquotaSTIcmsEntrada(o[9] != null ? (Double) o[9] : 0.0);
-                        imp.setRbcIcmsEntrada(o[10] != null ? (Double) o[10] : 0.0);
-                        imp.setRbcSTIcmsEntrada(o[11] != null ? (Double) o[11] : 0.0);
-                        imp.setCstIcmsSaida(o[12] != null ? (String) o[12] : "");
-                        imp.setAliquotaIcmsSaida(o[13] != null ? (Double) o[13] : 0.0);
-                        imp.setAliquotaSTIcmsSaida(o[14] != null ? (Double) o[14] : 0.0);
-                        imp.setRbcIcmsSaida(o[15] != null ? (Double) o[15] : 0.0);
-                        imp.setRbcSTIcmsSaida(o[16] != null ? (Double) o[16] : 0.0);
-                        imp.setCstPisEntrada(o[17] != null ? (String) o[17] : "");
-                        imp.setAliquotaPisEntrada(o[18] != null ? (Double) o[18] : 0.0);
-                        imp.setCstPisSaida(o[19] != null ? (String) o[19] : "");
-                        imp.setAliquotaPisSaida(o[20] != null ? (Double) o[20] : 0.0);
-                        imp.setCstCofinsEntrada(o[21] != null ? (String) o[21] : "");
-                        imp.setAliquotaCofinsEntrada(o[22] != null ? (Double) o[22] : 0.0);
-                        imp.setCstCofinsSaida(o[23] != null ? (String) o[23] : "");
-                        imp.setAliquotaCofinsSaida(o[24] != null ? (Double) o[24] : 0.0);
-                        imp.setNaturezaproduto(o[25] != null ? (String) o[25] : "");
-                        imp.setDataAtualizacao(o[26] != null ? (Date) o[26] : null);
+                    result.addAll(new TransformNativeQuery(ImportacaoImp.class).execute(query));
 
-                        result.add(imp);
-                    });
                 }
             }
 
@@ -146,10 +119,11 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
         }
     }
 
-    public List<ImportacaoImp> getImportacaoImpostosLimit(Integer codfil, Integer tipo) {
+    public List<ImportacaoImp> getImportacaoImpostosLimit(Integer codfil, Integer tipo) throws InstantiationException, IllegalAccessException {
         try {
             List<ImportacaoImp> result = new ArrayList<>();
-            String sql = "select tp.descpro as nomeProduto,"
+            String sql = "select tpi.tpimpos as cenario,"
+                    + "tp.descpro as nomeProduto,"
                     + "tp.codpro as codigoProduto,"
                     + "tp.codbarun as codigoBarra,"
                     + "tp.codgen as genero,"
@@ -178,7 +152,7 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
                     + "tpf.rgdata as dataAtualizacao "
                     + "from tabpro tp "
                     + "inner join tabprofil tpf on tpf.codpro = tp.codpro "
-                    + "left join tabproimp tpi on tpi.codfil = tpf.codfil and tpi.codpro = tp.codpro "
+                    + "left join tabproimp tpi on tpi.codfil = tpf.codfil and tpi.codpro = tp.codpro and (tpi.tpimpos='A' or tpi.tpimpos='D')  "
                     + "left join tabproimpe tpe on tpe.CODIGO_PRODUTO = tp.codpro and tpf.codfil = tpe.CODIGO_FILIAL "
                     + "where tpf.codfil = :codfil and tp.rgevento <> '3' and tp.stprod = 'A'";
 
@@ -195,77 +169,16 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
             List<Object[]> query = getEntityManager().createNativeQuery(sql).setParameter("codfil", codfil).setMaxResults(1000).getResultList();
 
             if (!query.isEmpty()) {
-                query.forEach((o) -> {
-                    
-//                    Fiscaltemp temp = new Fiscaltemp();
-//                    temp.setNomeProduto(o[0] != null ? (String) o[0] : "");
-//                    temp.setCodigoProduto(o[1] != null ? (String) o[1] : "");
-//                    temp.setEan(o[2] != null ? (String) o[2] : "");
-//                    temp.setNcm(o[4] != null ? (String) o[4] : "");
-//                    temp.setCfop(o[5] != null ? (String) o[5] : "");
-//                    temp.setCest(o[6] != null ? (String) o[6] : "");
-//                    temp.setEsCst(o[7] != null ? (String) o[7] : "");
-//                    temp.setEsAlq(o[8] != null ? (Double) o[8] : 0.0);
-//                    temp.setEsAlqst(o[9] != null ? (Double) o[9] : 0.0);
-//                    temp.setEsRbc(o[10] != null ? (Double) o[11] : 0.0);
-//                    temp.setEsRbcst(o[11] != null ? (Double) o[11] : 0.0);
-//                    temp.setSncCst(o[12] != null ? (String) o[12] : "");
-//                    temp.setSncAlq(o[13] != null ? (Double) o[13] : 0.0);
-//                    temp.setSncAlqst(o[14] != null ? (Double) o[14] : 0.0);
-//                    temp.setSncRbc(o[15] != null ? (Double) o[15] : 0.0);
-//                    temp.setSncRbcst(o[16] != null ? (Double) o[16] : 0.0);
-//                    temp.setPisCstE(o[17] != null ? (String) o[17] : "");
-//                    temp.setPisAlqE(o[18] != null ? (Double) o[18] : 0.0);
-//                    temp.setPisCstS(o[19] != null ? (String) o[19] : "");
-//                    temp.setPisAlqS(o[20] != null ? (Double) o[20] : 0.0);
-//                    temp.setCofinsCstE(o[21] != null ? (String) o[21] : "");
-//                    temp.setCofinsAlqE(o[22] != null ? (Double) o[22] : 0.0);
-//                    temp.setCofinsCstS(o[23] != null ? (String) o[23] : "");
-//                    temp.setCofinsAlqS(o[24] != null ? (Double) o[24] : 0.0);
-//                    temp.setCodNaturezaReceita(o[25] != null ? (String) o[25] : "");
-//                    temp.setDataRegistro(o[26] != null ? (Date) o[26] : null);
-                   
-                    
-                    
-                    ImportacaoImp imp = new ImportacaoImp();
 
-                    imp.setNomeproduto(o[0] != null ? (String) o[0] : "");
-                    imp.setCodigoproduto(o[1] != null ? (String) o[1] : "");
-                    imp.setCodigobarra(o[2] != null ? (String) o[2] : "");
-                    imp.setGenero(o[3] != null ? (String) o[3] : "");
-                    imp.setNcm(o[4] != null ? (String) o[4] : "");
-                    imp.setCfop(o[5] != null ? (String) o[5] : "");
-                    imp.setCest(o[6] != null ? (String) o[6] : "");
-                    imp.setCstIcmsEntrada(o[7] != null ? (String) o[7] : "");
-                    imp.setAliquotaIcmsEntrada(o[8] != null ? (Double) o[8] : 0.0);
-                    imp.setAliquotaSTIcmsEntrada(o[9] != null ? (Double) o[9] : 0.0);
-                    imp.setRbcIcmsEntrada(o[10] != null ? (Double) o[10] : 0.0);
-                    imp.setRbcSTIcmsEntrada(o[11] != null ? (Double) o[11] : 0.0);
-                    imp.setCstIcmsSaida(o[12] != null ? (String) o[12] : "");
-                    imp.setAliquotaIcmsSaida(o[13] != null ? (Double) o[13] : 0.0);
-                    imp.setAliquotaSTIcmsSaida(o[14] != null ? (Double) o[14] : 0.0);
-                    imp.setRbcIcmsSaida(o[15] != null ? (Double) o[15] : 0.0);
-                    imp.setRbcSTIcmsSaida(o[16] != null ? (Double) o[16] : 0.0);
-                    imp.setCstPisEntrada(o[17] != null ? (String) o[17] : "");
-                    imp.setAliquotaPisEntrada(o[18] != null ? (Double) o[18] : 0.0);
-                    imp.setCstPisSaida(o[19] != null ? (String) o[19] : "");
-                    imp.setAliquotaPisSaida(o[20] != null ? (Double) o[20] : 0.0);
-                    imp.setCstCofinsEntrada(o[21] != null ? (String) o[21] : "");
-                    imp.setAliquotaCofinsEntrada(o[22] != null ? (Double) o[22] : 0.0);
-                    imp.setCstCofinsSaida(o[23] != null ? (String) o[23] : "");
-                    imp.setAliquotaCofinsSaida(o[24] != null ? (Double) o[24] : 0.0);
-                    imp.setNaturezaproduto(o[25] != null ? (String) o[25] : "");
-                    imp.setDataAtualizacao(o[26] != null ? (Date) o[26] : null);
+                result = new TransformNativeQuery(ImportacaoImp.class).execute(query);
 
-                    result.add(imp);
-                });
             }
 
             return result;
-
         } finally {
             getEntityManager().close();
         }
+
     }
 
     public void getGerarEanbyCodigo() {
@@ -289,7 +202,7 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
         }
     }
 
-    public List<Object[]> getProdutobyDescorCod(Object obj, Integer codfil, Integer tipo) {
+    public List<ImportacaoImp> getProdutobyDescorCod(Object obj, Integer codfil, Integer tipo) throws InstantiationException, IllegalAccessException {
         try {
             List<ImportacaoImp> result = new ArrayList<>();
             int maxRowCount = 1000;
@@ -300,7 +213,8 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
                 diference++;
             }
 
-            String fields = "tp.descpro as nomeProduto,"
+            String fields = "tpi.tpimpos as cenario"
+                    + "tp.descpro as nomeProduto,"
                     + "tp.codpro as codigoProduto,"
                     + "tp.codbarun as codigoBarra,"
                     + "tp.codgen as genero,"
@@ -328,11 +242,10 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
                     + "tp.natpro as naturezaProduto,"
                     + "tpf.rgdata as dataAtualizacao ";
 
-            List<Object[]> query = new ArrayList<>();
             for (int i = 0; i < diference; i++) {
                 String sql = "SELECT " + fields + "from tabpro tp "
                         + "inner join tabprofil tpf on tpf.codpro = tp.codpro "
-                        + "left join tabproimp tpi on tpi.codfil = tpf.codfil and tpi.codpro = tp.codpro "
+                        + "left join tabproimp tpi on tpi.codfil = tpf.codfil and tpi.codpro = tp.codpro and tpi.tpimpos='D' "
                         + "left join tabproimpe tpe on tpe.CODIGO_PRODUTO = tp.codpro and tpf.codfil = tpe.CODIGO_FILIAL "
                         + "where tpf.codfil = :codfil and tp.rgevento <> '3' and tp.stprod = 'A'";
 
@@ -357,11 +270,92 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
                 }
 
                 sql += " order by tp.descpro";
-                System.out.println("sql=" + sql);
-                query.addAll(getEntityManager().createNativeQuery(sql).setParameter("codfil", codfil).setFirstResult(i * 1000).setMaxResults(1000).getResultList());
+
+                List<Object[]> query = getEntityManager().createNativeQuery(sql).setParameter("codfil", codfil).setFirstResult(i * 1000).setMaxResults(1000).getResultList();
+
+                if (!query.isEmpty()) {
+
+                    result = new TransformNativeQuery(ImportacaoImp.class).execute(query);
+
+                }
             }
 
-            return query;
+            return result;
+        } finally {
+            getEntityManager().close();
+        }
+    }
+
+    public Object countImportacao() {
+        try {
+            String sql = "select count(*)"
+                    + " from tabpro tp join tabprofil tpf on tpf.codfil = '2' and  tpf.codpro = tp.codpro ";
+
+            return getEntityManager().createNativeQuery(sql).getSingleResult();
+        } finally {
+            getEntityManager().close();
+        }
+    }
+
+    public List<SincronizadorTable> getCarregarALL() throws InstantiationException, IllegalAccessException {
+        try {
+
+            int maxRowCount = 1000;
+            int countMax = ((Number) countImportacao()).intValue();
+            int diference = countMax / maxRowCount;
+
+            if (countMax % maxRowCount != 0) {
+                diference++;
+            }
+
+            List<SincronizadorTable> result = new ArrayList<>();
+
+            for (int i = 0; i < diference; i++) {
+
+                String sql = "select tp.stprod,tp.codbarun as codbarun,tpf.codfil as codfil,tp.descpro as descpro,tpf.pratpro as pratpro, tpf.prvapro as prvapro"
+                        + " from tabpro tp join tabprofil tpf on tpf.codfil = '2' and tpf.codpro = tp.codpro ";
+
+                List<Object[]> query = getEntityManager().createNativeQuery(sql).setFirstResult(i * 1000).setMaxResults(1000).getResultList();
+
+                if (!query.isEmpty()) {
+                    result.addAll(new TransformNativeQuery(SincronizadorTable.class).execute(query));
+                }
+
+            }
+
+            return result;
+        } finally {
+            getEntityManager().close();
+        }
+
+    }
+
+    public void updateAll(String codbarun, Double prvapro, Double pratpro) {
+        try {
+
+            String sql = "update tabprofil "
+                    + "set prvapro = '" + prvapro + "',"
+                    + "pratpro = '" + pratpro + "',"
+                    + "rgdata = '" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "',"
+                    + "rgevento = '2' "
+                    + "where codpro in (select codpro from tabpro where codbarun ='" + codbarun + "') and codfil = '2'";
+            getEntityManager().getTransaction().begin();
+            getEntityManager().createNativeQuery(sql).executeUpdate();
+            getEntityManager().getTransaction().commit();
+
+        } finally {
+            getEntityManager().close();
+        }
+    }
+
+    public SincronizadorTable findByEan(String codbarun) {
+        try {
+            SincronizadorTable item = null;
+            String sql = "select tp.stprod,tp.codbarun,tpf.codfil, tp.descpro,tpf.pratpro,tpf.prvapro from tabprofil tpf "
+                    + "join tabpro tp on tp.codpro = tpf.codpro"
+                    + "where tp.codbarun = '" + codbarun+ "' and tpf.codfil = '2'";
+            return item;
+
         } finally {
             getEntityManager().close();
         }
