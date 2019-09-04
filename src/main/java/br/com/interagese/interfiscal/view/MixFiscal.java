@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -52,6 +52,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 import javax.swing.plaf.metal.MetalButtonUI;
 import br.com.interagese.interfiscal.business.FireTabfilBusiness;
+import br.com.interagese.interfiscal.business.TabNcmBusiness;
+import br.com.interagese.interfiscal.business.TabNcmBusinessBean;
 
 /**
  *
@@ -72,6 +74,7 @@ public class MixFiscal extends JInternalFrame {
     private BaseInterageTableModel baseInterageTableModel;
     private final FireTabproBusiness fireTabproBusiness;
     private final FireTabfilBusiness tabfilBusiness;
+    private final TabNcmBusiness tabNcmBusiness;
     private Integer contUpdate;
     private Integer infoHoras;
 
@@ -89,6 +92,7 @@ public class MixFiscal extends JInternalFrame {
         this.icmssaidaBusiness = new IcmssaidaBusinessBean();
         this.icmsentradaBusiness = new IcmsentradaBusinessBean();
         this.pisCofinsBusiness = new PisCofinsBusinessBean();
+        this.tabNcmBusiness = new TabNcmBusinessBean();
         this.a = new Actions(jfrmPrincipal);
 
         initComponents();
@@ -810,6 +814,9 @@ public class MixFiscal extends JInternalFrame {
                         carregando.setTexto("Carregando Base Interage...");
                         List<Fiscaltemp> resutlFinal = fiscalTempBusinessBean.getCarregarFiscalTemp(inicioOperacao);
                         baseInterageTableModel.addItens(null);
+                        List<String> resultInsertNcm = new ArrayList<>();
+                        List<String> resultNcm = new ArrayList<>();
+                        List<String> listString = null;
                         Thread.sleep(1000);
 
                         //**********************************************************
@@ -825,7 +832,7 @@ public class MixFiscal extends JInternalFrame {
                         for (int p = 0; p < calc; p++) {
 
                             carregando.loadBarra("Carregando Tributação", inserts, size, false);
-                            List<String> listString = new ArrayList<>();
+                            listString = new ArrayList<>();
                             for (int e = inserts; e < (inserts + max); e++) {
                                 if (e >= size) {
                                     break;
@@ -836,6 +843,7 @@ public class MixFiscal extends JInternalFrame {
 
                                 for (Tabpro produto : fiscalTempBusinessBean.getListTabproByCod(Integer.parseInt(f.getCodigoProduto()))) {
                                     AtualizacaoFiscalTemp aTemp = new AtualizacaoFiscalTemp();
+                                    //List<String> listString = new ArrayList<>();
 
                                     aTemp.setCodpro(produto.getCodpro());
                                     aTemp.setCodfil(codFilial);
@@ -844,7 +852,7 @@ public class MixFiscal extends JInternalFrame {
                                     //********************** Pis Cofins ****************************
                                     aTemp.setClasFiscal(f.getNcm() != null && !f.getNcm().equals("") ? f.getNcm() : produto.getClasfiscal() == null ? "" : produto.getClasfiscal());
                                     //produto.setCodbarun(f.getEan() != null ? f.getEan() : null);
-                                    aTemp.setFatorPis(f.getPisAlqS()== null || f.getPisAlqS() == 0.0 ? (produto.getFatorpis() == null ? 0.0 : produto.getFatorpis()) : f.getPisAlqS());
+                                    aTemp.setFatorPis(f.getPisAlqS() == null || f.getPisAlqS() == 0.0 ? (produto.getFatorpis() == null ? 0.0 : produto.getFatorpis()) : f.getPisAlqS());
                                     aTemp.setFatorCofins(f.getCofinsAlqS() == null || f.getCofinsAlqS() == 0.0 ? (produto.getFatorcofins() == null ? 0.0 : produto.getFatorcofins()) : f.getCofinsAlqS());
                                     aTemp.setCstPis(f.getPisCstS() == null || f.getPisCstS().equals("") ? (produto.getCstpis() == null ? "" : produto.getCstpis()) : f.getPisCstS());
                                     aTemp.setCstCofins(f.getCofinsCstS() == null || f.getCofinsCstS().equals("") ? (produto.getCstcofins() == null ? "" : produto.getCstcofins()) : f.getCofinsCstS());
@@ -919,6 +927,8 @@ public class MixFiscal extends JInternalFrame {
                                                 break;
                                             }
                                         }
+                                    } else {
+                                        aTemp.setIndice(produto.getIndice() == null ? "" : produto.getIndice());
                                     }
                                     //****** TABPROFIL *********************************************
                                     if (f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins()) {
@@ -1010,6 +1020,28 @@ public class MixFiscal extends JInternalFrame {
                                     }
 
                                     if ((f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins()) || (f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida())) {
+
+                                        //******************* validation insert ncm *****************
+                                        if (tabNcmBusiness.findById(aTemp.getClasFiscal()) == null) {
+                                            String resp = null;
+                                            if (!resultInsertNcm.isEmpty()) {
+                                                resp = resultInsertNcm.stream().filter((t) -> {
+                                                    return Objects.equals(t, aTemp.getClasFiscal());
+                                                }).findFirst().orElse(null);
+                                            }
+                                            if (resp != null) {
+                                                aTemp.setIsExistRegraNcm(true);
+                                            } else {
+                                                resultInsertNcm.add(aTemp.getClasFiscal());
+                                                aTemp.setIsExistRegraNcm(false);
+                                            }
+                                        } else {
+                                            aTemp.setIsExistRegraNcm(true);
+                                        }
+
+                                        //****************** Tabncm ******************
+                                        resultNcm.add(aTemp.getExecuteRegraNcm());
+
                                         //****************** Tabpro ******************
                                         listString.add(aTemp.getExecuteTabpro());
 
@@ -1030,10 +1062,11 @@ public class MixFiscal extends JInternalFrame {
                                     }
                                     cont++;
                                     if (cont == 500) {
-                                        cont = 1;
+                                        cont = 0;
                                         carregando.limparBufferText();
                                     }
 
+                                    //fireTabproBusiness.executeUpdate(listString);
                                 }
 
                             }
@@ -1042,7 +1075,41 @@ public class MixFiscal extends JInternalFrame {
                             carregando.loadBarra(texto, 0, 0, true);
                             carregando.setTexto("Registrando...");
                             fireTabproBusiness.executeUpdate(listString);
-                            tabproBusiness.executeUpdate(listString);
+                            //tabproBusiness.executeUpdate(listString);
+                        }
+
+                        texto = "Preparando Atualização da Tabela de NCM ...";
+                        carregando.loadBarra(texto, 0, 0, true);
+                        carregando.setTexto("Carregando Tabela...");
+                        Thread.sleep(1000);
+
+                        //**********************************************************
+                        size = resultNcm.size();
+                        calc = size / max;
+
+                        if ((size % max) > 0) {
+                            calc++;
+                        }
+                        inserts = 0;
+                        cont = 0;
+                        //**********************************************************
+                        for (int p = 0; p < calc; p++) {
+                            listString = new ArrayList<>();
+                            carregando.loadBarra("Carregando NCM", inserts, size, false);
+                            for (int e = inserts; e < (inserts + max); e++) {
+                                if (e >= size) {
+                                    break;
+                                }
+                                String sql = resultNcm.get(e);
+                                listString.add(sql);
+                                texto = sql;
+                                carregando.setTexto(texto);
+                            }
+                            inserts = inserts + max;
+                            texto = "Atualizando Banco de Dados...";
+                            carregando.loadBarra(texto, 0, 0, true);
+                            carregando.setTexto("Registrando...");
+                            fireTabproBusiness.executeUpdate(listString);
                         }
 
                         pisCofinsBusiness.deleteAll();

@@ -62,6 +62,7 @@ abstract class AbstractDaoCrud<T extends Model> implements DaoCrud<T> {
         try {
             em.getTransaction().begin();
             for (String sql : sqls) {
+               
                 em.createNativeQuery(sql).executeUpdate();
             }
             em.getTransaction().commit();

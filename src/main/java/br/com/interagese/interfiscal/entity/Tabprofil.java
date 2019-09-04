@@ -66,7 +66,7 @@ public class Tabprofil implements Model {
     @Temporal(TemporalType.TIMESTAMP)
     private Date rgdata;
     @Size(max = 1)
-    @Column(name = "rgevento", updatable = false)
+    @Column(name = "rgevento")
     private String rgevento;
     @Column(name = "outcusto", updatable = false)
     private Double outcusto;

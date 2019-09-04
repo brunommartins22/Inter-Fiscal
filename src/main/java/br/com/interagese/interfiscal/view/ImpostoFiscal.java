@@ -64,6 +64,7 @@ public class ImpostoFiscal extends JInternalFrame {
     private final FireTabfilBusiness tabfilBusiness;
     private Integer codfil;
     private Integer tipo;
+    private Integer ordenar;
     private boolean exportAll;
 
     /**
@@ -99,46 +100,54 @@ public class ImpostoFiscal extends JInternalFrame {
     }
 
     public void carregarImpostos() {
-        jTxtProd.setText("");
-        tableModel = new ItensTableModel(fireTabproBusiness.getImportacaoImpostosLimit(codfil, tipo));
-        jTable.setModel(tableModel);
-        JlblTotal.setText("" + ((Number) fireTabproBusiness.countImportacao(codfil, tipo)).intValue());
+        try {
+            jTxtProd.setText("");
+            tableModel = new ItensTableModel(fireTabproBusiness.getImportacaoImpostosLimit(codfil, tipo));
+            jTable.setModel(tableModel);
+            JlblTotal.setText("" + ((Number) fireTabproBusiness.countImportacao(codfil, tipo)).intValue());
 
-        jTable.setAutoResizeMode(jTable.AUTO_RESIZE_OFF);
-        a.setColumn(jTable, 0, 100);
-        a.setColumn(jTable, 1, 100);
-        a.setColumnMinWidth(jTable, 2, 300);
-        a.setColumn(jTable, 3, 100);
-        a.setColumn(jTable, 4, 100);
-        a.setColumn(jTable, 5, 100);
-        a.setColumn(jTable, 6, 100);
-        a.setColumn(jTable, 7, 100);
-        a.setColumn(jTable, 8, 110);
-        a.setColumn(jTable, 9, 110);
-        a.setColumn(jTable, 10, 110);
-        a.setColumn(jTable, 11, 110);
-        a.setColumn(jTable, 12, 110);
-        a.setColumn(jTable, 13, 110);
-        a.setColumn(jTable, 14, 110);
-        a.setColumn(jTable, 15, 110);
-        a.setColumn(jTable, 16, 110);
-        a.setColumn(jTable, 17, 110);
-        a.setColumn(jTable, 18, 110);
-        a.setColumn(jTable, 19, 110);
-        a.setColumn(jTable, 20, 110);
-        a.setColumn(jTable, 21, 110);
-        a.setColumn(jTable, 22, 110);
-        a.setColumn(jTable, 23, 110);
-        a.setColumn(jTable, 24, 110);
-        a.setColumn(jTable, 25, 110);
-        a.setColumn(jTable, 26, 110);
+            jTable.setAutoResizeMode(jTable.AUTO_RESIZE_OFF);
 
-        jBtnImport.setUI(new MetalButtonUI());
-        jBtnExpot.setUI(new MetalButtonUI());
-        jBtnSearch.setUI(new MetalButtonUI());
-        jBtnPrinter.setUI(new MetalButtonUI());
-        exportAll = true;
-        jTxtProd.requestFocus();
+            a.setColumnMinWidth(jTable, 0, 200);
+            a.setColumn(jTable, 1, 110);
+            a.setColumn(jTable, 2, 110);
+            a.setColumnMinWidth(jTable, 3, 300);
+            a.setColumn(jTable, 4, 110);
+            a.setColumn(jTable, 5, 110);
+            a.setColumn(jTable, 6, 110);
+            a.setColumn(jTable, 7, 110);
+            a.setColumn(jTable, 8, 110);
+            a.setColumn(jTable, 9, 110);
+            a.setColumn(jTable, 10, 110);
+            a.setColumn(jTable, 11, 110);
+            a.setColumn(jTable, 12, 110);
+            a.setColumn(jTable, 13, 110);
+            a.setColumn(jTable, 14, 110);
+            a.setColumn(jTable, 15, 110);
+            a.setColumn(jTable, 16, 110);
+            a.setColumn(jTable, 17, 110);
+            a.setColumn(jTable, 18, 110);
+            a.setColumn(jTable, 19, 110);
+            a.setColumn(jTable, 20, 110);
+            a.setColumn(jTable, 21, 110);
+            a.setColumn(jTable, 22, 110);
+            a.setColumn(jTable, 23, 110);
+            a.setColumn(jTable, 24, 110);
+            a.setColumn(jTable, 25, 110);
+            a.setColumn(jTable, 26, 110);
+            a.setColumn(jTable, 27, 110);
+
+            jBtnImport.setUI(new MetalButtonUI());
+            jBtnExpot.setUI(new MetalButtonUI());
+            jBtnSearch.setUI(new MetalButtonUI());
+            jBtnPrinter.setUI(new MetalButtonUI());
+            exportAll = true;
+            jTxtProd.requestFocus();
+        } catch (InstantiationException | IllegalAccessException ie) {
+            JDlgMensagem mensagem = new JDlgMensagem(jFramePrincipal, true, ie);
+            System.out.println(ie.getMessage());
+            mensagem.setVisible(true);
+        }
     }
 
     /**
@@ -176,6 +185,8 @@ public class ImpostoFiscal extends JInternalFrame {
             jBtnExpot = new javax.swing.JButton();
             jBtnPrinter = new javax.swing.JButton();
             jSeparator1 = new javax.swing.JSeparator();
+            jLabel6 = new javax.swing.JLabel();
+            jCbxOrdenar = new javax.swing.JComboBox<>();
 
             setClosable(true);
             setIconifiable(true);
@@ -358,33 +369,48 @@ public class ImpostoFiscal extends JInternalFrame {
             jSeparator1.setBackground(new java.awt.Color(0, 51, 102));
             jSeparator1.setForeground(new java.awt.Color(0, 51, 102));
 
+            jLabel6.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+            jLabel6.setForeground(new java.awt.Color(0, 51, 102));
+            jLabel6.setText("<html><u>Ordenar por:</u></html>");
+
+            jCbxOrdenar.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+            jCbxOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "NCM" }));
+            jCbxOrdenar.addItemListener(new java.awt.event.ItemListener() {
+                public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                    jCbxOrdenarItemStateChanged(evt);
+                }
+            });
+
             javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
             jPanel3.setLayout(jPanel3Layout);
             jPanel3Layout.setHorizontalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jSeparator1)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel2))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jCbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jCbxFilial, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTxtProd, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jSeparator1)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jCbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCbxOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtProd)
+                                    .addComponent(jCbxFilial, 0, 268, Short.MAX_VALUE))))
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addComponent(jBtnSearch)
-                            .addGap(12, 12, 12)
+                            .addGap(8, 8, 8)
                             .addComponent(jBtnImport)
-                            .addGap(12, 12, 12)
+                            .addGap(8, 8, 8)
                             .addComponent(jBtnExpot)
-                            .addGap(12, 12, 12)
+                            .addGap(8, 8, 8)
                             .addComponent(jBtnPrinter)))
-                    .addContainerGap())
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             jPanel3Layout.setVerticalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,9 +427,13 @@ public class ImpostoFiscal extends JInternalFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jCbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCbxOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBtnSearch)
                         .addComponent(jBtnImport)
@@ -419,12 +449,12 @@ public class ImpostoFiscal extends JInternalFrame {
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGap(6, 6, 6)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(6, 6, 6)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE))
                     .addContainerGap())
             );
             jPanel1Layout.setVerticalGroup(
@@ -437,7 +467,7 @@ public class ImpostoFiscal extends JInternalFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(0, 0, 0)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)))
                     .addContainerGap())
             );
 
@@ -468,148 +498,194 @@ public class ImpostoFiscal extends JInternalFrame {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
+                    try {
 
-                    JDlgCarregando carregando = a.carregarJdialog("Exportando...", jFramePrincipal);
-                    if (!tableModel.getResultList().isEmpty()) {
-                        JFileChooser chooser = new JFileChooser();
-                        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                        int i = chooser.showSaveDialog(jFramePrincipal);
-                        if (i == JFileChooser.APPROVE_OPTION) {
-                            carregando.setVisible(true);
-                            carregando.loadBarra("Exportando Arquivo Excel...", 0, 0, true);
-                            i = 0;
-                            String filename = chooser.getSelectedFile().getAbsolutePath() + ".xls";
-                            HSSFWorkbook workbook = new HSSFWorkbook();
-                            HSSFSheet sheet = workbook.createSheet("FirstSheet");
+                        JDlgCarregando carregando = a.carregarJdialog("Exportando...", jFramePrincipal);
+                        if (!tableModel.getResultList().isEmpty()) {
+                            JFileChooser chooser = new JFileChooser();
+                            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                            int i = chooser.showSaveDialog(jFramePrincipal);
+                            if (i == JFileChooser.APPROVE_OPTION) {
 
-                            HSSFCellStyle txtStyle1 = (HSSFCellStyle) workbook.createCellStyle();
-                            HSSFCellStyle txtStyle2 = (HSSFCellStyle) workbook.createCellStyle();
-                            HSSFCellStyle txtStyle3 = (HSSFCellStyle) workbook.createCellStyle();
+                                List<ImportacaoImp> resultImp = null;
+                                if (exportAll) {
+                                    resultImp = fireTabproBusiness.getImportacaoImpostosAll(codfil, tipo);
+                                } else {
+                                    resultImp = tableModel.getItens();
+                                }
 
-                            HSSFFont txtFont1 = (HSSFFont) workbook.createFont();
-                            HSSFFont txtFont2 = (HSSFFont) workbook.createFont();
-                            HSSFFont txtFont3 = (HSSFFont) workbook.createFont();
+                                if (resultImp.size() > 50000) {
 
-                            txtFont1.setFontName("Arial");
-                            txtFont1.setFontHeightInPoints((short) 18);
-                            txtFont1.setBold(true);
-                            txtFont1.setColor((short) 003366);
-                            txtStyle1.setFont(txtFont1);
+                                }
 
-                            txtFont2.setFontHeightInPoints((short) 14);
-                            txtFont2.setFontName("Arial");
-                            txtFont2.setColor((short) 003366);
-                            txtStyle2.setFont(txtFont2);
+                                carregando.setVisible(true);
+                                carregando.loadBarra("Exportando Arquivo Excel...", 0, 0, true);
+                                i = 0;
+                                String filename = chooser.getSelectedFile().getAbsolutePath() + ".xls";
+                                HSSFWorkbook workbook = new HSSFWorkbook();
+                                HSSFSheet sheet = workbook.createSheet("FirstSheet");
 
-                            txtFont3.setFontHeightInPoints((short) 11);
-                            txtFont3.setFontName("Arial");
-                            txtFont3.setBold(true);
-                            txtFont3.setColor((short) 003366);
-                            txtStyle3.setFont(txtFont3);
+                                HSSFCellStyle txtStyle1 = (HSSFCellStyle) workbook.createCellStyle();
+                                HSSFCellStyle txtStyle2 = (HSSFCellStyle) workbook.createCellStyle();
+                                HSSFCellStyle txtStyle3 = (HSSFCellStyle) workbook.createCellStyle();
 
-                            //******************* titulo ************************
-                            HSSFRow rowTitulo = sheet.createRow((short) i++);
-                            rowTitulo.createCell(4).setCellValue("Importação de Impostos");
-                            rowTitulo.getCell(4).setCellStyle(txtStyle1);
+                                HSSFFont txtFont1 = (HSSFFont) workbook.createFont();
+                                HSSFFont txtFont2 = (HSSFFont) workbook.createFont();
+                                HSSFFont txtFont3 = (HSSFFont) workbook.createFont();
 
-                            HSSFRow rowfilial = sheet.createRow((short) i++);
-                            rowfilial.createCell(0).setCellValue("Filial: ");
-                            rowfilial.createCell(1).setCellValue(((Tabfil) jCbxFilial.getModel().getSelectedItem()).toString());
-//                            rowfilial.createCell(5).setCellValue("          Consumidor Final        ");
-                            rowfilial.getCell(0).setCellStyle(txtStyle2);
-                            rowfilial.getCell(1).setCellStyle(txtStyle2);
-//                            rowfilial.getCell(5).setCellStyle(txtStyle2);
+                                txtFont1.setFontName("Arial");
+                                txtFont1.setFontHeightInPoints((short) 18);
+                                txtFont1.setBold(true);
+                                txtFont1.setColor((short) 003366);
+                                txtStyle1.setFont(txtFont1);
 
-                            HSSFRow rowHeader2 = sheet.createRow((short) i++);
-                            rowHeader2.createCell(0).setCellValue("Produto");
-                            rowHeader2.createCell(1).setCellValue("Cód Produto");
-                            rowHeader2.createCell(2).setCellValue("Cód Barras");
-                            rowHeader2.createCell(3).setCellValue("Gênero");
-                            rowHeader2.createCell(4).setCellValue("NCM");
-                            rowHeader2.createCell(5).setCellValue("CFOP");
-                            rowHeader2.createCell(6).setCellValue("CEST");
-                            rowHeader2.createCell(7).setCellValue("CST");
-                            rowHeader2.createCell(8).setCellValue("Icms Saída");
-                            rowHeader2.createCell(9).setCellValue("Pis Entrada");
-                            rowHeader2.createCell(10).setCellValue("Pis Saída");
-                            rowHeader2.createCell(11).setCellValue("Cofins Entrada");
-                            rowHeader2.createCell(12).setCellValue("Cofins Saída");
-                            rowHeader2.createCell(13).setCellValue("Nat Produto");
-                            rowHeader2.createCell(14).setCellValue("Alíquota Pis");
-                            rowHeader2.createCell(15).setCellValue("Alíquota Cofins");
-                            rowHeader2.getCell(0).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(1).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(2).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(3).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(4).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(5).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(6).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(7).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(8).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(9).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(10).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(11).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(12).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(13).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(14).setCellStyle(txtStyle3);
-                            rowHeader2.getCell(15).setCellStyle(txtStyle3);
+                                txtFont2.setFontHeightInPoints((short) 14);
+                                txtFont2.setFontName("Arial");
+                                txtFont2.setColor((short) 003366);
+                                txtStyle2.setFont(txtFont2);
 
-                            //***************************************************
-                            DecimalFormat Formata = new DecimalFormat("#,##0.00000");
-                            int cont = 1;
-                            List<ImportacaoImp> resultImp = null;
-                            if (exportAll) {
-                                resultImp = fireTabproBusiness.getImportacaoImpostosAll(codfil, tipo);
+                                txtFont3.setFontHeightInPoints((short) 11);
+                                txtFont3.setFontName("Arial");
+                                txtFont3.setBold(true);
+                                txtFont3.setColor((short) 003366);
+                                txtStyle3.setFont(txtFont3);
+
+//                                //******************* titulo ************************
+                                HSSFRow rowTitulo = sheet.createRow((short) i++);
+                                rowTitulo.createCell(0).setCellValue("Exportação de Impostos || " + ((Tabfil) jCbxFilial.getModel().getSelectedItem()).toString());
+                                rowTitulo.getCell(0).setCellStyle(txtStyle2);
+//                                HSSFRow rowfilial = sheet.createRow((short) i++);
+//                                rowfilial.createCell(0).setCellValue("Filial: ");
+//                                rowfilial.createCell(1).setCellValue();
+////                            rowfilial.createCell(5).setCellValue("          Consumidor Final        ");
+//                                rowfilial.getCell(0).setCellStyle(txtStyle2);
+//                                rowfilial.getCell(1).setCellStyle(txtStyle2);
+////                            rowfilial.getCell(5).setCellStyle(txtStyle2);
+
+                                HSSFRow rowHeader2 = sheet.createRow((short) i++);
+                                rowHeader2.createCell(0).setCellValue("Cenário");
+                                rowHeader2.createCell(1).setCellValue("Produto");
+                                rowHeader2.createCell(2).setCellValue("Cód Produto");
+                                rowHeader2.createCell(3).setCellValue("Cód Barras");
+                                rowHeader2.createCell(4).setCellValue("Gênero");
+                                rowHeader2.createCell(5).setCellValue("NCM");
+                                rowHeader2.createCell(6).setCellValue("CFOP");
+                                rowHeader2.createCell(7).setCellValue("CEST");
+                                rowHeader2.createCell(8).setCellValue("CST Icms Entrada");
+                                rowHeader2.createCell(9).setCellValue("Alq. Icms Entrada");
+                                rowHeader2.createCell(10).setCellValue("Alq. ST Icms Entrada");
+                                rowHeader2.createCell(11).setCellValue("Rbc Icms Entrada");
+                                rowHeader2.createCell(12).setCellValue("Rbc ST Icms Entrada");
+                                rowHeader2.createCell(13).setCellValue("CST Icms Saída");
+                                rowHeader2.createCell(14).setCellValue("Alq. Icms Saída");
+                                rowHeader2.createCell(15).setCellValue("Alq. ST Icms Saída");
+                                rowHeader2.createCell(16).setCellValue("Rbc Icms Saída");
+                                rowHeader2.createCell(17).setCellValue("Rbc ST Icms Saída");
+                                rowHeader2.createCell(18).setCellValue("CST Pis Entrada");
+                                rowHeader2.createCell(19).setCellValue("Alq. Pis Entrada");
+                                rowHeader2.createCell(20).setCellValue("CST Pis Saída");
+                                rowHeader2.createCell(21).setCellValue("Alq. Pis Saída");
+                                rowHeader2.createCell(22).setCellValue("CST Cofins Entrada");
+                                rowHeader2.createCell(23).setCellValue("Alq. Cofins Entrada");
+                                rowHeader2.createCell(24).setCellValue("CST Cofins Saída");
+                                rowHeader2.createCell(25).setCellValue("Alq. Cofins Saída");
+                                rowHeader2.createCell(26).setCellValue("Natureza Produto");
+
+                                rowHeader2.getCell(0).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(1).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(2).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(3).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(4).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(5).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(6).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(7).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(8).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(9).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(10).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(11).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(12).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(13).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(14).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(15).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(16).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(17).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(18).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(19).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(20).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(21).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(22).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(23).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(24).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(25).setCellStyle(txtStyle3);
+                                rowHeader2.getCell(26).setCellStyle(txtStyle3);
+
+                                //***************************************************
+                                DecimalFormat Formata = new DecimalFormat("#,##0.00");
+                                int cont = 1;
+
+                                for (ImportacaoImp item : resultImp) {
+                                    carregando.loadBarra("Exportando Tributação ", cont, resultImp.size(), false);
+                                    HSSFRow rowHeader3 = sheet.createRow(i++);
+                                    rowHeader3.createCell(0).setCellValue(item.getTpImposDesc());
+                                    rowHeader3.createCell(1).setCellValue(item.getNomeproduto());
+                                    rowHeader3.createCell(2).setCellValue(Utils.zeroEsquerda(item.getCodigoproduto(), 5) );
+                                    rowHeader3.createCell(3).setCellValue(item.getCodigobarra());
+                                    rowHeader3.createCell(4).setCellValue(item.getGenero());
+                                    rowHeader3.createCell(5).setCellValue(item.getNcm());
+                                    rowHeader3.createCell(6).setCellValue(item.getCfop());
+                                    rowHeader3.createCell(7).setCellValue(item.getCest());
+                                    rowHeader3.createCell(8).setCellValue(item.getCstIcmsEntrada());
+                                    rowHeader3.createCell(9).setCellValue(Formata.format(item.getAliquotaIcmsEntrada()));
+                                    rowHeader3.createCell(10).setCellValue(Formata.format(item.getAliquotaSTIcmsEntrada()));
+                                    rowHeader3.createCell(11).setCellValue(Formata.format(item.getRbcIcmsEntrada()));
+                                    rowHeader3.createCell(12).setCellValue(Formata.format(item.getRbcSTIcmsEntrada()));
+                                    rowHeader3.createCell(13).setCellValue(item.getCstIcmsSaida());
+                                    rowHeader3.createCell(14).setCellValue(Formata.format(item.getAliquotaIcmsSaida()));
+                                    rowHeader3.createCell(15).setCellValue(Formata.format(item.getAliquotaSTIcmsSaida()));
+                                    rowHeader3.createCell(16).setCellValue(Formata.format(item.getRbcIcmsSaida()));
+                                    rowHeader3.createCell(17).setCellValue(Formata.format(item.getRbcSTIcmsSaida()));
+                                    rowHeader3.createCell(18).setCellValue(item.getCstPisEntrada());
+                                    rowHeader3.createCell(19).setCellValue(Formata.format(item.getAliquotaPisEntrada()));
+                                    rowHeader3.createCell(20).setCellValue(item.getCstPisSaida());
+                                    rowHeader3.createCell(21).setCellValue(Formata.format(item.getAliquotaPisSaida()));
+                                    rowHeader3.createCell(22).setCellValue(item.getCstCofinsEntrada());
+                                    rowHeader3.createCell(23).setCellValue(Formata.format(item.getAliquotaCofinsEntrada()));
+                                    rowHeader3.createCell(24).setCellValue(item.getCstCofinsSaida());
+                                    rowHeader3.createCell(25).setCellValue(Formata.format(item.getAliquotaCofinsSaida()));
+                                    rowHeader3.createCell(26).setCellValue(item.getNaturezaproduto());
+
+                                    cont++;
+                                }
+                                try {
+                                    FileOutputStream fileOut = new FileOutputStream(filename);
+                                    workbook.write(fileOut);
+                                    fileOut.close();
+                                    workbook.close();
+                                    carregando.loadBarra("Arquivo Exportado com Sucesso ...", 0, 0, true);
+                                    carregando.setTexto("Finalizando Exportação Fiscal !!");
+                                    Thread.sleep(1500);
+                                    carregando.dispose();
+
+                                } catch (Exception ex) {
+                                    Log logApp = new Log();
+                                    StringWriter writer = new StringWriter();
+                                    PrintWriter pw = new PrintWriter(writer);
+                                    ex.printStackTrace(pw);
+                                    logApp.setError("Inter-Fiscal - " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " → " + writer.toString());
+                                    a.carregarLog(logApp, 2);
+                                    JDlgMensagem mensagem = new JDlgMensagem(jFramePrincipal, true, ex);
+                                    mensagem.setVisible(true);
+                                }
+
                             } else {
-                                resultImp = tableModel.getItens();
-                            }
-                            for (ImportacaoImp item : resultImp) {
-                                carregando.loadBarra("Exportando Tributação ", cont, resultImp.size(), false);
-                                HSSFRow rowHeader3 = sheet.createRow(i++);
-                                rowHeader3.createCell(0).setCellValue(item.getNomeproduto());
-                                rowHeader3.createCell(1).setCellValue(item.getCodigoproduto());
-                                rowHeader3.createCell(2).setCellValue(item.getCodigobarra());
-                                rowHeader3.createCell(3).setCellValue(item.getGenero());
-                                rowHeader3.createCell(4).setCellValue(item.getNcm());
-                                rowHeader3.createCell(5).setCellValue(item.getCfop());
-                                rowHeader3.createCell(6).setCellValue(item.getCest());
-                                rowHeader3.createCell(7).setCellValue(item.getCstIcmsSaida());
-                                rowHeader3.createCell(8).setCellValue(item.getAliquotaIcmsSaida());
-                                rowHeader3.createCell(9).setCellValue(item.getCstPisEntrada());
-                                rowHeader3.createCell(10).setCellValue(item.getCstPisSaida());
-                                rowHeader3.createCell(11).setCellValue(item.getCstCofinsEntrada());
-                                rowHeader3.createCell(12).setCellValue(item.getCstCofinsSaida());
-                                rowHeader3.createCell(13).setCellValue(item.getNaturezaproduto());
-                                rowHeader3.createCell(14).setCellValue(Formata.format(item.getAliquotaPisSaida()));
-                                rowHeader3.createCell(15).setCellValue(Formata.format(item.getAliquotaCofinsSaida()));
-
-                                cont++;
-                            }
-                            try {
-                                FileOutputStream fileOut = new FileOutputStream(filename);
-                                workbook.write(fileOut);
-                                fileOut.close();
-                                workbook.close();
-                                carregando.loadBarra("Arquivo Exportado com Sucesso ...", 0, 0, true);
-                                carregando.setTexto("Finalizando Exportação Fiscal !!");
-                                Thread.sleep(1500);
-                                carregando.dispose();
-
-                            } catch (Exception ex) {
-                                Log logApp = new Log();
-                                StringWriter writer = new StringWriter();
-                                PrintWriter pw = new PrintWriter(writer);
-                                ex.printStackTrace(pw);
-                                logApp.setError("Inter-Fiscal - " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " → " + writer.toString());
-                                a.carregarLog(logApp, 2);
-                                JDlgMensagem mensagem = new JDlgMensagem(jFramePrincipal, true, ex);
-                                mensagem.setVisible(true);
+                                JOptionPane.showMessageDialog(jFramePrincipal, "Operação cancelada pelo usuário!!", null, JOptionPane.ERROR_MESSAGE);
                             }
 
-                        } else {
-                            JOptionPane.showMessageDialog(jFramePrincipal, "Operação cancelada pelo usuário!!", null, JOptionPane.ERROR_MESSAGE);
                         }
-
+                    } catch (InstantiationException | IllegalAccessException ie) {
+                        JDlgMensagem mensagem = new JDlgMensagem(jFramePrincipal, true, ie);
+                        System.out.println(ie.getMessage());
+                        mensagem.setVisible(true);
                     }
                 }
             }).start();
@@ -646,32 +722,44 @@ public class ImpostoFiscal extends JInternalFrame {
                     FileInputStream fips = new FileInputStream(f);
                     HSSFWorkbook workbook = new HSSFWorkbook(fips);
                     HSSFSheet linhas = workbook.getSheetAt(0);
+                    codfil = ((Tabfil) jCbxFilial.getModel().getSelectedItem()).getCodfil();
+                    System.out.println("codfil :" + codfil);
 
                     for (int i = 0; i < linhas.getPhysicalNumberOfRows(); i++) {
                         Row linha = linhas.getRow(i);
-                        if (i == 1) {
-                            codfil = Integer.parseInt(linha.getCell(1).getRichStringCellValue().toString().split("-")[0].trim());
-                        }
-                        if (i > 2) {
+
+                        if (i > 1) {
+
                             ImportacaoImp imp = new ImportacaoImp();
-//                            imp.setNomeproduto(linha.getCell(0).getCellTypeEnum().name().equals("STRING") ? linha.getCell(0).getRichStringCellValue().toString() : ((Double) linha.getCell(0).getNumericCellValue()).toString().replace(".0", ""));
-//                            imp.setNomeproduto(((Double) linha.getCell(0).getNumericCellValue()).toString());
-                            imp.setNomeproduto(linha.getCell(0).getCellTypeEnum().name().equals("STRING") ? linha.getCell(0).getRichStringCellValue().toString() : ((Double) linha.getCell(0).getNumericCellValue()).toString().replace(".0", ""));
-                            imp.setCodigoproduto(linha.getCell(1).getCellTypeEnum().name().equals("STRING") ? linha.getCell(1).getRichStringCellValue().toString() : ((Double) linha.getCell(1).getNumericCellValue()).toString().replace(".0", ""));
-                            imp.setCodigobarra(Utils.retirarCaracteresEspeciais(linha.getCell(2).getCellTypeEnum().name().equals("STRING") ? linha.getCell(2).getRichStringCellValue().toString().replace("E12", "").replace("E7", "").replace(".", "") : ((Double) linha.getCell(2).getNumericCellValue()).toString().replace(".0", "")));
-                            imp.setGenero(linha.getCell(3).getCellTypeEnum().name().equals("STRING") ? linha.getCell(3).getRichStringCellValue().toString() : ((Double) linha.getCell(3).getNumericCellValue()).toString().replace(".0", ""));
-                            imp.setNcm(Utils.retirarCaracteresEspeciais(linha.getCell(4).getCellTypeEnum().name().equals("STRING") ? linha.getCell(4).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(4).getRichStringCellValue().toString().replace("E12", "").replace("E7", "").replace(".", "") : ((Double) linha.getCell(4).getNumericCellValue()).toString().replace(".0", "")));
-                            imp.setCfop(linha.getCell(5).getCellTypeEnum().name().equals("STRING") ? linha.getCell(5).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(5).getRichStringCellValue().toString() : ((Double) linha.getCell(5).getNumericCellValue()).toString().replace(".0", ""));
-                            imp.setCest(Utils.retirarCaracteresEspeciais(linha.getCell(6).getCellTypeEnum().name().equals("STRING") ? linha.getCell(6).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(6).getRichStringCellValue().toString() : ((Double) linha.getCell(6).getNumericCellValue()).toString().replace(".0", "")));
-                            imp.setCstIcmsSaida(linha.getCell(7).getCellTypeEnum().name().equals("STRING") ? linha.getCell(7).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(7).getRichStringCellValue().toString() : ((Double) linha.getCell(7).getNumericCellValue()).toString().replace(".0", ""));
-                            imp.setAliquotaIcmsSaida(linha.getCell(8).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0").parse(linha.getCell(8).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(8).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(8).getNumericCellValue());
-                            imp.setCstPisEntrada(linha.getCell(9).getCellTypeEnum().name().equals("STRING") ? linha.getCell(9).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(9).getRichStringCellValue().toString().trim() : ((Double) linha.getCell(9).getNumericCellValue()).toString().replace(".0", ""));
-                            imp.setCstPisSaida(linha.getCell(10).getCellTypeEnum().name().equals("STRING") ? linha.getCell(10).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(10).getRichStringCellValue().toString().trim() : ((Double) linha.getCell(10).getNumericCellValue()).toString().replace(".0", ""));
-                            imp.setCstCofinsEntrada(linha.getCell(11).getCellTypeEnum().name().equals("STRING") ? linha.getCell(11).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(11).getRichStringCellValue().toString().trim() : ((Double) linha.getCell(11).getNumericCellValue()).toString().replace(".0", ""));
-                            imp.setCstCofinsSaida(linha.getCell(12).getCellTypeEnum().name().equals("STRING") ? linha.getCell(12).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(12).getRichStringCellValue().toString() : ((Double) linha.getCell(12).getNumericCellValue()).toString().replace(".0", ""));
-                            imp.setNaturezaproduto(linha.getCell(13).getCellTypeEnum().name().equals("STRING") ? linha.getCell(13).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(13).getRichStringCellValue().toString().trim() : ((Double) linha.getCell(13).getNumericCellValue()).toString().replace(".0", ""));
-                            imp.setAliquotaPisSaida(linha.getCell(14).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0.00000").parse(linha.getCell(14).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(14).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(14).getNumericCellValue());
-                            imp.setAliquotaCofinsSaida(linha.getCell(15).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0.00000").parse(linha.getCell(15).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(15).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(15).getNumericCellValue());
+
+                            imp.setTpImposDesc(linha.getCell(0) == null ? "" : linha.getCell(0).getCellTypeEnum().name().equals("STRING") ? linha.getCell(0).getRichStringCellValue().toString() : "");
+                            imp.setNomeproduto(linha.getCell(1) == null ? "" : linha.getCell(1).getCellTypeEnum().name().equals("STRING") ? linha.getCell(1).getRichStringCellValue().toString() : "");
+                            imp.setCodigoproduto(linha.getCell(2) == null ? "" : linha.getCell(2).getCellTypeEnum().name().equals("STRING") ? linha.getCell(2).getRichStringCellValue().toString() : "");
+                            imp.setCodigobarra(Utils.retirarCaracteresEspeciais(linha.getCell(3).getCellTypeEnum().name().equals("STRING") ? linha.getCell(3).getRichStringCellValue().toString().replace("E12", "").replace("E7", "").replace(".", "") : ""));
+                            imp.setGenero(linha.getCell(4) == null ? "" : linha.getCell(4).getCellTypeEnum().name().equals("STRING") ? linha.getCell(4).getRichStringCellValue().toString() : ((Double) linha.getCell(4).getNumericCellValue()).toString().replace(".0", ""));
+                            imp.setNcm(Utils.retirarCaracteresEspeciais(linha.getCell(5).getCellTypeEnum().name().equals("STRING") ? linha.getCell(5).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(5).getRichStringCellValue().toString().replace("E12", "").replace("E7", "").replace(".", "") : ""));
+                            imp.setCfop(linha.getCell(6) == null ? "" : linha.getCell(6).getCellTypeEnum().name().equals("STRING") ? linha.getCell(6).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(6).getRichStringCellValue().toString() : "");
+                            imp.setCest(Utils.retirarCaracteresEspeciais(linha.getCell(7).getCellTypeEnum().name().equals("STRING") ? linha.getCell(7).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(7).getRichStringCellValue().toString() : ""));
+                            imp.setCstIcmsEntrada(linha.getCell(8) == null ? "" : linha.getCell(8).getCellTypeEnum().name().equals("STRING") ? linha.getCell(8).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(8).getRichStringCellValue().toString() : "");
+                            imp.setAliquotaIcmsEntrada(linha.getCell(9).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0").parse(linha.getCell(9).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(9).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(9).getNumericCellValue());
+                            imp.setAliquotaSTIcmsEntrada(linha.getCell(10).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0").parse(linha.getCell(10).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(10).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(10).getNumericCellValue());
+                            imp.setRbcIcmsEntrada(linha.getCell(11).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0").parse(linha.getCell(11).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(11).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(11).getNumericCellValue());
+                            imp.setRbcSTIcmsEntrada(linha.getCell(12).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0").parse(linha.getCell(12).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(12).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(12).getNumericCellValue());
+                            imp.setCstIcmsSaida(linha.getCell(13) == null ? "" : linha.getCell(13).getCellTypeEnum().name().equals("STRING") ? linha.getCell(13).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(13).getRichStringCellValue().toString() : "");
+                            imp.setAliquotaIcmsSaida(linha.getCell(14).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0").parse(linha.getCell(14).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(14).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(14).getNumericCellValue());
+                            imp.setAliquotaSTIcmsSaida(linha.getCell(15).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0").parse(linha.getCell(15).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(15).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(15).getNumericCellValue());
+                            imp.setRbcIcmsSaida(linha.getCell(16).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0").parse(linha.getCell(16).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(16).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(16).getNumericCellValue());
+                            imp.setRbcSTIcmsSaida(linha.getCell(17).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0").parse(linha.getCell(17).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(17).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(17).getNumericCellValue());
+                            imp.setCstPisEntrada(linha.getCell(18) == null ? "" : linha.getCell(18).getCellTypeEnum().name().equals("STRING") ? linha.getCell(18).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(18).getRichStringCellValue().toString().trim() : "");
+                            imp.setAliquotaPisEntrada(linha.getCell(19).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0.00000").parse(linha.getCell(19).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(19).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(19).getNumericCellValue());
+                            imp.setCstPisSaida(linha.getCell(20) == null ? "" : linha.getCell(20).getCellTypeEnum().name().equals("STRING") ? linha.getCell(20).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(20).getRichStringCellValue().toString().trim() : "");
+                            imp.setAliquotaPisSaida(linha.getCell(21).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0.00000").parse(linha.getCell(21).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(21).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(21).getNumericCellValue());
+                            imp.setCstCofinsEntrada(linha.getCell(22) == null ? "" : linha.getCell(22).getCellTypeEnum().name().equals("STRING") ? linha.getCell(22).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(22).getRichStringCellValue().toString().trim() : "");
+                            imp.setAliquotaCofinsEntrada(linha.getCell(23).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0.00000").parse(linha.getCell(23).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(23).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(23).getNumericCellValue());
+                            imp.setCstCofinsSaida(linha.getCell(24) == null ? "" : linha.getCell(24).getCellTypeEnum().name().equals("STRING") ? linha.getCell(24).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(24).getRichStringCellValue().toString() : "");
+                            imp.setAliquotaCofinsSaida(linha.getCell(25).getCellTypeEnum().name().equals("STRING") ? new DecimalFormat("#,##0.00000").parse(linha.getCell(25).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(25).getRichStringCellValue().toString().trim()).doubleValue() : linha.getCell(25).getNumericCellValue());
+                            imp.setNaturezaproduto(linha.getCell(26) == null ? "" : linha.getCell(26).getCellTypeEnum().name().equals("STRING") ? linha.getCell(26).getRichStringCellValue().toString() == null ? "0.0" : linha.getCell(26).getRichStringCellValue().toString().trim() : "");
+
                             result.add(imp);
                         }
                     }
@@ -699,52 +787,170 @@ public class ImpostoFiscal extends JInternalFrame {
                                         TypedQuery<Tabpro> listTp = (TypedQuery<Tabpro>) fireTabproBusiness.getDao().getEntityManager().createNativeQuery(query, Tabpro.class);
                                         if (!listTp.getResultList().isEmpty()) {
                                             Tabpro tp = listTp.getResultList().get(0);
+
                                             tp.setCodgen(imp.getGenero().trim());
                                             tp.setClasfiscal(imp.getNcm());
                                             tp.setCest(imp.getCest());
                                             tp.setNatpro(imp.getNaturezaproduto().trim());
+                                            tp.setCst(imp.getCstIcmsSaida());
+                                            tp.setIcms(imp.getAliquotaIcmsSaida());
+
+                                            tp.setCstpis(imp.getCstPisSaida());
+                                            tp.setFatorpis(imp.getAliquotaPisSaida());
+
+                                            tp.setCstcofins(imp.getCstCofinsSaida());
+                                            tp.setFatorcofins(imp.getAliquotaCofinsSaida());
+
+                                            //************************* Indice *************************
+                                            String tipoTrib = "";
+                                            switch (tp.getCst()) {
+                                                case "10":
+                                                case "30":
+                                                case "50":
+                                                case "60":
+                                                case "70":
+                                                case "90":
+                                                case "141":
+                                                case "201":
+                                                case "202":
+                                                case "203":
+                                                case "500":
+                                                case "900":
+                                                case "P10":
+                                                case "P90": {
+                                                    tipoTrib = "SS";
+                                                    break;
+                                                }
+                                                case "40":
+                                                case "300": {
+                                                    tipoTrib = "II";
+                                                    break;
+                                                }
+                                                case "41":
+                                                case "400": {
+                                                    tipoTrib = "NN";
+                                                    break;
+                                                }
+                                                default: {
+                                                    tipoTrib = "PT";
+                                                    break;
+                                                }
+                                            }
+
+                                            tp.setIndice(tipoTrib);
+
+                                            tp.setRgevento("2");
+                                            tp.setRgdata(new Date());
+
                                             fireTabproBusiness.update(tp);
+
                                             String codPro = tp.getCodpro();
 
                                             TypedQuery<Tabprofil> listTpf = (TypedQuery<Tabprofil>) fireTabprofilBusinessBean.getDao().getEntityManager().createNativeQuery("select * from tabprofil tpf where tpf.codpro = :codpro and tpf.codfil = :codfil", Tabprofil.class).setParameter("codpro", codPro).setParameter("codfil", codfil);
                                             if (!listTpf.getResultList().isEmpty()) {
                                                 Tabprofil tpf = listTpf.getResultList().get(0);
                                                 tpf.setCstpise(imp.getCstPisEntrada());
+                                                tpf.setFatorpiscom(imp.getAliquotaPisEntrada());
+
                                                 tpf.setCstcofinse(imp.getCstCofinsEntrada());
+                                                tpf.setFatorcofinscom(imp.getAliquotaCofinsEntrada());
+
+                                                tpf.setRgevento("2");
+                                                tpf.setRgdata(new Date());
+
                                                 fireTabprofilBusinessBean.update(tpf);
+
                                             } else if (imp.getCstPisEntrada() != null || imp.getCstCofinsEntrada() != null) {
                                                 Tabprofil fil = new Tabprofil(codPro, codfil);
-                                                fil.setCstpise(imp.getCstPisEntrada());
-                                                fil.setCstcofinse(imp.getCstCofinsEntrada());
-                                                fireTabprofilBusinessBean.insert(fil);
-                                            }
-                                            TypedQuery<Tabproimp> listTpi = (TypedQuery<Tabproimp>) fireTabproimpBusinessBean.getDao().getEntityManager().createNativeQuery("select * from tabproimp tpi where tpi.codpro = :codpro and tpi.codfil = :codfil and tpi.tpimpos='D'", Tabproimp.class).setParameter("codpro", codPro).setParameter("codfil", codfil);
-                                            String crt = tabfilBusiness.findById(codfil).getCrt().toString();
-                                            if (!listTpi.getResultList().isEmpty()) {
-                                                Tabproimp tpi = listTpi.getResultList().get(0);
-                                                tpi.setCfop(imp.getCfop());
-                                                tpi.setIcmscst(crt.equals("1") ? imp.getCstIcmsSaida() : imp.getCstIcmsSaida().trim().length() == 3 ? imp.getCstIcmsSaida().trim().substring(1) : imp.getCstIcmsSaida().trim());
-                                                tpi.setIcmspicms(imp.getAliquotaIcmsSaida());
-                                                tpi.setPiscst(imp.getCstPisSaida());
-                                                tpi.setCofinscst(imp.getCstCofinsSaida());
-                                                tpi.setPisppis(imp.getAliquotaPisSaida());
-                                                tpi.setCofinspcofins(imp.getAliquotaCofinsSaida());
 
-                                                fireTabproimpBusinessBean.update(tpi);
-                                            } else if ((imp.getCfop() != null && !imp.getCfop().equals("")) || imp.getCstPisSaida() != null || imp.getCstCofinsSaida() != null) {
-                                                Tabproimp tpImp = new Tabproimp(codPro, codfil, "D");
-                                                tpImp.setCfop(imp.getCfop());
-                                                tpImp.setIcmscst(crt.equals("1") ? imp.getCstIcmsSaida() : imp.getCstIcmsSaida().trim().length() == 3 ? imp.getCstIcmsSaida().trim().substring(1) : imp.getCstIcmsSaida().trim());
-                                                if (tpImp.getIcmscst().equals("00")) {
-                                                    tpImp.setIcmsmodbc("3");
-                                                }
-                                                tpImp.setIcmspicms(imp.getAliquotaIcmsSaida());
-                                                tpImp.setPiscst(imp.getCstPisSaida());
-                                                tpImp.setCofinscst(imp.getCstCofinsSaida());
-                                                tpImp.setPisppis(imp.getAliquotaPisSaida());
-                                                tpImp.setCofinspcofins(imp.getAliquotaCofinsSaida());
-                                                fireTabproimpBusinessBean.insert(tpImp);
+                                                fil.setCstpise(imp.getCstPisEntrada());
+                                                fil.setFatorpiscom(imp.getAliquotaPisEntrada());
+
+                                                fil.setCstcofinse(imp.getCstCofinsEntrada());
+                                                fil.setFatorcofinscom(imp.getAliquotaCofinsEntrada());
+
+                                                fil.setRgevento("2");
+                                                fil.setRgdata(new Date());
+
+                                                fireTabprofilBusinessBean.insert(fil);
+
                                             }
+
+                                            String crt = tabfilBusiness.findById(codfil).getCrt().toString();
+                                            String modBc = "";
+
+                                            switch (imp.getCstIcmsSaida()) {
+                                                case "00":
+                                                case "10":
+                                                case "20":
+                                                case "51":
+                                                case "70":
+                                                case "90":
+                                                case "900": {
+                                                    modBc = "0";
+                                                    break;
+                                                }
+                                                default: {
+                                                    modBc = "";
+                                                    break;
+                                                }
+                                            }
+
+                                            String sql = "select * from tabproimp tpi where tpi.codpro = :codpro and tpi.codfil = :codfil and (tpi.tpimpos='" + (imp.getTpImpos() == null || imp.getTpImpos().isEmpty() ? "D" : imp.getTpImpos()) + "' or tpi.tpimpos='" + (imp.getTpImpos() == null || imp.getTpImpos().isEmpty() ? "A" : imp.getTpImpos()) + "')";
+                                            System.out.println("sql = " + sql);
+
+                                            TypedQuery<Tabproimp> listTpi = (TypedQuery<Tabproimp>) fireTabproimpBusinessBean.getDao().getEntityManager().createNativeQuery("select * from tabproimp tpi where tpi.codpro = :codpro and tpi.codfil = :codfil and (tpi.tpimpos='" + (imp.getTpImpos() == null || imp.getTpImpos().isEmpty() ? "D" : imp.getTpImpos()) + "' or tpi.tpimpos='" + (imp.getTpImpos() == null || imp.getTpImpos().isEmpty() ? "A" : imp.getTpImpos()) + "')", Tabproimp.class).setParameter("codpro", codPro).setParameter("codfil", codfil);
+
+                                            if ((imp.getTpImpos() != null && !imp.getTpImpos().isEmpty()) || (listTpi != null && listTpi.getResultList() != null && !listTpi.getResultList().isEmpty())) {
+
+                                                if (!listTpi.getResultList().isEmpty()) {
+                                                    Tabproimp tpi = listTpi.getResultList().get(0);
+                                                    tpi.setCfop(imp.getCfop());
+                                                    tpi.setNcm(tp.getClasfiscal());
+
+                                                    tpi.setIcmscst(crt.equals("1") ? imp.getCstIcmsSaida() : imp.getCstIcmsSaida().trim().length() == 3 ? imp.getCstIcmsSaida().trim().substring(1) : imp.getCstIcmsSaida().trim());
+                                                    tpi.setIcmspicms(imp.getAliquotaIcmsSaida());
+                                                    tpi.setIcmspicmsst(imp.getAliquotaSTIcmsSaida());
+                                                    tpi.setIcmspredbc(imp.getRbcIcmsSaida());
+                                                    tpi.setIcmspredbcst(imp.getRbcSTIcmsSaida());
+
+                                                    tpi.setPiscst(imp.getCstPisSaida());
+                                                    tpi.setPisppis(imp.getAliquotaPisSaida());
+
+                                                    tpi.setCofinscst(imp.getCstCofinsSaida());
+                                                    tpi.setCofinspcofins(imp.getAliquotaCofinsSaida());
+
+                                                    tpi.setIcmsmodbc(modBc);
+
+                                                    fireTabproimpBusinessBean.update(tpi);
+
+                                                }
+
+                                            } else if ((imp.getCfop() != null && !imp.getCfop().equals("")) || imp.getCstPisSaida() != null || imp.getCstCofinsSaida() != null) {
+
+                                                for (int is = 1; is <= 2; is++) {
+                                                    Tabproimp tpImp = new Tabproimp(codPro, codfil, (is == 1 ? "D" : "A"));
+                                                    tpImp.setCfop(imp.getCfop());
+                                                    tpImp.setNcm(tp.getClasfiscal());
+
+                                                    tpImp.setIcmscst(crt.equals("1") ? imp.getCstIcmsSaida() : imp.getCstIcmsSaida().trim().length() == 3 ? imp.getCstIcmsSaida().trim().substring(1) : imp.getCstIcmsSaida().trim());
+                                                    tpImp.setIcmspicms(imp.getAliquotaIcmsSaida());
+                                                    tpImp.setIcmspicmsst(imp.getAliquotaSTIcmsSaida());
+                                                    tpImp.setIcmspredbc(imp.getRbcIcmsSaida());
+                                                    tpImp.setIcmspredbcst(imp.getRbcSTIcmsSaida());
+
+                                                    tpImp.setPiscst(imp.getCstPisSaida());
+                                                    tpImp.setPisppis(imp.getAliquotaPisSaida());
+
+                                                    tpImp.setCofinscst(imp.getCstCofinsSaida());
+                                                    tpImp.setCofinspcofins(imp.getAliquotaCofinsSaida());
+
+                                                    tpImp.setIcmsmodbc(modBc);
+                                                    fireTabproimpBusinessBean.insert(tpImp);
+                                                }
+
+                                            }
+
                                             isExist = true;
                                         }
                                     }
@@ -826,41 +1032,12 @@ public class ImpostoFiscal extends JInternalFrame {
                         carregando.setVisible(true);
                         carregando.loadBarra("Iniciando Pesquisa...", 0, 0, true);
                         if (jTxtProd.getText() != null) {
-                            List<Object[]> query = fireTabproBusiness.getProdutobyDescorCod(jTxtProd.getText(), codfil, tipo);
+                            List<ImportacaoImp> query = fireTabproBusiness.getProdutobyDescorCod(jTxtProd.getText(), codfil, tipo, ordenar);
                             tableModel.addItens(null);
                             if (!query.isEmpty()) {
                                 for (int i = 0; i <= (query.size() - 1); i++) {
                                     carregando.loadBarra("Carregando Pesquisa ", i, query.size() - 1, false);
-                                    Object[] o = query.get(i);
-                                    System.out.println("");
-                                    ImportacaoImp imp = new ImportacaoImp();
-                                    imp.setNomeproduto(o[0] != null ? (String) o[0] : "");
-                                    imp.setCodigoproduto(o[1] != null ? (String) o[1] : "");
-                                    imp.setCodigobarra(o[2] != null ? (String) o[2] : "");
-                                    imp.setGenero(o[3] != null ? (String) o[3] : "");
-                                    imp.setNcm(o[4] != null ? (String) o[4] : "");
-                                    imp.setCfop(o[5] != null ? (String) o[5] : "");
-                                    imp.setCest(o[6] != null ? (String) o[6] : "");
-                                    imp.setCstIcmsEntrada(o[7] != null ? (String) o[7] : "");
-                                    imp.setAliquotaIcmsEntrada(o[8] != null ? (Double) o[8] : 0.0);
-                                    imp.setAliquotaSTIcmsEntrada(o[9] != null ? (Double) o[9] : 0.0);
-                                    imp.setRbcIcmsEntrada(o[10] != null ? (Double) o[10] : 0.0);
-                                    imp.setRbcSTIcmsEntrada(o[11] != null ? (Double) o[11] : 0.0);
-                                    imp.setCstIcmsSaida(o[12] != null ? (String) o[12] : "");
-                                    imp.setAliquotaIcmsSaida(o[13] != null ? (Double) o[13] : 0.0);
-                                    imp.setAliquotaSTIcmsSaida(o[14] != null ? (Double) o[14] : 0.0);
-                                    imp.setRbcIcmsSaida(o[15] != null ? (Double) o[15] : 0.0);
-                                    imp.setRbcSTIcmsSaida(o[16] != null ? (Double) o[16] : 0.0);
-                                    imp.setCstPisEntrada(o[17] != null ? (String) o[17] : "");
-                                    imp.setAliquotaPisEntrada(o[18] != null ? (Double) o[18] : 0.0);
-                                    imp.setCstPisSaida(o[19] != null ? (String) o[19] : "");
-                                    imp.setAliquotaPisSaida(o[20] != null ? (Double) o[20] : 0.0);
-                                    imp.setCstCofinsEntrada(o[21] != null ? (String) o[21] : "");
-                                    imp.setAliquotaCofinsEntrada(o[22] != null ? (Double) o[22] : 0.0);
-                                    imp.setCstCofinsSaida(o[23] != null ? (String) o[23] : "");
-                                    imp.setAliquotaCofinsSaida(o[24] != null ? (Double) o[24] : 0.0);
-                                    imp.setNaturezaproduto(o[25] != null ? (String) o[25] : "");
-                                    imp.setDataAtualizacao(o[26] != null ? (Date) o[26] : null);
+                                    ImportacaoImp imp = query.get(i);
                                     carregando.setTexto(imp.getCodigoproduto() + " - " + imp.getNomeproduto());
                                     tableModel.addItem(imp);
                                     jScrollPane1.getVerticalScrollBar().setValue(jScrollPane1.getVerticalScrollBar().getMaximum());
@@ -941,6 +1118,10 @@ public class ImpostoFiscal extends JInternalFrame {
         }
     }//GEN-LAST:event_jBtnPrinterActionPerformed
 
+    private void jCbxOrdenarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbxOrdenarItemStateChanged
+        ordenar = jCbxOrdenar.getSelectedIndex();
+    }//GEN-LAST:event_jCbxOrdenarItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -977,12 +1158,14 @@ public class ImpostoFiscal extends JInternalFrame {
     private javax.swing.JButton jBtnPrinter;
     private javax.swing.JButton jBtnSearch;
     private javax.swing.JComboBox<Tabfil> jCbxFilial;
+    private javax.swing.JComboBox<String> jCbxOrdenar;
     private javax.swing.JComboBox<String> jCbxTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

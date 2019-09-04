@@ -4,8 +4,23 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-
-    <changeSet id="ADD ICODPRO ON TABPRO" author="InterFiscal - Bruno">
+    
+    
+    
+        <changeSet id="ADD RGDATAMIX ON TABPRO"
+               author="InterFiscal - Bruno Martins" runOnChange="true" >
+        <preConditions onFail="MARK_RAN">
+            <not>
+               <columnExists tableName="TABPRO" columnName="RGDATAMIX" />
+            </not>
+        </preConditions>
+        <addColumn tableName="TABPRO">
+            <column name="RGDATAMIX " type="TIMESTAMP" />
+        </addColumn>
+    </changeSet>
+    
+       
+     <changeSet id="ADD ICODPRO ON TABPRO" author="InterFiscal - Bruno">
         <preConditions onFail="MARK_RAN">
             <not>
                 <columnExists tableName="TABPRO" columnName="ICODPRO"/>
@@ -153,8 +168,8 @@
         <sql>
             ALTER TABLE FISCALTEMP ALTER COLUMN CODIGO_FILIAL TYPE VARCHAR(20);
         </sql>
-    </changeSet>-->
-    
+    </changeSet>
+    -->
     <changeSet id="CREATE TABLE FISCALTEMP"
                author = "InterFiscal - Bruno" dbms="postgresql" runOnChange="true" >
         <preConditions onFail="MARK_RAN">
@@ -415,7 +430,7 @@
             grupo,
             null::varchar as subgrupo,
             p.stprod as status,
-            p.rgdata as data_ult_mov
+            p.rgdatamix as data_ult_mov
             from tabpro p
             inner join tabprofil tpf on tpf.codpro = p.codpro and tpf.codfil in(select tf.codfil from tabfil tf where tf.mixfiscal='S')
             left join tabproimp tpi on tpi.codfil = tpf.codfil and tpi.codpro = tpf.codpro and tpi.tpimpos='D'
@@ -495,7 +510,7 @@
             tpi.nfs_csosn as nfs_csosn,
             tp.stprod
             as status,
-            tp.rgdata as data_ult_mov
+            tp.rgdatamix as data_ult_mov
             from tabpro tp
             inner join tabprofil tpf on tp.codpro = tpf.codpro and tpf.codfil in(select tf.codfil from tabfil tf where tf.mixfiscal='S')
             left join tabproimpe tpi on tpf.codfil = tpi.codigo_filial and tpi.codigo_produto = tpf.codpro
@@ -662,7 +677,7 @@
             null::text as svc_csosn , 
             tpi.icmscst as snc_csosn,
             p.stprod as status,
-            p.rgdata as data_ult_mov
+            p.rgdatamix as data_ult_mov
             from tabpro p
             inner join tabprofil tpf on tpf.codpro = p.codpro and tpf.codfil in(select tf.codfil from tabfil tf where tf.mixfiscal='S')
             left join tabproimp tpi on tpi.codfil = tpf.codfil and tpi.codpro = tpf.codpro and tpi.tpimpos='D'

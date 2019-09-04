@@ -215,28 +215,67 @@ public class AtualizacaoFiscalTemp {
     private boolean isExistPisCofins;
     private boolean isExistIcmsEntrada;
     private boolean isExistIcmsSaida;
+    private boolean isExistRegraNcm;
 
     private final SimpleDateFormat dateFormat;
     private String sql;
 
-    public AtualizacaoFiscalTemp() {
+     public AtualizacaoFiscalTemp() {
         this.sql = "";
         this.dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    }
+       }
 
     //***************************** Methods ************************************
+    public String getExecuteRegraNcm() {
+        sql = "";
+
+        if (!this.isIsExistRegraNcm()) {
+            sql = "INSERT INTO TABNCM (CODNCM,NOMNCM,CEST,AICMSCST,DICMSCST,APISCST,DPISCST,ACOFCST,DCOFCST,RGCODUSU,RGUSUARIO,RGEVENTO,RGDATA)"
+                    + "VALUES('" + this.getClasFiscal() + "',"
+                    + "'MIXFISCAL',"
+                    + "'" + this.getCest() + "',"
+                    + "'" + this.getCst() + "',"
+                    + "'" + this.getCst() + "',"
+                    + "'" + this.getPisCst() + "',"
+                    + "'" + this.getPisCst() + "',"
+                    + "'" + this.getCofinsCst() + "',"
+                    + "'" + this.getCofinsCst() + "',"
+                    + "'1',"
+                    + "'INTER',"
+                    + "'1',"
+                    + "'" + dateFormat.format(this.getRgdata()) + "');";
+        } else {
+            sql = "UPDATE TABNCM SET "
+                    + "CEST = '" + this.getCest() + "',"
+                    + "AICMSCST = '" + this.getCst() + "',"
+                    + "DICMSCST = '" + this.getCst() + "',"
+                    + "APISCST = '" + this.getPisCst() + "',"
+                    + "DPISCST = '" + this.getPisCst() + "',"
+                    + "ACOFCST = '" + this.getCofinsCst() + "',"
+                    + "DCOFCST = '" + this.getCofinsCst() + "',"
+                    + "RGCODUSU = '1',"
+                    + "RGUSUARIO = 'INTER',"
+                    + "RGEVENTO = '2',"
+                    + "RGDATA = '" + dateFormat.format(this.getRgdata()) + "';";
+        }
+
+        return sql;
+    }
+
     public String getExecuteTabpro() {
         sql = "UPDATE tabpro SET "
                 + "clasfiscal = '" + this.getClasFiscal() + "', "
                 + "fatorpis = " + this.getFatorPis() + ", "
                 + "cstpis = '" + this.getCstPis() + "', "
-                + "fatorcofins =" + this.getFatorCofins() + ", "
+                + "fatorcofins = " + this.getFatorCofins() + ", "
                 + "cstcofins = '" + this.getCstCofins() + "', "
                 + "icms = " + this.getIcmsSimples() + ", "
                 + "cst = '" + this.getCst() + "', "
                 + "cest = '" + this.getCest() + "', "
                 + "indice = '" + this.getIndice() + "', "
-                + "rgdata = '" + dateFormat.format(this.getRgdata()) + "' "
+                + "rgdata = '" + dateFormat.format(this.getRgdata()) + "',"
+                + "rgdatamix = '" + dateFormat.format(this.getRgdata()) + "',"
+                + "rgevento = '2' "
                 + "where codpro = '" + this.getCodpro() + "';";
 
         return sql;
@@ -250,6 +289,7 @@ public class AtualizacaoFiscalTemp {
                 + "cstcofinse = '" + this.getCstCofins() + "', "
                 + "fatorcofinscom = " + this.getFatorCofins() + ", "
                 + "rgdata = '" + dateFormat.format(this.getRgdata()) + "', "
+                + "rgevento = '2',"
                 + "mixfiscal = 'S' "
                 + "where codpro = '" + this.getCodpro() + "' ";
 
@@ -279,7 +319,7 @@ public class AtualizacaoFiscalTemp {
                             + "'" + this.getClasFiscal() + "', "
                             + "'" + this.getPisCst() + "', "
                             + "" + this.getPispPis() + ", "
-                            + "'" + this.getCofinsCst() +  "', "
+                            + "'" + this.getCofinsCst() + "', "
                             + "" + this.getCofinspCofins() + ", "
                             + "'" + this.getCst() + "', "
                             + "" + this.getIcmsSimples() + ", "
@@ -1385,6 +1425,20 @@ public class AtualizacaoFiscalTemp {
 
     public void setIcmsRegime(Double icmsRegime) {
         this.icmsRegime = icmsRegime;
+    }
+
+    /**
+     * @return the isExistRegraNcm
+     */
+    public boolean isIsExistRegraNcm() {
+        return isExistRegraNcm;
+    }
+
+    /**
+     * @param isExistRegraNcm the isExistRegraNcm to set
+     */
+    public void setIsExistRegraNcm(boolean isExistRegraNcm) {
+        this.isExistRegraNcm = isExistRegraNcm;
     }
 
 }

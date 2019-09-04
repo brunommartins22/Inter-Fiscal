@@ -127,6 +127,7 @@ public class JfrmGeral extends javax.swing.JFrame {
             jMenuItem4 = new javax.swing.JMenuItem();
             jMenuItem7 = new javax.swing.JMenuItem();
             jMenuItem10 = new javax.swing.JMenuItem();
+            jMenuItem11 = new javax.swing.JMenuItem();
             jMenuItem9 = new javax.swing.JMenuItem();
 
             addWindowListener(new java.awt.event.WindowAdapter() {
@@ -324,6 +325,14 @@ public class JfrmGeral extends javax.swing.JFrame {
                 }
             });
             jMenu2.add(jMenuItem10);
+
+            jMenuItem11.setText("Sincronizador Database");
+            jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem11ActionPerformed(evt);
+                }
+            });
+            jMenu2.add(jMenuItem11);
 
             jMenuItem9.setText("Sair");
             jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -832,6 +841,59 @@ public class JfrmGeral extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String resp = "0";
+                JDlgCarregando carregando = null;
+                try {
+                    while (resp.equals("0")) {
+                        resp = a.getAutentication();
+                        carregando = a.carregarJdialog("Carregando ...", jfrmPrincipal);
+                        carregando.setVisible(resp.equals("0") || resp.equals("1"));
+                        carregando.loadBarra("Validando Usuário ...", 0, 0, true);
+                        switch (resp) {
+                            case ("1"): {
+                                Sincronizador principal = null;
+
+                                carregando.loadBarra("Carregando Módulo de Sincronização ...", 0, 0, true);
+
+                                principal = new Sincronizador(jfrmPrincipal);
+
+                                carregando.loadBarra("Inciando Aplicação ...", 0, 0, true);
+                                carregando.setTexto("Modulo carregado com sucesso !!");
+                                jDesktopPane1.add(principal);
+                                principal.setSize(new Dimension(1080, 620));
+                                a.getPositionInternalFrame(principal);
+                                principal.setVisible(true);
+                                break;
+                            }
+                            case "0": {
+                                carregando.loadBarra("Senha Inválida, tente novamente ...", 0, 0, true);
+                                break;
+                            }
+                            default: {
+
+                                break;
+                            }
+                        }
+
+                        Thread.sleep(1500);
+                        carregando.dispose();
+
+                    }
+                } catch (Exception ex) {
+                    carregando.dispose();
+                    ex.printStackTrace();
+                    JDlgMensagem m = new JDlgMensagem(jfrmPrincipal, true, ex);
+                    m.setVisible(true);
+                }
+
+            }
+        }).start();
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -891,6 +953,7 @@ public class JfrmGeral extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

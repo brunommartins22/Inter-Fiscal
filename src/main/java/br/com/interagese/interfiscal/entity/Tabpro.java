@@ -146,8 +146,11 @@ public class Tabpro implements Model {
     @Column(name = "rgdata")
     @Temporal(TemporalType.TIMESTAMP)
     private Date rgdata;
+    @Column(name = "rgdatamix")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date rgdatamix;
     @Size(max = 1)
-    @Column(name = "rgevento", updatable = false)
+    @Column(name = "rgevento")
     private String rgevento;
     @Column(name = "fatorpis")
     private Double fatorpis;
@@ -1463,6 +1466,20 @@ public class Tabpro implements Model {
     @Override
     public void setId(Object object) {
         this.codpro = object.toString();
+    }
+
+    /**
+     * @return the rgdatamix
+     */
+    public Date getRgdatamix() {
+        return rgdatamix;
+    }
+
+    /**
+     * @param rgdatamix the rgdatamix to set
+     */
+    public void setRgdatamix(Date rgdatamix) {
+        this.rgdatamix = rgdatamix;
     }
 
 }

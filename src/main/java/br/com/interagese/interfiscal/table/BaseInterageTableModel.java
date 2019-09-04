@@ -1,4 +1,4 @@
-package br.com.interagese.interfiscal.table;
+    package br.com.interagese.interfiscal.table;
 
 import br.com.interagese.interfiscal.entity.BaseInterage;
 import java.text.SimpleDateFormat;
