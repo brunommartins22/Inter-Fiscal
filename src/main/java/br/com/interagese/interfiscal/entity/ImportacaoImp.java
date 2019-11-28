@@ -62,6 +62,26 @@ public class ImportacaoImp {
 
         return text;
     }
+    
+    public Long getCodTpImposDesc(){
+         Long cod = 0L;
+        if (tpImpos != null) {
+            switch (tpImpos) {
+                case "A": {
+                    cod = 1L;
+                    break;
+                }
+                case "D": {
+                    cod = 2L;
+                    break;
+                }
+//                default: {
+//                    text = " - ";
+//                }
+            }
+        }
+        return cod;
+    }
 
     public void setTpImposDesc(String tpImpos) {
         String text = "";

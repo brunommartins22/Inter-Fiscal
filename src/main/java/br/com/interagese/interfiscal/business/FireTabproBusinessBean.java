@@ -7,7 +7,7 @@ import br.com.interagese.interfiscal.persistence.FireTabproDao;
 import java.util.List;
 
 public class FireTabproBusinessBean extends AbstractBusinessCrud<Tabpro, FireTabproDao> implements FireTabproBusiness {
-
+    
     @Override
     public Object countImportacao(Integer codfil, Integer tipo) {
         return getDao().countImportacao(codfil, tipo);
@@ -17,7 +17,7 @@ public class FireTabproBusinessBean extends AbstractBusinessCrud<Tabpro, FireTab
     public void getGerarEanbyCodigo() {
         getDao().getGerarEanbyCodigo();
     }
-
+    
     @Override
     public List<ImportacaoImp> getProdutobyDescorCod(Object obj, Integer codfil, Integer tipo, Integer ordenar) throws InstantiationException, IllegalAccessException {
         return getDao().getProdutobyDescorCod(obj, codfil, tipo, ordenar);
@@ -42,5 +42,25 @@ public class FireTabproBusinessBean extends AbstractBusinessCrud<Tabpro, FireTab
     public void updateAll(String codbarun, Double prvapro, Double pratpro) {
         getDao().updateAll(codbarun, prvapro, pratpro);
     }
-
+    
+//    @Override
+//    public List<ImportacaoImp> getImportacaoImpostosAll(Integer codfil, Integer tipo) throws InstantiationException, IllegalAccessException {
+//        return getDao().getImportacaoImpostosAll(codfil, tipo);
+//    }
+//    
+//    @Override
+//    public List<ImportacaoImp> getImportacaoImpostosLimit(Integer codfil, Integer tipo) throws InstantiationException, IllegalAccessException {
+//        return getDao().getImportacaoImpostosLimit(codfil, tipo);
+//    }
+//    
+//    @Override
+//    public List<SincronizadorTable> getCarregarALL() throws InstantiationException, IllegalAccessException {
+//        return getDao().getCarregarALL();
+//    }
+//    
+//    @Override
+//    public void updateAll(String codbarun, Double prvapro, Double pratpro) {
+//        getDao().updateAll(codbarun, prvapro, pratpro);
+//    }
+    
 }

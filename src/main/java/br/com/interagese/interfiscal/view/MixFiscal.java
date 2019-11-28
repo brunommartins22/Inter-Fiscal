@@ -60,7 +60,7 @@ import br.com.interagese.interfiscal.business.TabNcmBusinessBean;
  * @author bruno
  */
 public class MixFiscal extends JInternalFrame {
-
+    
     private static JFrame jfrmPrincipal;
     private final Actions a;
     private final PisCofinsBusiness pisCofinsBusiness;
@@ -94,12 +94,12 @@ public class MixFiscal extends JInternalFrame {
         this.pisCofinsBusiness = new PisCofinsBusinessBean();
         this.tabNcmBusiness = new TabNcmBusinessBean();
         this.a = new Actions(jfrmPrincipal);
-
+        
         initComponents();
         definirFormulario();
-
+        
     }
-
+    
     public void definirFormulario() {
         this.setTitle("Mix Fiscal");
         a.iconApplicationInternalFrame(this);
@@ -107,9 +107,9 @@ public class MixFiscal extends JInternalFrame {
         jLabelIcmsEntrada.setText(" → ICMS ENTRADA");
         jLabelIcmsSaida.setText(" → ICMS SAÍDA");
         jLabelBaseInterage.setText("HISTÓRICO DE ATUALIZAÇÃO MIX-FISCAL");
-
+        
         carregarListagem();
-
+        
         jBtnAtualizar.setUI(new MetalButtonUI());
         jBtnSincronizar.setUI(new MetalButtonUI());
         contUpdate = 1;
@@ -152,32 +152,32 @@ public class MixFiscal extends JInternalFrame {
                         logApp.setError("Inter-Fiscal - " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " → " + writer.toString());
                         a.carregarLog(logApp, 1);
                     }
-
+                    
                 }
             };
             Timer t = new Timer();
             t.schedule(runnable, 1000, 10000);
         }
     }
-
+    
     public void carregarListagem() {
         tableModelPisCofins = new piscofinsTableModel(pisCofinsBusiness.getSearchAll(0, "carregar-piscofins"));
         tableModelIcmsEntrada = new IcmsEntradaTableModel(icmsentradaBusiness.getSearchAll(0, "carregar-icmsentrada"));
         tableModelIcmsSaida = new IcmsSaidaTableModel(icmssaidaBusiness.getSearchAll(0, "carregar-icmssaida"));
         baseInterageTableModel = new BaseInterageTableModel(fiscalTempBusinessBean.getSearchAllBaseInterage(0, null));
-
+        
         carregarSizeList(((Number) pisCofinsBusiness.count()).intValue(), ((Number) icmsentradaBusiness.count()).intValue(), ((Number) icmssaidaBusiness.count()).intValue(), ((Number) fiscalTempBusinessBean.count()).intValue());
-
+        
         jTablePisCofins.setModel(tableModelPisCofins);
         jTableIcmsEntrada.setModel(tableModelIcmsEntrada);
         jTableIcmsSaida.setModel(tableModelIcmsSaida);
         jTableBase.setModel(baseInterageTableModel);
-
+        
         jTablePisCofins.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jTableIcmsEntrada.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jTableIcmsSaida.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jTableBase.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
+        
         a.setColumnMinWidth(jTablePisCofins, 0, 200);
         a.setColumn(jTablePisCofins, 1, 75);
         a.setColumn(jTablePisCofins, 2, 85);
@@ -193,9 +193,9 @@ public class MixFiscal extends JInternalFrame {
         a.setColumn(jTableBase, 6, 135);
         a.setColumn(jTableBase, 7, 135);
         a.setColumn(jTableBase, 8, 135);
-
+        
     }
-
+    
     public void carregarSizeList(Integer PisCofins, Integer IcmsEntrada, Integer IcmsSaida, Integer BaseInterage) {
         jLabelPisCofins.setText(PisCofins != null ? (" → PIS / COFINS" + "(" + PisCofins + ")") : jLabelPisCofins.getText());
         jLabelIcmsEntrada.setText(IcmsEntrada != null ? (" → ICMS ENTRADA" + "(" + IcmsEntrada + ")") : jLabelIcmsEntrada.getText());
@@ -485,7 +485,7 @@ public class MixFiscal extends JInternalFrame {
                         carregando.setVisible(true);
                         carregando.loadBarra("Atualizando...", 0, 0, true);
                         carregarListagem();
-
+                        
                         Thread.sleep(1000);
                         carregando.loadBarra("Dados Atualizados com sucesso !!", 0, 0, true);
                         Thread.sleep(500);
@@ -497,10 +497,10 @@ public class MixFiscal extends JInternalFrame {
                         JDlgMensagem mensagem = new JDlgMensagem(jfrmPrincipal, true, ex);
                         mensagem.setVisible(true);
                     }
-
+                    
                 }
             }).start();
-
+            
         } catch (Exception ex) {
             ex.printStackTrace();
             JDlgMensagem mensagem = new JDlgMensagem(jfrmPrincipal, true, ex);
@@ -509,32 +509,32 @@ public class MixFiscal extends JInternalFrame {
     }//GEN-LAST:event_jBtnAtualizarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
+        
 
     }//GEN-LAST:event_formWindowClosing
 
     private void jBtnSincronizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSincronizarActionPerformed
-
+        
         new Thread(new Runnable() {
             @Override
             public void run() {
                 JDlgCarregando carregando = null;
                 Log logApp = null;
                 try {
-
+                    
                     carregando = a.carregarJdialog("Sincronizando...", jfrmPrincipal);
                     carregando.setVisible(true);
                     String texto = "Sincronizando Tabelas...";
                     carregando.loadBarra(texto, 0, 0, true);
-
+                    
                     List<Piscofins> resultPisCofins = pisCofinsBusiness.getAll("carregar-piscofins");
                     List<IcmsEntrada> resultIcmsEntrada = icmsentradaBusiness.getAll("carregar-icmsentrada");
                     List<IcmsSaida> resultIcmsSaida = icmssaidaBusiness.getAll("carregar-icmssaida");
-
+                    
                     String mensagem = "";
                     logApp = new Log();
                     if (!resultPisCofins.isEmpty() || !resultIcmsEntrada.isEmpty() || !resultIcmsSaida.isEmpty()) {
-
+                        
                         jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getMaximum());
                         baseInterageTableModel.updateTableListener();
 
@@ -551,33 +551,33 @@ public class MixFiscal extends JInternalFrame {
                         Integer size = 0;
                         int max = Sessao.qtdEnvio;
                         int calc = 0;
-
+                        
                         int inserts = 0;
                         //***************************************************
                         texto = "Iniciando Atualização da tabela Histórico...";
                         carregando.loadBarra(texto, 0, 0, true);
                         carregando.setTexto("Atualizando...");
                         Fiscaltemp f = null;
-
+                        
                         int cont = 1;
                         boolean isInsert;
-
+                        
                         Date inicioOperacao = new Date();
-
+                        
                         List<Fiscaltemp> resultFiscaltempCalcInsert = null;
                         List<Fiscaltemp> resultFiscaltempCalcUpdate = null;
-
+                        
                         if (!resultPisCofins.isEmpty()) {
-
+                            
                             System.out.println("list " + resultPisCofins.size() + "log " + logApp);
                             logApp.setQtdPisConfins(resultPisCofins.size());
-
+                            
                             Thread.sleep(1200);
                             texto = "Preparando Tabela Temp - Pis/Cofins Mix Fiscal...";
                             carregando.loadBarra(texto, 0, 0, true);
                             carregando.setTexto("Carregando Tabela Temp - Pis/Cofins Mix Fiscal...");
                             Thread.sleep(1200);
-
+                            
                             size = resultPisCofins.size();
                             calc = size / max;
                             if ((size % max) > 0) {
@@ -593,7 +593,7 @@ public class MixFiscal extends JInternalFrame {
                                         break;
                                     }
                                     Piscofins pc = resultPisCofins.get(e);
-
+                                    
                                     f = fiscalTempBusinessBean.findById(pc.getCodigoProduto().toString());
                                     isInsert = false;
                                     if (f == null) {
@@ -607,21 +607,21 @@ public class MixFiscal extends JInternalFrame {
                                     f.setEan(pc.getEan() != null ? pc.getEan().toString() : "");
                                     f.setNcm(pc.getNcm());
                                     f.setCodNaturezaReceita(pc.getCodNaturezaReceita());
-
+                                    
                                     f.setPisCstE(pc.getPisCstE());
                                     f.setPisCstS(pc.getPisCstS());
                                     f.setPisAlqE(pc.getPisAlqE());
                                     f.setPisAlqS(pc.getPisAlqS());
-
+                                    
                                     f.setCofinsCstE(pc.getCofinsCstE());
                                     f.setCofinsCstS(pc.getCofinsCstS());
                                     f.setCofinsAlqE(pc.getCofinsAlqE());
                                     f.setCofinsAlqS(pc.getCofinsAlqS());
-
+                                    
                                     f.setPisCofins(true);
                                     f.setAtualizacaoPiscofins(inicioOperacao);
                                     f.setDataRegistro(inicioOperacao);
-
+                                    
                                     if (isInsert) {
                                         resultFiscaltempCalcInsert.add(f);
                                     } else {
@@ -629,7 +629,7 @@ public class MixFiscal extends JInternalFrame {
                                     }
                                     cont++;
                                 }
-
+                                
                                 inserts = inserts + max;
                                 texto = "Atualizando Pis/Cofins no Banco de Dados...";
                                 carregando.loadBarra(texto, 0, 0, true);
@@ -642,7 +642,7 @@ public class MixFiscal extends JInternalFrame {
                                 }
                             }
                         }
-
+                        
                         if (!resultIcmsEntrada.isEmpty()) {
                             logApp.setQtdIcmsEntrada(resultIcmsEntrada.size());
                             carregando.limparBufferText();
@@ -651,7 +651,7 @@ public class MixFiscal extends JInternalFrame {
                             carregando.loadBarra(texto, 0, 0, true);
                             carregando.setTexto("Carregando Tabela Temp - Icms Entrada Mix Fiscal...");
                             Thread.sleep(1200);
-
+                            
                             cont = 1;
                             size = resultIcmsEntrada.size();
                             calc = size / max;
@@ -668,7 +668,7 @@ public class MixFiscal extends JInternalFrame {
                                         break;
                                     }
                                     IcmsEntrada ie = resultIcmsEntrada.get(e);
-
+                                    
                                     f = fiscalTempBusinessBean.findById(ie.getCodigoProduto().toString());
                                     isInsert = false;
                                     if (f == null) {
@@ -709,13 +709,13 @@ public class MixFiscal extends JInternalFrame {
                                     f.setIcmsEntrada(true);
                                     f.setAtualizacaoIcmsentrada(inicioOperacao);
                                     f.setDataRegistro(inicioOperacao);
-
+                                    
                                     if (isInsert) {
                                         resultFiscaltempCalcInsert.add(f);
                                     } else {
                                         resultFiscaltempCalcUpdate.add(f);
                                     }
-
+                                    
                                     cont++;
                                 }
                                 inserts = inserts + max;
@@ -730,7 +730,7 @@ public class MixFiscal extends JInternalFrame {
                                 }
                             }
                         }
-
+                        
                         if (!resultIcmsSaida.isEmpty()) {
                             logApp.setQtdIcmsSaida(resultIcmsSaida.size());
                             carregando.limparBufferText();
@@ -739,7 +739,7 @@ public class MixFiscal extends JInternalFrame {
                             carregando.loadBarra(texto, 0, 0, true);
                             carregando.setTexto("Carregando Tabela Temp - Icms Saída Mix Fiscal...");
                             Thread.sleep(1200);
-
+                            
                             cont = 1;
                             size = resultIcmsSaida.size();
                             calc = size / max;
@@ -755,9 +755,9 @@ public class MixFiscal extends JInternalFrame {
                                     if (e >= size) {
                                         break;
                                     }
-
+                                    
                                     IcmsSaida is = resultIcmsSaida.get(e);
-
+                                    
                                     f = fiscalTempBusinessBean.findById(is.getCodigoProduto().toString());
                                     isInsert = false;
                                     if (f == null) {
@@ -769,24 +769,24 @@ public class MixFiscal extends JInternalFrame {
                                     f.setCodigoCrt(regime);
                                     f.setCodigoProduto(is.getCodigoProduto().toString());
                                     f.setEan(is.getEan() != null ? is.getEan().toString().trim() : "");
-
+                                    
                                     f.setCest(is.getCest());
-
+                                    
                                     f.setSncCst(is.getSncCst());
                                     f.setSncAlq(is.getSncAlq());
                                     f.setSncAlqst(is.getSncAlqst());
                                     f.setSncRbc(is.getSncRbc());
                                     f.setSncRbcst(is.getSncRbcst());
-
+                                    
                                     f.setSssCsosn(is.getSssCsosn());
                                     f.setSvcCsosn(is.getSvcCsosn());
                                     f.setSncCsosn(is.getSncCsosn());
                                     f.setFecp(is.getFecp());
-
+                                    
                                     f.setIcmsSaida(true);
                                     f.setAtualizacaoIcmssaida(inicioOperacao);
                                     f.setDataRegistro(inicioOperacao);
-
+                                    
                                     if (isInsert) {
                                         resultFiscaltempCalcInsert.add(f);
                                     } else {
@@ -806,7 +806,7 @@ public class MixFiscal extends JInternalFrame {
                                 }
                             }
                         }
-
+                        
                         carregando.limparBufferText();
                         Thread.sleep(500);
                         texto = "Preparando Atualização do Banco de Dados da Interage ...";
@@ -822,7 +822,7 @@ public class MixFiscal extends JInternalFrame {
                         //**********************************************************
                         size = resutlFinal.size();
                         calc = size / max;
-
+                        
                         if ((size % max) > 0) {
                             calc++;
                         }
@@ -830,7 +830,7 @@ public class MixFiscal extends JInternalFrame {
                         cont = 0;
                         //**********************************************************
                         for (int p = 0; p < calc; p++) {
-
+                            
                             carregando.loadBarra("Carregando Tributação", inserts, size, false);
                             listString = new ArrayList<>();
                             for (int e = inserts; e < (inserts + max); e++) {
@@ -840,7 +840,7 @@ public class MixFiscal extends JInternalFrame {
                                 f = resutlFinal.get(e);
                                 texto = f.getCodigoProduto() + " - " + f.getNomeProduto();
                                 carregando.setTexto(texto);
-
+                                
                                 for (Tabpro produto : fiscalTempBusinessBean.getListTabproByCod(Integer.parseInt(f.getCodigoProduto()))) {
                                     AtualizacaoFiscalTemp aTemp = new AtualizacaoFiscalTemp();
                                     //List<String> listString = new ArrayList<>();
@@ -868,9 +868,9 @@ public class MixFiscal extends JInternalFrame {
                                     //************** Gerando Tipo Trib and ModBc *******************
                                     String tipoTrib = "";
                                     String modBc = "";
-
+                                    
                                     if (f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida()) {
-
+                                        
                                         String valueTrib = regime.equals("1") ? f.getSncCsosn() : f.getSncCst();
 
                                         //************************* Indice *************************
@@ -907,7 +907,7 @@ public class MixFiscal extends JInternalFrame {
                                                 break;
                                             }
                                         }
-
+                                        
                                         aTemp.setIndice(tipoTrib);
 
                                         //************************* IcmsModBc **********************
@@ -951,7 +951,7 @@ public class MixFiscal extends JInternalFrame {
                                                 imps.setIsUpdateTemp(true);
                                                 imps.setTpImpos(imps.getResultTpImpos().split(",")[0].equals("D") ? "A" : "D");
                                             }
-
+                                            
                                             imps.setTpUpdate("");
                                             //****************** Pis/cofins ********************
                                             if (f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins()) {
@@ -961,7 +961,7 @@ public class MixFiscal extends JInternalFrame {
                                             if (f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida()) {
                                                 imps.setTpUpdate(!aTemp.equals("") ? "PI" : "I");
                                             }
-
+                                            
                                         }
                                         aTemp.getResultImpTemp().add(imps);
                                     }
@@ -988,7 +988,7 @@ public class MixFiscal extends JInternalFrame {
                                             }
                                             aTemp.getResultImpe().add(imp);
                                         }
-
+                                        
                                         aTemp.setEan(f.getEan());
                                         aTemp.setTipoMva(f.getTipoMva());
                                         aTemp.setMva(f.getMva());
@@ -1016,9 +1016,9 @@ public class MixFiscal extends JInternalFrame {
                                         aTemp.setNfsCsosn(f.getNfsCsosn());
                                         aTemp.setNfAlq(f.getNfAlq());
                                         aTemp.setFundamentoLegal(f.getFundamentoLegal());
-
+                                        
                                     }
-
+                                    
                                     if ((f.getPisCofins() != null && !f.getPisCofins().equals("") && f.getPisCofins()) || (f.getIcmsSaida() != null && !f.getIcmsSaida().equals("") && f.getIcmsSaida())) {
 
                                         //******************* validation insert ncm *****************
@@ -1052,7 +1052,7 @@ public class MixFiscal extends JInternalFrame {
                                         for (String item : aTemp.getExecuteTabproimp()) {
                                             listString.add(item);
                                         }
-
+                                        
                                     }
                                     if (f.getIcmsEntrada() != null && !f.getIcmsEntrada().equals("") && f.getIcmsEntrada()) {
                                         //****************** Täbproimpe ***************
@@ -1068,7 +1068,7 @@ public class MixFiscal extends JInternalFrame {
 
                                     //fireTabproBusiness.executeUpdate(listString);
                                 }
-
+                                
                             }
                             inserts = inserts + max;
                             texto = "Atualizando Banco de Dados...";
@@ -1111,11 +1111,11 @@ public class MixFiscal extends JInternalFrame {
                             carregando.setTexto("Registrando...");
                             fireTabproBusiness.executeUpdate(listString);
                         }
-
+                        
                         pisCofinsBusiness.deleteAll();
                         icmsentradaBusiness.deleteAll();
                         icmssaidaBusiness.deleteAll();
-
+                        
                         carregarListagem();
 
                         //*********************************************************
@@ -1123,15 +1123,15 @@ public class MixFiscal extends JInternalFrame {
                     } else {
                         mensagem = "Nenhuma Atualização Disponível no momento !!";
                     }
-
+                    
                     Thread.sleep(1000);
                     carregando.loadBarra(mensagem, 0, 0, true);
                     Thread.sleep(500);
                     carregando.setTexto("Finalizando Sincronização ...");
                     Thread.sleep(1000);
-
+                    
                     carregando.dispose();
-
+                    
                 } catch (Exception ex) {
                     carregando.limparBufferText();
                     carregando.dispose();
@@ -1147,10 +1147,10 @@ public class MixFiscal extends JInternalFrame {
             }
         }
         ).start();
-
+        
 
     }//GEN-LAST:event_jBtnSincronizarActionPerformed
-
+    
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 

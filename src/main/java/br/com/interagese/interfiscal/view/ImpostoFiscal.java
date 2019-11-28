@@ -22,7 +22,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -41,9 +40,6 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.metal.MetalButtonUI;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -521,146 +517,167 @@ public class ImpostoFiscal extends JInternalFrame {
                                 carregando.setVisible(true);
                                 carregando.loadBarra("Exportando Arquivo Excel...", 0, 0, true);
                                 i = 0;
-                                String filename = chooser.getSelectedFile().getAbsolutePath() + ".xls";
-                                HSSFWorkbook workbook = new HSSFWorkbook();
-                                HSSFSheet sheet = workbook.createSheet("FirstSheet");
-
-                                HSSFCellStyle txtStyle1 = (HSSFCellStyle) workbook.createCellStyle();
-                                HSSFCellStyle txtStyle2 = (HSSFCellStyle) workbook.createCellStyle();
-                                HSSFCellStyle txtStyle3 = (HSSFCellStyle) workbook.createCellStyle();
-
-                                HSSFFont txtFont1 = (HSSFFont) workbook.createFont();
-                                HSSFFont txtFont2 = (HSSFFont) workbook.createFont();
-                                HSSFFont txtFont3 = (HSSFFont) workbook.createFont();
-
-                                txtFont1.setFontName("Arial");
-                                txtFont1.setFontHeightInPoints((short) 18);
-                                txtFont1.setBold(true);
-                                txtFont1.setColor((short) 003366);
-                                txtStyle1.setFont(txtFont1);
-
-                                txtFont2.setFontHeightInPoints((short) 14);
-                                txtFont2.setFontName("Arial");
-                                txtFont2.setColor((short) 003366);
-                                txtStyle2.setFont(txtFont2);
-
-                                txtFont3.setFontHeightInPoints((short) 11);
-                                txtFont3.setFontName("Arial");
-                                txtFont3.setBold(true);
-                                txtFont3.setColor((short) 003366);
-                                txtStyle3.setFont(txtFont3);
-
-//                                //******************* titulo ************************
-                                HSSFRow rowTitulo = sheet.createRow((short) i++);
-                                rowTitulo.createCell(0).setCellValue("Exportação de Impostos || " + ((Tabfil) jCbxFilial.getModel().getSelectedItem()).toString());
-                                rowTitulo.getCell(0).setCellStyle(txtStyle2);
-//                                HSSFRow rowfilial = sheet.createRow((short) i++);
-//                                rowfilial.createCell(0).setCellValue("Filial: ");
-//                                rowfilial.createCell(1).setCellValue();
-////                            rowfilial.createCell(5).setCellValue("          Consumidor Final        ");
-//                                rowfilial.getCell(0).setCellStyle(txtStyle2);
-//                                rowfilial.getCell(1).setCellStyle(txtStyle2);
-////                            rowfilial.getCell(5).setCellStyle(txtStyle2);
-
-                                HSSFRow rowHeader2 = sheet.createRow((short) i++);
-                                rowHeader2.createCell(0).setCellValue("Cenário");
-                                rowHeader2.createCell(1).setCellValue("Produto");
-                                rowHeader2.createCell(2).setCellValue("Cód Produto");
-                                rowHeader2.createCell(3).setCellValue("Cód Barras");
-                                rowHeader2.createCell(4).setCellValue("Gênero");
-                                rowHeader2.createCell(5).setCellValue("NCM");
-                                rowHeader2.createCell(6).setCellValue("CFOP");
-                                rowHeader2.createCell(7).setCellValue("CEST");
-                                rowHeader2.createCell(8).setCellValue("CST Icms Entrada");
-                                rowHeader2.createCell(9).setCellValue("Alq. Icms Entrada");
-                                rowHeader2.createCell(10).setCellValue("Alq. ST Icms Entrada");
-                                rowHeader2.createCell(11).setCellValue("Rbc Icms Entrada");
-                                rowHeader2.createCell(12).setCellValue("Rbc ST Icms Entrada");
-                                rowHeader2.createCell(13).setCellValue("CST Icms Saída");
-                                rowHeader2.createCell(14).setCellValue("Alq. Icms Saída");
-                                rowHeader2.createCell(15).setCellValue("Alq. ST Icms Saída");
-                                rowHeader2.createCell(16).setCellValue("Rbc Icms Saída");
-                                rowHeader2.createCell(17).setCellValue("Rbc ST Icms Saída");
-                                rowHeader2.createCell(18).setCellValue("CST Pis Entrada");
-                                rowHeader2.createCell(19).setCellValue("Alq. Pis Entrada");
-                                rowHeader2.createCell(20).setCellValue("CST Pis Saída");
-                                rowHeader2.createCell(21).setCellValue("Alq. Pis Saída");
-                                rowHeader2.createCell(22).setCellValue("CST Cofins Entrada");
-                                rowHeader2.createCell(23).setCellValue("Alq. Cofins Entrada");
-                                rowHeader2.createCell(24).setCellValue("CST Cofins Saída");
-                                rowHeader2.createCell(25).setCellValue("Alq. Cofins Saída");
-                                rowHeader2.createCell(26).setCellValue("Natureza Produto");
-
-                                rowHeader2.getCell(0).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(1).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(2).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(3).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(4).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(5).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(6).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(7).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(8).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(9).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(10).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(11).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(12).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(13).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(14).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(15).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(16).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(17).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(18).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(19).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(20).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(21).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(22).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(23).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(24).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(25).setCellStyle(txtStyle3);
-                                rowHeader2.getCell(26).setCellStyle(txtStyle3);
-
-                                //***************************************************
-                                DecimalFormat Formata = new DecimalFormat("#,##0.00");
-                                int cont = 1;
-
-                                for (ImportacaoImp item : resultImp) {
-                                    carregando.loadBarra("Exportando Tributação ", cont, resultImp.size(), false);
-                                    HSSFRow rowHeader3 = sheet.createRow(i++);
-                                    rowHeader3.createCell(0).setCellValue(item.getTpImposDesc());
-                                    rowHeader3.createCell(1).setCellValue(item.getNomeproduto());
-                                    rowHeader3.createCell(2).setCellValue(Utils.zeroEsquerda(item.getCodigoproduto(), 5) );
-                                    rowHeader3.createCell(3).setCellValue(item.getCodigobarra());
-                                    rowHeader3.createCell(4).setCellValue(item.getGenero());
-                                    rowHeader3.createCell(5).setCellValue(item.getNcm());
-                                    rowHeader3.createCell(6).setCellValue(item.getCfop());
-                                    rowHeader3.createCell(7).setCellValue(item.getCest());
-                                    rowHeader3.createCell(8).setCellValue(item.getCstIcmsEntrada());
-                                    rowHeader3.createCell(9).setCellValue(Formata.format(item.getAliquotaIcmsEntrada()));
-                                    rowHeader3.createCell(10).setCellValue(Formata.format(item.getAliquotaSTIcmsEntrada()));
-                                    rowHeader3.createCell(11).setCellValue(Formata.format(item.getRbcIcmsEntrada()));
-                                    rowHeader3.createCell(12).setCellValue(Formata.format(item.getRbcSTIcmsEntrada()));
-                                    rowHeader3.createCell(13).setCellValue(item.getCstIcmsSaida());
-                                    rowHeader3.createCell(14).setCellValue(Formata.format(item.getAliquotaIcmsSaida()));
-                                    rowHeader3.createCell(15).setCellValue(Formata.format(item.getAliquotaSTIcmsSaida()));
-                                    rowHeader3.createCell(16).setCellValue(Formata.format(item.getRbcIcmsSaida()));
-                                    rowHeader3.createCell(17).setCellValue(Formata.format(item.getRbcSTIcmsSaida()));
-                                    rowHeader3.createCell(18).setCellValue(item.getCstPisEntrada());
-                                    rowHeader3.createCell(19).setCellValue(Formata.format(item.getAliquotaPisEntrada()));
-                                    rowHeader3.createCell(20).setCellValue(item.getCstPisSaida());
-                                    rowHeader3.createCell(21).setCellValue(Formata.format(item.getAliquotaPisSaida()));
-                                    rowHeader3.createCell(22).setCellValue(item.getCstCofinsEntrada());
-                                    rowHeader3.createCell(23).setCellValue(Formata.format(item.getAliquotaCofinsEntrada()));
-                                    rowHeader3.createCell(24).setCellValue(item.getCstCofinsSaida());
-                                    rowHeader3.createCell(25).setCellValue(Formata.format(item.getAliquotaCofinsSaida()));
-                                    rowHeader3.createCell(26).setCellValue(item.getNaturezaproduto());
-
-                                    cont++;
-                                }
+                                String filename = chooser.getSelectedFile().getAbsolutePath() + ".csv";
+//                                HSSFWorkbook workbook = new HSSFWorkbook();
+//                                HSSFSheet sheet = workbook.createSheet("FirstSheet");
+//
+//                                HSSFCellStyle txtStyle1 = (HSSFCellStyle) workbook.createCellStyle();
+//                                HSSFCellStyle txtStyle2 = (HSSFCellStyle) workbook.createCellStyle();
+//                                HSSFCellStyle txtStyle3 = (HSSFCellStyle) workbook.createCellStyle();
+//
+//                                HSSFFont txtFont1 = (HSSFFont) workbook.createFont();
+//                                HSSFFont txtFont2 = (HSSFFont) workbook.createFont();
+//                                HSSFFont txtFont3 = (HSSFFont) workbook.createFont();
+//
+//                                txtFont1.setFontName("Arial");
+//                                txtFont1.setFontHeightInPoints((short) 18);
+//                                txtFont1.setBold(true);
+//                                txtFont1.setColor((short) 003366);
+//                                txtStyle1.setFont(txtFont1);
+//
+//                                txtFont2.setFontHeightInPoints((short) 14);
+//                                txtFont2.setFontName("Arial");
+//                                txtFont2.setColor((short) 003366);
+//                                txtStyle2.setFont(txtFont2);
+//
+//                                txtFont3.setFontHeightInPoints((short) 11);
+//                                txtFont3.setFontName("Arial");
+//                                txtFont3.setBold(true);
+//                                txtFont3.setColor((short) 003366);
+//                                txtStyle3.setFont(txtFont3);
+//
+////                                //******************* titulo ************************
+//                                HSSFRow rowTitulo = sheet.createRow((short) i++);
+//                                rowTitulo.createCell(0).setCellValue("Exportação de Impostos || " + ((Tabfil) jCbxFilial.getModel().getSelectedItem()).toString());
+//                                rowTitulo.getCell(0).setCellStyle(txtStyle2);
+////                                HSSFRow rowfilial = sheet.createRow((short) i++);
+////                                rowfilial.createCell(0).setCellValue("Filial: ");
+////                                rowfilial.createCell(1).setCellValue();
+//////                            rowfilial.createCell(5).setCellValue("          Consumidor Final        ");
+////                                rowfilial.getCell(0).setCellStyle(txtStyle2);
+////                                rowfilial.getCell(1).setCellStyle(txtStyle2);
+//////                            rowfilial.getCell(5).setCellStyle(txtStyle2);
+//
+//                                HSSFRow rowHeader2 = sheet.createRow((short) i++);
+//                                rowHeader2.createCell(0).setCellValue("Cenário");
+//                                rowHeader2.createCell(1).setCellValue("Produto");
+//                                rowHeader2.createCell(2).setCellValue("Cód Produto");
+//                                rowHeader2.createCell(3).setCellValue("Cód Barras");
+//                                rowHeader2.createCell(4).setCellValue("Gênero");
+//                                rowHeader2.createCell(5).setCellValue("NCM");
+//                                rowHeader2.createCell(6).setCellValue("CFOP");
+//                                rowHeader2.createCell(7).setCellValue("CEST");
+//                                rowHeader2.createCell(13).setCellValue("CST Icms Saída");
+//                                rowHeader2.createCell(14).setCellValue("Alq. Icms Saída");
+//                                rowHeader2.createCell(20).setCellValue("CST Pis Saída");
+//                                rowHeader2.createCell(21).setCellValue("Alq. Pis Saída");
+//                                rowHeader2.createCell(22).setCellValue("CST Cofins Entrada");
+//                                rowHeader2.createCell(23).setCellValue("Alq. Cofins Entrada");
+//                                rowHeader2.createCell(24).setCellValue("CST Cofins Saída");
+//                                rowHeader2.createCell(25).setCellValue("Alq. Cofins Saída");
+//                                rowHeader2.createCell(26).setCellValue("CST Ipi Saida");
+//                                rowHeader2.createCell(26).setCellValue("Alq. Ipi Saida");
+//
+//                                rowHeader2.getCell(0).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(1).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(2).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(3).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(4).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(5).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(6).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(7).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(8).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(9).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(10).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(11).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(12).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(13).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(14).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(15).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(16).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(17).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(18).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(19).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(20).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(21).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(22).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(23).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(24).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(25).setCellStyle(txtStyle3);
+//                                rowHeader2.getCell(26).setCellStyle(txtStyle3);
+//
+//                                //***************************************************
+//                                DecimalFormat Formata = new DecimalFormat("#,##0.00");
+//                                int cont = 1;
+//
+//                                for (ImportacaoImp item : resultImp) {
+//                                    carregando.loadBarra("Exportando Tributação ", cont, resultImp.size(), false);
+//                                    HSSFRow rowHeader3 = sheet.createRow(i++);
+//                                    rowHeader3.createCell(0).setCellValue(item.getTpImposDesc());
+//                                    rowHeader3.createCell(1).setCellValue(item.getNomeproduto());
+//                                    rowHeader3.createCell(2).setCellValue(Utils.zeroEsquerda(item.getCodigoproduto(), 5));
+//                                    rowHeader3.createCell(3).setCellValue(item.getCodigobarra());
+//                                    rowHeader3.createCell(4).setCellValue(item.getGenero());
+//                                    rowHeader3.createCell(5).setCellValue(item.getNcm());
+//                                    rowHeader3.createCell(6).setCellValue(item.getCfop());
+//                                    rowHeader3.createCell(7).setCellValue(item.getCest());
+//                                    rowHeader3.createCell(8).setCellValue(item.getCstIcmsEntrada());
+//                                    rowHeader3.createCell(9).setCellValue(Formata.format(item.getAliquotaIcmsEntrada()));
+//                                    rowHeader3.createCell(10).setCellValue(Formata.format(item.getAliquotaSTIcmsEntrada()));
+//                                    rowHeader3.createCell(11).setCellValue(Formata.format(item.getRbcIcmsEntrada()));
+//                                    rowHeader3.createCell(12).setCellValue(Formata.format(item.getRbcSTIcmsEntrada()));
+//                                    rowHeader3.createCell(13).setCellValue(item.getCstIcmsSaida());
+//                                    rowHeader3.createCell(14).setCellValue(Formata.format(item.getAliquotaIcmsSaida()));
+//                                    rowHeader3.createCell(15).setCellValue(Formata.format(item.getAliquotaSTIcmsSaida()));
+//                                    rowHeader3.createCell(16).setCellValue(Formata.format(item.getRbcIcmsSaida()));
+//                                    rowHeader3.createCell(17).setCellValue(Formata.format(item.getRbcSTIcmsSaida()));
+//                                    rowHeader3.createCell(18).setCellValue(item.getCstPisEntrada());
+//                                    rowHeader3.createCell(19).setCellValue(Formata.format(item.getAliquotaPisEntrada()));
+//                                    rowHeader3.createCell(20).setCellValue(item.getCstPisSaida());
+//                                    rowHeader3.createCell(21).setCellValue(Formata.format(item.getAliquotaPisSaida()));
+//                                    rowHeader3.createCell(22).setCellValue(item.getCstCofinsEntrada());
+//                                    rowHeader3.createCell(23).setCellValue(Formata.format(item.getAliquotaCofinsEntrada()));
+//                                    rowHeader3.createCell(24).setCellValue(item.getCstCofinsSaida());
+//                                    rowHeader3.createCell(25).setCellValue(Formata.format(item.getAliquotaCofinsSaida()));
+//                                    rowHeader3.createCell(26).setCellValue(item.getNaturezaproduto());
+//
+//                                    cont++;
+//                                }
                                 try {
-                                    FileOutputStream fileOut = new FileOutputStream(filename);
-                                    workbook.write(fileOut);
-                                    fileOut.close();
-                                    workbook.close();
+//                                    FileOutputStream fileOut = new FileOutputStream(filename);
+//                                    workbook.write(fileOut);
+//                                    fileOut.close();
+//                                    workbook.close();
+
+                                    String fileCsv = "Cenário; Cod Produto; Ean; Produto; Ncm; Cest; CST Icms Saida; Alq. Icms Saida; CST Pis Saida; ALq. Pis Saida; CST Cofins Saida;Alq. Cofins Saida; CST Ipi Saida;Alq. Ipi Saida\r\n";
+                                    int cont = 1;
+
+                                    for (ImportacaoImp item : resultImp) {
+                                        carregando.loadBarra("Exportando Tributação ", cont, resultImp.size(), false);
+
+                                        fileCsv += item.getCodTpImposDesc()
+                                                + ";" + Utils.zeroEsquerda(item.getCodigoproduto(), 5)
+                                                + ";" + item.getCodigobarra()
+                                                + ";" + item.getNomeproduto()
+                                                + ";" + item.getNcm()
+                                                + ";" + item.getCest()
+                                                + ";" + item.getCstIcmsSaida()
+                                                + ";" + item.getAliquotaIcmsSaida()
+                                                + ";" + item.getCstPisSaida()
+                                                + ";" + item.getAliquotaPisSaida()
+                                                + ";" + item.getCstCofinsSaida()
+                                                + ";" + item.getAliquotaCofinsSaida()
+                                                + "; "
+                                                + "; 0.0"
+                                                + "\r\n";
+
+                                        cont++;
+                                    }
+                                    
+                                    try (PrintWriter writer = new PrintWriter(new File(filename))) {
+                                        writer.write(fileCsv);
+                                    }
+
                                     carregando.loadBarra("Arquivo Exportado com Sucesso ...", 0, 0, true);
                                     carregando.setTexto("Finalizando Exportação Fiscal !!");
                                     Thread.sleep(1500);
