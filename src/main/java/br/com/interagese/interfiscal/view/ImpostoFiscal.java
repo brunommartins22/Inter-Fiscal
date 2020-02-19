@@ -655,25 +655,27 @@ public class ImpostoFiscal extends JInternalFrame {
                                     for (ImportacaoImp item : resultImp) {
                                         carregando.loadBarra("Exportando Tributação ", cont, resultImp.size(), false);
 
-                                        fileCsv += item.getCodTpImposDesc()
-                                                + ";" + Utils.zeroEsquerda(item.getCodigoproduto(), 5)
-                                                + ";" + item.getCodigobarra()
-                                                + ";" + item.getNomeproduto()
-                                                + ";" + item.getNcm()
-                                                + ";" + item.getCest()
-                                                + ";" + item.getCstIcmsSaida()
-                                                + ";" + item.getAliquotaIcmsSaida()
-                                                + ";" + item.getCstPisSaida()
-                                                + ";" + item.getAliquotaPisSaida()
-                                                + ";" + item.getCstCofinsSaida()
-                                                + ";" + item.getAliquotaCofinsSaida()
-                                                + "; "
-                                                + "; 0.0"
-                                                + "\r\n";
+                                        if (item.getCodTpImposDesc() == 1l) {
+                                            fileCsv += " "
+                                                    + ";" + Utils.zeroEsquerda(item.getCodigoproduto(), 5)
+                                                    + ";" + item.getCodigobarra()
+                                                    + ";" + item.getNomeproduto()
+                                                    + ";" + item.getNcm()
+                                                    + ";" + item.getCest()
+                                                    + ";" + item.getCstIcmsSaida()
+                                                    + ";" + item.getAliquotaIcmsSaida()
+                                                    + ";" + item.getCstPisSaida()
+                                                    + ";" + item.getAliquotaPisSaida()
+                                                    + ";" + item.getCstCofinsSaida()
+                                                    + ";" + item.getAliquotaCofinsSaida()
+                                                    + "; "
+                                                    + "; 0.0"
+                                                    + "\r\n";
+                                        }
 
                                         cont++;
                                     }
-                                    
+
                                     try (PrintWriter writer = new PrintWriter(new File(filename))) {
                                         writer.write(fileCsv);
                                     }

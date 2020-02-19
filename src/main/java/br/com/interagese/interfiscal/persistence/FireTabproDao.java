@@ -17,7 +17,7 @@ public class FireTabproDao extends AbstractDaoCrud<Tabpro> {
     private Actions a = new Actions(null);
 
     @Override
-    public Integer getMaxRowCount() {
+    public Integer getMaxRowCount() { 
         return 50;
     }
 
